@@ -1,0 +1,19 @@
+@import '~@site/theme/style';
+
+:global {
+	.ant-tabs-nav .ant-tabs-tab-active,
+	.ant-tabs-nav .ant-tabs-tab:hover  {
+		color: $defaultMainColor;
+	}
+	.ant-tabs-ink-bar {
+		background-color: $defaultMainColor;
+	}
+	.ant-tabs-nav .ant-tabs-tab {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.ant-tabs-bar {
+		margin-bottom: 30px;
+	}
+
+}

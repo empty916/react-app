@@ -1,0 +1,32 @@
+
+:global{
+	html,
+	body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+	#app {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+}
+.a {}
+.pos-rel {
+	position: relative;
+}
+.page-wrapper {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	&>div{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+	}
+}
+

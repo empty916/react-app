@@ -1,0 +1,7 @@
+@import '~@site/theme/style';
+
+:global {
+	.ant-spin-dot i {
+		background-color: $defaultMainColor;
+	}
+}

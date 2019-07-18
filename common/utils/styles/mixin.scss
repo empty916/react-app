@@ -1,0 +1,74 @@
+@import 'func';
+
+@mixin retinaImg($imgName,$width,$height) {
+    width: r($width);
+    height: r($height);
+    background-size: r($width) r($height);
+    background-repeat: no-repeat;
+    background-image: url('../../images/' + $imgName + '@2x.png');
+    @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+        background-image: url('../../images/' + $imgName + '@3x.png');
+    }
+}
+
+//@mixin border-1px($borderKind:top,$borderColor:#979797) {
+//    &::after {
+//        position: absolute;
+//        left: 0;
+//        top: 0;
+//        content: '';
+//        width: 100%;
+//        border-#{$borderKind}: r(1) solid $borderColor;
+//        @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+//            transform: scaleY(0.5);
+//        }
+//        @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+//            transform: scaleY(0.33);
+//        }
+//    }
+//}
+
+// 单边1px方法
+@mixin border-1px($borderKind:top,$borderColor:#979797) {
+    border-#{$borderKind}: 1px solid $borderColor;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+        border-#{$borderKind}: 0.5px solid $borderColor;
+    }
+    @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+        border-#{$borderKind}: 0.3px solid $borderColor;
+    }
+}
+
+// 全边1px方法
+@mixin border-1px-all($borderColor:#979797) {
+    border: 1px solid $borderColor;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+        border: 0.5px solid $borderColor;
+    }
+    @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+        border: 0.3px solid $borderColor;
+    }
+}
+
+@mixin boxShadow($shadowColor: rgba(29,35,41,.05)) {
+    box-shadow: 2px 0 8px 0 $shadowColor;
+}
+
+// 单一属性的多风格创建方法
+@mixin createTheme($suffix, $prop, $ThemeSrc) {
+    @for $i from 1 through $themeLen {
+        .#{$suffix}#{nth($themeName, $i)} {
+            #{$prop}: nth($ThemeSrc, $i);
+            @content;
+        }
+    }
+}
+
+// 多属性的多风格创建方法
+// customer createTheme
+// @for $i from 1 through $themeLen {
+//   .btn-#{nth($themeName, $i)} {
+//     background-color: nth($btnBgColor, $i);
+//     color: green;
+//  }
+// }

@@ -1,0 +1,55 @@
+.search-wrapper {
+	height: 100%;
+	padding: 0;
+	margin-right: 10px;
+	margin-left: auto;
+
+	.search-input {
+		width: 0;
+		border-radius: 0;
+		vertical-align: baseline;
+		background: transparent;
+		//line-height: 1;
+		transition: width 0.3s, margin-left 0.3s;
+
+		:global {
+			.ant-select-selection {
+				background: transparent;
+			}
+		}
+		.ant-select-selection {
+			background: transparent;
+		}
+
+		input {
+			padding-right: 0;
+			padding-left: 0;
+			border: 0;
+			line-height: 1;
+			vertical-align: baseline;
+			box-shadow: none !important;
+		}
+
+		&,
+		&:hover,
+		&:focus {
+			border-bottom: 1px solid rgb(217, 217, 217);
+		}
+
+		&.show {
+			width: 210px;
+			margin-left: 8px;
+		}
+	}
+
+	@mixin fl {
+		float: left;
+	}
+
+	@mixin dib {
+		//float: left;
+		display: inline-block;
+	}
+
+	@include dib;
+}

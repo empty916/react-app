@@ -1,0 +1,17 @@
+.line {
+	fill: none;
+	stroke: steelblue;
+	stroke-width: 2;
+}
+
+.x-axis .grid-line,
+.y-axis .grid-line {
+	stroke: black;
+	shape-rendering: crispEdges;
+	stroke-opacity: 0.2;
+}
+
+.dot {
+	fill: #fff;
+	stroke: steelblue;
+}

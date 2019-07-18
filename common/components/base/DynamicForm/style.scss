@@ -1,0 +1,140 @@
+@import '~@site/theme/style';
+
+.text {
+	display: inline-block;
+	overflow: hidden;
+	text-align: left;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	user-select: all;
+	color: #333;
+}
+
+:global {
+	$borderColor: $defaultMainColor;
+	$hoverColor: lighten($defaultMainColor, 40);
+	$shadow: 0 0 0 2px lighten($defaultMainColor, 40);
+	.dynamic-form {
+		.small {
+			width: 200px;
+			height: 24px;
+		}
+		// .ant-form-explain {
+		// 	display: table-cell;
+		// }
+	}
+	@mixin inputActiveBorder($color) {
+		.ant-input:not([disabled]):hover,
+		.ant-input:focus {
+			border-color: $color !important;
+			box-shadow: 0 0 0 2px lighten($color, 40) !important;
+		}
+	}
+	@include inputActiveBorder($defaultMainColor);
+	.has-error {
+		@include inputActiveBorder(#f5222d);
+	}
+	.ant-form-item-label > label,
+	.ant-form-item, {
+		color: #696969;
+	}
+	.ant-input-lg,
+	.ant-select-lg {
+		font-size: 14px!important;
+		color: #696969!important;
+	}
+	.ant-form-item-label label:after {
+		position: relative;
+		top: -0.5px;
+		margin: 0 8px 0 2px;
+		content: '';
+	}
+	.ant-form-explain {
+		text-align: left;
+	}
+	.is-validating.has-feedback .ant-form-item-children-icon {
+		color: $defaultMainColor;
+	}
+
+	// 日期input 样式覆盖
+	.ant-calendar-today .ant-calendar-date {
+		border-color: $borderColor !important;
+		color: $defaultMainColor !important;
+	}
+	.ant-calendar-selected-date .ant-calendar-date {
+		background: $defaultMainColor !important;
+	}
+	.ant-calendar-date:hover,
+	.ant-calendar-selected-day .ant-calendar-date {
+		background: lighten($defaultMainColor, 40) !important;
+	}
+	.ant-calendar-header a:hover {
+		color: $defaultMainColor !important;
+	}
+	.ant-calendar-picker:hover .ant-calendar-picker-input:not(.ant-input-disabled) {
+		border-color: $borderColor !important;
+	}
+	.ant-calendar-tbody .ant-calendar-active-week .ant-calendar-today .ant-calendar-date {
+		padding: 0;
+		margin-left: 6px;
+	}
+	.ant-calendar-tbody .ant-calendar-active-week .ant-calendar-today .ant-calendar-date:before {
+		border: none;
+	}
+	// select input 样式覆盖
+	.ant-select-open {
+		.ant-select-selection {
+			border-color: $borderColor !important;
+			box-shadow: $shadow !important;
+		}
+	}
+	.ant-select-focused {
+		.ant-select-selection,
+		.ant-select-selection:focus,
+		.ant-select-selection:active {
+			border-color: $borderColor !important;
+			box-shadow: $shadow !important;
+		}
+	}
+	.ant-select-selection:focus,
+	.ant-select-selection:active {
+		border-color: $borderColor !important;
+		box-shadow: $shadow !important;
+	}
+	.ant-select-selection:hover {
+		border-color: $borderColor !important;
+	}
+
+	.ant-select-dropdown-menu-item:hover,
+	.ant-select-dropdown-menu-item-active {
+		background-color: $hoverColor !important;
+	}
+	.ant-select-dropdown-menu-item-selected {
+		background-color: lighten($defaultMainColor, 50) !important;
+	}
+
+	// checkbox样式覆盖
+	.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+	.ant-checkbox-input:focus + .ant-checkbox-inner,
+	.ant-checkbox:hover .ant-checkbox-inner,
+	.ant-checkbox-checked .ant-checkbox-inner,
+	.ant-checkbox-checked:after {
+		border-color: $borderColor !important;
+	}
+	.ant-checkbox-checked .ant-checkbox-inner {
+		background-color: $defaultMainColor !important;
+	}
+
+	// radio样式覆盖
+	.ant-radio-wrapper:hover .ant-radio-inner,
+	.ant-radio-input:focus + .ant-radio-inner,
+	.ant-radio:hover .ant-radio-inner,
+	.ant-radio-checked .ant-radio-inner,
+	.ant-radio-checked:after {
+		border-color: $borderColor !important;
+	}
+	.ant-radio-checked .ant-radio-inner::after,
+	.ant-radio-inner:after {
+		background-color: $defaultMainColor !important;
+	}
+}

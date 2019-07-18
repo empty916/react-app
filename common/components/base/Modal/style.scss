@@ -1,0 +1,37 @@
+@import '~@site/theme/style';
+
+:global {
+	.ant-modal-header {
+		padding-top: 14px 26px;
+	}
+	.ant-modal-title {
+		font-size: 16px;
+		font-family: MicrosoftYaHei;
+		color: #696969;
+	}
+	.ant-modal-body {
+		padding-top: 25px;
+		padding-bottom: 32px;
+		text-align: center;
+	}
+	.ant-modal-footer {
+		padding-top: 0;
+		padding-bottom: 26px;
+		border-top: none;
+		text-align: center;
+	}
+	.ant-btn {
+		background-color: transparent;
+	}
+	.ant-btn-primary {
+		margin-left: 10px;
+		background-color: $defaultMainColor;
+	}
+	.ant-confirm .ant-confirm-btns {
+        float: none;
+        text-align: center;
+	}
+	.ant-confirm-error .ant-confirm-title {
+		text-align: left;
+	}
+}

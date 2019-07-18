@@ -1,0 +1,34 @@
+@import '~@utils/styles/func';
+
+:global {
+  .ant-steps-item-process .ant-steps-item-icon {
+    background: #D56C14;
+  }
+  .ant-steps-item-process .ant-steps-item-icon {
+    border-color: #D56C14;
+  }
+  .ant-steps-item-finish .ant-steps-item-icon {
+    border-color: #D56C14;
+    background-color: #fff;
+  }
+  .ant-steps-item-finish > .ant-steps-item-tail:after {
+    background-color: #D56C14;
+  }
+  .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
+    color: #D56C14;
+    margin-top: 4px;
+}
+}
+.steps-content {
+    margin-top: 16px;
+    border: 1px dashed #e9e9e9;
+    border-radius: 6px;
+    background-color: #fafafa;
+    min-height: 200px;
+    text-align: center;
+    padding-top: 80px;
+  }
+  
+  .steps-action {
+    margin-top: 24px;
+  }

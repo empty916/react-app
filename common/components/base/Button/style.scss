@@ -1,0 +1,38 @@
+@import '~@site/theme/style';
+
+:global {
+	.ant-btn{
+		width: auto;
+		height: 40px;
+		padding-left: 30px;
+		padding-right: 30px;
+		border-color: $GrayButtonColor;
+	}
+	.ant-btn:active, .ant-btn.active {
+		color:$GrayButtonText;
+		background-color: #fff;
+		border-color: $GrayButtonColor;
+	}
+	.ant-btn:hover, .ant-btn:focus {
+		 color:$GrayButtonText;
+		background-color: #fff;
+		 border-color: $GrayButtonColor;
+	}
+	.ant-btn-primary {
+		border-color: $defaultMainColor;
+		background-color: $defaultMainColor;
+	}
+	.ant-btn-primary:hover {
+		opacity: 0.7;
+	}
+	.ant-btn-primary:active, .ant-btn-primary.active {
+		color: #fff;
+		background-color: $defaultMainColor;
+		border-color: $defaultMainColor;
+	}
+	.ant-btn-primary:hover, .ant-btn-primary:focus {
+		color: #fff;
+		background-color: $defaultMainColor;
+		border-color: $defaultMainColor;
+	}
+}

@@ -1,0 +1,15 @@
+@import '~@utils/styles/func';
+// 这是自动生成的文件，可以修改。
+.template {
+	width: 100%;
+	padding: 27px 30px;
+	background: #fff;
+	.mt-3 {
+		// margin-top: 3px;
+	}
+	:global {
+		.ant-row, .ant-btn {
+			margin-top: 8px;
+		}
+	}
+}

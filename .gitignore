@@ -1,0 +1,7 @@
+/node_modules
+/dist
+/yarn-error.log
+/yarn.lock
+/tsconfig-backup.json
+/package-lock.json
+/.vscode

@@ -1,0 +1,16 @@
+@import '~@utils/styles/mixin';
+// 菜单栏风格配置
+@import './menu-theme.scss';
+$defaultMainColor: #d56c14;
+
+$GrayButtonColor: #c1c1cb; // 按钮颜色：灰色
+$GrayButtonText: #4b4b4b; // 按钮灰色文本颜色
+$themeName 						: dark 			light 			blue 			green 			red;
+
+// loading color
+$loadingBgColor					: #000 		$defaultMainColor blue 			  green 		  red;
+// 组件风格配置
+$btnBgColor						: #000 		#fff  			blue 			green 			red;
+// $btnBgColor						: $defaultMainColor 		#fff  			blue 			green 			red;
+
+$themeLen  : length($themeName);
