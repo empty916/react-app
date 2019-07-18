@@ -1,6 +1,7 @@
 
 import Page1 from '../pages/Page1';
 import Page2 from '../pages/Page2';
+import Page3 from '../pages/Page3';
 
 
 const routes = [
@@ -11,6 +12,10 @@ const routes = [
 	{
 		path: '/page2',
 		component: Page2
+	},
+	{
+		path: '/page3',
+		component: Page3
 	}
 ];
 

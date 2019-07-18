@@ -49,6 +49,7 @@ const TransitionSwitch: React.FunctionComponent = (props: ITransitionSwitchProps
 		(): ITransitionProps => {
 			routeCacheInstance.push(location);
 			if (routeCacheInstance.isBack(location)) {
+				routeCacheInstance.resetCurrent(location);
 				return props.back || back;
 			}
 			return props.forward || forward;

@@ -2,24 +2,28 @@ import {Location} from 'history';
 
 class RouteCache {
 	cache: string[] = [];
+	currentIndex:number = -1;
 	push(location: Location) {
-		if (this.isRepeat(location)) {
-			return;
+		if (!this.isBack(location)) {
+			if (this.currentIndex === this.cache.length - 1) {
+				this.currentIndex++;
+				this.cache.push(location.pathname);
+			} else {
+				this.currentIndex++;
+				this.cache[this.currentIndex] = location.pathname;
+			}
 		}
-		this.cache.push(location.pathname);
-		// if (!this.isBack(location)) {
-		// 	this.cache.push(location.pathname);
-		// }
 		if (this.cache.length > 100) {
 			this.cache.pop();
 		}
 	}
 	isBack(location: Location) {
-		const lastLocation = this.cache[this.cache.length - 3];
+		const lastLocation = this.cache[this.currentIndex - 1];
 		return lastLocation === location.pathname;
 	}
-	isRepeat(location: Location) {
-		return this.cache[this.cache.length - 1] === location.pathname;
+	resetCurrent(location: Location) {
+		const index = this.cache.lastIndexOf(location.pathname);
+		this.currentIndex = index;
 	}
 }
 
