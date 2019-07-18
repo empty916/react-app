@@ -5,3 +5,4 @@
 /tsconfig-backup.json
 /package-lock.json
 /.vscode
+/server/dll

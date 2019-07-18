@@ -31,7 +31,6 @@ module.exports = mode => {
 			],
 			baseDll: [
 				'react',
-				'react-router-config',
 				'react-router-dom',
 				'react-redux',
 				'redux',

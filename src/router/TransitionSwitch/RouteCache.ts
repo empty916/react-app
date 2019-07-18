@@ -6,15 +6,16 @@ class RouteCache {
 		if (this.isRepeat(location)) {
 			return;
 		}
-		if (!this.isBack(location)) {
-			this.cache.push(location.pathname);
-		}
+		this.cache.push(location.pathname);
+		// if (!this.isBack(location)) {
+		// 	this.cache.push(location.pathname);
+		// }
 		if (this.cache.length > 100) {
 			this.cache.pop();
 		}
 	}
 	isBack(location: Location) {
-		const lastLocation = this.cache[this.cache.length - 2];
+		const lastLocation = this.cache[this.cache.length - 3];
 		return lastLocation === location.pathname;
 	}
 	isRepeat(location: Location) {
