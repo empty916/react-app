@@ -5,9 +5,12 @@ class RouteCache {
 	cache: string[] = [];
 	currentIndex:number = -1;
 	constructor() {
+		this.clearHistory();
+	}
+	clearHistory() {
 		// 项目初始化，清除history记录
 		if (!!history.pushState){
-			history.pushState(null, '', document.URL);
+			history.pushState(null, '', location.href);
 		}
 	}
 	push(location: Location) {
