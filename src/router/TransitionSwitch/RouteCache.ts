@@ -1,8 +1,15 @@
 import {Location} from 'history';
 
+
 class RouteCache {
 	cache: string[] = [];
 	currentIndex:number = -1;
+	constructor() {
+		// 项目初始化，清除history记录
+		if (!!history.pushState){
+			history.pushState(null, '', document.URL);
+		}
+	}
 	push(location: Location) {
 		if (!this.isBack(location)) {
 			if (this.currentIndex === this.cache.length - 1) {
@@ -10,7 +17,11 @@ class RouteCache {
 				this.cache.push(location.pathname);
 			} else {
 				this.currentIndex++;
-				this.cache[this.currentIndex] = location.pathname;
+				if (this.cache[this.currentIndex] !== location.pathname) {
+					this.cache[this.currentIndex] = location.pathname
+					this.cache = this.cache.slice(0, this.currentIndex + 1);
+				}
+				// this.cache[this.currentIndex] = location.pathname;
 			}
 		}
 		if (this.cache.length > 100) {
