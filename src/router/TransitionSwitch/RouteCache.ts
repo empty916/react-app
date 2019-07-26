@@ -12,8 +12,11 @@ class RouteCache {
 	}
 	clearHistory() {
 		// 项目初始化，清除history记录
+		// 窒息操作。
 		if (!!history.pushState){
-			history.pushState(null, '', location.href);
+			for(let i = 0; i < 50; i++) {
+				history.pushState(null, '', location.href);
+			}
 		}
 	}
 	push(location: Location) {

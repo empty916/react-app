@@ -6,3 +6,4 @@
 /package-lock.json
 /.vscode
 /server/dll
+.DS_Store

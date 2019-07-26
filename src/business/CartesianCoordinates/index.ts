@@ -198,6 +198,10 @@ class CartesianCoordinates {
 		this.renderYAxes(this.axes);
 		this.renderDots(this.body, this.data, this.dotR, this.colors);
 	}
+	destroy() {
+		(this.svg as d3.Selection<SVGSVGElement, any, HTMLElement, any>).selectAll('*').remove();
+		(this.svg as d3.Selection<SVGSVGElement, any, HTMLElement, any>).remove();
+	}
 	protected setTension(tension: number) {
 		this.tension = tension;
 	}
