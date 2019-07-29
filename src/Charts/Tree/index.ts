@@ -28,7 +28,7 @@ namespace Tree {
 		margin?: margin;
 		selector: string;
 		data: any;
-		getValue: TGetValue;
+		// getValue: TGetValue;
 	}
 }
 const TYPES = {
@@ -41,12 +41,13 @@ class Tree {
 	private margin: Tree.margin;
 	private selector: string;
 	private data: any;
-	private getValue: TGetValue;
 	private svg: TSvgSelection | undefined;
 	private body: TGSelection | undefined;
 	private tree: d3.TreeLayout<any> | undefined;
 	private root: any;
 	private nodes: any;
+	private links: any;
+
 	private index: number = 0;
 	static TYPES = TYPES;
 	private type = TYPES.HORIZONTAL;
@@ -60,7 +61,6 @@ class Tree {
 		height = 1500,
 		margin = {top: 50,right:50,bottom:50,left:50},
 		selector,
-		getValue,
 		data,
 	}: Tree.constructorParams) {
 		this.width = width;
@@ -68,7 +68,6 @@ class Tree {
 		this.margin = margin;
 		this.selector = selector;
 		this.data = data;
-		this.getValue = getValue;
 	}
 	private createTree() {
 		if (this.svg === undefined) {
@@ -180,11 +179,11 @@ class Tree {
 			.remove();
 	}
 	private renderLinks() {
-		const links:any = (<TGSelection>this.body)
+		this.links = (<TGSelection>this.body)
 				.selectAll('.link')
 				.data(this.root.descendants().slice(1), (d: any) => d.id || (d.id = ++this.index));
 
-		links
+		this.links
 			.enter()
 				.append('path')
 					.attr('class', 'link')
@@ -196,13 +195,13 @@ class Tree {
 					.style('fill', 'none')
 					.style('stroke', '#ccc')
 					.style('stroke-width', 1.5);
-		links
+		this.links
 			.filter((d: any, i: number) => !!d.parent)
 			.transition()
 				.attr('d', (d: any) => this.generateLinkPath({x: d.parent.x, y: d.parent.y}, d))
 
 
-		links
+		this.links
 			.exit()
 			.transition()
 				.style('opacity', 0)
@@ -218,6 +217,9 @@ class Tree {
 			.remove();
 
 
+	}
+	private destroyLinks() {
+		this.links.remove();
 	}
 	private generateLinkPath(target: {x:number,y:number}, source: {x:number,y:number}) {
 		const path = d3.path();
@@ -238,6 +240,9 @@ class Tree {
 		this.createTree();
 		this.init();
 		this.colors('1')
+	}
+	destory() {
+
 	}
 	unMount() {
 		this.nodes

@@ -43,7 +43,6 @@ class Pie {
 					.append('svg')
 						.attr('width', this.width)
 						.attr('height', this.height);
-
 	}
 
 	createPie() {
@@ -69,7 +68,6 @@ class Pie {
 					.attr("y", -this.height/4)
 					.attr("width", this.width/2)
 					.attr("height", this.height/2);
-
 	}
 	renderPie() {
 		const arc = this.scale;

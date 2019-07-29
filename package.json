@@ -4,7 +4,7 @@
   "description": "react project",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node ./server/dev.js --site dianxin --project src",
+    "dev": "cross-env NODE_ENV=development node ./server/dev.js",
     "build:dll": "node ./server/build_dll.js",
     "build:prd": "cross-env NODE_ENV=production node ./server/build_prod.js",
     "create:page": "node ./server/createPage/index.js",
@@ -96,6 +96,7 @@
     "@loadable/component": "^5.10.1",
     "axios": "^0.19.0",
     "babel-polyfill": "^6.26.0",
+    "china-map-geojson": "^1.0.4",
     "classnames": "^2.2.6",
     "color": "^3.1.2",
     "d3": "^5.9.7",
