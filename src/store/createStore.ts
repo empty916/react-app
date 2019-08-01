@@ -1,19 +1,18 @@
 import {
-	useState,
 	createContext,
 } from 'react';
 
 type anyFn = (...arg: any[]) => any;
 
-type TCombineReducer = {
+type TCombineAction = {
 	[moduleName: string]: {
 		[type: string]: anyFn,
 	};
 };
-type TReducer = {
+type TActions = {
 	[type: string]: anyFn,
 };
-type TAction = {
+type TActionParams = {
 	type: string;
 	[p: string]: any;
 };
@@ -23,60 +22,60 @@ const isPromise = (obj: any) => obj && typeof obj.then === 'function';
 
 export interface Store {
 	getState: () => any;
-	createDispatch: (a: string) => (action: TAction) => void;
-	addReducer: (moduleName: string, reducerFn: TReducer) => void;
-	setReducer: (moduleName: string, reducerFn: TReducer) => void;
-	replaceReducer: (newReducer: TCombineReducer) => void;
+	createDispatch: (a: string) => (action: TActionParams) => void | Promise<any>;
+	addAction: (moduleName: string, actionsObj: TActions) => void;
+	setAction: (moduleName: string, actionsObj: TActions) => void;
+	replaceAction: (newAction: TCombineAction) => void;
 	subscribe: (listener: anyFn) => () => void;
 }
 
-type TCreateStore = (reducers?: TCombineReducer, initialState?: any) => Store;
+type TCreateStore = (actions?: TCombineAction, initialState?: any) => Store;
 
-const createStore: TCreateStore = (reducers: TCombineReducer = {}, initialState: any = {}) => {
+const createStore: TCreateStore = (actions: TCombineAction = {}, initialState: any = {}) => {
 	let currentState = initialState;
-	let currentReducers = reducers;
+	let currentActions = actions;
 	let listeners: anyFn[] = [];
 	const setStore = (newStore: any) => currentState = newStore;
-	const replaceReducer = (newReducer: TCombineReducer) => currentReducers = newReducer;
+	const replaceAction = (newAction: TCombineAction) => currentActions = newAction;
 	const getState = () => currentState;
 	// 添加单个reducer方法
-	const addReducer = (moduleName: string, reducerFn: TReducer) => {
-		if(currentReducers[moduleName]) {
-			throw new Error('reducer module has exist!');
+	const addAction = (moduleName: string, actionsObj: TActions) => {
+		if(currentActions[moduleName]) {
+			throw new Error('action module has exist!');
 		}
-		currentReducers[moduleName] = reducerFn;
+		currentActions[moduleName] = actionsObj;
 	}
 	// 设置单个reducer方法
-	const setReducer = (moduleName: string, reducerFn: TReducer) => {
-		currentReducers[moduleName] = reducerFn;
+	const setAction = (moduleName: string, actionsObj: TActions) => {
+		currentActions[moduleName] = actionsObj;
 	}
 	const runListeners = () => listeners.forEach(listener => listener());
 
 	const createDispatch = (moduleName: string) => {
-		if (!currentReducers[moduleName]) {
+		if (!currentActions[moduleName]) {
 			throw new Error('reducer is not exist');
 		}
-		return (action: TAction) => {
+		return ({type, ...arg}: TActionParams) => {
 			const newState: any = { ...currentState };
-			let storeFrag;
-			if (!!currentReducers[moduleName] && !!currentReducers[moduleName][action.type]) {
-				storeFrag = currentReducers[moduleName][action.type](
+			let stateFrag;
+			if (!!currentActions[moduleName] && !!currentActions[moduleName][type]) {
+				stateFrag = currentActions[moduleName][type](
 					newState[moduleName],
-					action,
+					{...arg},
 					newState
 				);
 			} else {
 				return;
 			}
-			if(isPromise(storeFrag)) {
-				return storeFrag.then((ns: any) => {
+			if(isPromise(stateFrag)) {
+				return stateFrag.then((ns: any) => {
 					newState[moduleName] = ns;
 					setStore(newState);
-					runListeners()
+					runListeners();
 					return Promise.resolve();
 				});
 			} else {
-				newState[moduleName] = storeFrag;
+				newState[moduleName] = stateFrag;
 				setStore(newState);
 				runListeners();
 			}
@@ -91,9 +90,9 @@ const createStore: TCreateStore = (reducers: TCombineReducer = {}, initialState:
 	return {
 		getState,
 		createDispatch,
-		addReducer,
-		setReducer,
-		replaceReducer,
+		addAction,
+		setAction,
+		replaceAction,
 		subscribe,
 	};
 };

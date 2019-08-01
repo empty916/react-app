@@ -27,5 +27,6 @@ const Page1: React.FunctionComponent = (p: any) => {
 		</div>
 	);
 }
-
+export {default as state} from './state';
+export {default as actions} from './actions';
 export default Page1;
