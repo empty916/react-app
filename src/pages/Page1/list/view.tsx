@@ -5,8 +5,7 @@ import Pack from '@client/Charts/Pack'
 import data from '@client/Charts/Pack/flare.json'
 
 const Page2: React.FC<any> = (p: any) => {
-	const { page1List: {state, actions} } = p;
-	console.log(p);
+	const { page1: {state, actions} } = p;
 	return (
 		<div className={style.page2}>
 			<input
@@ -19,4 +18,4 @@ const Page2: React.FC<any> = (p: any) => {
 	);
 }
 
-export default Inject('page1List', 'page2')(Page2);
+export default Inject('page1', 'page2')(Page2);
