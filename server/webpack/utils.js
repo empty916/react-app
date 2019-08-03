@@ -63,6 +63,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 		test: /\.(s?css)$/,
 		exclude: /\/node_modules/,
 		use: [
+			// isDev ? 'style-loader' :
 			{
 				loader: MiniCssExtractPlugin.loader,
 				options: {
@@ -74,6 +75,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 				loader: 'css-loader',
 				options: {
 					modules: true,
+					importLoaders: 1,
 					localIdentName: isDev
 						? '[local]-[hash:base64:8]'
 						: '[hash:base64:16]',
@@ -91,6 +93,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 		test: /\.(s?css)$/,
 		include: /\/node_modules/,
 		use: [
+			// isDev ? 'style-loader' :
 			{
 				loader: MiniCssExtractPlugin.loader,
 				options: {
@@ -113,36 +116,40 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 
 module.exports.createStylePlugin = (mode, isDev) =>
 	new MiniCssExtractPlugin({
-		// filename: 'style/[name].[contenthash:8].css',
-		filename: ({
-			chunk: {
-				name,
-				contentHash: { javascript },
-			},
-		}) => {
-			if (isDev) {
-				return `style/${name}.css`;
-			}
-			if (name === 'theme') {
-				return 'style/theme.css';
-			}
-			return `style/${name}.${javascript.slice(0, 8)}.css`;
-		},
-		// chunkFilename: 'style/[name].[contenthash:8].css',
-		chunkFilename: ({
-			chunk: {
-				name,
-				contentHash: { javascript },
-			},
-		}) => {
-			if (isDev) {
-				return `style/${name}.css`;
-			}
-			if (name === 'theme') {
-				return 'style/theme.css';
-			}
-			return `style/${name}.${javascript.slice(0, 8)}.css`;
-		},
+		filename: 'style/[name].[contenthash:8].css',
+		// filename: ({
+		// 	chunk: {
+		// 		name,
+		// 		contentHash: { javascript },
+		// 	},
+		// }) => {
+		// 	if (isDev) {
+		// 		return `style/${name}.css`;
+		// 	}
+		// 	if (name === 'theme') {
+		// 		return 'style/theme.css';
+		// 	}
+		// 	return `style/${name}.${javascript.slice(0, 8)}.css`;
+		// },
+		chunkFilename: 'style/[name].[contenthash:8].css',
+		// chunkFilename: (...arg) => {
+		// 	const {
+		// 		chunk: {
+		// 			name,
+		// 			id,
+		// 			contentHash: { javascript },
+		// 		},
+		// 	} = arg[0];
+		// 	if (isDev) {
+		// 		console.log(`style/${name || id}.css`);
+		// 		return `style/${name || id}.css`;
+		// 	}
+		// 	if (name === 'theme') {
+		// 		return 'style/theme.css';
+		// 	}
+		// 	console.log(`style/${name || id}.${javascript.slice(0, 8)}.css`);
+		// 	return `style/${name || id}.${javascript.slice(0, 8)}.css`;
+		// },
 	});
 
 // dll 通用配置 end

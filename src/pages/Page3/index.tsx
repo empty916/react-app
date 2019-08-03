@@ -19,7 +19,7 @@ const zoom = function zoomHandler(this:any, g: any) {
 			+ ")scale(" + k + ")");
 }
 
-const Page2: React.FunctionComponent = (p: any) => {
+const Page2: React.FC<any> = (p: any) => {
 	useEffect(() => {
 		const svg = d3
 			.select(`.${style.page2}`)

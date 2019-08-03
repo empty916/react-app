@@ -99,7 +99,7 @@ class Tree {
 	}
 	private init() {
 		// 格式化直接改变了root的值
-		(<d3.PackLayout<any>>this.packLayout)(this.root as d3.HierarchyNode<TData>);
+		(this.packLayout as d3.PackLayout<any>)(this.root as d3.HierarchyNode<TData>);
 		// if (this.type !== TYPES.VERTICAL) {
 		// 	this.convertCartesianCoordinates(this.root.descendants());
 		// }
@@ -111,7 +111,7 @@ class Tree {
 		this.renderText(this.root.descendants());
 	}
 	private renderNodes(nodesData: any) {
-		const circles = (<TGSelection>this.body)
+		const circles = (this.body as TGSelection)
 			.selectAll('circle')
 			.data(nodesData);
 
@@ -127,7 +127,7 @@ class Tree {
 		// this.renderText(nodesEnter);
 	}
 	private renderText(nodesData: any) {
-		(<TGSelection>this.body)
+		(this.body as TGSelection)
 			.selectAll('text')
 			.data(nodesData)
 			.enter()
