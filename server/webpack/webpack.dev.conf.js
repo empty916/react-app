@@ -27,23 +27,23 @@ module.exports = merge(baseConfig, {
 		filename: 'js/[name].js',
 	},
 	plugins: [
-		new ForkTsCheckerWebpackPlugin({
-			async: false,
-			useTypescriptIncrementalApi: true,
-			checkSyntacticErrors: true,
-			silent: true,
-			memoryLimit: 1024,
-			compilerOptions: {
-				paths: {
-					'@common/*': ['common/*'],
-					'@utils/*': ['common/utils/*'],
-					'@site': [`buildConfig/site/${site}/index.ts`],
-					'@site/*': [`buildConfig/site/${site}/*`],
-					'@client': [`${project}`],
-					'@client/*': [`${project}/*`],
-				},
-			},
-		}),
+		// new ForkTsCheckerWebpackPlugin({
+		// 	async: false,
+		// 	useTypescriptIncrementalApi: true,
+		// 	checkSyntacticErrors: true,
+		// 	silent: true,
+		// 	memoryLimit: 1024,
+		// 	compilerOptions: {
+		// 		paths: {
+		// 			'@common/*': ['common/*'],
+		// 			'@utils/*': ['common/utils/*'],
+		// 			'@site': [`buildConfig/site/${site}/index.ts`],
+		// 			'@site/*': [`buildConfig/site/${site}/*`],
+		// 			'@client': [`${project}`],
+		// 			'@client/*': [`${project}/*`],
+		// 		},
+		// 	},
+		// }),
 	],
 	devServer: {
 		open: true,

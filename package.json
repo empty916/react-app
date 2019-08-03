@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development node ./server/dev.js",
     "build:dll": "node ./server/build_dll.js",
+    "build:dev": "cross-env NODE_ENV=development node ./server/build_prod.js",
     "build:prd": "cross-env NODE_ENV=production node ./server/build_prod.js",
     "create:page": "node ./server/createPage/index.js",
     "hs": "http-server"

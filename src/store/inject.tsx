@@ -14,7 +14,7 @@ import { matchModule } from './getModuleNames';
 const Loading = () => <div>loading</div>;
 
 const createLoadModulesPromise = (moduleNames: string[]) => moduleNames.map(mn => {
-	return import(`@client/pages/${mn}`);
+	return import(`@client/pages/${mn}/index.ts`);
 });
 
 const connect = (moduleNames: string[], WrappedComponent: React.ComponentClass<any, any> | React.FC<any>): React.FC<any> => {

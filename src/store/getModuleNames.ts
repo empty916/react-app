@@ -2,14 +2,14 @@
 import { formatModuleName, removeHeadAndExt } from './utils';
 
 const getClientReduxContext = () => {
-	const actionsContext = (require as any).context('../pages', true, /index\.ts$/);
-	const allModuleNames = actionsContext.keys().map(removeHeadAndExt).map((name: any) => !!name.replace ? name.replace(/\/index$/gi, '') : name);
-	console.dir(actionsContext);
+	const baseModule = ['app'];
+	const actionsContext = (require as any).context('../pages', true, /state\.ts$/);
+	const allModuleNames = actionsContext.keys().map(removeHeadAndExt).map((name: any) => !!name.replace ? name.replace(/\/state$/gi, '') : name);
 	const allFormatModuleNames = allModuleNames.map(formatModuleName);
 	// const allModuleLoader = allModuleNames.map(mn => () => import(`@client/pages/${mn}`));
 	return {
-		allModuleNames,
-		allFormatModuleNames,
+		allModuleNames: [...baseModule, ...allModuleNames],
+		allFormatModuleNames: [...baseModule, ...allFormatModuleNames],
 		// allModuleLoader,
 	};
 };

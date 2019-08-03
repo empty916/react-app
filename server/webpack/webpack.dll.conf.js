@@ -25,25 +25,28 @@ module.exports = mode => {
 	const isDev = mode === 'development';
 	return {
 		entry: {
-			polyfill: [
+			utilsDll: [
 				'babel-polyfill',
-				'react-dom',
-			],
-			baseDll: [
-				'react',
-				'react-router-dom',
-				'react-redux',
-				'redux',
-				'redux-thunk',
-				'reselect',
-				'classnames',
-				'color',
-			],
-			fpDll: [
 				'lodash/curry',
 				'lodash/cloneDeep',
 				'lodash/fp/pipe',
 			],
+			baseDll: [
+				'react-dom',
+				'react',
+				'react-router-dom',
+				// 'react-redux',
+				// 'redux',
+				// 'redux-thunk',
+				// 'reselect',
+				'classnames',
+				'color',
+			],
+			// fpDll: [
+			// 	'lodash/curry',
+			// 	'lodash/cloneDeep',
+			// 	'lodash/fp/pipe',
+			// ],
 		},
 		mode,
 		devtool: isDev ? '#cheap-module-eval-source-map' : false,
