@@ -1,6 +1,7 @@
 
 import pipe from 'lodash/fp/pipe';
 import curry from 'lodash/fp/curry';
+import _shadowEqual from './shadowEqual'
 
 type anyFn = (substring: string, ...args: any[]) => string;
 // type TCreateStrReplace =
@@ -60,23 +61,9 @@ const formatState = (addTailMark: (a: string) => string) => <T extends {[p: stri
 type TAnyObj = {
 	[p: string]: any;
 }
-export const shadowEqual = (obj1: TAnyObj, obj2: TAnyObj): boolean => {
-	if (obj1 === obj2) {
-		return true;
-	}
-	const obj1Keys = Object.keys(obj1);
-	const obj2Keys = Object.keys(obj2);
-	if (obj1Keys.length !== obj2Keys.length) {
-		return false;
-	};
-	for(let i = obj1Keys.length - 1; i > -1; i--) {
-		if (obj1[obj1Keys[i]] !== obj2[obj2Keys[i]]){
-			return false;
-		}
-	}
-	return true;
-};
 
+// 比较两层属性是否相等
+export const shadowEqual = _shadowEqual;
 export const addStateTailMark = addTailMark('State');
 export const addActionsTailMark = addTailMark('Actions');
 export const formatStateObj = formatState(addStateTailMark);

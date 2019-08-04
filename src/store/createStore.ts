@@ -8,7 +8,7 @@ import {
 	formatActionsObj,
 	formatModuleName,
 } from './utils';
-import curry from 'lodash/fp/curry';
+import memoize from 'lodash/memoize';
 
 type anyFn = (...arg: any[]) => any;
 
@@ -68,12 +68,16 @@ const createStore: TCreateStore = <T extends {[p:string]: T|any}>(actions: TComb
 		};
 		runListeners();
 	}
-	// 获取module
-	const getModule = (moduleName: string) => {
-		const state = (currentState as T)[addStateTailMark(moduleName)];
+	const createActionsProxy = memoize((moduleName: string) => {
 		let actionsProxy = {...currentActions[addActionsTailMark(moduleName) as keyof TCombineAction]};
 		const dispatch = createDispatch(moduleName);
 		Object.keys(actionsProxy).forEach(key => actionsProxy[key] = (data: any) => dispatch(key, data))
+		return actionsProxy;
+	})
+	// 获取module
+	const getModule = (moduleName: string) => {
+		const state = (currentState as T)[addStateTailMark(moduleName)];
+		const actionsProxy = createActionsProxy(moduleName);
 
 		return {
 			[formatModuleName(moduleName)]: {

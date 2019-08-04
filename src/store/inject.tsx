@@ -5,6 +5,7 @@ import React, {
 	useEffect,
 	useRef,
 } from 'react';
+import hoistStatics from 'hoist-non-react-statics'
 import { StoreContext, StoreModule } from './createStore';
 import { store } from './index';
 import { formatModuleName, shadowEqual } from './utils';
@@ -15,11 +16,10 @@ const Loading = () => <div>loading</div>;
 
 const createLoadModulesPromise = (moduleNames: string[]) => moduleNames.map(mn => {
 	return allModules.modules[formatModuleName(mn)]();
-	// return import(`@client/pages/${mn}/index.ts`);
 });
 
 const connect = (moduleNames: string[], WrappedComponent: React.ComponentClass<any, any> | React.FC<any>): React.FC<any> => {
-	return (props: any): JSX.Element => {
+	let Connect: React.FC<any> = ({forwardedRef, ...props}: any) => {
 		let newProps = {...props};
 		const state = useContext(StoreContext);
 		// 根据用户传入的模块名字，匹配找到完整的模块名字
@@ -63,14 +63,43 @@ const connect = (moduleNames: string[], WrappedComponent: React.ComponentClass<a
 			...newProps,
 			...injectModules,
 		};
-
+		const $props = useRef(props);
+		const $injectModules = useRef(injectModules);
+		const stabelProps = useMemo(
+			() => {
+				const propsChanged = !shadowEqual($props.current, props);
+				if (propsChanged) {
+					$props.current = props;
+				}
+				return $props.current
+			},
+			[props]
+		)
+		const stabelInjectModules = useMemo(
+			() => {
+				const injectModulesChanged = !shadowEqual($injectModules.current, injectModules);
+				if (injectModulesChanged) {
+					$injectModules.current = injectModules;
+				}
+				return $injectModules.current
+			},
+			[injectModules]
+		)
 		const render = useMemo(
-			() => <WrappedComponent {...newProps} />,
-			[props, injectModules]
+			() => <WrappedComponent {...newProps} ref={forwardedRef} />,
+			[stabelProps, stabelInjectModules]
 		);
-
 		return modulesHasLoaded ? render : <Loading />;
-	}
+	};
+	Connect = React.memo(Connect);
+	Connect.displayName = 'Connect';
+	const forwardedConnect = React.forwardRef((props, ref) => <Connect {...props} forwardedRef={ref} />);
+
+	forwardedConnect.displayName = 'forwardedConnect';
+	// (forwardedConnect as any).WrappedComponent = WrappedComponent;
+	return hoistStatics(forwardedConnect, WrappedComponent)
+
+	// return forwardedConnect;
 }
 
 const Inject = (...moduleNames: string[]) => {

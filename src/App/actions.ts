@@ -1,4 +1,4 @@
-const update = () => ({name: 'new app'});
+const update = (state: any, appName: string) => ({name: appName});
 
 export default {
 	update,
