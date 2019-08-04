@@ -8,13 +8,14 @@ import React, {
 import { StoreContext, StoreModule } from './createStore';
 import { store } from './index';
 import { formatModuleName, shadowEqual } from './utils';
-import { matchModule } from './getModuleNames';
+import { matchModule, allModules } from './getModuleNames';
 
 
 const Loading = () => <div>loading</div>;
 
 const createLoadModulesPromise = (moduleNames: string[]) => moduleNames.map(mn => {
-	return import(`@client/pages/${mn}/index.ts`);
+	return allModules.modules[formatModuleName(mn)]();
+	// return import(`@client/pages/${mn}/index.ts`);
 });
 
 const connect = (moduleNames: string[], WrappedComponent: React.ComponentClass<any, any> | React.FC<any>): React.FC<any> => {

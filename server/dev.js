@@ -1,10 +1,13 @@
 const webpack = require('webpack');
 const opn = require('opn');
 const WebpackDevServer = require('webpack-dev-server');
+const autoGetModule = require('./autoGetModule');
 const webpackConfig = require('./webpack/webpack.dev.conf');
 
 // const webpackConfig = createWebpackConfig();
 const compiler = webpack(webpackConfig);
+
+compiler.hooks.watchRun.tap('autoGetModule', autoGetModule);
 
 const server = new WebpackDevServer(compiler, {
 	...webpackConfig.devServer,

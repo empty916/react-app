@@ -22,7 +22,7 @@ const Page1List: React.FunctionComponent = (p: any) => {
 	// console.log(p);
 	return (
 		<div className={style['page1-list']}>
-			page1-list
+			{p.page1List.state.pageName}
 		</div>
 	);
 }

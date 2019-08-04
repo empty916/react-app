@@ -6,7 +6,6 @@ import Inject from '@client/store/inject'
 
 const Page2: React.FC<any> = (p: any) => {
 	const { page1List: {state, actions} } = p;
-	console.log(p);
 	return (
 		<div className={style.page2}>
 			<input

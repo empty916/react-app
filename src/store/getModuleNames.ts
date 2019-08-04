@@ -1,16 +1,15 @@
 
 import { formatModuleName, removeHeadAndExt } from './utils';
+import lazyLoadModuleConfig from '../../server/autoGetModule/lazyLoadModuleConfig'
 
-const getClientReduxContext = () => {
+const {moduleNames, formatModuleNames, modules} = lazyLoadModuleConfig;
+
+const getModule = () => {
 	const baseModule = ['app'];
-	const actionsContext = (require as any).context('../pages', true, /state\.ts$/);
-	const allModuleNames = actionsContext.keys().map(removeHeadAndExt).map((name: any) => !!name.replace ? name.replace(/\/state$/gi, '') : name);
-	const allFormatModuleNames = allModuleNames.map(formatModuleName);
-	// const allModuleLoader = allModuleNames.map(mn => () => import(`@client/pages/${mn}`));
 	return {
-		allModuleNames: [...baseModule, ...allModuleNames],
-		allFormatModuleNames: [...baseModule, ...allFormatModuleNames],
-		// allModuleLoader,
+		allModuleNames: [...baseModule, ...moduleNames],
+		allFormatModuleNames: [...baseModule, ...formatModuleNames],
+		modules: modules as {[p: string]: () => Promise<any>},
 	};
 };
 
@@ -18,7 +17,7 @@ const getClientReduxContext = () => {
  * allModuleNames: ['page1', 'page2', 'pagex/list', 'pagex/add' ...]
  * allFormatModuleNames: ['page1', 'page2', 'pagexList', 'pagexAdd' ...]
  */
-const allModules = getClientReduxContext();
+export const allModules = getModule();
 
 /**
  * demo: 'page1' => ['page1']

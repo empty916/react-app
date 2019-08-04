@@ -6,7 +6,6 @@ import routes from '../router';
 import './style.scss';
 
 const App: React.FunctionComponent = (p: any) => {
-	console.log(p);
 	return (
 		<>
 			<Link to="/page1">page1</Link>
