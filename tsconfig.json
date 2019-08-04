@@ -2,11 +2,12 @@
 	"compilerOptions": {
 		/* Basic Options */
 		// "incremental": true,                   /* Enable incremental compilation */
-		"target": "ESNEXT",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
-		// "module": "commonjs",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
-		// "lib": [],                             /* Specify library files to be included in the compilation. */
-		// "allowJs": true,                       /* Allow javascript files to be compiled. */
-		// "checkJs": true,                       /* Report errors in .js files. */
+		"target": "esnext",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+		"module": "esnext",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+		"lib": ["esnext", "dom", "dom.iterable"],                             /* Specify library files to be included in the compilation. */
+		"allowJs": true,                       /* Allow javascript files to be compiled. */
+		"checkJs": false,                       /* Report errors in .js files. */
+		"skipLibCheck": true,
 		"jsx": "preserve",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
 		// "declaration": true,                   /* Generates corresponding '.d.ts' file. */
 		// "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
@@ -17,7 +18,7 @@
 		// "composite": true,                     /* Enable project compilation */
 		// "tsBuildInfoFile": "./",               /* Specify file to store incremental compilation information */
 		// "removeComments": true,                /* Do not emit comments to output. */
-		// "noEmit": true,                        /* Do not emit outputs. */
+		"noEmit": true,                        /* Do not emit outputs. */
 		// "importHelpers": true,                 /* Import emit helpers from 'tslib'. */
 		// "downlevelIteration": true,            /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
 		// "isolatedModules": true,               /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
@@ -37,7 +38,7 @@
 		// "noUnusedParameters": true,            /* Report errors on unused parameters. */
 		// "noImplicitReturns": true,             /* Report error when not all code paths in function return a value. */
 		// "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
-
+		"resolveJsonModule": true,
 		/* Module Resolution Options */
 		"moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
 		"baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
@@ -72,7 +73,7 @@
 	},
   	"exclude": [
 		"node_modules",
-		"react-router-transition",
-		"@site"
+		"@site",
+		"server"
 	]
 }

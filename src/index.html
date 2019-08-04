@@ -14,20 +14,20 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-touch-fullscreen" content="yes" />
 		<!-- 网关地址 -->
-		<!--<link rel='dns-prefetch' href='https://aaa.com.cn'>-->
-		<% htmlWebpackPlugin.files.css.forEach(function(cssFile) { %> 
+		<link rel='dns-prefetch' href='http://localhost:8080'>
+		<% htmlWebpackPlugin.files.css.forEach(function(cssFile) { %>
 			<% if (cssFile.indexOf('theme') > -1){ %>
 				<style id="theme-css">
 					<%= compilation.assets[cssFile.substr(htmlWebpackPlugin.files.publicPath.length)].source() %>
 				</style>
-			<% } %> 
-		<% }) %> 
+			<% } %>
+		<% }) %>
 		<% htmlWebpackPlugin.files.js.forEach(function(jsFile) { %>
 			<% if (jsFile.indexOf('theme') > -1){ %>
 				<script id="theme-js">
 					<%= compilation.assets[jsFile.substr(htmlWebpackPlugin.files.publicPath.length)].source() %>
 				</script>
-			<% } %> 
+			<% } %>
 		<% }) %>
 	</head>
 	<body>

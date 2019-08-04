@@ -11,7 +11,8 @@ const {
 	createStylePlugin,
 } = require('./utils');
 
-const mode = 'production';
+// const mode = 'production';
+const mode = process.env.NODE_ENV;
 const isDev = false;
 module.exports = merge(baseConfig, {
 	mode,

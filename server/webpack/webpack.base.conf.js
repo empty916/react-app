@@ -3,8 +3,9 @@ const HappyPack = require('happypack');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InlineChunkHtmlPlugin = require('../plugin/InlineChunkHtmlPlugin');
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+
 
 const {
 	getPath,
@@ -21,9 +22,11 @@ const { project, site } = getArg();
 const mode = process.env.NODE_ENV;
 const isDev = mode === 'development';
 
+
+
 module.exports = {
 	entry: {
-		index: getPath(project, 'index.tsx'),
+		index: getPath(project, 'index'),
 	},
 	output: {
 		path: distPath,
@@ -71,38 +74,11 @@ module.exports = {
 			// 		formatter: require('eslint-friendly-formatter'),
 			// 	},
 			// },
-			// {
-			// 	test: /\.js(x)?$/,
-			// 	// loader: 'ts-loader',
-			// 	exclude: [/node_modules/],
-			// 	use: [
-			// 		{
-			// 			loader: 'happypack/loader?id=babel',
-			// 		},
-			// 	],
-			// },
 			{
-				test: /\.ts(x)?$/,
-				// loader: 'ts-loader',
-				exclude: [/node_modules/],
-				use: [
-					{
-						loader: 'happypack/loader?id=babel',
-					},
-					{
-						loader: 'ts-loader',
-						options: {
-							// disable type checker - we will use it in fork plugin
-							transpileOnly: true,
-						},
-					},
-				],
+				test: /\.(ts|tsx|js|jsx)$/,
+				exclude: /node_modules/,
+				loader: 'happypack/loader?id=babel',
 			},
-			// {
-			// 	test: /\.ts(x)?$/,
-			// 	include: [getPath(project), getPath('common')],
-			// 	loader: 'happypack/loader?id=babel',
-			// },
 			...createStyleLoader(mode, isDev),
 			{
 				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -194,19 +170,6 @@ module.exports = {
 				},
 			],
 		}),
-		new ForkTsCheckerWebpackPlugin({
-			async: false,
-			compilerOptions: {
-				paths: {
-					'@common/*': ['common/*'],
-					'@utils/*': ['common/utils/*'],
-					'@site': [`buildConfig/site/${site}/index.ts`],
-					'@site/*': [`buildConfig/site/${site}/*`],
-					'@client': [`${project}`],
-					'@client/*': [`${project}/*`],
-				},
-			},
-		}),
 		createStylePlugin(mode, isDev),
 		new HtmlWebpackPlugin({
 			title: 'Custom template',
@@ -232,6 +195,12 @@ module.exports = {
 			inject: true,
 			// hash: true,
 		}),
+		// new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/theme.\w*\.css$/], {
+		// 	id: 'theme-css',
+		// }),
+		// new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/theme.\w*\.js$/], {
+		// 	id: 'theme-js',
+		// }),
 		new HtmlWebpackExcludeAssetsPlugin(),
 		// new HtmlWebpackInlineSourcePlugin(),
 		...addDllPluginsConfig(mode),

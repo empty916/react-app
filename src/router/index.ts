@@ -1,21 +1,18 @@
 
-import Page1 from '../pages/Page1';
-import Page2 from '../pages/Page2';
-import Page3 from '../pages/Page3';
-
+import loadabel from '@loadable/component';
 
 const routes = [
 	{
 		path: '/page1',
-		component: Page1
+		component: loadabel(() => import('../pages/Page1')) as React.ComponentClass | React.FC,
 	},
 	{
 		path: '/page2',
-		component: Page2
+		component: loadabel(() => import('../pages/Page2')) as React.ComponentClass | React.FC,
 	},
 	{
 		path: '/page3',
-		component: Page3
+		component: loadabel(() => import('../pages/Page3')) as React.ComponentClass | React.FC,
 	}
 ];
 
