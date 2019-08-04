@@ -4,10 +4,11 @@ import React, {
 	useMemo,
 	useEffect,
 	useRef,
+	useCallback,
 } from 'react';
 import hoistStatics from 'hoist-non-react-statics'
-import { StoreContext, StoreModule } from './createStore';
-import { store } from './index';
+import { StoreModule } from './createStore';
+import store from './index';
 import { formatModuleName, shadowEqual } from './utils';
 import { matchModule, allModules } from './getModuleNames';
 
@@ -21,13 +22,19 @@ const createLoadModulesPromise = (moduleNames: string[]) => moduleNames.map(mn =
 const connect = (moduleNames: string[], WrappedComponent: React.ComponentClass<any, any> | React.FC<any>): React.FC<any> => {
 	let Connect: React.FC<any> = ({forwardedRef, ...props}: any) => {
 		let newProps = {...props};
-		const state = useContext(StoreContext);
+		const [stateChanged, setStateChanged] = useState(`${Date.now()}`);
 		// 根据用户传入的模块名字，匹配找到完整的模块名字
 		const integralModulesName = moduleNames.map(matchModule).flatMap(mm => mm.matchedModulesName);
 		// const matchedFormatModulesName = matchedModules.flatMap(mm => mm.matchedFormatModulesName);
 		// TODO: 判断moduleNames中是否存在未加载的模块
 		const unLoadedModules = integralModulesName.filter(mn => !store.hasModule(mn));
 		const [modulesHasLoaded, setModulesHasLoaded] = useState(!unLoadedModules.length);
+		const $setStateChanged = useCallback(() => setStateChanged(`${Date.now()}-${Math.random()}`), [setStateChanged]);
+		// console.log(a);
+		useEffect(() => {
+			const unsubs = integralModulesName.map(mn => store.subscribe(mn, $setStateChanged));
+			return () => unsubs.forEach(us => us());
+		}, []);
 
 		useEffect(
 			() => {
@@ -57,7 +64,7 @@ const connect = (moduleNames: string[], WrappedComponent: React.ComponentClass<a
 				}
 				return {};
 			},
-			[modulesHasLoaded, state]
+			[modulesHasLoaded, stateChanged]
 		);
 		newProps = {
 			...newProps,
@@ -99,7 +106,6 @@ const connect = (moduleNames: string[], WrappedComponent: React.ComponentClass<a
 	// (forwardedConnect as any).WrappedComponent = WrappedComponent;
 	return hoistStatics(forwardedConnect, WrappedComponent)
 
-	// return forwardedConnect;
 }
 
 const Inject = (...moduleNames: string[]) => {

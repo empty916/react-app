@@ -7,7 +7,7 @@ import Inject from '@client/store/inject'
 const Page2: React.FC<any> = (p: any) => {
 	const {
 		page1List: {state, actions},
-		// app,
+		app,
 	} = p;
 	return (
 		<div className={style.page2}>
@@ -17,11 +17,11 @@ const Page2: React.FC<any> = (p: any) => {
 				onChange={e => actions.changePageName(e.target.value)}
 			/>
 			<br/>
-			{/* <input
+			<input
 				type="text"
 				value={app.state.name}
 				onChange={e => app.actions.update(e.target.value)}
-			/> */}
+			/>
 			{/* <button onClick={() => actions.asyncChangePageName('page1 asyncChangePageName')}>change page1 name</button> */}
 		</div>
 	);
@@ -30,5 +30,5 @@ const Page2: React.FC<any> = (p: any) => {
 export default Inject(
 	'page1List',
 	'page2',
-	// 'app'
+	'app'
 )(Page2);

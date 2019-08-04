@@ -3,26 +3,18 @@ import React, {
 	createContext,
 	useEffect,
 } from 'react';
-import { Store, StoreContext } from './createStore';
+import { Store } from './createStore';
 
 type TProps = {
 	store: Store;
 	children: React.ReactNode;
 }
 
-export default ({store, children}: TProps) => {
-	const [state, setState] = useState(store.getState());
-	useEffect(
-		() => store.subscribe(() => {
-			if (store.getState() !== state) {
-				setState(store.getState());
-			}
-		}),
-		[]
-	);
-	return (
-		<StoreContext.Provider value={state}>
-			{children}
-		</StoreContext.Provider>
-	);
-}
+// export default ({store, children}: TProps) => {
+// 	const [state, setState] = useState(store.getState());
+// 	return (
+// 		<StoreContext.Provider value={state}>
+// 			{children}
+// 		</StoreContext.Provider>
+// 	);
+// }

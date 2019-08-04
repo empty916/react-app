@@ -1,7 +1,4 @@
 import {
-	createContext,
-} from 'react';
-import {
 	addStateTailMark,
 	addActionsTailMark,
 	formatStateObj,
@@ -41,7 +38,7 @@ export interface Store {
 	setModule: (moduleName: string, module: StoreModule) => void;
 	hasModule: (moduleName: string) => boolean;
 	replaceAction: (newAction: TCombineAction) => void;
-	subscribe: (listener: anyFn) => () => void;
+	subscribe: (moduleName: string, listener: anyFn) => () => void;
 }
 
 type TCreateStore = (actions?: TCombineAction, initialState?: any) => Store;
@@ -49,7 +46,7 @@ type TCreateStore = (actions?: TCombineAction, initialState?: any) => Store;
 const createStore: TCreateStore = <T extends {[p:string]: T|any}>(actions: TCombineAction = {}, initialState: T|{} = {}) => {
 	let currentState = formatStateObj(initialState);
 	let currentActions = formatActionsObj(actions);
-	let listeners: anyFn[] = [];
+	let listeners: {[p: string]: anyFn[]} = {};
 	const setState = (newState: any) => currentState = formatStateObj(newState);
 	const replaceAction = (newAction: TCombineAction) => currentActions = formatActionsObj(newAction);
 	const getState = () => currentState;
@@ -66,7 +63,7 @@ const createStore: TCreateStore = <T extends {[p:string]: T|any}>(actions: TComb
 			...currentActions,
 			[addActionsTailMark(moduleName)]: actions,
 		};
-		runListeners();
+		runListeners(moduleName);
 	}
 	const createActionsProxy = memoize((moduleName: string) => {
 		let actionsProxy = {...currentActions[addActionsTailMark(moduleName) as keyof TCombineAction]};
@@ -93,7 +90,7 @@ const createStore: TCreateStore = <T extends {[p:string]: T|any}>(actions: TComb
 				...currentState,
 				[addStateTailMark(moduleName)]: state,
 			};
-			runListeners();
+			runListeners(moduleName);
 		}
 		if (currentActions[moduleName] !== actions) {
 			currentActions = {
@@ -106,7 +103,7 @@ const createStore: TCreateStore = <T extends {[p:string]: T|any}>(actions: TComb
 	const hasModule = (moduleName: string) => {
 		return !!currentActions[addActionsTailMark(moduleName)] && !!(currentState as T)[addStateTailMark(moduleName)];
 	}
-	const runListeners = () => listeners.forEach(listener => listener());
+	const runListeners = (moduleName: string) => listeners[formatModuleName(moduleName)].forEach(listener => listener());
 
 	const createDispatch = (moduleName: string) => {
 		if (!hasModule(moduleName)) {
@@ -131,20 +128,23 @@ const createStore: TCreateStore = <T extends {[p:string]: T|any}>(actions: TComb
 				return stateFrag.then((ns: any) => {
 					newState[stateName] = ns;
 					setState(newState);
-					runListeners();
+					runListeners(moduleName);
 					return Promise.resolve();
 				});
 			} else {
 				newState[stateName] = stateFrag;
 				setState(newState);
-				runListeners();
+				runListeners(moduleName);
 			}
 		};
 	};
-	const subscribe = (listener: anyFn) => {
-		const idx = listeners.length;
-		listeners.push(listener);
-		return () => listeners = listeners.filter((_:any, index: number) => index !== idx);
+	const subscribe = (moduleName: string, listener: anyFn) => {
+		moduleName = formatModuleName(moduleName);
+		if (!listeners[moduleName]) {
+			listeners[moduleName] = [];
+		}
+		listeners[moduleName].push(listener);
+		return () => listeners[moduleName] = listeners[moduleName].filter((lis: anyFn) => listener !== lis);;
 	};
 
 	return {
@@ -158,5 +158,4 @@ const createStore: TCreateStore = <T extends {[p:string]: T|any}>(actions: TComb
 		subscribe,
 	};
 };
-export const StoreContext = createContext({} as any);
 export default createStore;
