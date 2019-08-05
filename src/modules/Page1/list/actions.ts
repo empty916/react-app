@@ -1,14 +1,12 @@
-const changePageName = (newPageName: string, state: any) => {
+const changePageName = (newPageName: string) => {
 	return {
-		...state,
 		pageName: newPageName,
 	}
 };
-const asyncChangePageName = (newPageName: string, state: any) => {
+const asyncChangePageName = (newPageName: string) => {
 	return new Promise(res => {
 		setTimeout(() => {
 			res({
-				...state,
 				pageName: newPageName,
 			})
 		}, 3000);

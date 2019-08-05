@@ -17,6 +17,7 @@ const createLoadModulesPromise = (moduleNames: string[]) => moduleNames.map((mn:
 
 const connect = (moduleNames: string[], WrappedComponent: React.ComponentClass<any, any> | React.FC<any>): React.FC<any> => {
 	const allModuleNames = store.getAllModuleName();
+	// 获取store中存在的模块
 	const integralModulesName = moduleNames.filter(mn => allModuleNames.includes(mn));
 
 	if (!integralModulesName.length) {
@@ -29,9 +30,7 @@ const connect = (moduleNames: string[], WrappedComponent: React.ComponentClass<a
 		// const s = performance.now();
 		let newProps = {...props};
 		const [stateChanged, setStateChanged] = useState({});
-		// 获取store中存在的模块
-		// const matchedFormatModulesName = matchedModules.flatMap(mm => mm.matchedFormatModulesName);
-		// TODO: 判断moduleNames中是否存在未加载的模块
+		// 获取moduleNames中是否存在未加载的模块
 		const unLoadedModules = integralModulesName.filter(mn => !store.hasModule(mn));
 		const [modulesHasLoaded, setModulesHasLoaded] = useState(!unLoadedModules.length);
 		const $setStateChanged = useCallback(() => setStateChanged({}), [setStateChanged]);
@@ -43,7 +42,7 @@ const connect = (moduleNames: string[], WrappedComponent: React.ComponentClass<a
 
 		useEffect(
 			() => {
-				// TODO: 动态加载moduleName中还未加载的模块
+				// 动态加载moduleName中还未加载的模块
 				if (!modulesHasLoaded) {
 					const loadModulesPromise = createLoadModulesPromise(unLoadedModules);
 					Promise.all(loadModulesPromise)
@@ -60,7 +59,7 @@ const connect = (moduleNames: string[], WrappedComponent: React.ComponentClass<a
 			},
 			[]
 		);
-		// TODO: 计算moduleName对应的store、action,放入props中
+		// 计算moduleName对应的store、action,放入props中
 		const injectModules = useMemo(
 			() => {
 				if (modulesHasLoaded) {
@@ -102,20 +101,20 @@ const connect = (moduleNames: string[], WrappedComponent: React.ComponentClass<a
 			},
 			[props]
 		)
-		const stabelInjectModules = useMemo(
-			() => {
-				const injectModulesChanged = !isEqualWithDepthLimit($injectModules.current, injectModules, 2);
-				if (injectModulesChanged) {
-					$injectModules.current = injectModules;
-				}
-				return $injectModules.current
-			},
-			[injectModules]
-		)
+		// const stabelInjectModules = useMemo(
+		// 	() => {
+		// 		const injectModulesChanged = !isEqualWithDepthLimit($injectModules.current, injectModules, 2);
+		// 		if (injectModulesChanged) {
+		// 			$injectModules.current = injectModules;
+		// 		}
+		// 		return $injectModules.current
+		// 	},
+		// 	[injectModules]
+		// )
 		const render = useMemo(
 			() => <WrappedComponent {...newProps} ref={forwardedRef} />,
 			// [props, injectModules]
-			[stabelProps, stabelInjectModules]
+			[stabelProps, injectModules]
 		);
 		// console.log(performance.now() - s);
 		return modulesHasLoaded ? render : <Loading />;

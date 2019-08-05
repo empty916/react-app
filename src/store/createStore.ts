@@ -112,10 +112,7 @@ const createStore: TCreateStore = (modules: Modules, lazyModules: LazyStoreModul
 		return (type: string, ...data: any[]) => {
 			let stateFrag;
 			if (!!currentModules[moduleName] && !!currentModules[moduleName].actions[type]) {
-				stateFrag = currentModules[moduleName].actions[type](
-					...data,
-					currentModules[moduleName].state,
-				);
+				stateFrag = currentModules[moduleName].actions[type](...data);
 			} else {
 				return;
 			}
