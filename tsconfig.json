@@ -47,6 +47,7 @@
 			"@utils/*": ["common/utils/*"],
 			"@site": ["buildConfig/site/dianxin/index.ts"],
 			"@site/*": ["buildConfig/site/dianxin/*"],
+			"@inject": ["src/store/inject.tsx"],
 			"@client": ["src"],
 			"@client/*": ["src/*"]
 		},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */

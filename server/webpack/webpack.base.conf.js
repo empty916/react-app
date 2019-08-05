@@ -3,8 +3,8 @@ const HappyPack = require('happypack');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const InlineChunkHtmlPlugin = require('../plugin/InlineChunkHtmlPlugin');
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin');
+const InlineChunkHtmlPlugin = require('../plugin/InlineChunkHtmlPlugin');
 
 
 const {
@@ -21,7 +21,6 @@ const { project, site } = getArg();
 
 const mode = process.env.NODE_ENV;
 const isDev = mode === 'development';
-
 
 
 module.exports = {
@@ -51,7 +50,7 @@ module.exports = {
 			'@assets': getPath('common/assets'),
 			'@common': getPath('common'),
 			'@react-router': getPath('common/route/react-router'),
-			'@inject': getPath(`${project}/redux/inject.js`),
+			'@inject': getPath(`${project}/store/inject.tsx`),
 			'@site': getPath(`buildConfig/site/${site}`),
 
 			// target business

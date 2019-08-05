@@ -1,11 +1,14 @@
 import createStore from './createStore';
-import Provider from './Provider';
 import appState from '../App/state';
 import appActions from '../App/actions';
+import lazyModuleConfig from '../../server/autoGetModule/lazyLoadModuleConfig'
+const { modules: lazyModules } = lazyModuleConfig;
 
-const store = createStore({appActions}, {appState});
+const modules = {
+	app: {
+		state: appState,
+		actions: appActions,
+	},
+};
 
-export {
-	store,
-	Provider,
-}
+export default createStore(modules, lazyModules);

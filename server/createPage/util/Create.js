@@ -72,8 +72,8 @@ class Create {
     createReduxLink(){
 
         let reduxIndexData = ReadFile.readFile(reduxIndexPath);
-        const importStore = `import ${this.fileName}Store from '../pages/${this.fileName}/reducer'\n`;
-        const importActions = `import * as ${this.fileName}Actions from '../pages/${this.fileName}/actions'\n`;
+        const importStore = `import ${this.fileName}Store from '../modules/${this.fileName}/reducer'\n`;
+        const importActions = `import * as ${this.fileName}Actions from '../modules/${this.fileName}/actions'\n`;
         const reducerInsertSignReg = /导入\s{0,}red[a-z]{0,}\n/i;
         const actionsInsertSignReg = /导入\s{0,}act[a-z]{0,}\n/i;
         const reducerExportSignReg = /allReducer[\s=]{0,}{\n/i;
@@ -97,13 +97,13 @@ class Create {
         // const insertStr = `{
         //         path: '${this.filePath}',
         //         breadcrumbName: '${Replace.getCapitalizedStr(this.fileName)}',
-        //         component: require('@client/pages/${this.filePath}'),
+        //         component: require('@client/modules/${this.filePath}'),
 		// 	}, \n            `;
 		const insertStr = `{
 				path: '${this.filePath}',
 				breadcrumbName: '${Replace.getCapitalizedStr(this.fileName)}',
 				getComponent(location, cb) {
-					import(/* webpackChunkName: '${this.fileName}' */ '@client/pages/${this.filePath}')
+					import(/* webpackChunkName: '${this.fileName}' */ '@client/modules/${this.filePath}')
 						.then(module => cb(null, module));
 				},
 			},\n			`;
