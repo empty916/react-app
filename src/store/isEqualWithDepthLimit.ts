@@ -8,7 +8,7 @@ function is(x: any, y: any) {
   }
 }
 
-export default function shallowEqual(objA: any, objB: any, deepth: number = 1): boolean {
+export default function isEqualWithDepthLimit(objA: any, objB: any, depthLimit: number = 3, depth: number = 1): boolean {
   if (is(objA, objB)) return true
 
   if (
@@ -30,8 +30,8 @@ export default function shallowEqual(objA: any, objB: any, deepth: number = 1): 
 		!hasOwn.call(objB, keysA[i]) ||
 		!is(objA[keysA[i]], objB[keysA[i]])
 	) {
-		if (typeof objA[keysA[i]] === 'object' && typeof objB[keysB[i]] === 'object' && deepth === 1) {
-			return shallowEqual(objA[keysA[i]], objB[keysB[i]], 2);
+		if (typeof objA[keysA[i]] === 'object' && typeof objB[keysB[i]] === 'object' && depth < depthLimit) {
+			return isEqualWithDepthLimit(objA[keysA[i]], objB[keysB[i]], depthLimit, depth+1);
 		}
       	return false
     }

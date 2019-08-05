@@ -32,6 +32,7 @@ class Authority {
 					hasAuth: Authority.isCurrentUserHasAuth(this.props),
 				});
 			}
+
 			componentDidUpdate() {
 				const newHasAuth = Authority.isCurrentUserHasAuth(this.props);
 				if (newHasAuth !== this.state.hasAuth) {
@@ -123,6 +124,7 @@ class Authority {
 		}
 		return userLevel === SUPER_ADMIN_LEVEL;
 	}
+
 	// 用户的角色是否允许
 	static _userRoleIsPermit(userRole, role) {
 		if (Array.isArray(role)) {

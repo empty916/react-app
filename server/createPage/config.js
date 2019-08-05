@@ -1,7 +1,7 @@
 
 const { defaultProject, defaultSite } = require('../../buildConfig/defaultConfig');
 
-const pagesPath = `../../${defaultProject}/pages/`;
+const pagesPath = `../../${defaultProject}/modules/`;
 const reduxPath = `../../${defaultProject}/redux/index.js`;
 const routePath = `../../buildConfig/site/${defaultSite}/route.js`;
 const ReservedFileName = ['app', 'user'];

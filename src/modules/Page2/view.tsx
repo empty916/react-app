@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import style from './style.scss';
-import Inject from '@client/store/inject'
+import Inject from '@inject'
 // import Pack from '@client/Charts/Pack'
 // import data from '@client/Charts/Pack/flare.json'
 
 const Page2: React.FC<any> = (p: any) => {
 	const {
-		page1List: {state, actions},
+		page2: {state, actions},
 		app,
 	} = p;
 	return (

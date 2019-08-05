@@ -4,10 +4,10 @@ const fs = require('fs');
 const pipe = require('lodash/fp/pipe');
 const { getArg } = require('../webpack/utils');
 
-const project = getArg().project || 'src';
+const { project } = getArg();
 const slash = '/';
 const matchFileName = 'index.ts';
-const moduleDirName = 'pages';
+const moduleDirName = 'modules';
 const moduleBasePath = path.join(__dirname, '..', '..', project, moduleDirName);
 const projectPath = path.join(__dirname, '..', '..', project).replace(/\\|\//g, slash);
 
@@ -21,20 +21,18 @@ const firstCharToLowerCase = str => str.slice(0, 1).toLowerCase() + str.slice(1)
 const formatModuleName = pipe(removeModuleDirName, removeMatchedFileName, toCamelName, firstCharToLowerCase);
 // 首字母小写
 
-const getModuleName = pipe(removeModuleDirName, removeMatchedFileName);
+// const getModuleName = pipe(removeModuleDirName, removeMatchedFileName);
 
 
 // console.log(projectPath);
 const getMatchedFile = () => glob.sync(`${moduleBasePath}${slash}**${slash}${matchFileName}`);
 const replaceAbsPath = p => p.replace(projectPath, '');
 const addRelativePathHeader = p => `@client${p}`;
-const createFileData = (data, moduleNames, formatModuleNames) => `
+const createFileData = data => `
 export default {
 	modules: {
 		${data}
 	},
-	moduleNames: [${moduleNames.map(n => `'${n}'`).join(', ')}],
-	formatModuleNames: [${formatModuleNames.map(n => `'${n}'`).join(', ')}],
 };
 `;
 
@@ -45,11 +43,6 @@ const authGetModule = () => {
 		.map(replaceAbsPath)
 		.map(formatModuleName);
 
-	const moduleNames = matchFile
-		.map(replaceAbsPath)
-		.map(getModuleName);
-
-
 	const addImportStr = (p, index) => `${formatModuleNames[index]}: () => import(/* webpackChunkName:"${formatModuleNames[index]}" */ '${p}'),`;
 
 	const moduleImportStr = matchFile
@@ -57,11 +50,7 @@ const authGetModule = () => {
 		.map(addRelativePathHeader)
 		.map(addImportStr);
 
-	const lazyLoadModuleConfigFileData = createFileData(
-		moduleImportStr.join('\n		'),
-		moduleNames,
-		formatModuleNames,
-	);
+	const lazyLoadModuleConfigFileData = createFileData(moduleImportStr.join('\n		'));
 	try {
 		const filePath = path.join(__dirname, 'lazyLoadModuleConfig.js');
 		const lastFileData = fs.readFileSync(filePath, 'utf-8');

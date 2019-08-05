@@ -1,7 +1,5 @@
 import * as d3 from 'd3';
-import pipe from 'lodash/fp/pipe';
-import style from './style.scss';
-import CartesianCoordinates from '@client/business/CartesianCoordinates/index';
+import CartesianCoordinates from '@common/components/Charts/CartesianCoordinates/index';
 
 type TDataEle = { x: number; y: number, value?: number };
 type TData = TDataEle[][];
@@ -9,7 +7,6 @@ type TData = TDataEle[][];
 type TEase = (p: number) => number;
 
 
-const formatData = (data: TDataEle[]): [number,number][] => data.map(({x, y}) => [x, y]);
 const _data = [
 	[
 		{ x: 0, y: 5 },
@@ -29,18 +26,9 @@ const _data = [
 		return { x: i, y: Math.sin(i) + 5 };
 	}),
 ];
-class ScatterPlot extends CartesianCoordinates {
+class Bubble extends CartesianCoordinates {
 	duration: number;
 	easeType: TEase;
-	symbolTypes = [
-		d3.symbolStar,
-		d3.symbolDiamond,
-		d3.symbolCircle,
-		d3.symbolCross,
-		d3.symbolSquare,
-		d3.symbolTriangle,
-		d3.symbolWye,
-	];
 	constructor(selector: string, tension: number = 0, data = _data) {
 		super({selector, tension, data, width: 1000});
 		this.duration = 500;
@@ -58,19 +46,21 @@ class ScatterPlot extends CartesianCoordinates {
 			const dots = dotWrapper.selectAll('.dot').data(item);
 
 			dots.enter()
-					.append('path')
+					.append('circle')
 					.classed('dot', true)
 				.merge(dots)
 				.transition()
-					.attr('transform', (d: TDataEle) => `translate(${this.xScale(d.x)},${this.yScale(d.y)})`)
-					.attr('d', d3.symbol().type(this.symbolTypes[index]))
+					.attr('cx', (d:TDataEle) => this.xScale(d.x))
+					.attr('cy', (d:TDataEle) => this.yScale(d.y))
 					.attr('stroke', colors(index))
 					.attr('fill', colors(index))
+					.attr('fill-opacity', 0.2)
+					.attr('r', (d:TDataEle) => d.value);
 			dots.exit().remove();
 		});
 	};
 	updateData() {
-		const createLineData = () => d3.range(3).map((d, i) => ({x: Math.random() * 10, y: Math.random() * 10}));
+		const createLineData = () => d3.range(3).map((d, i) => ({x: Math.random() * 10, y: Math.random() * 10, value: Math.random() * 50}));
 		const lineNumber = 6;
 		this.data = d3.range(lineNumber).map(createLineData);
 	}
@@ -85,4 +75,4 @@ class ScatterPlot extends CartesianCoordinates {
 	}
 }
 
-export default ScatterPlot;
+export default Bubble;

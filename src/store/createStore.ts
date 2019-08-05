@@ -1,145 +1,138 @@
-import {
-	addStateTailMark,
-	addActionsTailMark,
-	formatStateObj,
-	formatActionsObj,
-	formatModuleName,
-} from './utils';
-import memoize from 'lodash/memoize';
 
 type anyFn = (...arg: any[]) => any;
 
-type TCombineAction = {
-	[moduleName: string]: {
-		[type: string]: anyFn,
-	};
-};
 type TActions = {
 	[type: string]: anyFn,
 };
-type TActionParams = {
-	type: string;
-	[p: string]: any;
+type TMaps = {
+	[p: string]: (state: any) => any;
 };
 export interface StoreModule {
 	state: any;
 	actions: TActions;
-	view?: anyFn;
+	maps?: TMaps;
+}
+export interface LazyStoreModules {
+	[p: string]: () => Promise<StoreModule>;
+}
+type Modules = {
+	[p: string]: StoreModule;
 }
 
 const isPromise = (obj: any) => obj && typeof obj.then === 'function';
 
 
 export interface Store {
-	getState: () => any;
 	createDispatch: (a: string) => (type: string, data: any) => void | Promise<any>;
 	addModule: (moduleName: string, module: StoreModule) => void;
 	getModule: (moduleName: string) => any;
+	getLazyModule: (moduleName: string) => () => Promise<StoreModule>;
 	setModule: (moduleName: string, module: StoreModule) => void;
 	hasModule: (moduleName: string) => boolean;
-	replaceAction: (newAction: TCombineAction) => void;
 	subscribe: (moduleName: string, listener: anyFn) => () => void;
+	getAllModuleName: () => string[];
 }
 
-type TCreateStore = (actions?: TCombineAction, initialState?: any) => Store;
+type TCreateStore = (modules: Modules, lazyModules: LazyStoreModules) => Store;
 
-const createStore: TCreateStore = <T extends {[p:string]: T|any}>(actions: TCombineAction = {}, initialState: T|{} = {}) => {
-	let currentState = formatStateObj(initialState);
-	let currentActions = formatActionsObj(actions);
+const createStore: TCreateStore = (modules: Modules, lazyModules: LazyStoreModules) => {
+	let currentModules = modules;
+	let currentLazyModules = lazyModules;
 	let listeners: {[p: string]: anyFn[]} = {};
-	const setState = (newState: any) => currentState = formatStateObj(newState);
-	const replaceAction = (newAction: TCombineAction) => currentActions = formatActionsObj(newAction);
-	const getState = () => currentState;
+	const setState = (moduleName: string, newState: any) => {
+		currentModules[moduleName].state = newState;
+	};
 	// 添加module
-	const addModule = (moduleName: string, {state, actions}: StoreModule) => {
-		if(!!currentActions[moduleName] || !!(currentState as T)[moduleName]) {
-			throw new Error('action module has exist!');
+	const addModule = (moduleName: string, module: StoreModule) => {
+		if(!!currentModules[moduleName]) {
+			console.log(new Error('action module has exist!'));
+			return;
 		}
-		currentState = {
-			...currentState,
-			[addStateTailMark(moduleName)]: state,
-		};
-		currentActions = {
-			...currentActions,
-			[addActionsTailMark(moduleName)]: actions,
+		currentModules = {
+			...currentModules,
+			[moduleName]: module,
 		};
 		runListeners(moduleName);
 	}
-	const createActionsProxy = memoize((moduleName: string) => {
-		let actionsProxy = {...currentActions[addActionsTailMark(moduleName) as keyof TCombineAction]};
+	const createActionsProxy = (moduleName: string) => {
+		let actionsProxy = {...currentModules[moduleName].actions};
 		const dispatch = createDispatch(moduleName);
-		Object.keys(actionsProxy).forEach(key => actionsProxy[key] = (data: any) => dispatch(key, data))
+		Object.keys(actionsProxy).forEach(key => actionsProxy[key] = (...data: any[]) => dispatch(key, ...data))
 		return actionsProxy;
-	})
+	};
+	const runMaps = (maps: TMaps, state: any) => {
+		if (!maps) {
+			return {};
+		}
+		const mapsKeys = Object.keys(maps);
+		if (!mapsKeys.length) {
+			return {};
+		}
+		const resultMaps = mapsKeys.reduce((rm, key) => {
+			rm[key] = typeof maps[key] === 'function' ? maps[key](state) : maps[key];
+			return rm;
+		}, {} as any);
+		return resultMaps;
+	}
 	// 获取module
 	const getModule = (moduleName: string) => {
-		const state = (currentState as T)[addStateTailMark(moduleName)];
-		const actionsProxy = createActionsProxy(moduleName);
-
-		return {
-			[formatModuleName(moduleName)]: {
-				state,
-				actions: actionsProxy,
-			}
+		if (!currentModules[moduleName]) {
+			console.log(new Error(`module: ${moduleName} is not exist`));
+			return {};
 		}
+		const proxyModule = {
+			...currentModules[moduleName]
+		};
+		proxyModule.actions = createActionsProxy(moduleName);
+		proxyModule.maps = proxyModule.maps ? runMaps(proxyModule.maps, proxyModule.state) : {};
+		return proxyModule;
 	}
+	const getLazyModule = (moduleName: string) => (currentLazyModules[moduleName] as () => Promise<StoreModule>) || (() => Promise.resolve({actions: {}, state: {}}));
+	const getAllModuleName = () => [...new Set([...Object.keys(currentModules), ...Object.keys(currentLazyModules)])]
 	// 修改module
-	const setModule = (moduleName: string, {state, actions}: StoreModule) => {
-		if ((currentState as T)[moduleName] !== state) {
-			currentState = {
-				...currentState,
-				[addStateTailMark(moduleName)]: state,
+	const setModule = (moduleName: string, module: StoreModule) => {
+		if (currentModules[moduleName] !== module) {
+			currentModules = {
+				...currentModules,
+				[moduleName]: module,
 			};
 			runListeners(moduleName);
-		}
-		if (currentActions[moduleName] !== actions) {
-			currentActions = {
-				...currentActions,
-				[addActionsTailMark(moduleName)]: actions,
-			};
-		}
+		};
 	}
 	// 查看module是否存在
-	const hasModule = (moduleName: string) => {
-		return !!currentActions[addActionsTailMark(moduleName)] && !!(currentState as T)[addStateTailMark(moduleName)];
-	}
-	const runListeners = (moduleName: string) => listeners[formatModuleName(moduleName)].forEach(listener => listener());
+	const hasModule = (moduleName: string) => !!currentModules[moduleName];
+	const runListeners = (moduleName: string) => Array.isArray(listeners[moduleName]) && listeners[moduleName].forEach(listener => listener());
 
 	const createDispatch = (moduleName: string) => {
 		if (!hasModule(moduleName)) {
-			throw new Error('module is not exist!');
+			console.log(new Error('module is not exist!'));
+			return () => {};
 		}
-		const actionsName = addActionsTailMark(moduleName);
-		const stateName = addStateTailMark(moduleName);
 
-		return (type: string, data: any) => {
-			const newState: any = { ...currentState };
+		return (type: string, ...data: any[]) => {
 			let stateFrag;
-			if (!!currentActions[actionsName] && !!currentActions[actionsName][type]) {
-				stateFrag = currentActions[actionsName][type](
-					newState[stateName],
-					data,
-					newState
+			if (!!currentModules[moduleName] && !!currentModules[moduleName].actions[type]) {
+				stateFrag = currentModules[moduleName].actions[type](
+					...data,
+					currentModules[moduleName].state,
 				);
 			} else {
 				return;
 			}
 			if(isPromise(stateFrag)) {
 				return stateFrag.then((ns: any) => {
-					newState[stateName] = ns;
-					setState(newState);
+					setState(moduleName, ns);
 					runListeners(moduleName);
 					return Promise.resolve();
 				});
 			} else {
-				newState[stateName] = stateFrag;
-				setState(newState);
+				setState(moduleName, stateFrag);
 				runListeners(moduleName);
 			}
 		};
 	};
 	const subscribe = (moduleName: string, listener: anyFn) => {
-		moduleName = formatModuleName(moduleName);
+		moduleName = moduleName;
 		if (!listeners[moduleName]) {
 			listeners[moduleName] = [];
 		}
@@ -148,13 +141,13 @@ const createStore: TCreateStore = <T extends {[p:string]: T|any}>(actions: TComb
 	};
 
 	return {
-		getState,
 		createDispatch,
 		addModule,
+		getAllModuleName,
 		getModule,
+		getLazyModule,
 		setModule,
 		hasModule,
-		replaceAction,
 		subscribe,
 	};
 };

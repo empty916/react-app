@@ -39,6 +39,7 @@ module.exports = merge(baseConfig, {
 					'@utils/*': ['common/utils/*'],
 					'@site': [`buildConfig/site/${site}/index.ts`],
 					'@site/*': [`buildConfig/site/${site}/*`],
+					'@inject': [`${project}/store/inject.tsx`],
 					'@client': [`${project}`],
 					'@client/*': [`${project}/*`],
 				},

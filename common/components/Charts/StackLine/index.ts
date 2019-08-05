@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 import style from './style.scss';
-import StackCartesianCoordinates from '@client/business/StackCartesianCoordinates';
+import StackCartesianCoordinates from '@common/components/Charts/StackCartesianCoordinates';
 import { namespace } from 'd3';
 
 type TDataEle = {

@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import pipe from 'lodash/fp/pipe';
 import style from './style.scss';
-import CartesianCoordinates from '@client/business/CartesianCoordinates/index';
+import CartesianCoordinates from '@common/components/Charts/CartesianCoordinates/index';
 
 type TDataEle = { x: number; y: number, value?: number };
 type TData = TDataEle[][];

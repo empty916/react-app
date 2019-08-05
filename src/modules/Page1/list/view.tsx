@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import style from './style.scss';
-import Inject from '@client/store/inject'
+import Inject from '@inject'
 
 const Page1List: React.FC<any> = (p: any) => {
 	const { page1: {state, actions} } = p;
@@ -16,4 +16,4 @@ const Page1List: React.FC<any> = (p: any) => {
 	);
 }
 
-export default Inject('Page1List')(Page1List);
+export default Inject('page1List')(Page1List);

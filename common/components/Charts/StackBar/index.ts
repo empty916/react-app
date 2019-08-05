@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import StackCartesianCoordinates from '@client/business/StackCartesianCoordinates';
+import StackCartesianCoordinates from '@common/components/Charts/StackCartesianCoordinates';
 
 type TDataEle = {
 	0: number;
