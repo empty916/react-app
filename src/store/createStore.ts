@@ -5,7 +5,7 @@ type TActions = {
 	[type: string]: anyFn,
 };
 type TMaps = {
-	[p: string]: (state: any) => any;
+	[p: string]: (state: any) => unknown;
 };
 export interface StoreModule {
 	state: any;
@@ -39,9 +39,7 @@ const createStore: TCreateStore = (modules: Modules, lazyModules: LazyStoreModul
 	let currentModules = modules;
 	let currentLazyModules = lazyModules;
 	let listeners: {[p: string]: anyFn[]} = {};
-	const setState = (moduleName: string, newState: any) => {
-		currentModules[moduleName].state = newState;
-	};
+	const setState = (moduleName: string, newState: any) => currentModules[moduleName].state = newState;
 	// 添加module
 	const addModule = (moduleName: string, module: StoreModule) => {
 		if(!!currentModules[moduleName]) {
@@ -71,7 +69,7 @@ const createStore: TCreateStore = (modules: Modules, lazyModules: LazyStoreModul
 		const resultMaps = mapsKeys.reduce((rm, key) => {
 			rm[key] = typeof maps[key] === 'function' ? maps[key](state) : maps[key];
 			return rm;
-		}, {} as any);
+		}, {} as {[p: string]: unknown});
 		return resultMaps;
 	}
 	// 获取module
@@ -84,7 +82,7 @@ const createStore: TCreateStore = (modules: Modules, lazyModules: LazyStoreModul
 			...currentModules[moduleName]
 		};
 		proxyModule.actions = createActionsProxy(moduleName);
-		proxyModule.maps = proxyModule.maps ? runMaps(proxyModule.maps, proxyModule.state) : {};
+		(proxyModule.maps as { [p: string]: unknown }) = proxyModule.maps ? runMaps(proxyModule.maps, proxyModule.state) : {};
 		return proxyModule;
 	}
 	const getLazyModule = (moduleName: string) => (currentLazyModules[moduleName] as () => Promise<StoreModule>) || (() => Promise.resolve({actions: {}, state: {}}));
@@ -122,6 +120,8 @@ const createStore: TCreateStore = (modules: Modules, lazyModules: LazyStoreModul
 					runListeners(moduleName);
 					return Promise.resolve();
 				});
+			} else if (stateFrag === currentModules[moduleName].state || stateFrag === undefined) {
+				return;
 			} else {
 				setState(moduleName, stateFrag);
 				runListeners(moduleName);

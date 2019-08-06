@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import TransitionSwitch from '@common/components/base/TransitionSwitch';
 import Inject from '@inject';
-import routes from '../router';
+import routes from '@site/route';
 import './style.scss';
 
 const App: React.FunctionComponent = ({app: {state, actions}}: any) => {

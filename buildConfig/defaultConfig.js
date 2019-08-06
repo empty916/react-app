@@ -1,4 +1,4 @@
-const defaultSite = 'dianxin';
+const defaultSite = 'common';
 const defaultProject = 'src';
 
 module.exports = {

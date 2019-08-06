@@ -6,9 +6,10 @@ import Inject from '@inject'
 
 const Page2: React.FC<any> = (p: any) => {
 	const {
-		page2: {state, actions},
+		page2: {state, actions, maps},
 		app,
 	} = p;
+	console.log(maps.pageNameSplit);
 	return (
 		<div className={style.page2}>
 			<input

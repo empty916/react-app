@@ -45,8 +45,8 @@
 		"paths": {
 			"@common/*": ["common/*"],
 			"@utils/*": ["common/utils/*"],
-			"@site": ["buildConfig/site/dianxin/index.ts"],
-			"@site/*": ["buildConfig/site/dianxin/*"],
+			"@site": ["buildConfig/site/common/index.ts"],
+			"@site/*": ["buildConfig/site/common/*"],
 			"@inject": ["src/store/inject.tsx"],
 			"@client": ["src"],
 			"@client/*": ["src/*"]
