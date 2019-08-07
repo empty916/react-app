@@ -1,4 +1,4 @@
-import {createStore} from '../react-store';
+import {createStore} from 'react-natural-store';
 import appState from '../App/state';
 import appActions from '../App/actions';
 import lazyModuleConfig from '../../server/autoGetModule/lazyLoadModuleConfig'

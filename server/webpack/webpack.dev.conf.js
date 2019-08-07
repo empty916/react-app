@@ -39,7 +39,7 @@ module.exports = merge(baseConfig, {
 					'@utils/*': ['common/utils/*'],
 					'@channel': [`buildConfig/channel/${channel}/index.ts`],
 					'@channel/*': [`buildConfig/channel/${channel}/*`],
-					'@inject': [`${project}/store/inject.tsx`],
+					'@inject': ['node_modules/react-natural-store/dist/inject.d.ts'],
 					'@client': [`${project}`],
 					'@client/*': [`${project}/*`],
 				},
