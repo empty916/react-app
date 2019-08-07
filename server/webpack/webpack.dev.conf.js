@@ -13,7 +13,7 @@ const {
 
 const { distPath } = require('./config');
 
-const { project, site } = getArg();
+const { project, channel } = getArg();
 
 const mode = 'development';
 const isDev = true;
@@ -37,8 +37,8 @@ module.exports = merge(baseConfig, {
 				paths: {
 					'@common/*': ['common/*'],
 					'@utils/*': ['common/utils/*'],
-					'@site': [`buildConfig/site/${site}/index.ts`],
-					'@site/*': [`buildConfig/site/${site}/*`],
+					'@channel': [`buildConfig/channel/${channel}/index.ts`],
+					'@channel/*': [`buildConfig/channel/${channel}/*`],
 					'@inject': [`${project}/store/inject.tsx`],
 					'@client': [`${project}`],
 					'@client/*': [`${project}/*`],

@@ -1,7 +1,7 @@
-const defaultSite = 'common';
+const defaultChannel = 'common';
 const defaultProject = 'src';
 
 module.exports = {
-	defaultSite,
+	defaultChannel,
 	defaultProject,
 };

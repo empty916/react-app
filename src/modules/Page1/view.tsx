@@ -1,5 +1,5 @@
 import React from 'react';
-import Inject from '@client/store/inject';
+import Inject from '@inject'
 import style from './style.scss';
 
 

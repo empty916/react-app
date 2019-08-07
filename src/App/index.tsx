@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import TransitionSwitch from '@common/components/base/TransitionSwitch';
-import Inject from '@inject';
-import routes from '@site/route';
+import Inject from '@inject'
+import routes from '@channel/route';
+
 import './style.scss';
 
 const App: React.FunctionComponent = ({app: {state, actions}}: any) => {
-	console.log('app render');
 	return (
 		<>
 			<Link to="/page1">page1</Link>

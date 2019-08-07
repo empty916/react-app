@@ -21,7 +21,6 @@ type Modules = {
 
 const isPromise = (obj: any) => obj && typeof obj.then === 'function';
 
-
 export interface Store {
 	createDispatch: (a: string) => (type: string, data: any) => void | Promise<any>;
 	addModule: (moduleName: string, module: StoreModule) => void;
@@ -34,6 +33,8 @@ export interface Store {
 }
 
 type TCreateStore = (modules: Modules, lazyModules: LazyStoreModules) => Store;
+
+let currentStoreInstance: Store;
 
 const createStore: TCreateStore = (modules: Modules, lazyModules: LazyStoreModules) => {
 	let currentModules = modules;
@@ -116,6 +117,9 @@ const createStore: TCreateStore = (modules: Modules, lazyModules: LazyStoreModul
 			}
 			if(isPromise(stateFrag)) {
 				return stateFrag.then((ns: any) => {
+					if (ns === currentModules[moduleName].state || ns === undefined) {
+						return Promise.resolve();
+					}
 					setState(moduleName, ns);
 					runListeners(moduleName);
 					return Promise.resolve();
@@ -137,7 +141,7 @@ const createStore: TCreateStore = (modules: Modules, lazyModules: LazyStoreModul
 		return () => listeners[moduleName] = listeners[moduleName].filter((lis: anyFn) => listener !== lis);;
 	};
 
-	return {
+	currentStoreInstance = {
 		createDispatch,
 		addModule,
 		getAllModuleName,
@@ -147,5 +151,7 @@ const createStore: TCreateStore = (modules: Modules, lazyModules: LazyStoreModul
 		hasModule,
 		subscribe,
 	};
+	return currentStoreInstance;
 };
+export const getStoreInstance = () => currentStoreInstance;
 export default createStore;

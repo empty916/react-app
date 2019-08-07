@@ -1,3 +1,3 @@
-import route from '@site/route';
+import route from '@channel/route';
 
 export default route;

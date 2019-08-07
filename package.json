@@ -9,7 +9,14 @@
     "build:dev": "cross-env NODE_ENV=development node ./server/build_prod.js",
     "build:prd": "cross-env NODE_ENV=production node ./server/build_prod.js",
     "create:page": "node ./server/createPage/index.js",
-    "hs": "http-server"
+    "_lib": "rimraf lib && npm run parse:index & parse:createStore & npm run parse:inject & npm run parse:isEqualWithDepthLimit",
+    "lib": "npm run parse:index & parse:createStore & npm run parse:inject & npm run parse:isEqualWithDepthLimit",
+    "parse:index": "babel src/store/index.ts -o lib/react-store/index.js",
+    "parse:createStore": "babel src/store/createStore.ts -o lib/react-store/createStore.js",
+    "parse:inject": "babel src/store/inject.tsx -o lib/react-store/inject.js",
+    "parse:isEqualWithDepthLimit": "babel src/store/isEqualWithDepthLimit.ts -o lib/react-store/isEqualWithDepthLimit.js",
+    "hs": "http-server",
+    "tsc": "rimraf lib && tsc --outDir ./lib/react-store --rootDir ./src/react-store"
   },
   "keywords": [
     "webpack",
@@ -18,6 +25,7 @@
   "author": "empty916",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.4.4",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-decorators": "^7.4.4",

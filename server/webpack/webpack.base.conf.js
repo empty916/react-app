@@ -17,7 +17,7 @@ const {
 
 const { distPath } = require('./config');
 
-const { project, site } = getArg();
+const { project, channel } = getArg();
 
 const mode = process.env.NODE_ENV;
 const isDev = mode === 'development';
@@ -51,7 +51,7 @@ module.exports = {
 			'@common': getPath('common'),
 			'@react-router': getPath('common/route/react-router'),
 			'@inject': getPath(`${project}/store/inject.tsx`),
-			'@site': getPath(`buildConfig/site/${site}`),
+			'@channel': getPath(`buildConfig/channel/${channel}`),
 
 			// target business
 			'@client': getPath(`${project}`),
@@ -175,7 +175,7 @@ module.exports = {
 			filename: 'index.html',
 			template: `./${project}/index.html`,
 			// favicon: isDev ? '' : `${project}/favicon.ico`,
-			// 防止各site项目一样时，不生成html文件
+			// 防止各channel项目一样时，不生成html文件
 			// inlineSource: /theme\.css/,
 			cache: false,
 			excludeAssets: [/theme/],
