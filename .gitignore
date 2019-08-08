@@ -4,6 +4,5 @@
 /yarn.lock
 /tsconfig-backup.json
 /package-lock.json
-/.vscode
 /server/dll
 .DS_Store

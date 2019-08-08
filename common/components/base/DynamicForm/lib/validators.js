@@ -1,12 +1,7 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-var phoneValidator = exports.phoneValidator = function phoneValidator(rule, value, callback) {
-	var numReg = /^[\d-]*$/; // 电话限定字符串正则
-	var phoneReg = /^1\d{10}$/; // 手机正则
-	var telReg = /^\d{3,4}-?\d{3,8}$/; // 固定电话正则
+export const phoneValidator = (rule, value, callback) => {
+	const numReg = /^[\d-]*$/; // 电话限定字符串正则
+	const phoneReg = /^1\d{10}$/; // 手机正则
+	const telReg = /^\d{3,4}-?\d{3,8}$/; // 固定电话正则
 
 	if (!value) {
 		return callback();
@@ -20,7 +15,7 @@ var phoneValidator = exports.phoneValidator = function phoneValidator(rule, valu
 	return callback();
 };
 
-var numValidator = exports.numValidator = function numValidator(rule, value, callback) {
+export const numValidator = (rule, value, callback) => {
 	if (!value) {
 		return callback();
 	}
@@ -32,7 +27,7 @@ var numValidator = exports.numValidator = function numValidator(rule, value, cal
 	return callback();
 };
 
-var moneyValidator = exports.moneyValidator = function moneyValidator(rule, value, callback) {
+export const moneyValidator = (rule, value, callback) => {
 	if (!value) {
 		return callback();
 	}
@@ -43,3 +38,4 @@ var moneyValidator = exports.moneyValidator = function moneyValidator(rule, valu
 	// Note: 必须总是返回一个 callback，否则 validateFieldsAndScroll 无法响应
 	return callback();
 };
+

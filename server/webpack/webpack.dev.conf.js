@@ -1,6 +1,6 @@
 const merge = require('webpack-merge');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 const baseConfig = require('./webpack.base.conf');
 
 const {
@@ -26,8 +26,29 @@ module.exports = merge(baseConfig, {
 		chunkFilename: 'js/[name].js',
 		filename: 'js/[name].js',
 	},
+	resolve: {
+		alias: {
+			'@mock': getPath(project, 'business', 'mock', 'dev.js'),
+		},
+	},
+	module: {
+		rules: [
+			{
+				test: /\.(j|t)s(x)?$/,
+				include: [getPath(project), getPath('common')],
+				// include: [getPath(project)],
+				loader: 'eslint-loader',
+				exclude: /node_modules/,
+				enforce: 'pre',
+				options: {
+					formatter: require('eslint-friendly-formatter'),
+				},
+			},
+		],
+	},
 	plugins: [
 		new ForkTsCheckerWebpackPlugin({
+			// tsconfig: './server/tsconfig.json',
 			async: false,
 			useTypescriptIncrementalApi: true,
 			checkSyntacticErrors: true,
@@ -44,6 +65,15 @@ module.exports = merge(baseConfig, {
 					'@client/*': [`${project}/*`],
 				},
 			},
+		}),
+		new StyleLintPlugin({
+			configFile: getPath('server', '.stylelintrc.js'),
+			files: `${project}/**/*.scss`,
+			failOnError: false,
+			quiet: true,
+			syntax: 'scss',
+			cache: true,
+			fix: true,
 		}),
 	],
 	devServer: {

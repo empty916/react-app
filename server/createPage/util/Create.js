@@ -31,13 +31,16 @@ class Create {
     // 根据模版数据创建用户需要的页面数据
     createPageDataByTemp(pageName){
         const pageFileDataList = dealFileList.map(item => {
-            const templateFileData = ReadFile.readTemplate(item, this.tmplType);
+			const templateFileData = ReadFile.readTemplate(item, this.tmplType);
+			if (!templateFileData) {
+				return null
+			}
             const newPageActionsFileData = Replace.replaceTemplateData(templateFileData, pageName);
             return {
                 fileName: item,
                 fileData: newPageActionsFileData,
             };
-        });
+        }).filter(Boolean);
         return pageFileDataList;
     }
     createPageDir(){

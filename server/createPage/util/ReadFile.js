@@ -6,16 +6,16 @@ const pathRes = (fileName, tempType = 'template') => {
 };
 
 const types = {
-    'actions.js': pathRes('actions.js'),
-    'constants.js': pathRes('constants.js'),
-    'index.js': pathRes('index.js'),
-    'reducer.js': pathRes('reducer.js'),
+    'actions.ts': pathRes('actions.ts'),
+    'constants.ts': pathRes('constants.ts'),
+    'index.ts': pathRes('index.ts'),
+    'reducer.ts': pathRes('reducer.ts'),
     'style.scss': pathRes('style.scss'),
-    'mock.js': pathRes('mock.js'),
+    'mock.ts': pathRes('mock.ts'),
 };
 
 class ReadFile {
-    readTemplate(type = 'actions.js', tempType) {
+    readTemplate(type = 'actions.ts', tempType) {
         let templateFilePath;
         if(!!tempType){
             templateFilePath = pathRes(type, tempType);
@@ -25,7 +25,11 @@ class ReadFile {
 
         if(!templateFilePath) {
             return 'no such template';
-        }
+		}
+		const templateFileIsExist = fs.existsSync(templateFilePath);
+		if (!templateFileIsExist) {
+			return null;
+		}
         const fileData=fs.readFileSync(templateFilePath,"utf-8");
         return fileData;
     }

@@ -1,19 +1,14 @@
-const changePageName = (newPageName: string) => {
+const changePageName = (newPageName: string) => ({
+	pageName: newPageName,
+});
+const asyncChangePageName = async (newPageName: string) => {
+	await new Promise(res => setTimeout(res, 3000));
 	return {
 		pageName: newPageName,
-	}
-};
-const asyncChangePageName = (newPageName: string) => {
-	return new Promise(res => {
-		setTimeout(() => {
-			res({
-				pageName: newPageName,
-			})
-		}, 3000);
-	});
+	};
 };
 
 export default {
 	changePageName,
 	asyncChangePageName,
-}
+};

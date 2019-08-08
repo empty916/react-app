@@ -1,43 +1,38 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
 // 普通form item布局
-var defaultFormItemLayout = exports.defaultFormItemLayout = {
+export const defaultFormItemLayout = {
 	labelCol: {
-		xs: { span: 24 },
-		sm: { span: 5 }
+		xs: {span: 24},
+		sm: {span: 5},
 	},
 	wrapperCol: {
-		xs: { span: 24 },
-		sm: { span: 12 }
-	}
+		xs: {span: 24},
+		sm: {span: 12},
+	},
 };
 
 // 按钮布局
-var defaultButtonItemLayout = exports.defaultButtonItemLayout = {
+export const defaultButtonItemLayout = {
 	wrapperCol: {
-		xs: { span: 24 },
-		sm: { span: 12 }
-	}
+		xs: {span: 24},
+		sm: {span: 12},
+	},
 };
 
 // 最后一个item的布局
-var tailFormItemLayout = exports.tailFormItemLayout = {
+export const tailFormItemLayout = {
 	wrapperCol: {
 		xs: {
 			span: 24,
-			offset: 0
+			offset: 0,
 		},
 		sm: {
 			span: 16,
-			offset: 8
-		}
-	}
+			offset: 8,
+		},
+	},
 };
 
-var INPUT_TYPE = exports.INPUT_TYPE = {
+export const INPUT_TYPE = {
 	RATE: 'rate',
 	BUTTON: 'button',
 	SWITCH: 'switch',
@@ -52,29 +47,29 @@ var INPUT_TYPE = exports.INPUT_TYPE = {
 	RANGEPICKER: 'rangePicker',
 	WEEKPICKER: 'weekPicker',
 	TEXTAREA: 'textArea',
-	TEXT: 'Text'
+	TEXT: 'Text',
 };
 
-var addInputType = exports.addInputType = function addInputType(type) {
-	var upperCaseType = type.toUpperCase();
+export const addInputType = type => {
+	const upperCaseType = type.toUpperCase();
 	if (!!INPUT_TYPE[upperCaseType]) {
-		throw new Error(type + ' \u5DF2\u7ECF\u5B58\u5728\uFF01');
+		throw new Error(`${type} 已经存在！`);
 	}
 	INPUT_TYPE[upperCaseType] = type;
 };
 
-var LAYOUT = exports.LAYOUT = {
+export const LAYOUT = {
 	HORIZONTAL: 'horizontal',
 	VERTICAL: 'vertical',
-	INLINE: 'inline'
+	INLINE: 'inline',
 };
 
-var defaultConfig = exports.defaultConfig = {
+export const defaultConfig = {
 	type: 'input',
 	rules: [{
-		required: false
+		required: false,
 	}],
 	props: {
-		type: 'text'
-	}
+		type: 'text',
+	},
 };

@@ -1,5 +1,5 @@
 html {
-  -webkit-text-size-adjust: none;
+	-webkit-text-size-adjust: none;
 }
 
 body,
@@ -7,7 +7,7 @@ button,
 input,
 select,
 textarea {
-  font: normal 14px/1.5 "Hiragino Sans GB", "Microsoft YaHei", "hei", Arial, "Lucida Grande", Verdana;
+	font: normal 14px/1.5 'Hiragino Sans GB', 'Microsoft YaHei', 'hei', Arial, 'Lucida Grande', Verdana;
 }
 
 body,
@@ -48,18 +48,18 @@ hgroup,
 menu,
 nav,
 section {
-  margin: 0;
-  padding: 0;
+	padding: 0;
+	margin: 0;
 }
 
 /* base.css start */
 
 ul {
-  list-style: none;
+	list-style: none;
 }
 
 th {
-  text-align: left;
+	text-align: left;
 }
 
 h1,
@@ -68,66 +68,66 @@ h3,
 h4,
 h5,
 h6 {
-  font-size: 100%;
-  font-weight: normal;
+	font-weight: normal;
+	font-size: 100%;
 }
 
 q:before,
 q:after {
-  content: " ";
+	content: ' ';
 }
 
 abbr,
 acronym {
-  border: 0;
+	border: 0;
 }
 
 label >* {
-  pointer-events: none;
+	pointer-events: none;
 }
 
 /* base.css end */
 * {
-  -webkit-font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
 }
 body {
-  min-width: 320px;
-  background: #f8f8f8;
-  color: #000;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	min-width: 320px;
+	color: #000;
+	background: #f8f8f8;
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 img {
-  width: 100%;
-  display: block;
+	display: block;
+	width: 100%;
 }
 
 input {
-  width: 100%;
-  border: 0;
-  -webkit-appearance: none;
-  border-radius: 0;
-  background: transparent;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  outline: none;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	border: 0;
+	border-radius: 0;
+	outline: none;
+	background: transparent;
+	-webkit-appearance: none;
 }
 
 select {
-  width: 100%;
-  border: 0;
-  -webkit-appearance: none;
-  border-radius: 0;
-  background: transparent;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	-webkit-appearance: none;
 }
 
 h1 {
-  font: 600 1.286em/2 Tahoma;
+	font: 600 1.286em/2 Tahoma;
 }
 
 /* ul {
@@ -135,13 +135,13 @@ h1 {
 } */
 
 a {
-  color: #000;
-  text-decoration: none;
+	text-decoration: none;
+	color: #000;
 }
 
 em,
 b,
 i {
-  font-style: normal;
-  font-weight: normal;
+	font-style: normal;
+	font-weight: normal;
 }
