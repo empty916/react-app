@@ -5,7 +5,7 @@
  * 思路是根据文件的路径名，判断下面的配置中是否有元素是路径名的子字符串，如果有则加入对应的mock模块
  */
 export const includeMockModules = [
-	'page',
+	'Page2',
 ];
 
 // mock开关, 是否需要开启mock

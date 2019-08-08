@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 // import {message} from 'antd';
 import channel from '@channel';
-// import { history } from '@react-router';
 import App from '@common/utils/App';
 import { dateFormatting } from '@common/utils/index';
 import SHA256 from '@common/utils/crypt';
@@ -9,8 +8,7 @@ import store from '../store';
 
 const { serverUrl } = channel;
 
-
-const { history } = store.getModule('route').state;
+const { getHistory } = store.getModule('route').maps;
 // native log
 // const nativeLog = data => {
 // 	const u = navigator.userAgent;
@@ -20,7 +18,6 @@ const { history } = store.getModule('route').state;
 // 		);
 // 	}
 // };
-
 let hideLoadingCount = 0;
 
 const showLoading = (loading: boolean) => {
@@ -64,7 +61,7 @@ const createRequestId = () => Math.random().toString(36).substr(2, 12) + Date.no
 let requestId: string;
 const refreshId = () => requestId = createRequestId();
 
-history.listen(refreshId);
+getHistory().listen(refreshId);
 
 // 拼接参数
 // requestNo规则: 请求参数+url+authCode+ Uid + time => SHA256 保证唯一且同一请求不变
@@ -149,7 +146,7 @@ instance.interceptors.response.use(
 		// console.log('-----.', responseCode);
 		if (responseCode === '3001') {
 			// message.error('登录超时，请重新登录', 1);
-			history.replace('/login');
+			getHistory().replace('/login');
 		}
 		if (responseCode !== '200') {
 			throw response; // eslint-disable-line

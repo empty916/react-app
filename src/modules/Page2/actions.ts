@@ -1,4 +1,4 @@
-const changePageName = (newPageName: string, ...arg: any[]) => ({
+const changePageName = (newPageName: string) => ({
 	pageName: newPageName,
 });
 const asyncChangePageName = async (newPageName: string) => {

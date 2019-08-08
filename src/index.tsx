@@ -6,7 +6,6 @@ import '@mock';
 import './store';
 import App from './App';
 
-
 const content = (
 	<HashRouter>
 		<App />

@@ -35,7 +35,7 @@ module.exports = merge(baseConfig, {
 		rules: [
 			{
 				test: /\.(j|t)s(x)?$/,
-				include: [getPath(project), getPath('common')],
+				include: getPath(project),
 				// include: [getPath(project)],
 				loader: 'eslint-loader',
 				exclude: /node_modules/,

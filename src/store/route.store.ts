@@ -5,14 +5,19 @@ type TState = {
 	location: Location | null;
 }
 
+let currentHistory: History | null = null;
 export const state: TState = {
 	history: null,
 	location: null,
 };
 
+export const maps = {
+	getHistory: () => () => currentHistory,
+};
+
 export const actions = {
 	changeRoute: (route: TState) => {
-		console.log(route);
+		currentHistory = route.history;
 		return route;
 	},
 };

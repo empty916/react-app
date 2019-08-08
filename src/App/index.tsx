@@ -17,8 +17,9 @@ const App: React.FunctionComponent = (p: any) => {
 		history,
 		location,
 	}), [history, location]);
+
 	changeRoute($routeState);
-	console.log(p);
+
 	return (
 		<>
 			<Link to="/page1">page1</Link>

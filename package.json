@@ -9,7 +9,7 @@
 		"build:dll": "node ./server/build_dll.js",
 		"build:dev": "cross-env NODE_ENV=development node ./server/build_prod.js",
 		"build:prd": "cross-env NODE_ENV=production node ./server/build_prod.js",
-		"create:page": "node ./server/createPage/index.js",
+		"create:module": "node ./server/create_module/index.js",
 		"lint": "npm run lint:ts & npm run lint:js & npm run lint:scss",
 		"lint:scss": "stylelint src/**/*.scss",
 		"lint:js": "eslint src/**/*.js",

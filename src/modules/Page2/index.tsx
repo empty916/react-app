@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from '@client/utils/axios';
 import style from './style.scss';
 import Inject from '@inject';
 
 const Page2: React.FC<any> = (p: any) => {
 	// console.log(p);
 	const {
-		page2: {state, actions, maps},
+		page2: {state, actions},
 		app,
 	} = p;
-	// console.log(maps.pageNameSplit);
+	useEffect(() => {
+		axios.get('/test')
+			.then(console.log);
+	}, []);
 	return (
 		<div className={style.page2}>
 			<input
