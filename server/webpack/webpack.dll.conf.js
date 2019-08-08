@@ -14,7 +14,7 @@ const { getPath, getArg } = require('./utils');
 
 const { project } = getArg();
 
-// const { site, project } = getArg();
+// const { channel, project } = getArg();
 const dllVersion = '1.0.0';
 /**
  *

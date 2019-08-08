@@ -1,4 +1,4 @@
-@import '~@site/theme/style';
+@import '~@channel/theme/style';
 
 :global {
 	.ant-modal-header {
@@ -28,8 +28,8 @@
 		background-color: $defaultMainColor;
 	}
 	.ant-confirm .ant-confirm-btns {
-        float: none;
-        text-align: center;
+		float: none;
+		text-align: center;
 	}
 	.ant-confirm-error .ant-confirm-title {
 		text-align: left;

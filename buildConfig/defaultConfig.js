@@ -1,7 +1,7 @@
-const defaultSite = 'dianxin';
+const defaultChannel = 'common';
 const defaultProject = 'src';
 
 module.exports = {
-	defaultSite,
+	defaultChannel,
 	defaultProject,
 };

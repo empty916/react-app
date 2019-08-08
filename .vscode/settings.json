@@ -1,0 +1,42 @@
+{
+	"git.ignoreLimitWarning": true,
+	"editor.fontSize": 14,
+	"prettier.singleQuote": true,
+	"prettier.useTabs": true,
+	"prettier.trailingComma": "all",
+	"javascript.implicitProjectConfig.experimentalDecorators": true,
+	"emmet.includeLanguages": {
+		"javascript": "javascriptreact"
+	},
+	"files.associations": {
+		"*.html": "html"
+	},
+	"emmet.showExpandedAbbreviation": "always",
+	"emmet.triggerExpansionOnTab": true,
+	"editor.foldingStrategy": "indentation",
+	"eslint.autoFixOnSave": true,
+	"files.autoSave": "off",
+	"eslint.validate": [
+		"html",
+		{
+			"language": "javascript",
+			"autoFix": true
+		},
+		{
+			"language": "javascriptreact",
+			"autoFix": true
+		},
+		{
+			"language": "typescript",
+			"autoFix": true
+		},
+		{
+			"language": "typescriptreact",
+			"autoFix": true
+		}
+	],
+	"diffEditor.ignoreTrimWhitespace": true,
+	"css.validate": true,
+	"scss.validate": true,
+	"stylelint.enable": true
+}

@@ -26,12 +26,50 @@ module.exports = {
 			experimentalObjectRestSpread: true,
 			jsx: true,
 		},
-		ecmaVersion: 9,
+		ecmaVersion: 10, // es2019
 	},
 	settings: {
 		'import/ignore': ['node_modules', 'DynamicForm', '.s?css', '@w*'],
 	},
-	plugins: ['react', 'import', 'jsx-a11y'],
+	plugins: ['react', 'react-hooks', 'import', 'jsx-a11y'],
+
+	overrides: {
+		files: ['**/*.ts', '**/*.tsx'],
+		parser: '@typescript-eslint/parser',
+		parserOptions: {
+			ecmaVersion: 10,
+			sourceType: 'module',
+			ecmaFeatures: {
+				jsx: true,
+			},
+			// typescript-eslint specific options
+			warnOnUnsupportedTypeScriptVersion: true,
+		},
+		plugins: ['@typescript-eslint'],
+		// If adding a typescript-eslint version of an existing ESLint rule,
+		// make sure to disable the ESLint rule here.
+		rules: {
+			// TypeScript's `noFallthroughCasesInSwitch` option is more robust (#6906)
+			'default-case': 'off',
+			// 'tsc' already handles this (https://github.com/typescript-eslint/typescript-eslint/issues/291)
+			'no-dupe-class-members': 'off',
+			// Add TypeScript specific rules (and turn off ESLint equivalents)
+			'@typescript-eslint/no-angle-bracket-type-assertion': 'warn',
+			'no-array-constructor': 'off',
+			'@typescript-eslint/no-array-constructor': 'warn',
+			'@typescript-eslint/no-namespace': 'error',
+			'no-unused-vars': 'error',
+			'@typescript-eslint/no-unused-vars': [
+				'warn',
+				{
+					args: 'none',
+					ignoreRestSiblings: true,
+				},
+			],
+			'no-useless-constructor': 'off',
+			'@typescript-eslint/no-useless-constructor': 'warn',
+		},
+	},
 	rules: {
 		'import/no-unresolved': 0,
 		'import/extensions': 0,
@@ -45,6 +83,7 @@ module.exports = {
 		'react/require-default-props': 0,
 		// // @off 同构应用需要在 didMount 里写 setState
 		'react/no-did-mount-set-state': 0,
+		'react/button-has-type': 0,
 
 		'jsx-a11y/anchor-is-valid': 0,
 		'jsx-a11y/click-events-have-key-events': 0,
@@ -55,6 +94,7 @@ module.exports = {
 
 		'no-return-assign': 0,
 		'no-console': 0,
+		'no-plusplus': 0,
 		// 0、1、2分别表示不开启检查、警告、错误
 		indent: [2, 'tab', { SwitchCase: 1 }], // tab缩进
 		// 圈复杂度

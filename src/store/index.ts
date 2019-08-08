@@ -1,7 +1,9 @@
-import createStore from './createStore';
+import {createStore} from 'react-natural-store';
 import appState from '../App/state';
 import appActions from '../App/actions';
-import lazyModuleConfig from '../../server/autoGetModule/lazyLoadModuleConfig'
+import * as route from './route.store';
+import lazyModuleConfig from '../../server/autoGetModule/lazyLoadModuleConfig';
+
 const { modules: lazyModules } = lazyModuleConfig;
 
 const modules = {
@@ -9,6 +11,9 @@ const modules = {
 		state: appState,
 		actions: appActions,
 	},
+	route,
 };
 
 export default createStore(modules, lazyModules);
+// export { default as createStore } from './createStore'
+// export { default as inject } from './inject'

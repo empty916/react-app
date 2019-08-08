@@ -3,7 +3,7 @@ import React, {
 	useCallback,
 	useContext,
 	useMemo,
- } from 'react';
+} from 'react';
 import {
 	matchPath,
 	SwitchProps,
@@ -22,8 +22,7 @@ import defaultMotionConfig from './config';
 import css from './style.scss';
 
 const { forward, back, styleMap: dfStyleMap } = defaultMotionConfig;
-const isEmptyChildren = (children: ReactChildren) =>
-	React.Children.count(children) === 0;
+const isEmptyChildren = (children: ReactChildren) => React.Children.count(children) === 0;
 
 type TStyleMap = (p: Style | PlainStyle) => React.CSSProperties;
 interface ITransitionProps {
@@ -43,8 +42,8 @@ const TransitionSwitch: React.FunctionComponent = (props: ITransitionSwitchProps
 	const context = useContext(RouterContext);
 	const location = useMemo(
 		() => props.location || context.location,
-		[props.location, context]
-	)
+		[props.location, context],
+	);
 	const motionConfig = useMemo(
 		(): ITransitionProps => {
 			routeCacheInstance.push(location);
@@ -54,12 +53,13 @@ const TransitionSwitch: React.FunctionComponent = (props: ITransitionSwitchProps
 			}
 			return props.forward || forward;
 		},
-		[location, props]
-	)
+		[location, props],
+	);
 	const renderRoute = useMemo(
 		() => {
 			const { children } = props;
-			let match: any, child: any;
+			let match: any; let
+				child: any;
 			React.Children.forEach(children, element => {
 				if (match == null && React.isValidElement(element)) {
 					const {
@@ -82,8 +82,8 @@ const TransitionSwitch: React.FunctionComponent = (props: ITransitionSwitchProps
 			// this.renderRoute = { match, child };
 			return { match, child };
 		},
-		[location, props.children]
-	)
+		[location, props.children],
+	);
 	const path = useMemo(
 		() => {
 			const { child } = renderRoute;
@@ -92,31 +92,29 @@ const TransitionSwitch: React.FunctionComponent = (props: ITransitionSwitchProps
 			}
 			return location.pathname;
 		},
-		[location, renderRoute]
-	)
+		[location, renderRoute],
+	);
 	const renderComponent = useMemo(
-		() =>  {
+		() => {
 			const { history, staticContext } = (context as any);
 			const { match, child } = renderRoute;
-			const props = { match, location, history, staticContext };
+			const routeProps = { match, location, history, staticContext };
 			const { component, render, children } = child.props;
 
-			if (component)
-				return match ? React.createElement(component, props) : null;
-			if (render) return match ? render(props) : null;
+			if (component) { return match ? React.createElement(component, routeProps) : null; }
+			if (render) return match ? render(routeProps) : null;
 
-			if (typeof children === 'function') return children(props);
+			if (typeof children === 'function') return children(routeProps);
 
-			if (children && !isEmptyChildren(children))
-				return React.Children.only(children);
+			if (children && !isEmptyChildren(children)) { return React.Children.only(children); }
 			return null;
 		},
-		[context, renderRoute]
-	)
+		[context, renderRoute],
+	);
 	const defaultStyles = useMemo(
 		() => {
-			const { defaultStyles } = motionConfig;
-			if (defaultStyles === undefined) {
+			const { defaultStyles: _defaultStyles } = motionConfig;
+			if (_defaultStyles === undefined) {
 				return [];
 			}
 			const { match } = renderRoute;
@@ -124,76 +122,70 @@ const TransitionSwitch: React.FunctionComponent = (props: ITransitionSwitchProps
 				return [
 					{
 						key: path,
-						style: defaultStyles,
+						style: _defaultStyles,
 						data: renderComponent,
 					},
 				];
-			} else {
-				return [];
 			}
+			return [];
 		},
-		[motionConfig, renderRoute]
-	)
+		[motionConfig, renderRoute],
+	);
 	const styleMap = useCallback(
 		(props.styleMap || dfStyleMap),
-		[props.styleMap]
-	)
+		[props.styleMap],
+	);
 	const renderTransition = useCallback(
-		(styles: TransitionStyle[]) => {
-			return (
-				<div className={css['transition-wrapper']}>
-					{styles.map(({ key, data, style }) => (
-						<div
-							key={key}
-							style={styleMap((style as any))}
-							className={css['box']}
-						>
-							{data}
-						</div>
-					))}
-				</div>
-			);
-		},
-		[styleMap]
-	)
+		(styles: TransitionStyle[]) => (
+			<div className={css['transition-wrapper']}>
+				{styles.map(({ key, data, style }) => (
+					<div
+						key={key}
+						style={styleMap((style as any))}
+						className={css.box}
+					>
+						{data}
+					</div>
+				))}
+			</div>
+		),
+		[styleMap],
+	);
 	const willEnter = useMemo(() => motionConfig.willEnter, [motionConfig]);
 	const styles = useMemo(
 		() => {
-			const { styles } = motionConfig;
+			const { styles: _styles } = motionConfig;
 			const { match } = renderRoute;
 			if (match) {
 				return [
 					{
 						key: path,
-						style: styles,
+						style: _styles,
 						data: renderComponent,
 					},
 				];
-			} else {
-				return [];
 			}
+			return [];
 		},
-		[motionConfig, renderRoute, path, renderComponent]
-	)
+		[motionConfig, renderRoute, path, renderComponent],
+	);
 	const willLeave = useMemo(
 		() => motionConfig.willLeave,
-		[motionConfig]
+		[motionConfig],
 	);
 	const render = useMemo(
-		() => {
-			return (
-				<TransitionMotion
-					defaultStyles={defaultStyles}
-					willEnter={willEnter}
-					styles={styles}
-					willLeave={willLeave}
-				>
-					{renderTransition}
-				</TransitionMotion>
-			);
-		},
-		[defaultStyles, willEnter, styles, willLeave, renderTransition]
-	)
+		() => (
+			<TransitionMotion
+				defaultStyles={defaultStyles}
+				willEnter={willEnter}
+				styles={styles}
+				willLeave={willLeave}
+			>
+				{renderTransition}
+			</TransitionMotion>
+		),
+		[defaultStyles, willEnter, styles, willLeave, renderTransition],
+	);
 	return render;
-}
+};
 export default TransitionSwitch;

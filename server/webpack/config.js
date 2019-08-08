@@ -1,8 +1,8 @@
 const { getArg, getPath } = require('./utils');
 
-const { site, project } = getArg();
+const { channel, project } = getArg();
 
 module.exports = {
-    dllPath: getPath('server', 'dll'),
-    distPath: getPath('dist', site, project),
-}
+	dllPath: getPath('server', 'dll'),
+	distPath: getPath('dist', channel, project),
+};

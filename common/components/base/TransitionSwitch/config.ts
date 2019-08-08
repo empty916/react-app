@@ -10,7 +10,7 @@ const styleMap = (s: any) => {
 			position: 'static' as TPosition,
 			...rest,
 		};
-	};
+	}
 	return {
 		transform: `translate(${left}%, 0)`,
 		position: 'absolute' as TPosition,
@@ -71,4 +71,4 @@ export default {
 	forward,
 	back,
 	styleMap,
-}
+};

@@ -1,9 +1,9 @@
-@import "antd-icon/iconfont.css";
-@import "common-icon/iconfont.css";
+@import 'antd-icon/iconfont.css';
+@import 'common-icon/iconfont.css';
 
 .anticon {
-  //font-family: "iconfont-common", "anticon";
-  &:before {
-    font-family: "iconfont", "anticon", serif !important;
-  }
+	//font-family: "iconfont-common", "anticon";
+	&:before {
+		font-family: 'iconfont', 'anticon', serif !important;
+	}
 }

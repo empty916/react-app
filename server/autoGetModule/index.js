@@ -6,7 +6,7 @@ const { getArg } = require('../webpack/utils');
 
 const { project } = getArg();
 const slash = '/';
-const matchFileName = 'index.ts';
+const matchFileName = 'index';
 const moduleDirName = 'modules';
 const moduleBasePath = path.join(__dirname, '..', '..', project, moduleDirName);
 const projectPath = path.join(__dirname, '..', '..', project).replace(/\\|\//g, slash);
@@ -25,7 +25,7 @@ const formatModuleName = pipe(removeModuleDirName, removeMatchedFileName, toCame
 
 
 // console.log(projectPath);
-const getMatchedFile = () => glob.sync(`${moduleBasePath}${slash}**${slash}${matchFileName}`);
+const getMatchedFile = () => glob.sync(`${moduleBasePath}${slash}**${slash}${matchFileName}.*`);
 const replaceAbsPath = p => p.replace(projectPath, '');
 const addRelativePathHeader = p => `@client${p}`;
 const createFileData = data => `
@@ -43,7 +43,7 @@ const authGetModule = () => {
 		.map(replaceAbsPath)
 		.map(formatModuleName);
 
-	const addImportStr = (p, index) => `${formatModuleNames[index]}: () => import(/* webpackChunkName:"${formatModuleNames[index]}" */ '${p}'),`;
+	const addImportStr = (p, index) => `${formatModuleNames[index].split('.')[0]}: () => import(/* webpackChunkName:"${formatModuleNames[index]}" */ '${p}'),`;
 
 	const moduleImportStr = matchFile
 		.map(replaceAbsPath)

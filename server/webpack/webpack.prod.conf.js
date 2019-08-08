@@ -22,6 +22,11 @@ module.exports = merge(baseConfig, {
 		filename: 'js/[name].[chunkhash].js',
 		publicPath: './',
 	},
+	resolve: {
+		alias: {
+			'@mock': getPath(project, 'business', 'mock', 'prd.js'),
+		},
+	},
 	plugins: [
 		// 删除文件
 		new CleanWebpackPlugin(),

@@ -3,13 +3,13 @@ $browser-default-font-size: 14;
 $browser-default-font-size-px: 14px !default;
 
 @function r($px, $isFixed:true) {
-  @if $px != 0 {
-    @return if($isFixed, $px / $ratio + 0.01, $px / $ratio) / $browser-default-font-size * 1rem;
-  }
+	@if $px != 0 {
+		@return if($isFixed, $px / $ratio + 0.01, $px / $ratio) / $browser-default-font-size * 1rem;
+	}
 
-  @else {
-    @return 0;
-  }
+	@else {
+		@return 0;
+	}
 }
 
 

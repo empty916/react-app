@@ -6,7 +6,7 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const {
-	defaultSite,
+	defaultChannel,
 	defaultProject,
 } = require('../../buildConfig/defaultConfig');
 
@@ -17,7 +17,7 @@ const getArg = () => {
 	const res = {
 		...arg,
 		project: arg.project || defaultProject,
-		site: arg.site || defaultSite,
+		channel: arg.channel || defaultChannel,
 	};
 	return res;
 };
@@ -28,26 +28,22 @@ module.exports.getArg = getArg;
 // dll 通用配置 start
 const { dllPath } = require('./config');
 
-const { site, project } = getArg();
-const getAddAssethtmlPluginsConfig = mode =>
-	glob.sync(`${dllPath}/${mode}/*.dll.js`).map(
-		dllPath =>
-			new AddAssetHtmlPlugin({
-				filepath: dllPath,
-				includeSourcemap: false,
-				typeOfAsset: 'js',
-				outputPath: 'js',
-				publicPath: './js',
-			}),
-	);
-const getDllReferencePluginsConfig = mode =>
-	glob.sync(`${dllPath}/${mode}/*.json`).map(
-		dllJsonPath =>
-			new webpack.DllReferencePlugin({
-				// name: 'js/reactDll_1.0.0.dll.js',
-				manifest: dllJsonPath,
-			}),
-	);
+const { channel, project } = getArg();
+const getAddAssethtmlPluginsConfig = mode => glob.sync(`${dllPath}/${mode}/*.dll.js`).map(
+	dllPath => new AddAssetHtmlPlugin({
+		filepath: dllPath,
+		includeSourcemap: false,
+		typeOfAsset: 'js',
+		outputPath: 'js',
+		publicPath: './js',
+	}),
+);
+const getDllReferencePluginsConfig = mode => glob.sync(`${dllPath}/${mode}/*.json`).map(
+	dllJsonPath => new webpack.DllReferencePlugin({
+		// name: 'js/reactDll_1.0.0.dll.js',
+		manifest: dllJsonPath,
+	}),
+);
 
 module.exports.addDllPluginsConfig = mode => [
 	// new webpack.DllReferencePlugin({
@@ -114,42 +110,41 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 	},
 ];
 
-module.exports.createStylePlugin = (mode, isDev) =>
-	new MiniCssExtractPlugin({
-		filename: 'style/[name].[contenthash:8].css',
-		// filename: ({
-		// 	chunk: {
-		// 		name,
-		// 		contentHash: { javascript },
-		// 	},
-		// }) => {
-		// 	if (isDev) {
-		// 		return `style/${name}.css`;
-		// 	}
-		// 	if (name === 'theme') {
-		// 		return 'style/theme.css';
-		// 	}
-		// 	return `style/${name}.${javascript.slice(0, 8)}.css`;
-		// },
-		chunkFilename: 'style/[name].[contenthash:8].css',
-		// chunkFilename: (...arg) => {
-		// 	const {
-		// 		chunk: {
-		// 			name,
-		// 			id,
-		// 			contentHash: { javascript },
-		// 		},
-		// 	} = arg[0];
-		// 	if (isDev) {
-		// 		console.log(`style/${name || id}.css`);
-		// 		return `style/${name || id}.css`;
-		// 	}
-		// 	if (name === 'theme') {
-		// 		return 'style/theme.css';
-		// 	}
-		// 	console.log(`style/${name || id}.${javascript.slice(0, 8)}.css`);
-		// 	return `style/${name || id}.${javascript.slice(0, 8)}.css`;
-		// },
-	});
+module.exports.createStylePlugin = (mode, isDev) => new MiniCssExtractPlugin({
+	filename: 'style/[name].[contenthash:8].css',
+	// filename: ({
+	// 	chunk: {
+	// 		name,
+	// 		contentHash: { javascript },
+	// 	},
+	// }) => {
+	// 	if (isDev) {
+	// 		return `style/${name}.css`;
+	// 	}
+	// 	if (name === 'theme') {
+	// 		return 'style/theme.css';
+	// 	}
+	// 	return `style/${name}.${javascript.slice(0, 8)}.css`;
+	// },
+	chunkFilename: 'style/[name].[contenthash:8].css',
+	// chunkFilename: (...arg) => {
+	// 	const {
+	// 		chunk: {
+	// 			name,
+	// 			id,
+	// 			contentHash: { javascript },
+	// 		},
+	// 	} = arg[0];
+	// 	if (isDev) {
+	// 		console.log(`style/${name || id}.css`);
+	// 		return `style/${name || id}.css`;
+	// 	}
+	// 	if (name === 'theme') {
+	// 		return 'style/theme.css';
+	// 	}
+	// 	console.log(`style/${name || id}.${javascript.slice(0, 8)}.css`);
+	// 	return `style/${name || id}.${javascript.slice(0, 8)}.css`;
+	// },
+});
 
 // dll 通用配置 end

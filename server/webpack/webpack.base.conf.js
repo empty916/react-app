@@ -17,7 +17,7 @@ const {
 
 const { distPath } = require('./config');
 
-const { project, site } = getArg();
+const { project, channel } = getArg();
 
 const mode = process.env.NODE_ENV;
 const isDev = mode === 'development';
@@ -50,8 +50,8 @@ module.exports = {
 			'@assets': getPath('common/assets'),
 			'@common': getPath('common'),
 			'@react-router': getPath('common/route/react-router'),
-			'@inject': getPath(`${project}/store/inject.tsx`),
-			'@site': getPath(`buildConfig/site/${site}`),
+			'@inject': 'react-natural-store/dist/inject',
+			'@channel': getPath(`buildConfig/channel/${channel}`),
 
 			// target business
 			'@client': getPath(`${project}`),
@@ -62,17 +62,6 @@ module.exports = {
 	},
 	module: {
 		rules: [
-			// {
-			// 	test: /\.js(x)?$/,
-			// 	// include: [getPath(project), getPath('common')],
-			// 	include: [getPath(project)],
-			// 	loader: 'eslint-loader',
-			// 	exclude: /node_modules/,
-			// 	enforce: 'pre',
-			// 	options: {
-			// 		formatter: require('eslint-friendly-formatter'),
-			// 	},
-			// },
 			{
 				test: /\.(ts|tsx|js|jsx)$/,
 				exclude: /node_modules/,
@@ -175,7 +164,7 @@ module.exports = {
 			filename: 'index.html',
 			template: `./${project}/index.html`,
 			// favicon: isDev ? '' : `${project}/favicon.ico`,
-			// 防止各site项目一样时，不生成html文件
+			// 防止各channel项目一样时，不生成html文件
 			// inlineSource: /theme\.css/,
 			cache: false,
 			excludeAssets: [/theme/],

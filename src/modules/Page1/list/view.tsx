@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './style.scss';
-import Inject from '@inject'
+import Inject from '@inject';
 
 const Page1List: React.FC<any> = (p: any) => {
 	const { page1: {state, actions} } = p;
@@ -14,6 +14,6 @@ const Page1List: React.FC<any> = (p: any) => {
 			<button onClick={() => actions.asyncChangePageName('page1 asyncChangePageName')}>change page1 name</button>
 		</div>
 	);
-}
+};
 
 export default Inject('page1List')(Page1List);

@@ -25,12 +25,12 @@ export const useUpdated = (fn: IFn) => {
 		if (isMounted.current === false) {
 			isMounted.current = true;
 		}
-		return () => {isMounted.current = false};
+		return () => { isMounted.current = false; };
 	}, []);
 };
 
 export const useInterval = (fn: IFn, delay:number) => {
-	const cb = useRef(() =>{});
+	const cb = useRef(() => {});
 	useEffect(() => {
 		cb.current = fn;
 	}, [fn]);

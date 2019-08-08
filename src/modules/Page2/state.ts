@@ -3,5 +3,5 @@ export const state = {
 };
 
 export const maps = {
-	pageNameSplit: (state: any) => state.pageName.split(''),
+	pageNameSplit: (_state: any) => _state.pageName.split(''),
 };
