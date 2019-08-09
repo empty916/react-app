@@ -6,3 +6,4 @@
 /package-lock.json
 /server/dll
 .DS_Store
+.stylelintcache

@@ -16,8 +16,7 @@ const Template: React.FC<any> = (p: any) => {
 };
 
 
-export {state, maps} from './state';
-export {default as actions} from './actions';
+export {state, maps, actions} from './store';
 export default Inject(
 	'template',
 )(Template);

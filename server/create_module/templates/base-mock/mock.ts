@@ -16,4 +16,3 @@ Mock.mock(/api\/template/, 'post', {
 		'address': () => (Random.province() + Random.city() + Random.county()),
 	}],
 });
-

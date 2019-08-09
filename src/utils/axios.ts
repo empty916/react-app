@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 // import {message} from 'antd';
 import channel from '@channel';
+import {History} from 'history';
 import App from '@common/utils/App';
 import { dateFormatting } from '@common/utils/index';
 import SHA256 from '@common/utils/crypt';
@@ -8,7 +9,18 @@ import store from '../store';
 
 const { serverUrl } = channel;
 
-const { getHistory } = store.getModule('route').maps;
+const getHistory = new Promise<History<any>>(res => {
+	const history = store.getModule('historyModule').state.value;
+	if (history !== null) {
+		res(history);
+		return;
+	}
+	const us = store.subscribe('historyModule', () => {
+		const newHistory = store.getModule('historyModule').state.value;
+		res(newHistory);
+		us();
+	});
+});
 // native log
 // const nativeLog = data => {
 // 	const u = navigator.userAgent;
@@ -61,7 +73,9 @@ const createRequestId = () => Math.random().toString(36).substr(2, 12) + Date.no
 let requestId: string;
 const refreshId = () => requestId = createRequestId();
 
-getHistory().listen(refreshId);
+// let history: null | History;
+getHistory.then((history: History) => history.listen(refreshId));
+// getHistory().listen(refreshId);
 
 // 拼接参数
 // requestNo规则: 请求参数+url+authCode+ Uid + time => SHA256 保证唯一且同一请求不变
@@ -146,7 +160,7 @@ instance.interceptors.response.use(
 		// console.log('-----.', responseCode);
 		if (responseCode === '3001') {
 			// message.error('登录超时，请重新登录', 1);
-			getHistory().replace('/login');
+			getHistory.then((history: History) => history.replace('/login'));
 		}
 		if (responseCode !== '200') {
 			throw response; // eslint-disable-line

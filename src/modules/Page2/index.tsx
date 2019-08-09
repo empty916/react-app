@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+import React, {
+	useEffect,
+} from 'react';
 import axios from '@client/utils/axios';
+// import '@client/utils/axios';
 import style from './style.scss';
 import Inject from '@inject';
 
