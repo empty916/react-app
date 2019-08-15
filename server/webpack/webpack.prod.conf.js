@@ -5,12 +5,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const baseConfig = require('./webpack.base.conf');
 const {
+	getArg,
 	getPath,
 	addDllPluginsConfig,
 	createStyleLoader,
 	createStylePlugin,
 } = require('./utils');
 
+const { project, channel } = getArg();
 // const mode = 'production';
 const mode = process.env.NODE_ENV;
 const isDev = false;

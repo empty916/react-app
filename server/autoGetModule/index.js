@@ -36,6 +36,8 @@ export default {
 };
 `;
 
+const removeExt = str => str.split('.')[0];
+
 const authGetModule = () => {
 	const matchFile = getMatchedFile();
 
@@ -43,7 +45,7 @@ const authGetModule = () => {
 		.map(replaceAbsPath)
 		.map(formatModuleName);
 
-	const addImportStr = (p, index) => `${formatModuleNames[index].split('.')[0]}: () => import(/* webpackChunkName:"${formatModuleNames[index]}" */ '${p}'),`;
+	const addImportStr = (p, index) => `${removeExt(formatModuleNames[index])}: () => import(/* webpackChunkName:"${removeExt(formatModuleNames[index])}" */ '${removeExt(p)}'),`;
 
 	const moduleImportStr = matchFile
 		.map(replaceAbsPath)

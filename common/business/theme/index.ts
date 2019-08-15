@@ -8,7 +8,9 @@ type IThemeConfig = {
 
 class Theme {
 	private themeConfig: IThemeConfig = {};
+
 	private themeDom: HTMLElement | null;
+
 	private themeTextBackup: string = '';
 
 	constructor(selector: string, themeConfig: IThemeConfig) {

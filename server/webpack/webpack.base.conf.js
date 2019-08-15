@@ -4,7 +4,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin');
-const InlineChunkHtmlPlugin = require('../plugin/InlineChunkHtmlPlugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
 
 const {
@@ -21,7 +22,6 @@ const { project, channel } = getArg();
 
 const mode = process.env.NODE_ENV;
 const isDev = mode === 'development';
-
 
 module.exports = {
 	entry: {
@@ -160,12 +160,12 @@ module.exports = {
 		}),
 		createStylePlugin(mode, isDev),
 		new HtmlWebpackPlugin({
-			title: 'Custom template',
+			title: 'react project template',
 			filename: 'index.html',
 			template: `./${project}/index.html`,
 			// favicon: isDev ? '' : `${project}/favicon.ico`,
 			// 防止各channel项目一样时，不生成html文件
-			// inlineSource: /theme\.css/,
+			// inlineSource: /theme/,
 			cache: false,
 			excludeAssets: [/theme/],
 			minify: {
@@ -183,13 +183,11 @@ module.exports = {
 			inject: true,
 			// hash: true,
 		}),
-		// new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/theme.\w*\.css$/], {
-		// 	id: 'theme-css',
-		// }),
-		// new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/theme.\w*\.js$/], {
-		// 	id: 'theme-js',
-		// }),
 		new HtmlWebpackExcludeAssetsPlugin(),
+		new ScriptExtHtmlWebpackPlugin({
+			defaultAttribute: 'defer',
+		}),
+		// new HtmlWebpackInlineSourcePlugin(),
 		// new HtmlWebpackInlineSourcePlugin(),
 		...addDllPluginsConfig(mode),
 	],

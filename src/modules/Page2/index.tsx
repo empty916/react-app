@@ -1,8 +1,7 @@
 import React, {
-	useEffect,
+// useEffect,
 } from 'react';
-import axios from '@client/utils/axios';
-// import '@client/utils/axios';
+// import axios from '@client/utils/axios';
 import style from './style.scss';
 import Inject from '@inject';
 
@@ -12,16 +11,20 @@ const Page2: React.FC<any> = (p: any) => {
 		page2: {state, actions},
 		app,
 	} = p;
-	useEffect(() => {
-		axios.get('/test')
-			.then(console.log);
-	}, []);
+	// useEffect(() => {
+	// 	axios.get('/test')
+	// 		.then(console.log);
+	// }, []);
+	const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const res = actions.changePageName(e.target.value);
+		console.log(res);
+	};
 	return (
 		<div className={style.page2}>
 			<input
 				type="text"
 				value={state.pageName}
-				onChange={e => actions.changePageName(e.target.value)}
+				onChange={changePage2}
 			/>
 			<br />
 			<input

@@ -81,12 +81,14 @@ export default class InputFactory {
 			validateTrigger: ListenerType,
 		});
 	}
+
 	span(colNum) {
 		if (!!colNum) {
 			return this.itemProp({span: colNum});
 		}
 		return this;
 	}
+
 	layout(config) {
 		if (!!config) {
 			return this.itemProp(config);
@@ -121,6 +123,7 @@ export default class InputFactory {
 			message,
 		});
 	}
+
 	isNotRequired() {
 		if (Array.isArray(this.input.rules)) {
 			const target = this.input.rules.find(rule => rule.required === true);
@@ -246,6 +249,7 @@ export default class InputFactory {
 		/* eslint-enable */
 		return this;
 	}
+
 	clone() {
 		return new InputFactory(this);
 	}

@@ -4,7 +4,13 @@ module.exports = {
 		'@babel/plugin-proposal-export-default-from',
 		'@babel/plugin-transform-modules-commonjs',
 		'@babel/plugin-proposal-object-rest-spread',
-		// ['@babel/plugin-transform-runtime'],
+		['@babel/plugin-transform-runtime', {
+			// "absoluteRuntime": false,
+			// "corejs": 3,
+			// "helpers": true,
+			// "regenerator": true,
+			// "useESModules": false
+		}],
 		'@babel/plugin-proposal-async-generator-functions',
 		'@babel/plugin-proposal-function-bind',
 		['@babel/plugin-proposal-decorators', { legacy: true }],
@@ -18,7 +24,16 @@ module.exports = {
 		// ]
 	],
 	presets: [
-		'@babel/preset-env',
+		[
+			'@babel/preset-env',
+			// {
+			// 	useBuiltIns: 'entry',
+			// 	targets: {
+			// 		ie: '9',
+			// 	},
+			// 	corejs: 3,
+			// },
+		],
 		'@babel/preset-react',
 		'@babel/preset-typescript',
 	],

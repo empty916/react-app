@@ -5,7 +5,7 @@ import style from './style.scss';
 
 const Page1List: React.FunctionComponent = (p: any) => (
 	<div className={style['page1-list']}>
-		{p.page1List.state.pageName}
+		<div>{p.page1List.state.pageName}</div>
 	</div>
 );
 

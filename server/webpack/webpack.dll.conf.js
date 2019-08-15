@@ -26,7 +26,7 @@ module.exports = mode => {
 	return {
 		entry: {
 			utilsDll: [
-				'babel-polyfill',
+				'@babel/polyfill',
 				// 'lodash/curry',
 				'lodash/cloneDeep',
 				'lodash/fp/pipe',
@@ -34,8 +34,9 @@ module.exports = mode => {
 				// 'react-motion',
 			],
 			baseDll: [
-				'react-dom',
 				'react',
+				'react-dom',
+				'react-router',
 				'react-router-dom',
 				// 'react-redux',
 				// 'redux',

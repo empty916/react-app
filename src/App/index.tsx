@@ -4,6 +4,7 @@ import { Route, Link, withRouter } from 'react-router-dom';
 import TransitionSwitch from '@common/components/base/TransitionSwitch';
 import Inject from '@inject';
 import routes from '@channel/route';
+// import style from '../theme.scss';
 import './style.scss';
 
 let RHistory: React.FC<any> | React.ComponentClass<any> = ({historyModule, history}) => {
@@ -20,8 +21,11 @@ let RLocation: React.FC<any> | React.ComponentClass<any> = ({locationModule, loc
 };
 RLocation = withRouter(Inject('locationModule')(RLocation));
 
+type Props = {
+	className?: string;
+}
 
-const App: React.FC = (p: any) => {
+const App: React.FC<Props> = (p: any) => {
 	const {
 		app: { state, actions },
 	} = p;
@@ -48,4 +52,4 @@ const App: React.FC = (p: any) => {
 	);
 };
 
-export default Inject('app')(App);
+export default Inject('app')(App) as React.FC<Props>;
