@@ -1,23 +1,5 @@
-import {History, Location} from 'history';
+import {Location, createHashHistory} from 'history';
 
-let currentHistory: History | null = null;
-
-export const history = {
-	state: {
-		value: null,
-	},
-	maps: {
-		getHistory: () => () => currentHistory,
-	},
-	actions: {
-		update: (newHistory: History) => {
-			currentHistory = newHistory;
-			return {
-				value: newHistory,
-			};
-		},
-	},
-};
 
 export const location = {
 	state: {
@@ -29,3 +11,8 @@ export const location = {
 		}),
 	},
 };
+
+const currentHistory = createHashHistory();
+(window as any).currentHistory = currentHistory;
+
+export default currentHistory;

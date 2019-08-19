@@ -3,14 +3,15 @@ import '@babel/polyfill';
 import '@utils/devToolInit';
 import React from 'react';
 import ReactDom from 'react-dom';
-import { HashRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import '@mock';
 import './store';
+import history from './store/route.store';
 import App from './App';
 
 const content = (
-	<HashRouter>
+	<Router history={history}>
 		<App />
-	</HashRouter>
+	</Router>
 );
 ReactDom.render(content, document.querySelector('#app'));

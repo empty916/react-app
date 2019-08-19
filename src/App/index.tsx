@@ -7,13 +7,6 @@ import routes from '@channel/route';
 // import style from '../theme.scss';
 import './style.scss';
 
-let RHistory: React.FC<any> | React.ComponentClass<any> = ({historyModule, history}) => {
-	const $historyState = useMemo(() => history, [history]);
-	useEffect(() => { historyModule.actions.update($historyState); }, []);
-	return null;
-};
-RHistory = withRouter(Inject('historyModule')(RHistory));
-
 let RLocation: React.FC<any> | React.ComponentClass<any> = ({locationModule, location}) => {
 	const $locationState = useMemo(() => location, [location]);
 	useEffect(() => { locationModule.actions.update($locationState); }, []);
@@ -32,7 +25,6 @@ const App: React.FC<Props> = (p: any) => {
 
 	return (
 		<>
-			<RHistory />
 			<RLocation />
 			<Link to="/page1">page1</Link>
 			<Link to="/page2">page2</Link>
