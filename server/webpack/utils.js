@@ -77,13 +77,13 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 						: '[hash:base64:16]',
 				},
 			},
-			{
+			isDev ? null : {
 				loader: 'postcss-loader',
 			},
 			{
 				loader: 'sass-loader',
 			},
-		],
+		].filter(Boolean),
 	},
 	{
 		test: /\.(s?css)$/,
@@ -100,13 +100,13 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 			{
 				loader: 'css-loader',
 			},
-			{
+			isDev ? null : {
 				loader: 'postcss-loader',
 			},
 			{
 				loader: 'sass-loader',
 			},
-		],
+		].filter(Boolean),
 	},
 ];
 

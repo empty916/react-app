@@ -1,23 +1,18 @@
-import {History, Location} from 'history';
+import {Location, createHashHistory} from 'history';
 
-type TState = {
-	history: History | null;
-	location: Location | null;
-}
 
-let currentHistory: History | null = null;
-export const state: TState = {
-	history: null,
-	location: null,
-};
-
-export const maps = {
-	getHistory: () => () => currentHistory,
-};
-
-export const actions = {
-	changeRoute: (route: TState) => {
-		currentHistory = route.history;
-		return route;
+export const location = {
+	state: {
+		value: null,
+	},
+	actions: {
+		update: (newLocation: Location) => ({
+			value: newLocation,
+		}),
 	},
 };
+
+const currentHistory = createHashHistory();
+(window as any).currentHistory = currentHistory;
+
+export default currentHistory;

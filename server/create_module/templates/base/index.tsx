@@ -6,6 +6,7 @@ const Template: React.FC<any> = (p: any) => {
 	const {
 		template: {state, actions, maps},
 	} = p;
+	console.log(actions);
 	return (
 		<div className={style.template}>
 			{state.name}

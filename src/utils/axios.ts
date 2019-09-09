@@ -4,11 +4,10 @@ import channel from '@channel';
 import App from '@common/utils/App';
 import { dateFormatting } from '@common/utils/index';
 import SHA256 from '@common/utils/crypt';
-import store from '../store';
+import history from '../store/route.store';
 
 const { serverUrl } = channel;
 
-const { getHistory } = store.getModule('route').maps;
 // native log
 // const nativeLog = data => {
 // 	const u = navigator.userAgent;
@@ -61,7 +60,7 @@ const createRequestId = () => Math.random().toString(36).substr(2, 12) + Date.no
 let requestId: string;
 const refreshId = () => requestId = createRequestId();
 
-getHistory().listen(refreshId);
+history.listen(refreshId);
 
 // 拼接参数
 // requestNo规则: 请求参数+url+authCode+ Uid + time => SHA256 保证唯一且同一请求不变
@@ -146,7 +145,7 @@ instance.interceptors.response.use(
 		// console.log('-----.', responseCode);
 		if (responseCode === '3001') {
 			// message.error('登录超时，请重新登录', 1);
-			getHistory().replace('/login');
+			history.replace('/login');
 		}
 		if (responseCode !== '200') {
 			throw response; // eslint-disable-line
