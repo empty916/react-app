@@ -126,7 +126,7 @@
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6",
 		"react-motion": "^0.5.2",
-		"react-natural-store": "0.0.8",
+		"react-natural-store": "^0.0.9-beta.2",
 		"react-router": "^5.0.1",
 		"react-router-dom": "^5.0.1",
 		"react-virtualized": "^9.21.1",

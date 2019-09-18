@@ -40,7 +40,7 @@ const Page2: React.FC<any> = (p: any) => {
 
 export {state, maps} from './state';
 export {default as actions} from './actions';
-
+Page2.displayName = 'Page2';
 export default Inject(
 	'page1List',
 	'page2',
