@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect } from 'react';
-import { Route, Link, withRouter } from 'react-router-dom';
+import { Route, Link, withRouter, Switch } from 'react-router-dom';
 // import { History } from 'history';
-import TransitionSwitch from '@common/components/base/TransitionSwitch';
+// import TransitionSwitch from '@common/components/base/TransitionSwitch';
 import Inject from '@inject';
 import routes from '@channel/route';
 // import style from '../theme.scss';
@@ -12,7 +12,7 @@ let RLocation: React.FC<any> | React.ComponentClass<any> = ({locationModule, loc
 	useEffect(() => { locationModule.actions.update($locationState); }, []);
 	return null;
 };
-RLocation = withRouter(Inject('locationModule')(RLocation));
+RLocation = withRouter(Inject('locationModule')(RLocation) as any);
 
 type Props = {
 	className?: string;
@@ -35,13 +35,13 @@ const App: React.FC<Props> = (p: any) => {
 				value={state.name}
 				onChange={e => actions.update(e.target.value)}
 			/>
-			<TransitionSwitch>
+			<Switch>
 				{routes.map((route, index) => (
 					<Route key={index.toString()} {...route} />
 				))}
-			</TransitionSwitch>
+			</Switch>
 		</>
 	);
 };
 
-export default Inject('app')(App) as React.FC<Props>;
+export default Inject('app')(App);

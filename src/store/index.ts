@@ -14,6 +14,6 @@ const modules = {
 	locationModule: location,
 };
 
-export default createStore(modules, lazyModules);
-// export { default as createStore } from './createStore'
-// export { default as inject } from './inject'
+const store = createStore(modules, lazyModules);
+
+export default store;
