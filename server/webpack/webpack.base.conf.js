@@ -50,7 +50,7 @@ module.exports = {
 			'@assets': getPath('common/assets'),
 			'@common': getPath('common'),
 			'@react-router': getPath('common/route/react-router'),
-			'@inject': 'react-natural-store/dist/inject_class',
+			'@inject': 'react-natural-store/dist/inject',
 			'@channel': getPath(`buildConfig/channel/${channel}`),
 
 			// target business

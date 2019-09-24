@@ -2,26 +2,26 @@ import React, { useMemo, useEffect } from 'react';
 import { Route, Link, withRouter, Switch } from 'react-router-dom';
 // import { History } from 'history';
 // import TransitionSwitch from '@common/components/base/TransitionSwitch';
-import Inject from '@inject';
+import { useInject } from 'react-natural-store';
+// import Inject from '@inject';
 import routes from '@channel/route';
 // import style from '../theme.scss';
 import './style.scss';
 
-let RLocation: React.FC<any> | React.ComponentClass<any> = ({locationModule, location}) => {
+let RLocation: React.FC<any> | React.ComponentClass<any> = ({location}) => {
+	const [locationModule] = useInject('locationModule');
 	const $locationState = useMemo(() => location, [location]);
-	useEffect(() => { locationModule.actions.update($locationState); }, []);
+	useEffect(() => { locationModule.actions.update($locationState); }, [$locationState, locationModule.actions]);
 	return null;
 };
-RLocation = withRouter(Inject('locationModule')(RLocation) as any);
+RLocation = withRouter(RLocation);
 
 type Props = {
 	className?: string;
 }
 
-const App: React.FC<Props> = (p: any) => {
-	const {
-		app: { state, actions },
-	} = p;
+const App: React.FC<Props> = () => {
+	const [{ state, actions }] = useInject('app');
 
 	return (
 		<>
@@ -44,4 +44,4 @@ const App: React.FC<Props> = (p: any) => {
 	);
 };
 
-export default Inject('app')(App);
+export default App;

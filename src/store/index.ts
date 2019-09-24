@@ -14,6 +14,12 @@ const modules = {
 	locationModule: location,
 };
 
-const store = createStore(modules, lazyModules);
+
+const LogMiddleware = () => (next: any) => (record: any) => {
+	console.log(`${record.moduleName}: ${record.actionName}`, record.state);
+	return next(record);
+};
+
+const store = createStore(modules, lazyModules, undefined, [LogMiddleware]);
 
 export default store;

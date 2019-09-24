@@ -84,6 +84,8 @@ module.exports = {
 		// // @off 同构应用需要在 didMount 里写 setState
 		'react/no-did-mount-set-state': 0,
 		'react/button-has-type': 0,
+		"react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    	"react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
 
 		'jsx-a11y/anchor-is-valid': 0,
 		'jsx-a11y/click-events-have-key-events': 0,

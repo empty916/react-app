@@ -2,23 +2,22 @@ import React, {
 // useEffect,
 } from 'react';
 // import axios from '@client/utils/axios';
+import {useInject} from 'react-natural-store';
+// import Inject from '@inject';
 import style from './style.scss';
-import Inject from '@inject';
 
-const Page2: React.FC<any> = (p: any) => {
+const Page2: React.FC<any> = () => {
 	// console.log(p);
-	const {
-		page2: {state, actions},
-		app,
-	} = p;
+	const [page2, app] = useInject('page2', 'app');
+	if (!page2) {
+		return <>loading</>;
+	}
+	const {state, actions} = page2;
 	// useEffect(() => {
 	// 	axios.get('/test')
 	// 		.then(console.log);
 	// }, []);
-	const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const res = actions.changePageName(e.target.value);
-		console.log(res);
-	};
+	const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value);
 	return (
 		<div className={style.page2}>
 			<input
@@ -41,8 +40,4 @@ const Page2: React.FC<any> = (p: any) => {
 export {state, maps} from './state';
 export {default as actions} from './actions';
 Page2.displayName = 'Page2';
-export default Inject(
-	'page1List',
-	'page2',
-	'app',
-)(Page2);
+export default Page2;
