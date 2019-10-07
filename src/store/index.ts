@@ -20,6 +20,6 @@ const LogMiddleware = () => (next: any) => (record: any) => {
 	return next(record);
 };
 
-const store = createStore(modules, lazyModules, undefined, [LogMiddleware]);
+const store = createStore(modules, lazyModules as any, undefined, [LogMiddleware]);
 
 export default store;

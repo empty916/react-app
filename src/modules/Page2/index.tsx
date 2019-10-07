@@ -1,23 +1,32 @@
 import React, {
-// useEffect,
+	useEffect,
 } from 'react';
 // import axios from '@client/utils/axios';
-import {useInject} from 'react-natural-store';
-// import Inject from '@inject';
+import { InjectStoreModule } from 'react-natural-store';
+import Inject from '@inject';
 import style from './style.scss';
 
-const Page2: React.FC<any> = () => {
+type PageProps = {
+	page2: InjectStoreModule,
+	app: InjectStoreModule,
+}
+
+const Page2: React.FC<PageProps> = ({page2, app}) => {
 	// console.log(p);
-	const [page2, app] = useInject('page2', 'app');
-	if (!page2) {
-		return <>loading</>;
-	}
-	const {state, actions} = page2;
+	// const [page2] = useInject('page2');
+	// if (!page2) {
+	// 	return <>loading</>;
+	// }
+	const {state, actions, maps } = page2;
 	// useEffect(() => {
 	// 	axios.get('/test')
 	// 		.then(console.log);
 	// }, []);
-	const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value);
+	const { countObj, countIsOdd } = maps;
+	useEffect(() => {
+		console.log('maps.countObj updated!', countObj);
+	}, [countObj]);
+	const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value, state);
 	return (
 		<div className={style.page2}>
 			<input
@@ -31,7 +40,15 @@ const Page2: React.FC<any> = () => {
 				value={app.state.name}
 				onChange={e => app.actions.update(e.target.value)}
 			/>
-			<button onClick={() => actions.asyncChangePageName('page1 asyncChangePageName')}>change page1 name</button>
+			<br />
+			count:
+			{state.count}
+			<button onClick={() => actions.inc(state)}>+</button>
+			<br />
+			countIsOdd：
+			{`${countIsOdd}`}
+			<br />
+			<button onClick={() => actions.asyncChangePageName('page2 asyncChangePageName', state)}>change page2 name</button>
 		</div>
 	);
 };
@@ -40,4 +57,4 @@ const Page2: React.FC<any> = () => {
 export {state, maps} from './state';
 export {default as actions} from './actions';
 Page2.displayName = 'Page2';
-export default Page2;
+export default Inject<PageProps>('page2', 'app')(Page2);

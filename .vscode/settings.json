@@ -1,6 +1,6 @@
 {
 	"git.ignoreLimitWarning": true,
-	"editor.fontSize": 14,
+	"editor.fontSize": 18,
 	"prettier.singleQuote": true,
 	"prettier.useTabs": true,
 	"prettier.trailingComma": "all",
