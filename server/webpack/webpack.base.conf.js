@@ -51,6 +51,8 @@ module.exports = {
 			'@common': getPath('common'),
 			'@react-router': getPath('common/route/react-router'),
 			'@inject': 'react-natural-store/dist/inject',
+			// '@inject': getPath('src/rns/inject.tsx'),
+			// 'react-natural-store': getPath('src/rns/index.ts'),
 			'@channel': getPath(`buildConfig/channel/${channel}`),
 
 			// target business

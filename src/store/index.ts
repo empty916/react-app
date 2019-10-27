@@ -14,7 +14,6 @@ const modules = {
 	locationModule: location,
 };
 
-
 const LogMiddleware = () => (next: any) => (record: any) => {
 	console.log(`${record.moduleName}: ${record.actionName}`, record.state);
 	return next(record);
