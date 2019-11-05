@@ -3,6 +3,7 @@ import { promiseMiddleware, shallowEqualMiddleware } from 'rns-pure/dist/middlew
 import appState from '../App/state';
 import appActions from '../App/actions';
 import {location} from './route.store';
+import user from './user.store';
 import lazyModuleConfig from '../../server/autoGetModule/lazyLoadModuleConfig';
 
 const { modules: lazyModules } = lazyModuleConfig;
@@ -12,6 +13,7 @@ const modules = {
 		state: appState,
 		actions: appActions,
 	},
+	user,
 	locationModule: location,
 };
 

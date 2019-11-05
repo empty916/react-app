@@ -4,7 +4,7 @@ export const state = {
 };
 
 export const maps = {
-	pageNameSplit: (_state: any) => _state.pageName.split(''),
-	countIsOdd: (_state: typeof state) => _state.count % 2 !== 0,
-	countObj: (_state: typeof state) => ({count: _state.count}),
+	pageNameSplit: ['pageName', (pageName: string) => pageName.split('')],
+	countIsOdd: ['count', (count: number) => count % 2 !== 0],
+	countObj: ['count', (count: number) => ({count})],
 };
