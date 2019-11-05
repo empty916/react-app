@@ -26,7 +26,11 @@ const store = createStore(
 	modules,
 	lazyModules as any,
 	undefined,
-	[LogMiddleware, promiseMiddleware, shallowEqualMiddleware],
+	[
+		LogMiddleware,
+		promiseMiddleware,
+		shallowEqualMiddleware,
+	],
 );
 
 export default store;
