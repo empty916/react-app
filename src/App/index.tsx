@@ -1,16 +1,21 @@
 import React from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 // import TransitionSwitch from '@common/components/base/TransitionSwitch';
-import { useInject } from 'rns-pure';
+import {
+	// inject,
+	InjectStoreModule,
+	useInject,
+} from 'rns-pure';
 import routes from '@channel/route';
 // import style from '../theme.scss';
 import './style.scss';
 
 type Props = {
-	className?: string;
+	app: InjectStoreModule;
 }
 
-const App: React.FC<Props> = () => {
+const App: React.FC<{}> = () => {
+	// const { state, actions } = app;
 	const [{ state, actions }] = useInject('app');
 
 	return (
@@ -33,4 +38,5 @@ const App: React.FC<Props> = () => {
 	);
 };
 
+// export default inject<Props>('app')(App);
 export default App;
