@@ -1,9 +1,11 @@
-import { useEffect, useRef } from 'react';
-
+import { useEffect, useRef, useState } from 'react';
+/* eslint-disable */
 interface IFn {
 	(): any;
 }
-
+export const useInit = (fn: Function) => {
+	useState(fn);
+};
 export const useMounted = (fn: IFn) => {
 	useEffect(() => { fn(); }, []);
 };

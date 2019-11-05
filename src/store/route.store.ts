@@ -2,17 +2,13 @@ import {Location, createHashHistory} from 'history';
 
 
 export const location = {
-	state: {
-		value: null,
-	},
+	state: null,
 	actions: {
-		update: (newLocation: Location) => ({
-			value: newLocation,
-		}),
+		update: (newLocation: Location) => newLocation,
 	},
 };
 
 const currentHistory = createHashHistory();
-(window as any).currentHistory = currentHistory;
+// (window as any).currentHistory = currentHistory;
 
 export default currentHistory;

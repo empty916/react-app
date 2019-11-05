@@ -13,7 +13,7 @@ const routes = [
 	{
 		path: '/page3',
 		component: loadabel(() => import('@client/modules/Page3')) as React.ComponentClass | React.FC,
-	}
+	},
 ];
 
 export default routes;

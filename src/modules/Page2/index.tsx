@@ -1,8 +1,9 @@
+/* eslint-disable */
 import React, {
 	useEffect,
 } from 'react';
 // import axios from '@client/utils/axios';
-import { InjectStoreModule } from 'react-natural-store';
+import { InjectStoreModule } from 'rns-pure';
 import Inject from '@inject';
 import style from './style.scss';
 
@@ -10,7 +11,6 @@ type PageProps = {
 	page2: InjectStoreModule,
 	app: InjectStoreModule,
 }
-
 const Page2: React.FC<PageProps> = ({page2, app}) => {
 	// console.log(p);
 	// const [page2] = useInject('page2');
@@ -56,5 +56,5 @@ const Page2: React.FC<PageProps> = ({page2, app}) => {
 
 export {state, maps} from './state';
 export {default as actions} from './actions';
-Page2.displayName = 'Page2';
+// Page2.displayName = 'Page2';
 export default Inject<PageProps>('page2', 'app')(Page2);
