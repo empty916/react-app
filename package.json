@@ -126,10 +126,10 @@
 		"react": "^16.9.0",
 		"react-dom": "^16.9.0",
 		"react-motion": "^0.5.2",
-		"react-natural-store": "^1.1.2-beta2",
 		"react-router": "^5.0.1",
 		"react-router-dom": "^5.0.1",
 		"react-virtualized": "^9.21.1",
+		"rns-pure": "^2.0.2",
 		"rxjs": "^6.5.2"
 	},
 	"browserslist": [

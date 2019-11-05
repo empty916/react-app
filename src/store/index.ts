@@ -1,4 +1,5 @@
-import {createStore} from 'react-natural-store';
+import {createStore} from 'rns-pure';
+import { promiseMiddleware, shallowEqualMiddleware } from 'rns-pure/dist/middlewares';
 import appState from '../App/state';
 import appActions from '../App/actions';
 import {location} from './route.store';
@@ -19,6 +20,11 @@ const LogMiddleware = () => (next: any) => (record: any) => {
 	return next(record);
 };
 
-const store = createStore(modules, lazyModules as any, undefined, [LogMiddleware]);
+const store = createStore(
+	modules,
+	lazyModules as any,
+	undefined,
+	[LogMiddleware, promiseMiddleware, shallowEqualMiddleware],
+);
 
 export default store;

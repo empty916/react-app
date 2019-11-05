@@ -2,7 +2,7 @@ import React, {
 	useEffect,
 } from 'react';
 // import axios from '@client/utils/axios';
-import { InjectStoreModule } from 'react-natural-store';
+import { InjectStoreModule } from 'rns-pure';
 import Inject from '@inject';
 import style from './style.scss';
 

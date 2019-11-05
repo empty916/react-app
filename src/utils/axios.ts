@@ -1,9 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios';
 // import {message} from 'antd';
 import channel from '@channel';
-import App from '@common/utils/App';
 import { dateFormatting } from '@common/utils/index';
 import SHA256 from '@common/utils/crypt';
+import App from './App';
 import history from '../store/route.store';
 
 const { serverUrl } = channel;

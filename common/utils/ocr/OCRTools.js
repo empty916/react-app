@@ -6,17 +6,16 @@ import {CryptoJS} from '@noAnyDoor/jsrsasignc.js';
 
 Date.prototype.Format = function (fmt) {
 	const o = {
-		'M+': this.getMonth() + 1, //月份
-		'd+': this.getDate(), //日
-		'h+': this.getHours(), //小时
-		'm+': this.getMinutes(), //分
-		's+': this.getSeconds(), //秒
-		'q+': Math.floor((this.getMonth() + 3) / 3), //季度
-		'S': this.getMilliseconds() //毫秒
+		'M+': this.getMonth() + 1, // 月份
+		'd+': this.getDate(), // 日
+		'h+': this.getHours(), // 小时
+		'm+': this.getMinutes(), // 分
+		's+': this.getSeconds(), // 秒
+		'q+': Math.floor((this.getMonth() + 3) / 3), // 季度
+		'S': this.getMilliseconds(), // 毫秒
 	};
-	if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
-	for (let k in o)
-		if (new RegExp('(' + k + ')').test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)));
+	if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (`${this.getFullYear()}`).substr(4 - RegExp.$1.length));
+	for (const k in o) { if (new RegExp(`(${k})`).test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : ((`00${o[k]}`).substr((`${o[k]}`).length))); }
 	return fmt;
 };
 
@@ -26,13 +25,13 @@ function doSign(params, secretKey) {
 	const keys = Object.keys(params).sort();
 	// console.log('Source1 --->>> ', keys)
 	// 第二步：把所有参数名和参数值串在一起(前后加上secretKey)
-	let source = secretKey
+	let source = secretKey;
 	keys.forEach(key => {
-		if ('sign' !== key && '' !== key) {
+		if (key !== 'sign' && key !== '') {
 			source += key;
 			source += params[key];
 		}
-	})
+	});
 	source += secretKey;
 	// console.log('Source2 --->>> ', source)
 
@@ -46,7 +45,7 @@ function doSign(params, secretKey) {
 		cs[i + 1] = c;
 		cs[i + 2] = md5.charAt(i / 3 * 2 + 1);
 	}
-	return cs.join('').toUpperCase()
+	return cs.join('').toUpperCase();
 }
 
 
@@ -60,7 +59,7 @@ function doSign(params, secretKey) {
  * secretKey 秘钥
  * @returns {*}
  */
-export const getOCRSign = (params) => {
+export const getOCRSign = params => {
 	const {bizId, ip, url, secretKey, timestamp} = params;
 	return doSign({bizId, ip, url, timestamp}, secretKey);
 };
@@ -70,16 +69,16 @@ export const getOCRSign = (params) => {
  * @param img
  * @returns {string}
  */
-export const compress = (img) => {
-	var width = img.width;
-	var height = img.height;
-	var canvas = document.createElement('canvas');
-	var ctx = canvas.getContext('2d');
-	var tCanvas = document.createElement('canvas');
-	var tctx = tCanvas.getContext('2d');
+export const compress = img => {
+	let {width} = img;
+	let {height} = img;
+	const canvas = document.createElement('canvas');
+	const ctx = canvas.getContext('2d');
+	const tCanvas = document.createElement('canvas');
+	const tctx = tCanvas.getContext('2d');
 
 	// 如果图片大于四百万像素，计算压缩比并将大小压至400万以下
-	var ratio;
+	let ratio;
 	if ((ratio = width * height / 5000000) > 1) {
 		ratio = Math.sqrt(ratio);
 		width /= ratio;
@@ -91,22 +90,22 @@ export const compress = (img) => {
 	canvas.height = height;
 
 	// 铺底色
-	ctx.fillStyle = "#fff";
+	ctx.fillStyle = '#fff';
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-	//如果图片像素大于100万则使用瓦片绘制
-	var count;
+	// 如果图片像素大于100万则使用瓦片绘制
+	let count;
 	if ((count = width * height / 1000000) > 1) {
-		count = ~~(Math.sqrt(count) + 1); //计算要分成多少块瓦片
+		count = ~~(Math.sqrt(count) + 1); // 计算要分成多少块瓦片
 
 		// 计算每块瓦片的宽和高
-		var nw = ~~(width / count);
-		var nh = ~~(height / count);
+		const nw = ~~(width / count);
+		const nh = ~~(height / count);
 		tCanvas.width = nw;
 		tCanvas.height = nh;
 
-		for (var i = 0; i < count; i++) {
-			for (var j = 0; j < count; j++) {
+		for (let i = 0; i < count; i++) {
+			for (let j = 0; j < count; j++) {
 				tctx.drawImage(img, i * nw * ratio, j * nh * ratio, nw * ratio, nh * ratio, 0, 0, nw, nh);
 
 				ctx.drawImage(tCanvas, i * nw, j * nh, nw, nh);
@@ -115,8 +114,8 @@ export const compress = (img) => {
 	} else {
 		ctx.drawImage(img, 0, 0, width, height);
 	}
-	//进行最小压缩
-	var ndata = canvas.toDataURL('image/jpeg', 0.8);
+	// 进行最小压缩
+	const ndata = canvas.toDataURL('image/jpeg', 0.8);
 	tCanvas.width = tCanvas.height = canvas.width = canvas.height = 0;
 	return ndata;
 };
@@ -128,26 +127,26 @@ export const compress = (img) => {
  * @returns {*}
  */
 export const getBlob = (baseStr, type) => {
-	var blob;
+	let blob;
 	try {
-		var text = window.atob(baseStr.split(",")[1]);
-		var buffer = new ArrayBuffer(text.length);
-		var ubuffer = new Uint8Array(buffer);
+		const text = window.atob(baseStr.split(',')[1]);
+		const buffer = new ArrayBuffer(text.length);
+		const ubuffer = new Uint8Array(buffer);
 
 
-		for (var i = 0; i < text.length; i++) {
+		for (let i = 0; i < text.length; i++) {
 			ubuffer[i] = text.charCodeAt(i);
 		}
 
-		var Builder = window.WebKitBlobBuilder || window.MozBlobBuilder;
+		const Builder = window.WebKitBlobBuilder || window.MozBlobBuilder;
 
 
 		if (Builder) {
-			var builder = new Builder();
+			const builder = new Builder();
 			builder.append(buffer);
 			blob = builder.getBlob(type);
 		} else {
-			blob = new window.Blob([buffer], {type: type});
+			blob = new window.Blob([buffer], {type});
 		}
 	} catch (e) {
 		// alert(e)
@@ -166,20 +165,20 @@ export const getBlob = (baseStr, type) => {
  *
  * @returns {*}
  */
-export const getOCRTicket = (params) => {
+export const getOCRTicket = params => {
 	const timestamp = new Date().Format('yyyyMMddhhmmss');
 	const {api, bizId, ip, url} = params;
 	const data = Object.assign({}, params, {timestamp});
 	const sign = getOCRSign(data);
 	const OCRData = Object.assign({}, {bizId, ip, url, timestamp, sign});
 	let fetchGetParams = '';
-	for (let item in OCRData) {
+	for (const item in OCRData) {
 		fetchGetParams += (fetchGetParams.indexOf('?') != -1) ? '&' : '?';
 		fetchGetParams += `${item}=${OCRData[item]}`;
 	}
 	return fetch(`${url}/api/v2/ticket${fetchGetParams}`, {
 		method: 'GET',
-	}).then((response) => response.json());
+	}).then(response => response.json());
 };
 
 /**
@@ -187,11 +186,10 @@ export const getOCRTicket = (params) => {
  * @param params
  * @returns {Promise}
  */
-export const getOCRImgMsg = (params) => {
-	let {formData, url, bizId, ticket} = params;
+export const getOCRImgMsg = params => {
+	const {formData, url, bizId, ticket} = params;
 
 	return new Promise((resolve, reject) => {
-
 		formData.append('ticket', ticket);
 		formData.append('bizId', bizId);
 		console.log(formData);
@@ -201,13 +199,13 @@ export const getOCRImgMsg = (params) => {
 				'Content-Type': 'multipart/form-data',
 			},
 			body: formData,
-		}).then((response) => response.json())
-			.then((data) => {
+		}).then(response => response.json())
+			.then(data => {
 				resolve(data);
 			})
-			.catch((err) => {
+			.catch(err => {
 				reject(err);
-				//typeof err === 'string' ? YztApp.showToast(err) : null;
+				// typeof err === 'string' ? YztApp.showToast(err) : null;
 			});
 	});
 };

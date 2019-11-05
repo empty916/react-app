@@ -1,20 +1,10 @@
-import React, { useMemo, useEffect } from 'react';
-import { Route, Link, withRouter, Switch } from 'react-router-dom';
-// import { History } from 'history';
+import React from 'react';
+import { Route, Link, Switch } from 'react-router-dom';
 // import TransitionSwitch from '@common/components/base/TransitionSwitch';
-import { useInject } from 'react-natural-store';
-// import Inject from '@inject';
+import { useInject } from 'rns-pure';
 import routes from '@channel/route';
 // import style from '../theme.scss';
 import './style.scss';
-
-let RLocation: React.FC<any> | React.ComponentClass<any> = ({location}) => {
-	const [locationModule] = useInject('locationModule');
-	const $locationState = useMemo(() => location, [location]);
-	useEffect(() => { locationModule.actions.update($locationState); }, [$locationState, locationModule.actions]);
-	return null;
-};
-RLocation = withRouter(RLocation);
 
 type Props = {
 	className?: string;
@@ -25,7 +15,6 @@ const App: React.FC<Props> = () => {
 
 	return (
 		<>
-			<RLocation />
 			<Link to="/page1">page1</Link>
 			<Link to="/page2">page2</Link>
 			<Link to="/page3">page3</Link>
