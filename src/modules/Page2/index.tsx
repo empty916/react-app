@@ -23,9 +23,9 @@ const Page2: React.FC<PageProps> = ({page2, app}) => {
 	// 		.then(console.log);
 	// }, []);
 	const { countObj, countIsOdd } = maps;
-	useEffect(() => {
-		console.log('maps.countObj updated!', countObj);
-	}, [countObj]);
+	// useEffect(() => {
+	// 	console.log('maps.countObj updated!', countObj);
+	// }, [countObj]);
 	const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value, state);
 	return (
 		<div className={style.page2}>
