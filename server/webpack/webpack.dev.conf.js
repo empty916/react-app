@@ -29,6 +29,7 @@ module.exports = merge(baseConfig, {
 	resolve: {
 		alias: {
 			'@mock': getPath(project, 'business', 'mock', 'dev.js'),
+			'@redux-devtool': getPath(project, 'store', 'redux.devtool.ts'),
 		},
 	},
 	module: {
@@ -63,6 +64,7 @@ module.exports = merge(baseConfig, {
 					'@inject': ['node_modules/rns-pure/dist/inject.d.ts'],
 					'@client': [`${project}`],
 					'@client/*': [`${project}/*`],
+					'@redux-devtool': [`${project}/store/redux.devtool.ts`],
 				},
 			},
 		}),
