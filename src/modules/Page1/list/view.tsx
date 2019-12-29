@@ -1,6 +1,6 @@
 import React from 'react';
-import style from './style.scss';
 import Inject from '@inject';
+import style from './style.scss';
 
 const Page1List: React.FC<any> = (p: any) => {
 	const { page1: {state, actions} } = p;
