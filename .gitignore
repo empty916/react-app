@@ -7,3 +7,4 @@
 /server/dll
 .DS_Store
 .stylelintcache
+/.idea
