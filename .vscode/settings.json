@@ -38,5 +38,8 @@
 	"diffEditor.ignoreTrimWhitespace": true,
 	"css.validate": true,
 	"scss.validate": true,
-	"stylelint.enable": true
+	"stylelint.enable": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	}
 }
