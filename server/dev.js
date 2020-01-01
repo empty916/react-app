@@ -21,5 +21,5 @@ const {
 
 server.listen(port, host, () => {
 	// console.log('Starting server on http://localhost:8080');
-	opn(`http://${host}:${port}`);
+	// opn(`http://${host}:${port}`);
 });
