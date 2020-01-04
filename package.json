@@ -64,6 +64,7 @@
 		"clean-webpack-plugin": "^2.0.2",
 		"cross-env": "^5.2.0",
 		"css-loader": "^2.1.1",
+		"cv-script": "^0.0.1",
 		"eslint": "^5.16.0",
 		"eslint-config-airbnb": "^17.1.0",
 		"eslint-friendly-formatter": "^4.0.1",
