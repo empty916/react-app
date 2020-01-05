@@ -26,7 +26,6 @@ module.exports = merge(baseConfig, {
 	},
 	resolve: {
 		alias: {
-			'@mock': getPath(project, 'business', 'mock', 'prd.js'),
 			'@redux-devtool': getPath(project, 'store', 'no.devtool.ts'),
 		},
 	},

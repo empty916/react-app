@@ -4,7 +4,6 @@ import '@utils/devToolInit';
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Router } from 'react-router-dom';
-import '@mock';
 import './store';
 import history from './store/route.store';
 import App from './App';
