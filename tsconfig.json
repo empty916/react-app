@@ -79,5 +79,8 @@
 		"server",
 		"createPage",
 		"mock-server"
+	],
+	"include": [
+		"src"
 	]
 }
