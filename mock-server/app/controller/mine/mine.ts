@@ -16,7 +16,7 @@ const data = Mock.mock({
 	]
 });
 
-@Prefix('/scf-pc/mapp/api/v1')
+@Prefix('/api')
 export default class UserController extends Controller {
 	// 资金方邀请客户列表接口
 	@Get('/mine')
