@@ -6,7 +6,7 @@
 	"scripts": {
 		"precommit": "npm run lint",
 		"dev": "cross-env NODE_ENV=development node ./server/dev.js",
-		"mock": "cd mock-server && npm run dev",
+		"mock": "cd mock-server && npm run start:dev",
 		"build:dll": "node ./server/build_dll.js",
 		"build:dev": "cross-env NODE_ENV=development node ./server/build_prod.js",
 		"build:prd": "cross-env NODE_ENV=production node ./server/build_prod.js",
