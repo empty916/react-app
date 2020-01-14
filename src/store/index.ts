@@ -1,5 +1,5 @@
 import {createStore} from 'rns-pure';
-import { promiseMiddleware, shallowEqualMiddleware } from 'rns-pure/dist/middlewares';
+import { promiseMiddleware, shallowEqualMiddleware, thunkMiddleware } from 'rns-pure/dist/middlewares';
 import devTool from '@redux-devtool';
 import appState from '../App/state';
 import appActions from '../App/actions';
@@ -23,6 +23,7 @@ const store = createStore(
 	lazyModules as any,
 	undefined,
 	[
+		thunkMiddleware,
 		promiseMiddleware,
 		devTool,
 		shallowEqualMiddleware,

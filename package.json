@@ -130,7 +130,7 @@
 		"react-router": "^5.0.1",
 		"react-router-dom": "^5.0.1",
 		"react-virtualized": "^9.21.1",
-		"rns-pure": "^2.1.7",
+		"rns-pure": "^2.3.0",
 		"rxjs": "^6.5.2"
 	},
 	"browserslist": [
