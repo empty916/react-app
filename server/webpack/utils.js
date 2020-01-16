@@ -108,6 +108,59 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 			},
 		].filter(Boolean),
 	},
+	{
+		test: /\.less$/,
+		exclude: /\/node_modules/,
+		use: [
+			// isDev ? 'style-loader' :
+			{
+				loader: MiniCssExtractPlugin.loader,
+				options: {
+					hmr: isDev,
+					publicPath: isDev ? '' : '../',
+				},
+			},
+			{
+				loader: 'css-loader',
+				options: {
+					modules: true,
+					importLoaders: 1,
+					localIdentName: isDev
+						? '[local]-[hash:base64:8]'
+						: '[hash:base64:16]',
+				},
+			},
+			isDev ? null : {
+				loader: 'postcss-loader',
+			},
+			{
+				loader: 'less-loader',
+			},
+		].filter(Boolean),
+	},
+	{
+		test: /\.less$/,
+		include: /\/node_modules/,
+		use: [
+			// isDev ? 'style-loader' :
+			{
+				loader: MiniCssExtractPlugin.loader,
+				options: {
+					hmr: isDev,
+					publicPath: isDev ? '' : '../',
+				},
+			},
+			{
+				loader: 'css-loader',
+			},
+			isDev ? null : {
+				loader: 'postcss-loader',
+			},
+			{
+				loader: 'less-loader',
+			},
+		].filter(Boolean),
+	},
 ];
 
 module.exports.createStylePlugin = (mode, isDev) => new MiniCssExtractPlugin({

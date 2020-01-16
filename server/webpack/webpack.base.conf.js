@@ -16,9 +16,9 @@ const {
 	createStylePlugin,
 } = require('./utils');
 
-const { distPath } = require('./config');
+const {distPath} = require('./config');
 
-const { project, channel } = getArg();
+const {project, channel} = getArg();
 
 const mode = process.env.NODE_ENV;
 const isDev = mode === 'development';
@@ -119,7 +119,8 @@ module.exports = {
 				},
 				theme: {
 					priority: 0,
-					test: /theme\.(s)?css$/,
+					// test: /theme\.(s)?css$/,
+					test: new RegExp(`/${project}/theme/`),
 					name: 'theme',
 				},
 			},

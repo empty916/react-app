@@ -1,13 +1,8 @@
 import React from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
-// import TransitionSwitch from '@common/components/base/TransitionSwitch';
-import {
-	// inject,
-	InjectStoreModule,
-	useInject,
-} from 'rns-pure';
+import { InjectStoreModule, useInject } from 'rns-pure';
 import routes from '@channel/route';
-// import style from '../theme.scss';
+import '../theme/test.scss';
 import './style.scss';
 
 type Props = {
