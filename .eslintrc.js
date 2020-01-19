@@ -80,6 +80,7 @@ module.exports = {
 		'react/prefer-stateless-function': 0,
 		'react/jsx-indent': [2, 'tab'],
 		'react/jsx-indent-props': [2, 'tab'],
+		'react/jsx-tag-spacing': 0,
 		'react/require-default-props': 0,
 		// // @off 同构应用需要在 didMount 里写 setState
 		'react/no-did-mount-set-state': 0,

@@ -69,7 +69,7 @@ module.exports = {
 			},
 			...createStyleLoader(mode, isDev),
 			{
-				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+				test: /\.(png|jpe?g|gif)(\?.*)?$/,
 				use: [
 					{
 						loader: 'url-loader',
@@ -82,8 +82,13 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-				use: 'url-loader',
+				test: /\.svg$/,
+				use: [{
+					loader: 'svg-sprite-loader',
+					options: {
+						symbolId: 'icon-[name]'
+					}
+				}]
 			},
 			{
 				test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,

@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios';
-// import {message} from 'antd';
 import channel from '@channel';
 import { dateFormatting } from '@utils/index';
 import SHA256 from '@utils/crypt';
@@ -8,15 +7,6 @@ import history from '../../store/route.store';
 
 const { serverUrl } = channel;
 
-// native log
-// const nativeLog = data => {
-// 	const u = navigator.userAgent;
-// 	if (u.indexOf('iPhone') > -1) {
-// 		window.webkit.messageHandlers.iosNative.postMessage(
-// 			JSON.stringify(data.data),
-// 		);
-// 	}
-// };
 let hideLoadingCount = 0;
 
 const showLoading = (loading: boolean) => {
@@ -88,6 +78,7 @@ const createRequestRecords = (requestNo: string) => ({
 	requestNo,
 	timestamp: Date.now(),
 });
+
 type TRequestCache = {
 	[p: string]: {
 		requestNo: string;

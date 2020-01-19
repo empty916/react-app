@@ -1,8 +1,7 @@
 import React from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
-import { InjectStoreModule, useInject } from 'rns-pure';
-// @ts-ignore
-import Button from 'Button';
+import {Route, Link, Switch} from 'react-router-dom';
+import {InjectStoreModule, useInject} from 'rns-pure';
+import Button from '@components/base/Button';
 import Input from '@components/base/Input';
 
 import routes from '@channel/route';
@@ -15,14 +14,14 @@ type Props = {
 
 const App: React.FC<{}> = () => {
 	// const { state, actions } = app;
-	const [{ state, actions }] = useInject('app');
+	const [{state, actions}] = useInject('app');
 
 	return (
 		<>
 			<Link to="/page1">page1</Link>
 			<Link to="/page2">page2</Link>
 			<Link to="/page3">page3</Link>
-			<br />
+			<br/>
 			<Input
 				style={{width: 200}}
 				type="text"
