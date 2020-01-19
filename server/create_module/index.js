@@ -10,7 +10,7 @@ const distPath = path.join(__dirname, '..', '..', 'src', 'modules');
 const cvs = new CvScript({
 	// questions: [moduleNameQuestion],
 	templateDirPath: templatePath,
-	templateFilePath: templatePath,
+	// templateFilePath: templatePath,
 	distPath: distPath,
 	fileDataMaps: [fileDataMap],
 });
