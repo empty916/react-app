@@ -4,9 +4,9 @@ import devTool from '@redux-devtool';
 import {autoFillMid} from '@client/store/autoFill';
 import appState from '../App/state';
 import appActions from '../App/actions';
-import {location} from './route.store';
 import user from './user.store';
 import lazyModuleConfig from '../../server/autoGetModule/lazyLoadModuleConfig';
+import filterUndefinedMiddleware from './filterUndefinedMiddleware';
 
 const { modules: lazyModules } = lazyModuleConfig;
 
@@ -16,7 +16,6 @@ const modules = {
 		actions: appActions,
 	},
 	user,
-	locationModule: location,
 };
 
 const store = createStore(
@@ -24,6 +23,7 @@ const store = createStore(
 	lazyModules as any,
 	undefined,
 	[
+		filterUndefinedMiddleware,
 		thunkMiddleware,
 		promiseMiddleware,
 		autoFillMid,
