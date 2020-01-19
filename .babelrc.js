@@ -25,6 +25,13 @@ module.exports = {
 		// ]
 	],
 	presets: [
+		// ["import", {
+		// 	libraryName: 'rsuite',
+		// 	libraryDirectory: 'lib',
+		// 	camel2DashComponentName: false,
+		// 	style: true
+		// }],
+		["rsuite", { "style": true }],
 		[
 			'@babel/preset-env',
 			{

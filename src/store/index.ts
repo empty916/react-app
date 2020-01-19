@@ -1,6 +1,7 @@
 import {createStore} from 'rns-pure';
 import { promiseMiddleware, shallowEqualMiddleware, thunkMiddleware } from 'rns-pure/dist/middlewares';
 import devTool from '@redux-devtool';
+import {autoFillMid} from '@client/store/autoFill';
 import appState from '../App/state';
 import appActions from '../App/actions';
 import {location} from './route.store';
@@ -25,6 +26,7 @@ const store = createStore(
 	[
 		thunkMiddleware,
 		promiseMiddleware,
+		autoFillMid,
 		devTool,
 		shallowEqualMiddleware,
 	],

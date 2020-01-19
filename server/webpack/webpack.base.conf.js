@@ -34,8 +34,8 @@ module.exports = {
 	resolve: {
 		// 设置模块导入规则，import/require时会直接在这些目录找文件
 		modules: [
-			getPath(`${project}/client/components/business`),
-			getPath(`${project}/client/components/base`),
+			getPath(`${project}/components/business`),
+			getPath(`${project}/components/base`),
 			getPath('common/components/business'),
 			getPath('common/components/base'),
 			'node_modules',
@@ -45,22 +45,19 @@ module.exports = {
 		// import导入时别名
 		alias: {
 			// common
-			'@utils': getPath('common/utils'),
-			'@axios': getPath('common/utils/axios'),
-			'@styles': getPath('common/utils/styles'),
-			'@assets': getPath('common/assets'),
-			'@common': getPath('common'),
-			'@react-router': getPath('common/route/react-router'),
+			'@utils': getPath(`${project}/utils`),
+			'@axios': getPath(`${project}/utils/axios`),
+			'@styles': getPath(`${project}/utils/styles`),
+			'@assets': getPath(`${project}/assets`),
 			'@inject': 'rns-pure/dist/inject',
 			// '@inject': getPath('src/rns/inject.tsx'),
 			// 'rns-pure': getPath('src/rns/index.ts'),
 			'@channel': getPath(`buildConfig/channel/${channel}`),
-
 			// target business
 			'@client': getPath(`${project}`),
 			'@config': getPath(`${project}/config`),
 			'@business': getPath(`${project}/business`),
-			'@component': getPath('common/components/base/index.js'),
+			'@components': getPath(`${project}/components/`),
 		},
 	},
 	module: {

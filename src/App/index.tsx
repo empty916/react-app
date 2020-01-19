@@ -1,8 +1,12 @@
 import React from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import { InjectStoreModule, useInject } from 'rns-pure';
+// @ts-ignore
+import Button from 'Button';
+import Input from '@components/base/Input';
+
 import routes from '@channel/route';
-import '../theme/test.scss';
+
 import './style.scss';
 
 type Props = {
@@ -19,11 +23,13 @@ const App: React.FC<{}> = () => {
 			<Link to="/page2">page2</Link>
 			<Link to="/page3">page3</Link>
 			<br />
-			<input
+			<Input
+				style={{width: 200}}
 				type="text"
 				value={state.name}
-				onChange={e => actions.update(e.target.value)}
+				onChange={actions.update}
 			/>
+			<Button>test</Button>
 			<Switch>
 				{routes.map((route, index) => (
 					<Route key={index.toString()} {...route} />

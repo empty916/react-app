@@ -2,6 +2,7 @@
 // const path = require('path');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const baseConfig = require('./webpack.base.conf');
 const {
@@ -32,5 +33,6 @@ module.exports = merge(baseConfig, {
 	plugins: [
 		// 删除文件
 		new CleanWebpackPlugin(),
+		new BundleAnalyzerPlugin(),
 	],
 });

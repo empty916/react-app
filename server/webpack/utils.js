@@ -158,6 +158,13 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 			},
 			{
 				loader: 'less-loader',
+				options: {
+					javascriptEnabled:true,
+					modifyVars: {
+						'@border-radius-base': '2px',
+						'@button-ripple': 'false',
+					}
+				}
 			},
 		].filter(Boolean),
 	},

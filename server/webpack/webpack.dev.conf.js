@@ -56,19 +56,19 @@ module.exports = merge(baseConfig, {
 			memoryLimit: 1024,
 			compilerOptions: {
 				paths: {
-					'@common/*': ['common/*'],
-					'@utils/*': ['common/utils/*'],
 					'@channel': [`buildConfig/channel/${channel}/index.ts`],
 					'@channel/*': [`buildConfig/channel/${channel}/*`],
 					'@inject': ['node_modules/rns-pure/dist/inject.d.ts'],
 					'@client': [`${project}`],
 					'@client/*': [`${project}/*`],
 					'@redux-devtool': [`${project}/store/redux.devtool.ts`],
+					'@utils/*': [`${project}/utils/*`],
+					"@components/*": [`${project}/components/*`],
 				},
 			},
 		}),
 		new StyleLintPlugin({
-			configFile: getPath('server', '.stylelintrc.js'),
+			// configFile: getPath('server', '.stylelintrc.js'),
 			files: `${project}/**/*.scss`,
 			failOnError: false,
 			quiet: true,
