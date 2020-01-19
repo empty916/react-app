@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 
 const {
@@ -151,6 +152,10 @@ module.exports = {
 	},
 	plugins: [
 		// WebpackFailPlugin,
+		new LodashModuleReplacementPlugin({
+			'collections': true,
+			'paths': true
+		}),
 		new HappyPack({
 			id: 'babel',
 			threads: 1,
