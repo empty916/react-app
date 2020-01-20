@@ -21,7 +21,6 @@ function filterHexColorHeader(hexColorStr) {
 	}
 	return hexColorStr;
 }
-
 function pad2(num) {
 	let t = num.toString(16);
 	if (t.length === 1) t = `0${t}`;
