@@ -48,6 +48,8 @@ type TConvertKey<T extends ConvertKeyMaps> = {
 	revert: <S extends {[k in keyof RevertKey<T>]?: any}>(obj: S) => {[k in keyof T]?: any};
 }
 
+
+type AnyValue<T extends ConvertKeyMaps> = {[k in keyof T]: any};
 /**
  * 转换key
  * @param {*} convertKeyMaps
@@ -73,7 +75,7 @@ type TConvertKey<T extends ConvertKeyMaps> = {
  *  b: 11,
  * }
  */
-function convertKey<T extends ConvertKeyMaps>(convertKeyMaps: Partial<T>): TConvertKey<T> {
+function convertKey<T extends ConvertKeyMaps>(convertKeyMaps: AnyValue<T>): TConvertKey<T> {
 	const reverseKeyMap = _reverseKey(convertKeyMaps as T);
 	const convert = <S extends {[k in keyof T]: any}>(obj: S): ConvertKey<T, S> => _convertKeyOfObj(convertKeyMaps as T, obj);
 	convert.revert = <S extends {[k in keyof RevertKey<T>]: S[k]}>(obj: S) => _convertKeyOfObj(reverseKeyMap, obj);

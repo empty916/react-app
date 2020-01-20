@@ -5,5 +5,6 @@ export default {
 		page1List: () => import(/* webpackChunkName:"page1List" */ '@client/modules/Page1/list/index'),
 		page2: () => import(/* webpackChunkName:"page2" */ '@client/modules/Page2/index'),
 		page3: () => import(/* webpackChunkName:"page3" */ '@client/modules/Page3/index'),
+		userList: () => import(/* webpackChunkName:"userList" */ '@client/modules/user/list/index'),
 	},
 };

@@ -1,4 +1,9 @@
-const update = (appName: string) => ({name: appName});
+import theme from '../business/theme';
+
+const update = (appName: string) => {
+	theme.set('cardBgColor', 'red');
+	return {name: appName};
+};
 
 export default {
 	update,
