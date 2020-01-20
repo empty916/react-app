@@ -166,7 +166,8 @@ const action = () => undefined; // 这种action的返回不会作为新的state
 1. 主要的request请求都放在request中，包括普通请求，文件下载之类的前后端对接模块
 2. hooks.ts，其中含有常用的hooks方法
 3. regExps.ts 存放常用的正则
-4. convertKeys.ts, 作用是转化key的名称
+4. validator.ts 存放数据校验函数工具
+5. convertKeys.ts, 作用是转化key的名称
 
 	```typescript
 	import convertKey from '@utils/convertKey'
