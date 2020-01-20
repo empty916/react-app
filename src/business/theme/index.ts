@@ -1,6 +1,7 @@
 import curry from 'lodash/curry';
 import clone from 'lodash/cloneDeep';
 // import { curry, cloneDeep as clone } from 'lodash';
+import cstThemeConfig from '../../theme/config';
 
 type IThemeConfig = {
 	[propName: string]: string;
@@ -71,4 +72,4 @@ const createTheme = curry((selector: string, themeConfig: IThemeConfig) => {
 	return themeInstance;
 });
 
-export default createTheme('#theme-css');
+export default createTheme('#theme-css', cstThemeConfig);

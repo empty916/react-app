@@ -15,7 +15,8 @@ const projectPath = path.join(__dirname, '..', '..', project).replace(/\\|\//g, 
 // utils
 const removeModuleDirName = p => p.replace(`${slash}${moduleDirName}${slash}`, '');
 const removeMatchedFileName = p => p.replace(`${slash}${matchFileName}`, '');
-const toCamelName = p => p.replace(new RegExp(`\\${slash}([a-zA-z])`, 'g'), (...arg) => arg[1].toUpperCase());
+const toCamelName = p => p.replace(new RegExp(`\\${slash}([a-zA-z])`, 'g'), (...arg) => arg[1].toUpperCase())
+	.replace(new RegExp(`\-([a-zA-z])`, 'g'), (...arg) => arg[1].toUpperCase());
 const firstCharToLowerCase = str => str.slice(0, 1).toLowerCase() + str.slice(1);
 
 const formatModuleName = pipe(removeModuleDirName, removeMatchedFileName, toCamelName, firstCharToLowerCase);

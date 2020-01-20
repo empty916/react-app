@@ -3,7 +3,7 @@ import channel from '@channel';
 import { dateFormatting } from '@utils/index';
 import SHA256 from '@utils/crypt';
 import App from '../loadingController';
-import history from '../../store/route.store';
+import history from '../../routes/route.store';
 
 const { serverUrl } = channel;
 

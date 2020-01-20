@@ -1,5 +1,6 @@
 
 import loadabel from '@loadable/component';
+import React from 'react';
 
 const routes = [
 	{

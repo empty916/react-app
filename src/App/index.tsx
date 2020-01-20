@@ -4,8 +4,12 @@ import {InjectStoreModule, useInject} from 'rns-pure';
 import Button from '@components/base/Button';
 import Input from '@components/base/Input';
 import routes from '@client/routes';
+import '../theme/test';
+import theme from '../business/theme';
 
 import './style.scss';
+
+console.log(theme);
 
 type Props = {
 	app: InjectStoreModule;
@@ -29,9 +33,7 @@ const App: React.FC<{}> = () => {
 			/>
 			<Button>test</Button>
 			<Switch>
-				{routes.map((route, index) => (
-					<Route key={index.toString()} {...route} />
-				))}
+				{routes.map(route => <Route key={route.path} {...route} />)}
 			</Switch>
 		</>
 	);
