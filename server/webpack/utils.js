@@ -135,6 +135,9 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 			},
 			{
 				loader: 'less-loader',
+				options: {
+					// javascriptEnabled:true,
+				}
 			},
 		].filter(Boolean),
 	},

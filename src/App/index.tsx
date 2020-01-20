@@ -3,8 +3,7 @@ import {Route, Link, Switch} from 'react-router-dom';
 import {InjectStoreModule, useInject} from 'rns-pure';
 import Button from '@components/base/Button';
 import Input from '@components/base/Input';
-
-import routes from '@channel/route';
+import routes from '@client/routes';
 
 import './style.scss';
 
