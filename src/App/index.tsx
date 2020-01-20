@@ -16,7 +16,7 @@ type Props = {
 }
 
 const App: React.FC<{}> = () => {
-	// const { state, actions } = app;
+	// const {state, actions} = app;
 	const [{state, actions}] = useInject('app');
 
 	return (

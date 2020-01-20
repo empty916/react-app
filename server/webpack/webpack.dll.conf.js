@@ -28,9 +28,9 @@ module.exports = mode => {
 			utilsDll: [
 				'@babel/polyfill',
 				// 'lodash/curry',
-				'lodash/cloneDeep',
-				'lodash/fp/pipe',
-				'lodash/fp/curry',
+				// 'lodash/cloneDeep',
+				// 'lodash/fp/pipe',
+				// 'lodash/fp/curry',
 				// 'react-motion',
 			],
 			baseDll: [

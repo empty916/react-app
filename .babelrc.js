@@ -3,7 +3,6 @@ module.exports = {
 		'lodash',
 		'@babel/plugin-syntax-dynamic-import',
 		'@babel/plugin-proposal-export-default-from',
-		'@babel/plugin-transform-modules-commonjs',
 		'@babel/plugin-proposal-object-rest-spread',
 		['@babel/plugin-transform-runtime', {
 			// "absoluteRuntime": false,
@@ -16,22 +15,8 @@ module.exports = {
 		'@babel/plugin-proposal-function-bind',
 		['@babel/plugin-proposal-decorators', { legacy: true }],
 		['@babel/plugin-proposal-class-properties', { loose: true }],
-		// [
-		// 	"import",
-		// 	{
-		// 		"libraryName": "antd",
-		// 		"style": "css"
-		// 	}
-		// ]
 	],
 	presets: [
-		// ["import", {
-		// 	libraryName: 'rsuite',
-		// 	libraryDirectory: 'lib',
-		// 	camel2DashComponentName: false,
-		// 	style: true
-		// }],
-		["rsuite", { "style": true }],
 		[
 			'@babel/preset-env',
 			{
@@ -45,5 +30,6 @@ module.exports = {
 		],
 		'@babel/preset-react',
 		'@babel/preset-typescript',
+		["rsuite", { "style": true }],
 	],
 };
