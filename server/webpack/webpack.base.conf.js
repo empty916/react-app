@@ -46,7 +46,7 @@ module.exports = {
 		alias: {
 			// common
 			'@utils': getPath(`${project}/utils`),
-			'@axios': getPath(`${project}/utils/axios`),
+			'@request': getPath(`${project}/utils/request`),
 			'@styles': getPath(`${project}/utils/styles`),
 			'@assets': getPath(`${project}/assets`),
 			'@inject': 'rns-pure/dist/inject',
