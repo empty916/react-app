@@ -10,6 +10,16 @@ react项目模板，支持typescript，react 16.8，router 5.0,
 1. build:prd 打包生产环境包
 1. create:module 模块创建脚本
 
+## 路径别名
+
+1. @utils => src/utils
+2. @request => src/utils/request
+3. @assets => src/assets
+4. @inject => rns-pure/dist/inject
+5. @channel => buildConfig/channel/${channel}
+6. @client => src
+7. @business => src/business
+8. @components => src/components
 
 ## 微模块架构
 
@@ -160,14 +170,22 @@ const action = () => undefined; // 这种action的返回不会作为新的state
 
 1. 权限控制使用HOC实现，具体代码参考business/Authority.js
 
+## 开源工具库
 
-## 工具库 src/utils
+1. 基础工具函数[lodash](https://www.npmjs.com/package/lodash)
+2. 计算库[decimal.js](https://www.npmjs.com/package/decimal.js)
+3. 时间处理库[dayjs](https://www.npmjs.com/package/dayjs)
+4. 颜色处理库[color](https://www.npmjs.com/package/color)
+5. [d3](https://www.npmjs.com/package/d3)
+6. [rxjs](https://www.npmjs.com/package/rxjs)
+
+## 本地工具库 src/utils
 
 1. 主要的request请求都放在request中，包括普通请求，文件下载之类的前后端对接模块
 2. hooks.ts，其中含有常用的hooks方法
 3. regExps.ts 存放常用的正则
 4. validator.ts 存放数据校验函数工具
-5. convertKeys.ts, 作用是转化key的名称
+5. convertKeys.ts, 作用是转化key的名称，**此工具可以做前后端的接口数据隔离，建议将接口适配放到service模块中**
 
 	```typescript
 	import convertKey from '@utils/convertKey'
@@ -206,5 +224,19 @@ const action = () => undefined; // 这种action的返回不会作为新的state
 	 * }
 	 * 
 	*/
+
+	```
+
+
+## UI框架使用规范
+
+1. 本项目使用**rsuite**作为主要的UI框架
+2. 在使用**rsuite**中的组件时，需要在/business/base中引入并导出，这么做的目的是隔离三方组件，以防业务需求，可以做二次封装
+3. 在本项目中无法直接使用自定义的组件导入，这是由于typescript无法配置自定义的依赖路径导致
+	```javascript
+	// 错误， typescript报错
+	import Button from 'Button'
+	// 正确
+	import Button from '@components/base/Button'
 
 	```

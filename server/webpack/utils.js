@@ -18,6 +18,7 @@ const getArg = () => {
 		...arg,
 		project: arg.project || defaultProject,
 		channel: arg.channel || defaultChannel,
+		PROJECT_ENV: arg.PROJECT_ENV || process.env.NODE_ENV || 'production',
 	};
 	return res;
 };

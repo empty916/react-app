@@ -1,11 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import channel from '@channel';
 import { dateFormatting } from '@utils/index';
 import SHA256 from '@utils/crypt';
+import channel from './config';
 import App from '../loadingController';
 import history from '../../routes/route.store';
 
-const { serverUrl } = channel;
+const { server: serverUrl } = channel;
 
 let hideLoadingCount = 0;
 

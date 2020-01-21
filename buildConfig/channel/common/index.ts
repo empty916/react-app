@@ -18,6 +18,9 @@ type TConfig = {
 	production: string;
 }
 const env: keyof TConfig = (process.env.NODE_ENV as keyof TConfig) || 'production';
+
+console.log(process.env.PROJECT_ENV);
+
 const serverUrlConfig: TConfig = {
 	// development: '/web/v1',
 	development: '',

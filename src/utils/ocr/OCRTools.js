@@ -1,7 +1,8 @@
 /**
  * Created by SamMFFL on 2017/11/6.
  */
-import 'whatwg-fetch';
+/* eslint-disable */
+// import 'whatwg-fetch';
 import {CryptoJS} from '@noAnyDoor/jsrsasignc.js';
 
 Date.prototype.Format = function (fmt) {

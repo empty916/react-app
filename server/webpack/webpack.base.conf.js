@@ -1,4 +1,5 @@
 // const path = require('path');
+const webpack = require('webpack');
 const HappyPack = require('happypack');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -19,7 +20,7 @@ const {
 
 const {distPath} = require('./config');
 
-const {project, channel} = getArg();
+const {project, channel, PROJECT_ENV} = getArg();
 
 const mode = process.env.NODE_ENV;
 const isDev = mode === 'development';
@@ -157,6 +158,9 @@ module.exports = {
 		new LodashModuleReplacementPlugin({
 			'collections': true,
 			'paths': true
+		}),
+		new webpack.DefinePlugin({
+			'process.env.PROJECT_ENV': JSON.stringify(PROJECT_ENV),
 		}),
 		new HappyPack({
 			id: 'babel',

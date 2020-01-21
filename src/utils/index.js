@@ -1,44 +1,10 @@
 /* eslint-disable */
 import _cloneDeep from 'lodash/cloneDeep';
-import {compress} from '@utils/ocr';
-
-// import { createInputFactory as CIF } from 'DynamicForm';
 
 // const _env = process.env.NODE_ENV;
 
 export const getUniqID = () => Math.random().toString(36).substr(2, 6);
 
-export const fileToImgsrc = fileinput => new Promise((resolve) => {
-	const {files} = fileinput;
-	let img = new Image();
-	console.log(files);
-	if (window.FileReader) {
-		let reader = new FileReader();
-		reader.readAsDataURL(files[0]);
-		reader.onload = function (e) {
-			img.src = this.result;
-
-			if (img.complete) {
-				resolve(compress(img));
-			} else {
-				img.onload = () => {
-					const imgBase64Data = compress(img);
-					resolve(imgBase64Data);
-					img = null;
-				};
-			}
-			// resolve(this.result);
-			reader = null;
-		};
-	} else if (window.Blob && files[0] instanceof Blob) {
-		const mpImg = new MegaPixImage(files[0]);
-		mpImg.render(img);
-		img.onload = function (e) {
-			resolve(this.src);
-			img = null;
-		};
-	}
-});
 
 export const fillDate = str => {
 	const arr = str.split('');
