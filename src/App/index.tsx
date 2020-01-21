@@ -4,12 +4,9 @@ import {InjectStoreModule, useInject} from 'rns-pure';
 import Button from '@components/base/Button';
 import Input from '@components/base/Input';
 import routes from '@client/routes';
-import '../theme/test';
-import theme from '../business/theme';
-
+import '@client/theme/test.scss';
 import './style.scss';
 
-console.log(theme);
 
 type Props = {
 	app: InjectStoreModule;

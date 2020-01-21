@@ -177,7 +177,7 @@ module.exports = {
 			// 防止各channel项目一样时，不生成html文件
 			// inlineSource: /theme/,
 			cache: false,
-			excludeChunks: ['theme'],
+			// excludeChunks: ['theme'],
 			excludeAssets: [/theme/],
 			minify: {
 				removeComments: true,
