@@ -25,8 +25,8 @@ const store = createStore(
 		thunkMiddleware,
 		promiseMiddleware,
 		shallowEqualMiddleware,
-		devTool,
 		filterUndefinedMiddleware,
+		devTool,
 	],
 );
 

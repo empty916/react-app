@@ -138,7 +138,7 @@
 		"react-router": "^5.0.1",
 		"react-router-dom": "^5.0.1",
 		"react-virtualized": "^9.21.1",
-		"rns-pure": "^2.3.0",
+		"rns-pure": "^2.4.0",
 		"rsuite": "^4.2.0",
 		"rxjs": "^6.5.2"
 	},

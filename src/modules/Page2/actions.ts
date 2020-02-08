@@ -1,7 +1,16 @@
-const changePageName = (newPageName: string, state: any) => ({
-	...state,
-	pageName: newPageName,
-});
+import {InjectMaps} from 'rns-pure';
+
+const changePageName = (newPageName: string) => (getState: () => any, setState: (s: any) => any, getMaps: () => InjectMaps) => {
+	console.log(getMaps());
+	setState({
+		...getState(),
+		pageName: newPageName,
+	});
+	// return {
+	// 	...getState(),
+	// 	pageName: newPageName,
+	// };
+};
 const asyncChangePageName = async (newPageName: string, state: any) => {
 	await new Promise(res => setTimeout(res, 3000));
 	return {
