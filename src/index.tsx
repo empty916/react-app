@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { Router } from 'react-router-dom';
 import './store';
-import history from './routes/route.store';
+import history from './routes/history';
 import App from './App';
 
 const content = (
