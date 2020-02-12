@@ -26,18 +26,18 @@ module.exports = {
 			experimentalObjectRestSpread: true,
 			jsx: true,
 		},
-		ecmaVersion: 10, // es2019
+		ecmaVersion: 11, // es2020
 	},
 	settings: {
 		'import/ignore': ['node_modules', 'DynamicForm', '.s?css', '@w*'],
 	},
 	plugins: ['react', 'react-hooks', 'import', 'jsx-a11y'],
 
-	overrides: {
+	overrides: [{
 		files: ['**/*.ts', '**/*.tsx'],
 		parser: '@typescript-eslint/parser',
 		parserOptions: {
-			ecmaVersion: 10,
+			ecmaVersion: 11,
 			sourceType: 'module',
 			ecmaFeatures: {
 				jsx: true,
@@ -58,7 +58,7 @@ module.exports = {
 			'no-array-constructor': 'off',
 			'@typescript-eslint/no-array-constructor': 'warn',
 			'@typescript-eslint/no-namespace': 'error',
-			'no-unused-vars': 'error',
+			'no-unused-vars': 1,
 			'@typescript-eslint/no-unused-vars': [
 				'warn',
 				{
@@ -69,7 +69,7 @@ module.exports = {
 			'no-useless-constructor': 'off',
 			'@typescript-eslint/no-useless-constructor': 'warn',
 		},
-	},
+	}],
 	rules: {
 		'import/no-unresolved': 0,
 		'import/extensions': 0,
@@ -81,12 +81,13 @@ module.exports = {
 		'react/jsx-indent': [2, 'tab'],
 		'react/jsx-indent-props': [2, 'tab'],
 		'react/jsx-tag-spacing': 0,
+		'react/jsx-props-no-spreading': 0,
 		'react/require-default-props': 0,
 		// // @off 同构应用需要在 didMount 里写 setState
 		'react/no-did-mount-set-state': 0,
 		'react/button-has-type': 0,
 		"react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-    	"react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+		"react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
 
 		'jsx-a11y/anchor-is-valid': 0,
 		'jsx-a11y/click-events-have-key-events': 0,
@@ -94,6 +95,9 @@ module.exports = {
 		'jsx-a11y/no-noninteractive-element-interactions': 0,
 		'jsx-a11y/no-static-element-interactions': 0,
 		'jsx-a11y/aria-role': 0,
+		'jsx-a11y/alt-text': 0,
+		'jsx-a11y/heading-has-content': 0,
+		'jsx-a11y/anchor-has-content': 0,
 
 		'no-return-assign': 0,
 		'no-console': 0,
@@ -134,7 +138,7 @@ module.exports = {
 		// 最大回调层数
 		'max-nested-callbacks': [2, 3],
 		'no-unused-vars': [
-			2,
+			1,
 			{
 				argsIgnorePattern: '^React',
 				varsIgnorePattern: '[Rr]eact|[Ss]tyle',

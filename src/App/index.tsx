@@ -7,7 +7,6 @@ import routes from '@client/routes';
 import '@client/theme/test.scss';
 import './style.scss';
 
-
 const App: React.FC = () => {
 	const [{state, actions}] = useInject('app');
 
