@@ -6,6 +6,7 @@ import appActions from '../App/actions';
 import user from './user.store';
 import lazyModuleConfig from '../../server/autoGetModule/lazyLoadModuleConfig';
 import filterUndefinedMiddleware from './filterUndefinedMiddleware';
+import fillObjectRestDataMiddleware from './fillObjectRestDataMiddleware';
 
 const { modules: lazyModules } = lazyModuleConfig;
 
@@ -24,6 +25,7 @@ const store = createStore(
 	[
 		thunkMiddleware,
 		promiseMiddleware,
+		fillObjectRestDataMiddleware,
 		shallowEqualMiddleware,
 		filterUndefinedMiddleware,
 		devTool,
