@@ -8,15 +8,15 @@ export default class StoreModule {
 		if (!store.hasModule(moduleName)) {
 			console.warn(`${moduleName}不存在！`);
 		}
-		this.getModule(moduleName);
+		this.setModule(moduleName);
 		this.listenUpdate(moduleName);
 	}
 
-	getModule(moduleName:string) {
+	setModule(moduleName:string) {
 		this.storeModule = store.getModule(moduleName);
 	}
 
 	listenUpdate(moduleName: string) {
-		store.subscribe(moduleName, () => this.getModule(moduleName));
+		store.subscribe(moduleName, () => this.setModule(moduleName));
 	}
 }
