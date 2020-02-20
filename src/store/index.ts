@@ -4,7 +4,7 @@ import devTool from '@redux-devtool';
 import appState from '../App/state';
 import appActions from '../App/actions';
 import user from './user.store';
-import lazyModuleConfig from '../../server/autoGetModule/lazyLoadModuleConfig';
+import lazyModuleConfig from './lazyModule';
 import filterUndefinedMiddleware from './filterUndefinedMiddleware';
 import fillObjectRestDataMiddleware from './fillObjectRestDataMiddleware';
 
