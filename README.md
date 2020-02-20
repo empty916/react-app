@@ -1,5 +1,34 @@
+
 # react-project-template
-react项目模板，支持typescript，react 16.8，router 5.0,
+react项目模板，支持typescript，react 16.8，router 5.1,
+
+
+## 运行项目
+
+1. 进入根目录
+1. 运行命令，安装依赖
+   1. 安装项目依赖
+   ````node
+   yarn 
+   // 或者 npm i
+   ````
+   2. 安装mock服务依赖
+   ````node
+   // 进入mock-server目录
+   cd ./mock-server
+   yarn
+   // 或者 npm i
+   ````
+2. 在根目录下，运行命令，编译项目依赖
+   ````node
+   yarn build:dll
+   // 或者 npm run build:dll
+   ````
+3. 启动项目
+   ````node
+   yarn dev
+   // 或者 npm run dev
+   ````
 
 ## npm命令说明
 
@@ -61,6 +90,7 @@ const store = createStore(
 	[
 		thunkMiddleware, // action可以返回函数，接受getState，next两个参数
 		promiseMiddleware,// 支持异步操作
+		fillObjectRestDataMiddleware, // 支持action返回对象部分数据
 		shallowEqualMiddleware, // 支持对象浅层比较优化
 		devTool, // 支持redux devtool
 		filterUndefinedMiddleware, // 不处理action返回的undefined结果
@@ -71,9 +101,10 @@ const store = createStore(
 3. thunkMiddleware, action可以返回函数
 ```typescript
 
-const action = () => (getState, next) => {
+const action = () => (getState, setState, getMaps) => {
   getState() // 获取最新的state
-  next(newState) // 设置state， state支持过滤undefined、promise、async、浅层对比优化
+  getMaps() // 获取最新的maps
+  setState(newState) // 设置state， state支持过滤undefined、promise、async、浅层对比优化
 };
 ```
 
@@ -87,7 +118,18 @@ const action2 = async () => await new Promise(res => res(2333));
 
 ```
 
-5. devTool, shallowEqualMiddleware
+
+
+5. fillObjectRestDataMiddleware
+```typescript
+
+const state = {a: 1, b:2};
+const action = () => ({a: 11})// 调用此action，最后的state是{a: 11, b:2}， 此中间件要求，state和action返回的数据必须都是普通对象
+
+```
+
+
+6. devTool, shallowEqualMiddleware
 ```typescript
 
 // devTool 浏览器安装redux插件，即可看到数据变动记录，无法回滚数据
@@ -98,7 +140,7 @@ const action = () => ({a: 1, b:2}) // 于state相同，不做视图刷新
 
 ```
 
-6. filterUndefinedMiddleware
+7. filterUndefinedMiddleware
 ```typescript
 
 // filterUndefinedMiddleware
