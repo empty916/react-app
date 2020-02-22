@@ -11,6 +11,7 @@ compiler.hooks.watchRun.tap('autoGetModule', autoGetModule);
 
 const server = new WebpackDevServer(compiler, {
 	...webpackConfig.devServer,
+	historyApiFallback: true,
 });
 
 const {
