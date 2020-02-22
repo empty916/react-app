@@ -22,7 +22,7 @@ const App: React.FC = () => {
 				value={state.name}
 				onChange={actions.update}
 			/>
-			<Button>test111</Button>
+			<Button>test111222</Button>
 			<Switch>
 				{routes.map(route => <Route key={route.path} {...route} />)}
 			</Switch>
