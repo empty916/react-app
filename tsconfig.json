@@ -8,18 +8,18 @@
 		"allowJs": true,                       /* Allow javascript files to be compiled. */
 		"checkJs": false,                       /* Report errors in .js files. */
 		"skipLibCheck": true,
-		"jsx": "preserve",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
+		"jsx": "react",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
 		// "declaration": true,                   /* Generates corresponding '.d.ts' file. */
 		// "declarationDir": "./lib/@types/react-store",
 		// "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
-		"sourceMap": true,                     /* Generates corresponding '.map' file. */
+		// "sourceMap": true,                     /* Generates corresponding '.map' file. */
 		// "outFile": "./lib/react-store",                       /* Concatenate and emit output to single file. */
-		// "outDir": "./lib/react-store",                        /* Redirect output structure to the directory. */
+		"outDir": "./dist/common/src/",                        /* Redirect output structure to the directory. */
 		// "rootDir": "./src/react-store",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
 		// "composite": true,                     /* Enable project compilation */
 		// "tsBuildInfoFile": "./",               /* Specify file to store incremental compilation information */
 		// "removeComments": true,                /* Do not emit comments to output. */
-		"noEmit": true,                        /* Do not emit outputs. */
+		"noEmit": false,                        /* Do not emit outputs. */
 		// "importHelpers": true,                 /* Import emit helpers from 'tslib'. */
 		// "downlevelIteration": true,            /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
 		"isolatedModules": false,               /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
@@ -68,10 +68,10 @@
 		// "allowUmdGlobalAccess": true,          /* Allow accessing UMD globals from modules. */
 
 		/* Source Map Options */
-		// "sourceRoot": "",                      /* Specify the location where debugger should locate TypeScript files instead of source locations. */
+		"sourceRoot": "./dist/common/src/",                      /* Specify the location where debugger should locate TypeScript files instead of source locations. */
 		// "mapRoot": "",                         /* Specify the location where debugger should locate map files instead of generated locations. */
-		// "inlineSourceMap": true,               /* Emit a single file with source maps instead of having a separate file. */
-		// "inlineSources": true,                 /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
+		"inlineSourceMap": true,               /* Emit a single file with source maps instead of having a separate file. */
+		"inlineSources": true,                 /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
 
 		/* Experimental Options */
 		"experimentalDecorators": true        /* Enables experimental support for ES7 decorators. */

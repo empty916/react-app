@@ -17,9 +17,10 @@ const isDev = true;
 
 module.exports = merge(baseConfig, {
 	mode,
-	// devtool: '#eval-source-map',
+	devtool: 'inline-source-map',
 	// devtool: '#source-map',
-	devtool: '#cheap-module-eval-source-map',
+	// devtool: false,
+	// devtool: '#cheap-module-eval-source-map',
 	output: {
 		chunkFilename: 'js/[name].js',
 		filename: 'js/[name].js',
