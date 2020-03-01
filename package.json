@@ -133,7 +133,7 @@
 		"decimal.js": "^10.2.0",
 		"history": "^4.9.0",
 		"lodash": "^4.17.11",
-		"natur": "^0.0.2",
+		"natur": "^0.0.3",
 		"prop-types": "^15.7.2",
 		"react": "16.10.1",
 		"react-dom": "16.10.1",

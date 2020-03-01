@@ -98,55 +98,6 @@ const store = createStore(
 );
 ```
 
-3. thunkMiddleware, action可以返回函数
-```typescript
-
-const action = () => (getState, setState, getMaps) => {
-  getState() // 获取最新的state
-  getMaps() // 获取最新的maps
-  setState(newState) // 设置state， state支持过滤undefined、promise、async、浅层对比优化
-};
-```
-
-
-4. promiseMiddleware，action支持异步操作
-```typescript
-
-// promiseMiddleware
-const action1 = () => Promise.resolve(2333);
-const action2 = async () => await new Promise(res => res(2333));
-
-```
-
-
-
-5. fillObjectRestDataMiddleware
-```typescript
-
-const state = {a: 1, b:2};
-const action = () => ({a: 11})// 调用此action，最后的state是{a: 11, b:2}， 此中间件要求，state和action返回的数据必须都是普通对象
-
-```
-
-
-6. devTool, shallowEqualMiddleware
-```typescript
-
-// devTool 浏览器安装redux插件，即可看到数据变动记录，无法回滚数据
-
-// shallowEqualMiddleware 浅层比较优化,仅限于普通对象{}
-const state = {a: 1, b:2};
-const action = () => ({a: 1, b:2}) // 于state相同，不做视图刷新
-
-```
-
-7. filterUndefinedMiddleware
-```typescript
-
-// filterUndefinedMiddleware
-const action = () => undefined; // 这种action的返回不会作为新的state
-```
-
 
 ## create:module 创建模块脚本
 
@@ -215,11 +166,12 @@ const action = () => undefined; // 这种action的返回不会作为新的state
 ## 开源工具库
 
 1. 基础工具函数[lodash](https://www.npmjs.com/package/lodash)
-2. 计算库[decimal.js](https://www.npmjs.com/package/decimal.js)
-3. 时间处理库[dayjs](https://www.npmjs.com/package/dayjs)
-4. 颜色处理库[color](https://www.npmjs.com/package/color)
-5. [d3](https://www.npmjs.com/package/d3)
-6. [rxjs](https://www.npmjs.com/package/rxjs)
+2. 表单校验[react-hook-form](https://www.npmjs.com/package/react-hook-form)
+3. 计算库[decimal.js](https://www.npmjs.com/package/decimal.js)
+4. 时间处理库[dayjs](https://www.npmjs.com/package/dayjs)
+5. 颜色处理库[color](https://www.npmjs.com/package/color)
+6. [d3](https://www.npmjs.com/package/d3)
+7. [rxjs](https://www.npmjs.com/package/rxjs)
 
 ## 本地工具库 src/utils
 
