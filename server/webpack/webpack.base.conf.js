@@ -68,15 +68,6 @@ module.exports = {
 				exclude: /node_modules/,
 				loader: 'happypack/loader?id=babel',
 			},
-			// {
-			// 	test: /\.(j|t)s(x)?$/,
-			// 	exclude: /node_modules/,
-			// 	// loader: 'happypack/loader?id=babel',
-			// 	loader: 'ts-loader',
-			// 	options: {
-			// 		transpileOnly: true,
-			// 	}
-			// },
 			...createStyleLoader(mode, isDev),
 			{
 				test: /\.(png|jpe?g|gif)(\?.*)?$/,

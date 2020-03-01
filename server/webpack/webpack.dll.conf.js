@@ -52,7 +52,7 @@ module.exports = mode => {
 			// ],
 		},
 		mode,
-		devtool: isDev ? '#cheap-module-eval-source-map' : false,
+		devtool: isDev ? 'eval-source-map' : false,
 		output: {
 			filename: `[name]_${dllVersion}.dll.js`,
 			path: dllPath,

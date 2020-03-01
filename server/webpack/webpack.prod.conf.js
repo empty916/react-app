@@ -34,30 +34,6 @@ module.exports = merge(baseConfig, {
 	plugins: [
 		// 删除文件
 		new CleanWebpackPlugin(),
-		new ForkTsCheckerWebpackPlugin({
-			// tsconfig: './server/tsconfig.json',
-			async: false,
-			useTypescriptIncrementalApi: true,
-			checkSyntacticErrors: true,
-			silent: true,
-			memoryLimit: 2024,
-			compilerOptions: {
-				noEmit: false,
-				paths: {
-					'@channel': [`buildConfig/channel/${channel}/index.ts`],
-					'@channel/*': [`buildConfig/channel/${channel}/*`],
-					'@inject': ['node_modules/rns-pure/dist/inject.d.ts'],
-					'@client': [`${project}`],
-					'@client/*': [`${project}/*`],
-					'@redux-devtool': [`${project}/store/redux.devtool.ts`],
-					'@utils/*': [`${project}/utils/*`],
-					'@assets/*': [`${project}/assets/*`],
-					'@request': [`${project}/utils/request/index.ts`],
-					'@request/*': [`${project}/utils/request/*`],
-					"@components/*": [`${project}/components/*`],
-				},
-			},
-		}),
 		// new BundleAnalyzerPlugin(),
 	],
 });
