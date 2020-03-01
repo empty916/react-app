@@ -167,11 +167,12 @@ const store = createStore(
 
 1. 基础工具函数[lodash](https://www.npmjs.com/package/lodash)
 2. 表单校验[react-hook-form](https://www.npmjs.com/package/react-hook-form)
-3. 计算库[decimal.js](https://www.npmjs.com/package/decimal.js)
-4. 时间处理库[dayjs](https://www.npmjs.com/package/dayjs)
-5. 颜色处理库[color](https://www.npmjs.com/package/color)
-6. [d3](https://www.npmjs.com/package/d3)
-7. [rxjs](https://www.npmjs.com/package/rxjs)
+3. 对象key值转换工具[convert-key](https://www.npmjs.com/package/convert-key)
+4. 计算库[decimal.js](https://www.npmjs.com/package/decimal.js)
+5. 时间处理库[dayjs](https://www.npmjs.com/package/dayjs)
+6. 颜色处理库[color](https://www.npmjs.com/package/color)
+7. [d3](https://www.npmjs.com/package/d3)
+8. [rxjs](https://www.npmjs.com/package/rxjs)
 
 ## 本地工具库 src/utils
 
@@ -179,47 +180,6 @@ const store = createStore(
 2. hooks.ts，其中含有常用的hooks方法
 3. regExps.ts 存放常用的正则
 4. validator.ts 存放数据校验函数工具
-5. convertKeys.ts, 作用是转化key的名称，**此工具可以做前后端的接口数据隔离，建议将接口适配放到service模块中**
-
-	```typescript
-	import convertKey from '@utils/convertKey'
-
-	const keyMaps = {
-		pdName: 'productName',
-		uName: 'userName',
-	}
-	type KeyMaps = {
-		pdName: 'productName',
-		uName: 'userName',
-	}
-
-	const convertDataKey = convertKey<KeyMaps>(keyMaps);
-
-	const myData = convertDataKey({
-		pdName: '余额宝',
-		uName: 'tom',
-	});
-
-	/**
-	 * myData: {
-	 *  productName: '余额宝',
-	 *  userName: 'tom',
-	 * }
-	 * 
-	*/
-
-	// 如果想要转换回去，可以使用
-	const theirData = convertDataKey.revert(myData);
-
-	/**
-	 * theirData: {
-	 *  pdName: '余额宝',
-	 *  uName: 'tom',
-	 * }
-	 * 
-	*/
-
-	```
 
 
 ## UI框架使用规范
