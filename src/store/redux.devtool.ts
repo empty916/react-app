@@ -1,5 +1,5 @@
 
-import { Middleware } from 'rns-pure';
+import { Middleware } from 'natur';
 import { createStore } from 'redux';
 
 

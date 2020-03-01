@@ -44,7 +44,7 @@ react项目模板，支持typescript，react 16.8，router 5.1,
 1. @utils => src/utils
 2. @request => src/utils/request
 3. @assets => src/assets
-4. @inject => rns-pure/dist/inject
+4. @inject => natur/dist/inject
 5. @channel => buildConfig/channel/${channel}
 6. @client => src
 7. @business => src/business
@@ -78,7 +78,7 @@ react项目模板，支持typescript，react 16.8，router 5.1,
 
 ## 状态管理器
 
-1. 使用的是[rns-pure](https://www.npmjs.com/package/rns-pure) 
+1. 使用的是[natur](https://www.npmjs.com/package/natur) 
 2. 中间件配置
 ```typescript
 

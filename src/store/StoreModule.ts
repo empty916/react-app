@@ -1,5 +1,5 @@
 import store from '@client/store/index';
-import { InjectStoreModule } from 'rns-pure';
+import { InjectStoreModule } from 'natur';
 
 export default class StoreModule {
 	storeModule!: InjectStoreModule;

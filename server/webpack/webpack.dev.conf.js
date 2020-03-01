@@ -57,7 +57,7 @@ module.exports = merge(baseConfig, {
 				paths: {
 					'@channel': [`buildConfig/channel/${channel}/index.ts`],
 					'@channel/*': [`buildConfig/channel/${channel}/*`],
-					'@inject': ['node_modules/rns-pure/dist/inject.d.ts'],
+					'@inject': ['node_modules/natur/dist/inject.d.ts'],
 					'@client': [`${project}`],
 					'@client/*': [`${project}/*`],
 					'@redux-devtool': [`${project}/store/redux.devtool.ts`],

@@ -1,5 +1,5 @@
-import {createStore} from 'rns-pure';
-import { promiseMiddleware, shallowEqualMiddleware, thunkMiddleware } from 'rns-pure/dist/middlewares';
+import {createStore} from 'natur';
+import { promiseMiddleware, shallowEqualMiddleware, thunkMiddleware } from 'natur/dist/middlewares';
 import devTool from '@redux-devtool';
 import appState from '../App/state';
 import appActions from '../App/actions';

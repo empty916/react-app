@@ -1,5 +1,5 @@
-import {Middleware} from 'rns-pure';
-import {isObj} from 'rns-pure/dist/utils';
+import {Middleware} from 'natur';
+import {isObj} from 'natur/dist/utils';
 
 const fillObjectRestDataMiddleware: Middleware = ({getState}) => next => record => {
 	const currentState = getState();

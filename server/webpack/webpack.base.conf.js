@@ -50,9 +50,9 @@ module.exports = {
 			'@request': getPath(`${project}/utils/request`),
 			'@styles': getPath(`${project}/utils/styles`),
 			'@assets': getPath(`${project}/assets`),
-			'@inject': 'rns-pure/dist/inject',
+			'@inject': 'natur/dist/inject',
 			// '@inject': getPath('src/rns/inject.tsx'),
-			// 'rns-pure': getPath('src/rns/index.ts'),
+			// 'natur': getPath('src/rns/index.ts'),
 			'@channel': getPath(`buildConfig/channel/${channel}`),
 			// target business
 			'@client': getPath(`${project}`),

@@ -1,4 +1,4 @@
-import {InjectMaps} from 'rns-pure';
+import {InjectMaps} from 'natur';
 
 const changePageName = (newPageName: string) => (getState: () => any, setState: (s: any) => any, getMaps: () => InjectMaps) => {
 	console.log(getMaps());

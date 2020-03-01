@@ -133,6 +133,7 @@
 		"decimal.js": "^10.2.0",
 		"history": "^4.9.0",
 		"lodash": "^4.17.11",
+		"natur": "^0.0.2",
 		"prop-types": "^15.7.2",
 		"react": "16.10.1",
 		"react-dom": "16.10.1",
@@ -141,7 +142,6 @@
 		"react-router": "^5.1.2",
 		"react-router-dom": "^5.1.2",
 		"react-virtualized": "^9.21.1",
-		"rns-pure": "^2.4.0",
 		"rsuite": "^4.2.0",
 		"rxjs": "^6.5.2"
 	},
