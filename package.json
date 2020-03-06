@@ -12,6 +12,7 @@
 		"build:stg": "cross-env NODE_ENV=development node ./server/build.js --PROJECT_ENV stg",
 		"build:prd": "cross-env NODE_ENV=production node ./server/build.js --PROJECT_ENV production",
 		"create:module": "node ./server/create_module/index.js",
+		"cc": "cd ./mock-server && npm run create:controller",
 		"lint": "npm run lint:ts & npm run lint:js & npm run lint:scss",
 		"lint:scss": "stylelint src/**/*.scss",
 		"lint:js": "eslint src/**/*.js",

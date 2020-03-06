@@ -1,4 +1,4 @@
-import theme from '../business/theme';
+import theme from '@/service/theme';
 
 const update = (appName: string) => {
 	theme.set('cardBgColor', 'red');

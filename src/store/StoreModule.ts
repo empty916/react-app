@@ -1,5 +1,5 @@
-import store from '@client/store/index';
 import { InjectStoreModule } from 'natur';
+import store from '@/store';
 
 export default class StoreModule {
 	storeModule!: InjectStoreModule;
@@ -12,7 +12,7 @@ export default class StoreModule {
 		this.listenUpdate(moduleName);
 	}
 
-	setModule(moduleName:string) {
+	setModule(moduleName: string) {
 		this.storeModule = store.getModule(moduleName);
 	}
 

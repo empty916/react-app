@@ -1,6 +1,6 @@
 import React from 'react';
 import Inject from '@inject';
-import history from '@client/routes/history';
+import history from '@/routes/history';
 import style from './style.scss';
 
 /* eslint-disable */

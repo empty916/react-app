@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import store from '@client/store';
+/* eslint-disable */
+import React, { Component } from "react";
+import store from "@/store";
 
 // 管理员等级
 // const ADMIN_LEVEL = 2;
 // 超级管理员等级
 const SUPER_ADMIN_LEVEL = 1;
-
 
 /**
  * 权限模块
@@ -23,13 +23,13 @@ class Authority {
 	static createAuthorityFilterHOC(WrappedComponent) {
 		class AuthorityFilterHOC extends Component {
 			state = {
-				hasAuth: false,
+				hasAuth: false
 			};
 
 			componentDidMount() {
 				// 判断当前模块是否有权限
 				this.setState({
-					hasAuth: Authority.isCurrentUserHasAuth(this.props),
+					hasAuth: Authority.isCurrentUserHasAuth(this.props)
 				});
 			}
 
@@ -37,13 +37,13 @@ class Authority {
 				const newHasAuth = Authority.isCurrentUserHasAuth(this.props);
 				const { hasAuth } = this.state;
 				if (newHasAuth !== hasAuth) {
-					this.setState({hasAuth: newHasAuth}); // eslint-disable-line
+					this.setState({ hasAuth: newHasAuth }); // eslint-disable-line
 				}
 			}
 
 			render() {
-				const {hasAuth} = this.state;
-				const {...props} = this.props;
+				const { hasAuth } = this.state;
+				const { ...props } = this.props;
 				delete props.auth;
 				delete props.authLevel;
 				delete props.authRole;
@@ -53,7 +53,6 @@ class Authority {
 
 		return AuthorityFilterHOC;
 	}
-
 	/**
 	 * 判断用户是否有权限
 	 * 根据用户的权限等级或者用户的权限列表判断，满足其一即可
@@ -68,20 +67,34 @@ class Authority {
 	static isCurrentUserHasAuth(params) {
 		const levelLimit = params.authLevel;
 		const authLimit = params.auth;
-		const {authRole: role} = params;
+		const { authRole: role } = params;
 
-		const {userLevel, userAuths, userRole} = Authority.getCurrentUserAuthority();
+		const {
+			userLevel,
+			userAuths,
+			userRole
+		} = Authority.getCurrentUserAuthority();
 
-		const needCheckAuth = Authority._isNeedCheckAuth(levelLimit, authLimit, role);
+		const needCheckAuth = Authority._isNeedCheckAuth(
+			levelLimit,
+			authLimit,
+			role
+		);
 		if (!needCheckAuth) {
 			return true;
 		}
 		// 用户角色是否被允许
 		const userRoleIsPermit = Authority._userRoleIsPermit(userRole, role);
 		// 用户权限是否被允许
-		const userAuthIsValid = Authority._userAuthIsValid(userAuths, authLimit);
+		const userAuthIsValid = Authority._userAuthIsValid(
+			userAuths,
+			authLimit
+		);
 		// 用户等级是否被允许
-		const userLevelIsPermit = Authority._userLevelIsPermit(userLevel, levelLimit);
+		const userLevelIsPermit = Authority._userLevelIsPermit(
+			userLevel,
+			levelLimit
+		);
 		return userRoleIsPermit || userAuthIsValid || userLevelIsPermit;
 	}
 
@@ -90,11 +103,11 @@ class Authority {
 	 * @returns {*}
 	 */
 	static getCurrentUserAuthority() {
-		const {state: userStore} = store.getModule('user');
+		const { state: userStore } = store.getModule("user");
 		const currentUserAuth = {
 			userLevel: userStore.userLevel,
 			userAuths: userStore.userAuths,
-			userRole: userStore.userRole,
+			userRole: userStore.userRole
 		};
 		return currentUserAuth;
 	}

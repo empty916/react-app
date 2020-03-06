@@ -10,7 +10,7 @@ const moduleDirName = "modules";
 const moduleBasePath = path.join(__dirname, "..", "..", project, moduleDirName);
 const matchFileName = "index";
 
-const importPathPrefix = "@client";
+const importPathPrefix = "@";
 const fileName = path.join(__dirname, '..', '..', 'src', 'store', "lazyModule.ts");
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Inject from '@inject';
-import themeStyle from '@client/theme/test.scss';
+import themeStyle from '@/theme/test.scss';
 // import style from './style.scss';
 
 const Page3: React.FC<any> = () => {

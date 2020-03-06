@@ -4,6 +4,7 @@ export const isMock = true;
 const list = [
     ...commonApi,
     'demo/233',
+    'cats'
 ];
 
 export default url => list.some(item => {

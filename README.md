@@ -38,17 +38,21 @@ react项目模板，支持typescript，react 16.8，router 5.1,
 1. build:dev 打包开发环境包
 1. build:prd 打包生产环境包
 1. create:module 模块创建脚本
+2. cc mock服务的控制器创建脚本，建议如下使用
+   ````node
+    // 记得现在/mock-server下先安装好依赖
+	npm run cc controller/xxx // 其中xxx是你的模块名
+	// 比如
+	npm run cc controller/dog
+	// 即可在mock-server/src/controller文件夹下创建dog控制器，并自动注入完成。
+   ````
 
 ## 路径别名
 
-1. @utils => src/utils
-2. @request => src/utils/request
-3. @assets => src/assets
-4. @inject => natur/dist/inject
-5. @channel => buildConfig/channel/${channel}
-6. @client => src
-7. @business => src/business
-8. @components => src/components
+1. @ => src
+3. @request => src/utils/request
+5. @inject => natur/dist/inject
+6. @channel => buildConfig/channel/${channel}
 
 ## 微模块架构
 
@@ -122,8 +126,6 @@ const store = createStore(
 4. mock-server/src/proxy/mock.ts配置你需要哪些API需要mock，以及mock总开关
 5. mock-server/src/proxy/config.ts配置mock服务的请求url前缀、不走mock时的服务器地址
 6. mock接口写在mock-server/src/controller中，可以结合mockjs 模拟假数据
-7. 写好controller需要将controller手动引入到mock-server/src/app.module.ts中
-
 
 ## theme，主题控制
 
@@ -148,14 +150,14 @@ const store = createStore(
 	3. 使用样式
 	```typescript
 	// 使用theme的样式，和普通样式相同，
-	import style from '@client/theme/demo.scss'
+	import style from '@/theme/demo.scss'
 
 	// style.btn,使用此样式即可
 	```
 
 	3. 动态改变样式
 	```typescript
-	import theme from '@client/business/theme';
+	import theme from '@/business/theme';
 	theme.set('borderRadius', '0px');
 	```
 
@@ -191,6 +193,6 @@ const store = createStore(
 	// 错误， typescript报错
 	import Button from 'Button'
 	// 正确
-	import Button from '@components/base/Button'
+	import Button from '@/components/base/Button'
 
 	```
