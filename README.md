@@ -92,9 +92,9 @@ const store = createStore(
 	lazyModules as any,
 	undefined,
 	[
-		thunkMiddleware, // action可以返回函数，接受getState，next两个参数
+		thunkMiddleware, // action可以返回函数，接受getState，setState, getMaps两个参数
 		promiseMiddleware,// 支持异步操作
-		fillObjectRestDataMiddleware, // 支持action返回对象部分数据
+		fillObjectRestDataMiddleware, // 支持action增量更新state
 		shallowEqualMiddleware, // 支持对象浅层比较优化
 		devTool, // 支持redux devtool
 		filterUndefinedMiddleware, // 不处理action返回的undefined结果
@@ -193,6 +193,6 @@ const store = createStore(
 	// 错误， typescript报错
 	import Button from 'Button'
 	// 正确
-	import Button from '@/components/base/Button'
+	import Button from '@base/Button'
 
 	```
