@@ -12,20 +12,8 @@ type PageProps = {
 	app: InjectStoreModule,
 }
 const Page2: React.FC<PageProps> = ({page2, app}) => {
-	// console.log(p);
-	// const [page2] = useInject('page2');
-	// if (!page2) {
-	// 	return <>loading</>;
-	// }
 	const {state, actions, maps } = page2;
-	// useEffect(() => {
-	// 	axios.get('/test')
-	// 		.then(console.log);
-	// }, []);
 	const { countObj, countIsOdd } = maps;
-	// useEffect(() => {
-	// 	console.log('maps.countObj updated!', countObj);
-	// }, [countObj]);
 	const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value, state);
 	return (
 		<div className={style.page2}>
@@ -57,4 +45,4 @@ const Page2: React.FC<PageProps> = ({page2, app}) => {
 export {state, maps} from './state';
 export {default as actions} from './actions';
 // Page2.displayName = 'Page2';
-export default Inject<PageProps>('page2', 'app')(Page2);
+export default Inject<PageProps>(['page2', {state: ['count']}], ['app', {}] as any)(Page2);
