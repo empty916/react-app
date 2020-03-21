@@ -16,7 +16,7 @@ const routes = [
 		component: loadabel(() => import('@/modules/Page3')) as React.ComponentClass | React.FC,
 	},
 	{
-		path: '/user/list',
+		path: '/user-list',
 		component: loadabel(() => import('@/modules/user/list')) as React.ComponentClass | React.FC,
 	},
 ];

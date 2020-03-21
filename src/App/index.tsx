@@ -7,7 +7,7 @@ import routes from '@/routes';
 import '@/theme/test.scss';
 import './style.scss';
 
-
+/* eslint-disable */
 const App: React.FC = () => {
 	const [{state, actions}] = useInject('app');
 

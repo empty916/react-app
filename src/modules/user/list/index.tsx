@@ -18,7 +18,7 @@ const UserList: React.FC<any> = (p: any) => {
 	React.useEffect(() => {
 		console.log('updated!');
 	});
-	console.log(p.userList);
+	// console.log(p.userList);
 	return (
 		<div className={style.userList}>
 			{state.name}

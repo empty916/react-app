@@ -18,11 +18,11 @@ const actions = {
 	asyncThunkReturnUndef: () => () => Promise.resolve(undefined),
 	asyncReturnUndef: () => Promise.resolve(undefined),
 
-	update: (params: any) => (getState: any) => ({
+	update: (params: any) => ({getState}: any) => ({
 		...getState(),
 		...params,
 	}),
-	asyncUpdate: () => async (getState: any, setState: any) => {
+	asyncUpdate: () => async ({getState, setState}: any) => {
 		// await new Promise(res => setTimeout(res, 3000));
 		console.log('async update run!');
 		setInterval(() => {
