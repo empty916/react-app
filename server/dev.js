@@ -11,13 +11,11 @@ compiler.hooks.watchRun.tap('autoGetModule', autoGetModule);
 
 const server = new WebpackDevServer(compiler, {
 	...webpackConfig.devServer,
-	historyApiFallback: true,
 });
 
 const {
 	port = 8080,
 	host = 'localhost',
-	// host = '192.168.1.8',
 } = webpackConfig.devServer;
 
 server.listen(port, host, () => {

@@ -1,11 +1,11 @@
 const development = {
-	server: 'http://localhost:8089/scf-pc',
+	server: 'http://localhost:/api',
 };
 const stg = {
-	server: '/scf-pc',
+	server: '/api',
 };
 const production = {
-	server: '/scf-pc',
+	server: '/api',
 };
 
 const config = {

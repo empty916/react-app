@@ -1,6 +1,6 @@
 import {NestFactory} from '@nestjs/core';
 import {AppModule} from './app.module';
-import isMockApi, {isMock} from './proxy/mock';
+import isMockApi, {isMock, allIsMock} from './proxy/mock';
 import config from './proxy/config';
 import consoleStyle from './proxy/consoleStyle';
 const proxy = require('http-proxy-middleware');
@@ -22,11 +22,23 @@ async function bootstrap() {
             commonProxy(req, res, next);
         }
     });
-    if (isMock) {
-        console.log(consoleStyle.blue, `当前在mock模式！`);
-    } else {
-        console.log(consoleStyle.magenta, `当前不在mock模式！`);
-    }
+    setTimeout(() => {
+        if (isMock) {
+            if (allIsMock) {
+                console.log(consoleStyle.cyan, `当前所有接口都在mock模式！`);
+                console.log(consoleStyle.cyan, `当前所有接口都在mock模式！`);
+                console.log(consoleStyle.cyan, `当前所有接口都在mock模式！`);
+            } else {
+                console.log(consoleStyle.blue, `当前部分接口在mock模式！`);
+                console.log(consoleStyle.blue, `当前部分接口在mock模式！`);
+                console.log(consoleStyle.blue, `当前部分接口在mock模式！`);
+            }
+        } else {
+            console.log(consoleStyle.magenta, `当前不在mock模式！`);
+            console.log(consoleStyle.magenta, `当前不在mock模式！`);
+            console.log(consoleStyle.magenta, `当前不在mock模式！`);
+        }
+    }, 0)
     await app.listen(8090);
 }
 

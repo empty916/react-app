@@ -2,8 +2,8 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { dateFormatting } from '@/utils';
 import SHA256 from '@/utils/crypt';
 import channel from './config';
-import App from '../loadingController';
-import history from '../../routes/history';
+import App from '../utils/loadingController';
+import history from '../routes/history';
 
 const { server: serverUrl } = channel;
 

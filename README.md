@@ -50,7 +50,6 @@ react项目模板，支持typescript，react 16.8，router 5.1,
 ## 路径别名
 
 1. @ => src
-3. @request => src/utils/request
 5. @inject => natur/dist/inject
 6. @channel => buildConfig/channel/${channel}
 

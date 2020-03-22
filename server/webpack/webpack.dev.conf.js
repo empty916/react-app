@@ -57,11 +57,8 @@ module.exports = merge(baseConfig, {
 					'@': [`${project}`],
 					'@/*': [`${project}/*`],
 					'@redux-devtool': [`${project}/store/redux.devtool.ts`],
-					'@request': [`${project}/utils/request/index.ts`],
-					'@request': [`${project}/utils/request/index.ts`],
 					"@base/*": [`${project}/components/base/*`],
 					"@biz/*": [`${project}/components/business/*`],
-					'@request/*': [`${project}/utils/request/*`],
 				},
 			},
 		}),
@@ -78,6 +75,13 @@ module.exports = merge(baseConfig, {
 	devServer: {
 		open: true,
 		progress: true,
-		// host: '192.168.28.38',
+		port: 8080,
+		host: 'localhost',
+		historyApiFallback: true,
+		proxy: {
+            '/api': {
+                target: 'http://localhost:8090',
+            }
+        }
 	},
 });

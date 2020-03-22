@@ -49,7 +49,6 @@ module.exports = {
 			"@inject": "natur/dist/inject",
 			"@base": getPath(`${project}/components/base`),
 			"@biz": getPath(`${project}/components/business`),
-			"@request": getPath(`${project}/utils/request`),
 			"@styles": getPath(`${project}/utils/styles`),
 			"@channel": getPath(`buildConfig/channel/${channel}`),
 		}
