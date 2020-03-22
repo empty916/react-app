@@ -8,6 +8,8 @@ const HtmlWebpackExcludeAssetsPlugin = require("html-webpack-exclude-assets-plug
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const HtmlWebpackInlineSourcePlugin = require("html-webpack-inline-source-plugin");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+
 
 const {
 	getPath,
@@ -156,6 +158,7 @@ module.exports = {
 		new webpack.DefinePlugin({
 			"process.env.PROJECT_ENV": JSON.stringify(PROJECT_ENV)
 		}),
+		new HardSourceWebpackPlugin(),
 		new HappyPack({
 			id: "babel",
 			threads: 1,
