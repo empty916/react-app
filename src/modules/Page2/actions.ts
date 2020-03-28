@@ -1,7 +1,12 @@
 
-const changePageName = (newPageName: string) => ({
-	pageName: newPageName,
-});
+const changePageName = (newPageName: string) => ({setState}: any) => {
+	setState({
+		pageName: `${newPageName}1`,
+	});
+	return setState({
+		pageName: newPageName,
+	});
+};
 const asyncChangePageName = async (newPageName: string, state: any) => {
 	await new Promise(res => setTimeout(res, 3000));
 	return {
@@ -10,7 +15,9 @@ const asyncChangePageName = async (newPageName: string, state: any) => {
 	};
 };
 
-const inc = (state: any) => ({...state, count: state.count + 1});
+const inc = () => ({getState, setState}: any) => {
+	setState({count: getState().count + 1});
+};
 
 export default {
 	changePageName,

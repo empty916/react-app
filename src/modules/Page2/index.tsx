@@ -15,7 +15,7 @@ type PageProps = {
 const Page2: React.FC<PageProps> = ({page2, app}) => {
 	useEffect(() => {
 		return () => console.log('page2 unmount!');
-	}, [])
+	}, []);
 	const {state, actions, maps } = page2;
 	const { countObj, countIsOdd } = maps;
 	const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value, state);
@@ -52,5 +52,5 @@ store.setModule('page2', {
 	actions,
 })
 // Page2.displayName = 'Page2';
-export default Inject<PageProps>(['page2', {state: ['count']}], ['app', {}] as any)(Page2);
+export default Inject<PageProps>('page2', ['app', {}] as any)(Page2);
 // export default Page2;
