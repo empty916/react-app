@@ -11,7 +11,6 @@ import './style.scss';
 
 const Button = Auth.createAuthFilterHOC(_Button);
 
-/* eslint-disable */
 const App: React.FC = () => {
 	const [{state, actions}] = useInject('user');
 	return (
@@ -20,8 +19,11 @@ const App: React.FC = () => {
 			<Link to="/page2">page2</Link>
 			<Link to={{
 				pathname: '/page3',
-				search: '?id=1'
-			}}>page3</Link>
+				search: '?id=1',
+			}}
+			>
+				page3
+			</Link>
 			<br/>
 			<Input
 				style={{width: 200}}
@@ -29,7 +31,7 @@ const App: React.FC = () => {
 				value={state.name}
 				onChange={actions.updateName}
 			/>
-			<Button auth='login' color='red'>test</Button>
+			<Button size='lg' color='cyan'>test</Button>
 			<Switch>
 				{routes.map((route: any) => <AuthRoute key={route.path || route.key} {...route} />)}
 				<Route component={Index} />

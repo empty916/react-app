@@ -5,14 +5,27 @@ import { type } from "@/constants/Auth";
 import copyStatic from 'hoist-non-react-statics';
 import { inject } from "natur";
 
-const authCheckType = (props: any): [string, type] => {
+const authCheckType = (props: any): [string, type][] => {
+	const res:[string, type][] = [];
 	if (props.authLevel !== undefined) {
-		return [props.authLevel, "level"];
+		res.push([props.authLevel, "level"]);
 	}
 	if (props.authRole !== undefined) {
-		return [props.authRole, "role"];
+		res.push([props.authRole, "role"]);
 	}
-	return [props.auth, "auth"];
+	if (props.auth !== undefined) {
+		res.push([props.auth, "auth"]);
+	}
+	if (res.length === 0) {
+		res.push([props.auth, "auth"]);
+	}
+	return res;
+};
+
+type AuthProps = {
+	auth?: string;
+	authLevel?: string; 
+	authRole?: string;
 };
 
 /**
@@ -28,18 +41,20 @@ class Authority {
 	 * @returns {AuthFilter}
 	 * @constructor
 	 */
-	static createAuthFilterHOC(WrappedComponent: React.ComponentClass | React.FC) {
-		class AuthFilter extends Component<any> {
+	static createAuthFilterHOC<T, U extends T & AuthProps = T & AuthProps>(WrappedComponent: React.ComponentClass<T> | React.FC<T>) {
+		class AuthFilter extends Component<U> {
 			render() {
 				const { auth, authLevel, authRole, ...props } = this.props;
-				const authIsValid = hasAuth(...authCheckType({auth, authLevel, authRole}));
+				const checkTypes = authCheckType({auth, authLevel, authRole});
+				const authIsValid = checkTypes.some(ct => hasAuth(...ct));
+				
 				if (authIsValid) {
-					return <WrappedComponent {...props} />;
+					return <WrappedComponent {...(props as T)} />;
 				}
 				return null;
 			}
 		}
-		return inject(['user', {maps: ['hasAuth']}])(copyStatic(AuthFilter, WrappedComponent));
+		return inject(['user', {maps: ['hasAuth']}])(copyStatic(AuthFilter, WrappedComponent)) as React.ComponentClass<U>;
 	}
 }
 
