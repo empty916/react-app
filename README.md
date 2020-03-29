@@ -168,6 +168,7 @@ const store = createStore(
 
 1. 基础工具函数[lodash](https://www.npmjs.com/package/lodash)
 2. 表单校验[react-hook-form](https://www.npmjs.com/package/react-hook-form)
+3. url工具[query-string](https://www.npmjs.com/package/query-string)
 3. 对象key值转换工具[convert-key](https://www.npmjs.com/package/convert-key)
 4. 计算库[decimal.js](https://www.npmjs.com/package/decimal.js)
 5. 时间处理库[dayjs](https://www.npmjs.com/package/dayjs)

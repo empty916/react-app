@@ -1,5 +1,6 @@
 import React from 'react';
 import Inject from '@inject';
+// import qs from 'query-string';
 import style from './style.scss';
 
 

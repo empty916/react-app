@@ -1,7 +1,7 @@
 import curry from 'lodash/curry';
 import clone from 'lodash/cloneDeep';
 // import { curry, cloneDeep as clone } from 'lodash';
-import cstThemeConfig from '../../theme/config';
+import cstThemeConfig from '@/theme/config';
 
 type IThemeConfig = {
 	[propName: string]: string;

@@ -1,21 +1,36 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { isLogin } from '@/service/user';
+import { hasAuth } from '@/service/user';
+import * as AUTH from '@/constants/Auth';
+import qs from 'query-string';
+import { inject } from 'natur';
 
-export default function AuthRoute({ children, ...rest }: any) {
+const redirectWithoutAuth: any = {
+	[AUTH.LOGIN_AUTH]: '/',
+};
+
+function AuthRoute({ component, auth, ...rest }: any) {
+	if (hasAuth(auth)) {
+		return (
+			<Route
+				{...rest}
+				component={component}
+			/>
+		);
+	}
+	const fromSearch = qs.stringify({
+		redirect: `${rest.location.pathname}${rest.location.search}`,
+	});
 	return (
-		<Route
-			{...rest}
-			render={({ location }) => (isLogin() ? (
-				children
-			) : (
-				<Redirect
-					to={{
-						pathname: '/login',
-						state: { from: location },
-					}}
-				/>
-			))}
+		<Redirect
+			to={{
+				pathname: redirectWithoutAuth[auth] || '/',
+				search: `?${fromSearch}`,
+			}}
 		/>
 	);
 }
+
+
+export default inject(['user', {maps: ['hasAuth']}])(AuthRoute);
+// export default AuthRoute;
