@@ -1,26 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
-import { getLangData } from '@/service/app';
-import { useInject } from 'natur';
 
 /* eslint-disable */
-interface IFn {
-	(): any;
-}
+
 export const useInit = (fn: Function) => {
 	useState(fn);
 };
-export const useMounted = (fn: IFn) => {
+export const useMounted = (fn: Function) => {
 	useEffect(() => { fn(); }, []);
 };
-export const useUnMount = (fn: IFn) => {
+export const useUnMount = (fn: () => any) => {
 	useEffect(() => fn, []);
 };
-export const useUpdated = (fn: IFn) => {
+export const useUpdated = (fn: Function) => {
 	const isMounted = useRef(false);
-	// const cb = useRef(null);
-	// useEffect(() => {
-	// 	cb.current = () => fn();
-	// }, [fn]);
 	useEffect(() => {
 		if (isMounted.current) {
 			fn();
@@ -34,7 +26,7 @@ export const useUpdated = (fn: IFn) => {
 	}, []);
 };
 
-export const useInterval = (fn: IFn, delay:number) => {
+export const useInterval = (fn: () => any, delay:number) => {
 	const cb = useRef(() => {});
 	useEffect(() => {
 		cb.current = fn;
@@ -45,10 +37,3 @@ export const useInterval = (fn: IFn, delay:number) => {
 		return () => clearInterval(id);
 	}, [delay]);
 };
-
-
-export const useI18n = () => {
-	useInject('app'); // 监听app中的语言配置
-	console.log(getLangData())
-	return (key: string) => getLangData()[key];
-}
