@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { getLangData } from '@/service/app';
+import { useInject } from 'natur';
+
 /* eslint-disable */
 interface IFn {
 	(): any;
@@ -42,3 +45,10 @@ export const useInterval = (fn: IFn, delay:number) => {
 		return () => clearInterval(id);
 	}, [delay]);
 };
+
+
+export const useI18n = () => {
+	useInject('app'); // 监听app中的语言配置
+	console.log(getLangData())
+	return (key: string) => getLangData()[key];
+}

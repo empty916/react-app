@@ -9,13 +9,11 @@ import Auth from '@biz/Authority';
 import '@/theme/test.scss';
 import './style.scss';
 
-
 const Button = Auth.createAuthFilterHOC(_Button);
 
 /* eslint-disable */
 const App: React.FC = () => {
 	const [{state, actions}] = useInject('user');
-
 	return (
 		<>
 			<Link to="/page1">page1</Link>

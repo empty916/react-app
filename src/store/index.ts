@@ -7,18 +7,14 @@ import {
 	fillObjectRestDataMiddleware,
 } from 'natur/dist/middlewares';
 import devTool from '@redux-devtool';
-import appState from '../App/state';
-import appActions from '../App/actions';
+import app from '../App/store';
 import user from './user.store';
 import lazyModuleConfig from './lazyModule';
 
 const { modules: lazyModules } = lazyModuleConfig;
 
 const modules = {
-	app: {
-		state: appState,
-		actions: appActions,
-	},
+	app,
 	user,
 };
 
