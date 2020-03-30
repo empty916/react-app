@@ -65,14 +65,6 @@ export const toQS = params => {
 	return paramsList.join('&');
 };
 
-export const addQS = (host, url, params) => {
-	if (!/^(:?https?:\/)?\//.test(url)) {
-		url = host + url;
-	}
-	const query = toQS(params);
-	return query ? url + (url.indexOf('?') ? '?' : '&') + toQS(params) : url;
-};
-
 export const formatMoney = (money, n) => {
 	if (!money || !(money = parseFloat(money))) {
 		money = 0;
