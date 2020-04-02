@@ -186,8 +186,8 @@ const store = createStore(
 
 ## UI框架使用规范
 
-1. 本项目使用**rsuite**作为主要的UI框架
-2. 在使用**rsuite**中的组件时，需要在/business/base中引入并导出，这么做的目的是隔离三方组件，以防业务需求，可以做二次封装
+1. 本项目使用**material ui**作为主要的UI框架
+2. 在使用**material ui**中的组件时，需要在/business/base中引入并导出，这么做的目的是隔离三方组件，以防业务需求，可以做二次封装
 3. 在本项目中无法直接使用自定义的组件导入，这是由于typescript无法配置自定义的依赖路径导致
 	```javascript
 	// 错误， typescript报错
