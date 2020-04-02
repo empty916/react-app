@@ -1,4 +1,4 @@
-import * as AUTH from '@/constants/Auth';
+import AUTH, {AuthType} from '@/constants/Auth';
 
 export default {
 	state: {
@@ -8,7 +8,7 @@ export default {
 	},
 	maps: {
 		isLogin: ['name', (name:string) => !!name],
-		hasAuth: ['name', 'level', 'role', (name:string, level: number, role: string) => (auth: string | undefined, type: AUTH.type = 'auth') => {
+		hasAuth: ['name', 'level', 'role', (name:string, level: number, role: string) => (auth: string | undefined, type: AuthType = 'auth') => {
 			if (auth === undefined) {
 				return true;
 			}
@@ -28,6 +28,6 @@ export default {
 		}],
 	},
 	actions: {
-		updateName: (newName: string) => ({name: newName}),
+		updateName: (event: any) => ({name: event.target.value}),
 	},
 };

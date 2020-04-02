@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { dateFormatting } from '@/utils';
-import SHA256 from '@/utils/crypt';
+import SHA256 from 'crypto-js/sha256';
 import channel from './config';
 import App from '../utils/loadingController';
 import history from '../routes/history';
@@ -57,7 +57,7 @@ history.listen(refreshId);
 const appendParams = (data = {}, url: string) => ({
 	chnId: '10003',
 	requestType: 'PC',
-	requestNo: SHA256(`${JSON.stringify(data)}${url}${window.localStorage.authCode ? window.localStorage.authCode : ''}${requestId}`).substring(0, 32),
+	requestNo: SHA256(`${JSON.stringify(data)}${url}${window.localStorage.authCode ? window.localStorage.authCode : ''}${requestId}`).toString().substring(0, 32),
 	requestTime: dateFormatting('yyyy-MM-dd hh:mm:ss', new Date().toString()),
 	authCode: window.localStorage.authCode ? window.localStorage.authCode : '',
 });

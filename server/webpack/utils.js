@@ -136,9 +136,6 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 			},
 			{
 				loader: 'less-loader',
-				options: {
-					// javascriptEnabled:true,
-				}
 			},
 		].filter(Boolean),
 	},
@@ -146,7 +143,6 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 		test: /\.less$/,
 		include: /\/node_modules/,
 		use: [
-			// isDev ? 'style-loader' :
 			{
 				loader: MiniCssExtractPlugin.loader,
 				options: {
@@ -162,13 +158,6 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 			},
 			{
 				loader: 'less-loader',
-				options: {
-					javascriptEnabled:true,
-					modifyVars: {
-						'@border-radius-base': '2px',
-						'@button-ripple': 'false',
-					}
-				}
 			},
 		].filter(Boolean),
 	},

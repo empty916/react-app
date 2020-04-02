@@ -1,2 +1,5 @@
-export const LOGIN_AUTH = 'login';
-export type type = 'auth' | 'level' | 'role';
+export type AuthType = 'auth' | 'level' | 'role';
+
+export default {
+	LOGIN_AUTH: 'login',
+};

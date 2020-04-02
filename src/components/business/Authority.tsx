@@ -1,12 +1,12 @@
 /* eslint-disable */
 import React, { Component } from "react";
 import { hasAuth } from "@/service/user";
-import { type } from "@/constants/Auth";
+import Auth, { AuthType } from "@/constants/Auth";
 import copyStatic from 'hoist-non-react-statics';
 import { inject } from "natur";
 
-const authCheckType = (props: any): [string, type][] => {
-	const res:[string, type][] = [];
+const authCheckType = (props: any): [string, AuthType][] => {
+	const res:[string, AuthType][] = [];
 	if (props.authLevel !== undefined) {
 		res.push([props.authLevel, "level"]);
 	}
@@ -22,11 +22,16 @@ const authCheckType = (props: any): [string, type][] => {
 	return res;
 };
 
+
 type AuthProps = {
 	auth?: string;
 	authLevel?: string; 
 	authRole?: string;
 };
+
+type Ref = {
+	forwardRef?: any,
+}
 
 /**
  * 权限模块
@@ -41,20 +46,33 @@ class Authority {
 	 * @returns {AuthFilter}
 	 * @constructor
 	 */
-	static createAuthFilterHOC<T, U extends T & AuthProps = T & AuthProps>(WrappedComponent: React.ComponentClass<T> | React.FC<T>) {
+	static createAuthFilterHOC<T, U extends (T & AuthProps & Ref) = (T & AuthProps & Ref)>(WrappedComponent: React.ComponentClass<T> | React.FC<T>) {
 		class AuthFilter extends Component<U> {
 			render() {
-				const { auth, authLevel, authRole, ...props } = this.props;
+				const { auth, authLevel, authRole, forwardRef, ...props } = this.props;
 				const checkTypes = authCheckType({auth, authLevel, authRole});
 				const authIsValid = checkTypes.some(ct => hasAuth(...ct));
-				
+				if (forwardRef) {
+					(props as any).ref = forwardRef;
+				}
 				if (authIsValid) {
 					return <WrappedComponent {...(props as T)} />;
 				}
 				return null;
 			}
 		}
-		return inject(['user', {maps: ['hasAuth']}])(copyStatic(AuthFilter, WrappedComponent)) as React.ComponentClass<U>;
+		let RefAuthFilter = AuthFilter;
+		if (typeof (WrappedComponent as any).render === 'function') {
+			RefAuthFilter = React.forwardRef((props, ref) => {
+				const newProps: any = {
+					...props,
+					forwardRef: ref,
+				};
+				return <AuthFilter {...newProps} />
+			}) as any;
+		}
+		copyStatic(RefAuthFilter, WrappedComponent);
+		return inject(['user', {maps: ['hasAuth']}])(RefAuthFilter) as React.ComponentClass<U>;
 	}
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { hasAuth } from '@/service/user';
-import * as AUTH from '@/constants/Auth';
+import AUTH from '@/constants/Auth';
 import qs from 'query-string';
 import { inject } from 'natur';
 

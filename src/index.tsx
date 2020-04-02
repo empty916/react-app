@@ -8,7 +8,6 @@ import './store';
 import history from './routes/history';
 import App from './App';
 
-
 const content = (
 	<Router history={history}>
 		<App />

@@ -2,8 +2,11 @@
 import React, {
 	useEffect,
 } from 'react';
-import { InjectStoreModule, useInject } from 'natur';
+import { InjectStoreModule } from 'natur';
 import Inject from '@inject';
+import Button from '@base/IconButton'
+import Input from '@base/Input'
+import Icon from '@material-ui/core/Icon';
 import store from '@/store';
 import style from './style.scss';
 
@@ -21,20 +24,25 @@ const Page2: React.FC<PageProps> = ({page2, app}) => {
 	const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value, state);
 	return (
 		<div className={style.page2}>
-			<input
+			<Input
 				type="text"
+				label='page2 name'
 				value={state.pageName}
 				onChange={changePage2}
 			/>
-			<input
+			<br/>
+			<Input
 				type="text"
+				label='page2 name'
 				value={app.state.name}
 				onChange={e => app.actions.update(e.target.value)}
 			/>
 			<br />
 			count:
 			{state.count}
-			<button onClick={() => actions.inc(state)}>+</button>
+			<Button color='secondary' size='small' onClick={() => actions.inc(state)}>
+				<Icon>add_circle</Icon>
+			</Button>
 			<br />
 			countIsOdd：
 			{`${countIsOdd}`}
