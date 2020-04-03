@@ -2,6 +2,7 @@
 /dist
 /yarn-error.log
 /yarn.lock
+yarn.lock
 /tsconfig-backup.json
 /package-lock.json
 /server/dll
