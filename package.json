@@ -141,7 +141,7 @@
 		"history": "^4.9.0",
 		"hoist-non-react-statics": "^3.3.2",
 		"lodash": "^4.17.15",
-		"natur": "^1.1.8-beta3",
+		"natur": "^1.1.8-beta5",
 		"prop-types": "^15.7.2",
 		"query-string": "^6.11.1",
 		"react": "16.10.1",

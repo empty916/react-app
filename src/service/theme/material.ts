@@ -3,7 +3,7 @@ import { zhCN } from '@material-ui/core/locale';
 
 const theme = createMuiTheme({
 	shape: {
-		borderRadius: 0,
+		borderRadius: 4,
 	},
 	props: {
 		MuiTextField: {
@@ -21,6 +21,9 @@ const theme = createMuiTheme({
 				'&$focused $notchedOutline': {
 					borderWidth: 1,
 				},
+				// '&:hover $notchedOutline': {
+				// 	borderColor: 'auto',
+				// },
 			},
 		},
 	},

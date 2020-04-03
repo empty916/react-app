@@ -126,9 +126,29 @@ const store = createStore(
 5. mock-server/src/proxy/config.ts配置mock服务的请求url前缀、不走mock时的服务器地址
 6. mock接口写在mock-server/src/controller中，可以结合mockjs 模拟假数据
 
+
+## icon
+**[icon库查看](https://material-ui.com/zh/components/material-icons/)**
+
+1. 方式一 
+   
+   ````typescript
+   import { Icon } from '@material-ui/core';
+
+   <Icon>star</Icon>
+   ````
+
+2. 方式二
+   ````typescript
+   import Star from '@material-ui/icon/Star';
+
+   <Star />
+   ````
+
 ## theme，主题控制
 
-1. 所有的主题样式都放在theme文件夹下，然后引入到App/index.js中
+1. 基本上项目的主题都可以通过material的主题方案控制，放在/src/service/theme/material.ts
+1. 需要原声控制的主题样式都放在theme文件夹下，然后引入到App/index.js中
 2. 使用business/theme/index.js控制主题切换
 	1. 创建样式文件, 定义样式变量
 	```scss

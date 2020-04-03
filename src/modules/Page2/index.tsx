@@ -1,7 +1,5 @@
 /* eslint-disable */
-import React, {
-	useEffect,
-} from 'react';
+import React from 'react';
 import { InjectStoreModule } from 'natur';
 import Inject from '@inject';
 import Button from '@base/IconButton'
@@ -16,9 +14,6 @@ type PageProps = {
 }
 
 const Page2: React.FC<PageProps> = ({page2, app}) => {
-	useEffect(() => {
-		return () => console.log('page2 unmount!');
-	}, []);
 	const {state, actions, maps } = page2;
 	const { countObj, countIsOdd } = maps;
 	const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value, state);
@@ -30,7 +25,7 @@ const Page2: React.FC<PageProps> = ({page2, app}) => {
 				value={state.pageName}
 				onChange={changePage2}
 			/>
-			<br/>
+			<br/><br/>
 			<Input
 				type="text"
 				label='page2 name'
