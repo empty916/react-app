@@ -6,29 +6,30 @@ import {
 	ListItemIcon,
 	ListItemText,
 	Icon,
+	useMediaQuery,
 } from '@material-ui/core';
 import {
 	makeStyles,
 	Theme,
-	createStyles,
-	createMuiTheme,
 	ThemeProvider,
 } from '@material-ui/core/styles';
 import { InjectStoreModule, inject } from 'natur';
 import clsx from 'classnames';
+import { menuTheme } from '@/service/theme/material';
 // icon
-
 import SubList from '@biz/SubList';
 import { Link, useLocation } from 'react-router-dom';
 import sideBarBgImg from '@/assets/sidebar.jpg';
 
 const drawerWidth = 260;
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles((theme: Theme) => ({
 	drawer: {
 		width: drawerWidth,
 		flexShrink: 0,
 		whiteSpace: 'nowrap',
+		position: 'relative',
+		zIndex: 1,
 	},
 	paper: {
 		backgroundColor: '#fff',
@@ -51,7 +52,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 		width: drawerWidth,
 		transition: theme.transitions.create('width', {
 			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.enteringScreen,
+			duration: theme.transitions.duration.leavingScreen,
 		}),
 	},
 	drawerClose: {
@@ -64,52 +65,21 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 	},
 }));
 
-const menuTheme = createMuiTheme({
-	palette: {
-		type: 'dark',
-	},
-	overrides: {
-		MuiDrawer: {
-			paperAnchorDockedLeft: {
-				borderRight: 'none',
-			},
-		},
-		MuiPaper: {
-			root: {
-
-			},
-		},
-		MuiListItem: {
-			root: {
-				marginTop: 10,
-				borderRadius: 4,
-				'&$selected,&$selected:hover': {
-					boxShadow:
-				'0 12px 20px -10px rgba(0, 172, 193,.28), 0 4px 20px 0 rgba(0, 0, 0,.12), 0 7px 8px -5px rgba(0, 172, 193,.2)',
-					backgroundColor: '#00acc1',
-				},
-				transition: 'all cubic-bezier(0.4, 0, 0.2, 1) 0.3s!important',
-			},
-			gutters: {
-				paddingLeft: 10,
-			},
-		},
-		MuiListItemIcon: {
-			root: {
-				minWidth: 45,
-			},
-		},
-	},
-});
-
 const AppMenu: React.FC<{ app: InjectStoreModule }> = ({ app }) => {
 	const classes = useStyles();
 	const { isMenuOpen: open, menuData } = app.state;
+	const isSmallScreen = useMediaQuery(menuTheme.breakpoints.down('sm'));
+	const closeMenu = React.useCallback(() => {
+		if (isSmallScreen) {
+			app.actions.closeMenu();
+		}
+	}, [app.actions, isSmallScreen]);
 	const { pathname } = useLocation();
-	// console.log(pathname);
 	return (
 		<ThemeProvider theme={menuTheme}>
 			<Drawer
+				onMouseEnter={app.actions.openMenu}
+				onMouseLeave={closeMenu}
 				open={open}
 				variant="permanent"
 				className={clsx(classes.drawer, {
@@ -149,6 +119,7 @@ const AppMenu: React.FC<{ app: InjectStoreModule }> = ({ app }) => {
 								title={item.title}
 								key={item.title + String(item.to)}
 								pl={30}
+								isMenuOpen={open}
 								selected={isSubListSelected}
 								icon={<Icon>{item.icon}</Icon>}
 								open={isSubListSelected}

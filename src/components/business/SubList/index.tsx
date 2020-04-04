@@ -1,10 +1,10 @@
 
 import React from 'react';
 import { List, ListItem, ListItemIcon, Collapse, ListItemText } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { ExpandLess } from '@material-ui/icons';
 // import {} from '@material-ui/core/styles';
 import cls from 'classnames';
-import { InjectStoreModule, inject } from 'natur';
 import styles from './style.scss';
 
 type SubListItemProps = {
@@ -12,18 +12,31 @@ type SubListItemProps = {
 	icon: React.ReactElement,
 	title: React.ReactNode | string,
 	onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void,
+	isMenuOpen: boolean,
 	pl?: number,
 	style?: any,
 	selected?: boolean,
 };
+
+const useStyle = makeStyles(theme => ({
+	subList: {
+		'&:hover': {
+			backgroundColor: `${theme.palette.action.hover}!important`,
+			boxShadow: 'none !important',
+		},
+	},
+	subListSelected: {
+		backgroundColor: `${theme.palette.action.hover}!important`,
+		boxShadow: 'none !important',
+	},
+}));
 
 const _ListItem: any = ListItem;
 
 const getName = (ele: any) => ele?.type?.displayName;
 const isListItem = (ele: any): ele is React.ReactElement => React.isValidElement(ele) && (getName(ele) === _ListItem.displayName);
 
-const SubList: React.FC<SubListItemProps & {app: InjectStoreModule}> = ({
-	app,
+const SubList: React.FC<SubListItemProps> = ({
 	open: initOpen,
 	icon,
 	title,
@@ -32,9 +45,10 @@ const SubList: React.FC<SubListItemProps & {app: InjectStoreModule}> = ({
 	pl = 20,
 	style,
 	selected,
+	isMenuOpen,
 }) => {
 	const [open, setOpen] = React.useState(initOpen);
-	const {isMenuOpen} = app.state;
+	const classes = useStyle();
 	const $onClick = React.useCallback((event: React.MouseEvent<HTMLElement, MouseEvent>) => {
 		setOpen(!open);
 		if (onClick) {
@@ -46,8 +60,8 @@ const SubList: React.FC<SubListItemProps & {app: InjectStoreModule}> = ({
 			<ListItem
 				selected={selected}
 				classes={{
-					root: styles['sub-list'],
-					selected: styles['sub-list-selected'],
+					root: classes.subList,
+					selected: classes.subListSelected,
 				}}
 				button
 				onClick={$onClick}
@@ -79,4 +93,4 @@ const SubList: React.FC<SubListItemProps & {app: InjectStoreModule}> = ({
 	);
 };
 
-export default inject<{app: InjectStoreModule}>(['app', {state: ['isMenuOpen']}])(SubList);
+export default SubList;

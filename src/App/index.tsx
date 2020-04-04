@@ -8,6 +8,7 @@ import AppMenu from '@biz/Menu';
 import Bar from '@biz/Bar';
 import routes, { Index } from '@/routes';
 import '@/theme/test.scss';
+// import { inject, InjectStoreModule } from 'natur';
 import styles from './style.scss';
 
 const App: React.FC = () => (
@@ -15,7 +16,13 @@ const App: React.FC = () => (
 		<CssBaseline />
 		<Grid container>
 			<AppMenu />
-			<Grid item style={{flex: 1}} className={styles.right}>
+			<Grid
+				item
+				style={{
+					flex: 1,
+				}}
+				className={styles.right}
+			>
 				<Bar />
 				<Switch>
 					{routes.map((route: any) => (
@@ -28,5 +35,5 @@ const App: React.FC = () => (
 	</ThemeProvider>
 );
 
-// export default inject<Props>('app')(App);
+// export default inject<{app: InjectStoreModule}>('app')(App);
 export default App;
