@@ -1,6 +1,5 @@
 import React from 'react';
 import Inject from '@inject';
-// import qs from 'query-string';
 import Input from '@base/Input';
 import { InjectStoreModule } from 'natur';
 import { Box, GridList, GridListTile } from '@material-ui/core';

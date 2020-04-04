@@ -143,7 +143,7 @@
 		"lodash": "^4.17.15",
 		"natur": "^1.1.8-beta5",
 		"prop-types": "^15.7.2",
-		"query-string": "^6.11.1",
+		"querystringify": "^2.1.1",
 		"react": "16.10.1",
 		"react-dom": "16.10.1",
 		"react-hook-form": "^4.10.1",

@@ -25,14 +25,14 @@ module.exports = mode => {
 	const isDev = mode === 'development';
 	return {
 		entry: {
-			utilsDll: [
-				'@babel/polyfill',
-				// 'lodash/curry',
-				// 'lodash/cloneDeep',
-				// 'lodash/fp/pipe',
-				// 'lodash/fp/curry',
-				// 'react-motion',
-			],
+			// utilsDll: [
+			// 	// '@babel/polyfill',
+			// 	// 'lodash/curry',
+			// 	// 'lodash/cloneDeep',
+			// 	// 'lodash/fp/pipe',
+			// 	// 'lodash/fp/curry',
+			// 	// 'react-motion',
+			// ],
 			baseDll: [
 				'react',
 				'react-dom',
