@@ -36,8 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
 		'&:after': {
-			backgroundColor: 'rgba(0,0,0)',
-			opacity: 0.6,
+			backgroundColor: 'rgba(0,0,0, 0.6)',
 			top: 0,
 			width: '100%',
 			height: '100%',
