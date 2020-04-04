@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { hasAuth } from '@/service/user';
 import AUTH from '@/constants/Auth';
-import qs from 'querystringify';
+import qs from 'query-string';
 import { inject } from 'natur';
 
 const redirectWithoutAuth: any = {
