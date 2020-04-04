@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { List, ListItem, ListItemIcon, Collapse, ListItemText } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { ExpandLess } from '@material-ui/icons';
 // import {} from '@material-ui/core/styles';
 import cls from 'classnames';
@@ -42,13 +42,14 @@ const SubList: React.FC<SubListItemProps> = ({
 	title,
 	onClick,
 	children,
-	pl = 20,
+	pl = 30,
 	style,
 	selected,
 	isMenuOpen,
 }) => {
 	const [open, setOpen] = React.useState(initOpen);
 	const classes = useStyle();
+	const theme = useTheme();
 	React.useEffect(() => {
 		if (selected) {
 			setOpen(true);
@@ -89,7 +90,7 @@ const SubList: React.FC<SubListItemProps> = ({
 				<List component="div" disablePadding>
 					{
 						React.Children.map(children, child => (isListItem(child) ? React.cloneElement(child as React.ReactElement, {
-							style: {paddingLeft: isMenuOpen ? pl : 10},
+							style: {paddingLeft: isMenuOpen ? pl : (theme.overrides?.MuiListItem?.gutters as any).paddingLeft},
 						}) : child))
 					}
 				</List>

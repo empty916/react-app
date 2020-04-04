@@ -51,6 +51,7 @@ const theme = createMuiTheme({
 		MuiTextField: {
 			variant: 'outlined',
 			size: 'small',
+			type: 'text',
 		},
 	},
 	overrides: {
@@ -88,7 +89,7 @@ export const menuTheme = createMuiTheme({
 		MuiListItem: {
 			root: {
 				marginTop: 10,
-				borderRadius: 4,
+				borderRadius: 0,
 				'&$selected,&$selected:hover': {
 					boxShadow: mainShadow[24],
 					backgroundColor: theme.palette.primary.main,

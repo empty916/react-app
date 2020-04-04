@@ -134,7 +134,6 @@ const AppMenu: React.FC<{ app: InjectStoreModule }> = ({ app }) => {
 							<SubList
 								title={item.title}
 								key={item.title + String(item.to)}
-								pl={30}
 								isMenuOpen={open}
 								selected={isSubListSelected}
 								icon={<Icon>{item.icon}</Icon>}
