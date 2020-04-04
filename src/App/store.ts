@@ -35,6 +35,17 @@ const state = {
 				},
 			],
 		},
+		{
+			icon: 'supervisor_account',
+			title: '用户管理',
+			children: [
+				{
+					icon: 'person',
+					title: '用户',
+					to: '/user-list',
+				},
+			],
+		},
 	],
 };
 

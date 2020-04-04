@@ -93,7 +93,7 @@ export const menuTheme = createMuiTheme({
 					boxShadow: mainShadow[24],
 					backgroundColor: theme.palette.primary.main,
 				},
-				transition: 'width,padding cubic-bezier(0.4, 0, 0.2, 1) 0.3s!important',
+				transition: 'all cubic-bezier(0.4, 0, 0.2, 1) 0.3s!important',
 			},
 			gutters: {
 				paddingLeft: 10,

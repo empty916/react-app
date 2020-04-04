@@ -1,3 +1,5 @@
+import { MiddlewareParams } from 'natur';
+
 const state = {
 	name: 'userList',
 	age: 11,
@@ -18,13 +20,11 @@ const actions = {
 	asyncThunkReturnUndef: () => () => Promise.resolve(undefined),
 	asyncReturnUndef: () => Promise.resolve(undefined),
 
-	update: (params: any) => ({getState}: any) => ({
+	update: (params: any) => ({getState, setState}: MiddlewareParams) => setState({
 		...getState(),
 		...params,
 	}),
 	asyncUpdate: () => async ({getState, setState}: any) => {
-		// await new Promise(res => setTimeout(res, 3000));
-		console.log('async update run!');
 		setInterval(() => {
 			setState({
 				...getState(),

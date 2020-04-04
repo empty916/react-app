@@ -11,8 +11,8 @@ const Page1: React.FC<{user: InjectStoreModule}> = ({user}) => (
 			<Box alignSelf='flex-start'>
 				<Input style={{height: 'auto'}} label='用户名' value={user.state.name} onChange={user.actions.updateName} />
 			</Box>
-			<Box flex='1' alignSelf='flex-start'>
-				<GridList cellHeight={50} cols={3}>
+			<Box flex='1' alignSelf='flex-start' display='flex'>
+				<GridList cellHeight={50} cols={3} style={{width: 400, flex: 1}}>
 					<GridListTile cols={2} rows={1}>
 						<img src="http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg" alt=""/>
 					</GridListTile>

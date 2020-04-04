@@ -6,7 +6,6 @@ import {
 	ListItemIcon,
 	ListItemText,
 	Icon,
-	useMediaQuery,
 } from '@material-ui/core';
 import {
 	makeStyles,
@@ -67,18 +66,36 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const AppMenu: React.FC<{ app: InjectStoreModule }> = ({ app }) => {
 	const classes = useStyles();
-	const { isMenuOpen: open, menuData } = app.state;
-	const isSmallScreen = useMediaQuery(menuTheme.breakpoints.down('sm'));
-	const closeMenu = React.useCallback(() => {
-		if (isSmallScreen) {
-			app.actions.closeMenu();
+	const { isMenuOpen, menuData } = app.state;
+	const [$open, setOpen] = React.useState(true);
+
+	React.useEffect(() => {
+		if (isMenuOpen === false) {
+			setOpen(false);
 		}
-	}, [app.actions, isSmallScreen]);
+	}, [isMenuOpen, setOpen]);
+	const open = React.useMemo(() => {
+		if (isMenuOpen) {
+			return isMenuOpen;
+		}
+		return $open;
+	}, [isMenuOpen, $open]);
+	const openMenu = React.useCallback(() => {
+		if (!isMenuOpen) {
+			setOpen(true);
+		}
+	}, [setOpen, isMenuOpen]);
+	const closeMenu = React.useCallback(() => {
+		if (!isMenuOpen) {
+			setOpen(false);
+		}
+	}, [setOpen, isMenuOpen]);
+
 	const { pathname } = useLocation();
 	return (
 		<ThemeProvider theme={menuTheme}>
 			<Drawer
-				onMouseEnter={app.actions.openMenu}
+				onMouseEnter={openMenu}
 				onMouseLeave={closeMenu}
 				open={open}
 				variant="permanent"
