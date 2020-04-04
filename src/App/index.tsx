@@ -11,16 +11,17 @@ import '@/theme/test.scss';
 // import { inject, InjectStoreModule } from 'natur';
 import styles from './style.scss';
 
+
+const f1 = {flex: 1};
+
 const App: React.FC = () => (
 	<ThemeProvider theme={materialTheme}>
 		<CssBaseline />
-		<Grid container>
+		<Grid container wrap='nowrap'>
 			<AppMenu />
 			<Grid
 				item
-				style={{
-					flex: 1,
-				}}
+				style={f1}
 				className={styles.right}
 			>
 				<Bar />

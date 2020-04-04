@@ -25,16 +25,10 @@ const actions = {
 		...params,
 	}),
 	asyncUpdate: () => async ({getState, setState}: any) => {
-		setInterval(() => {
-			setState({
-				...getState(),
-				age: parseInt(getState().age, 10) + 1,
-			});
-		}, 1000);
-		return {
+		setState({
 			...getState(),
-			age: parseInt(getState().age, 10) + 10,
-		};
+			age: parseInt(getState().age, 10) + 1,
+		});
 	},
 };
 

@@ -9,7 +9,14 @@ const Page1: React.FC<{user: InjectStoreModule}> = ({user}) => (
 	<>
 		<Box p={2} display='flex'>
 			<Box alignSelf='flex-start'>
-				<Input style={{height: 'auto'}} label='用户名' value={user.state.name} onChange={user.actions.updateName} />
+				<Input
+					style={{height: 'auto', width: 300}}
+					placeholder='输入用户名后才可以访问page3'
+					label='用户名'
+					InputLabelProps={{shrink: true}}
+					value={user.state.name}
+					onChange={user.actions.updateName}
+				/>
 			</Box>
 			<Box flex='1' alignSelf='flex-start' display='flex'>
 				<GridList cellHeight={50} cols={3} style={{width: 400, flex: 1}}>

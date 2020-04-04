@@ -1,11 +1,7 @@
 import React from 'react';
 import Inject from '@inject';
-import themeStyle from '@/theme/test.scss';
-// import style from './style.scss';
+import { Box } from '@material-ui/core';
 
-const Page3: React.FC<any> = () => {
-	console.log('page3 render');
-	return <div className={themeStyle.card}>page3</div>;
-};
+const Page3: React.FC<any> = () => <Box p={2}>你已经登录！</Box>;
 
 export default Inject('page3')(Page3);
