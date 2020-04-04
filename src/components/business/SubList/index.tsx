@@ -66,11 +66,11 @@ const SubList: React.FC<SubListItemProps & {app: InjectStoreModule}> = ({
 				})}
 				/>
 			</ListItem>
-			<Collapse in={open && isMenuOpen} timeout="auto" unmountOnExit>
+			<Collapse in={open} timeout="auto" unmountOnExit>
 				<List component="div" disablePadding>
 					{
 						React.Children.map(children, child => (isListItem(child) ? React.cloneElement(child as React.ReactElement, {
-							style: {paddingLeft: pl},
+							style: {paddingLeft: isMenuOpen ? pl : 10},
 						}) : child))
 					}
 				</List>

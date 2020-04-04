@@ -20,14 +20,32 @@ import clsx from 'classnames';
 
 import SubList from '@biz/SubList';
 import { Link, useLocation } from 'react-router-dom';
+import sideBarBgImg from '@/assets/sidebar.jpg';
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
 	drawer: {
 		width: drawerWidth,
 		flexShrink: 0,
 		whiteSpace: 'nowrap',
+	},
+	paper: {
+		backgroundColor: '#fff',
+		backgroundImage: `url(${sideBarBgImg})`,
+		backgroundSize: 'cover',
+		backgroundPosition: 'center',
+		'&:after': {
+			backgroundColor: 'rgba(0,0,0)',
+			opacity: 0.6,
+			top: 0,
+			width: '100%',
+			height: '100%',
+			content: '""',
+			display: 'block',
+			zIndex: 3,
+			position: 'absolute',
+		},
 	},
 	drawerOpen: {
 		width: drawerWidth,
@@ -42,7 +60,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 			duration: theme.transitions.duration.leavingScreen,
 		}),
 		overflowX: 'hidden',
-		width: theme.spacing(7) + 8,
+		width: theme.spacing(8),
 	},
 }));
 
@@ -56,6 +74,11 @@ const menuTheme = createMuiTheme({
 				borderRight: 'none',
 			},
 		},
+		MuiPaper: {
+			root: {
+
+			},
+		},
 		MuiListItem: {
 			root: {
 				marginTop: 10,
@@ -65,6 +88,7 @@ const menuTheme = createMuiTheme({
 				'0 12px 20px -10px rgba(0, 172, 193,.28), 0 4px 20px 0 rgba(0, 0, 0,.12), 0 7px 8px -5px rgba(0, 172, 193,.2)',
 					backgroundColor: '#00acc1',
 				},
+				transition: 'all cubic-bezier(0.4, 0, 0.2, 1) 0.3s!important',
 			},
 			gutters: {
 				paddingLeft: 10,
@@ -93,13 +117,13 @@ const AppMenu: React.FC<{ app: InjectStoreModule }> = ({ app }) => {
 					[classes.drawerClose]: !open,
 				})}
 				classes={{
-					paper: clsx({
+					paper: clsx(classes.paper, {
 						[classes.drawerOpen]: open,
 						[classes.drawerClose]: !open,
 					}),
 				}}
 			>
-				<List style={{ padding: '0 10px' }}>
+				<List style={{ padding: '0 10px', position: 'relative', zIndex: 4 }}>
 					{menuData.map((item: any) => {
 						if (!item.children) {
 							return (
@@ -117,16 +141,17 @@ const AppMenu: React.FC<{ app: InjectStoreModule }> = ({ app }) => {
 								</ListItem>
 							);
 						}
+						const isSubListSelected = item.children.some(
+							({ to }: any) => pathname.includes(to),
+						);
 						return (
 							<SubList
 								title={item.title}
 								key={item.title + String(item.to)}
 								pl={30}
-								selected={item.children.some(
-									({ to }: any) => to === pathname,
-								)}
+								selected={isSubListSelected}
 								icon={<Icon>{item.icon}</Icon>}
-								open={open}
+								open={isSubListSelected}
 							>
 								{item.children.map((subItem: any) => (
 									<ListItem
