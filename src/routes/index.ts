@@ -1,7 +1,6 @@
 
 import loadabel from '@loadable/component';
-import Father from './Father';
-
+import Auth from '@/constants/Auth';
 
 export const Index = loadabel(() => import('@/modules/Page1'));
 
@@ -18,15 +17,15 @@ const routes = [
 	{
 		path: '/page3',
 		component: loadabel(() => import('@/modules/Page3')),
-		auth: 'login',
 	},
 	{
 		path: '/user',
-		component: Father,
+		component: loadabel(() => import('@/modules/user')),
 		routes: [
 			{
 				path: '/user/list',
 				component: loadabel(() => import('@/modules/user/list')),
+				auth: Auth.LOGIN_AUTH,
 			},
 		],
 	},

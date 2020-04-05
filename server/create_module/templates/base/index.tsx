@@ -1,6 +1,6 @@
 import React from 'react';
-import style from './style.scss';
 import Inject from '@inject';
+import style from './style.scss';
 
 const Template: React.FC<any> = (p: any) => {
 	const {
@@ -16,8 +16,7 @@ const Template: React.FC<any> = (p: any) => {
 };
 
 
-export {state, maps} from './state';
-export {default as actions} from './actions';
+export {state, maps, actions} from './store';
 export default Inject(
 	'template',
 )(Template);

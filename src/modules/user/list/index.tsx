@@ -9,27 +9,14 @@ const goPage1 = () => history.push({
 	search: '?id=1',
 });
 
-const UserList: React.FC<any> = (p: any) => {
-	const {
-		userList: {state},
-	} = p;
-	return (
-		<Box p={2} className={style.userList}>
-			{state.name}
-			<br/>
-			<input type="text" value={state.name} onChange={e => p.userList.actions.update({name: e.target.value})} />
-			<br/>
-			<input type="text" value={state.age} onChange={e => p.userList.actions.update({ age: e.target.value})} />
-			<br/>
-			<button onClick={goPage1}>
-				go to page1
-			</button>
-		</Box>
-	);
-};
+const UserList: React.FC<any> = ({user}: any) => (
+	<Box p={2} className={style.userList}>
+		当前登录用户名：
+		<input type="text" value={user.state.name} onChange={user.actions.updateName} />
+		<button onClick={goPage1}>
+			go to page1
+		</button>
+	</Box>
+);
 
-
-export {state, maps, actions} from './store';
-export default Inject(
-	'userList',
-)(UserList);
+export default Inject('user')(UserList);

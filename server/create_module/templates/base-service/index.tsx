@@ -1,6 +1,6 @@
 import React from 'react';
-import style from './style.scss';
 import Inject from '@inject';
+import style from './style.scss';
 
 const Template: React.FC<any> = (p: any) => {
 	const {

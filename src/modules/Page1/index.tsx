@@ -10,7 +10,7 @@ const Page1: React.FC<{user: InjectStoreModule}> = ({user}) => (
 			<Box alignSelf='flex-start'>
 				<Input
 					style={{height: 'auto', width: 300}}
-					placeholder='输入用户名后才可以访问page3'
+					placeholder='输入用户名后才可以访问用户模块'
 					label='用户名'
 					InputLabelProps={{shrink: true}}
 					value={user.state.name}
