@@ -6,7 +6,7 @@ import qs from 'query-string';
 import { inject } from 'natur';
 import RouteWithSubRoutes from './RouteWithSubRoutes';
 
-const redirectWithoutAuth: any = {
+export const redirectWithoutAuth: any = {
 	[AUTH.LOGIN_AUTH]: '/',
 };
 

@@ -21,11 +21,11 @@ const routes = [
 	{
 		path: '/user',
 		component: loadabel(() => import('@/modules/user')),
+		auth: Auth.LOGIN_AUTH,
 		routes: [
 			{
 				path: '/user/list',
 				component: loadabel(() => import('@/modules/user/list')),
-				auth: Auth.LOGIN_AUTH,
 			},
 		],
 	},

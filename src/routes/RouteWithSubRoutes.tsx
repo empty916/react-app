@@ -1,13 +1,38 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
+import { hasAuth } from '@/service/user';
+import qs from 'query-string';
+import { inject } from 'natur';
+import { redirectWithoutAuth } from './AuthRoute';
 
 
-export default function RouteWithSubRoutes(route: any) {
+function RouteWithSubRoutes({routes, component, auth, ...rest}: any) {
+	const Com = component;
 	const render = React.useCallback(
 		(props: any) => (
-			<route.component {...props} routes={route.routes || []} />
+			<Com {...props} routes={routes || []} />
 		),
-		[route],
+		[routes],
 	);
-	return <Route path={route.path} render={render} />;
+	if (hasAuth(auth)) {
+		return (
+			<Route
+				{...rest}
+				component={render}
+			/>
+		);
+	}
+	const fromSearch = qs.stringify({
+		redirect: `${rest.location.pathname}${rest.location.search}`,
+	});
+	return (
+		<Redirect
+			to={{
+				pathname: redirectWithoutAuth[auth] || '/',
+				search: `?${fromSearch}`,
+			}}
+		/>
+	);
 }
+
+export default inject(['user', {maps: ['hasAuth']}])(RouteWithSubRoutes);

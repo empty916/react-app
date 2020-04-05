@@ -14,5 +14,4 @@ const User: React.FC<any> = ({routes = []}: any) => (
 		</Switch>
 	</Box>
 );
-
 export default Inject('user')(User);

@@ -1,8 +1,10 @@
 import AUTH, {AuthType} from '@/constants/Auth';
 
+const ls = window.localStorage;
+
 export default {
 	state: {
-		name: '',
+		name: ls.name || '',
 		level: 1,
 		role: 'admin',
 	},
@@ -28,6 +30,10 @@ export default {
 		}],
 	},
 	actions: {
-		updateName: (event: any) => ({name: event.target.value}),
+		updateName: (event: any) => {
+			const name = event?.target?.value || '';
+			ls.name = name;
+			return {name};
+		},
 	},
 };
