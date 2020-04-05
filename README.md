@@ -3,7 +3,27 @@
 react项目模板，支持typescript，react 16.8，router 5.1,
 
 
-## 运行项目
+# 目录
+
+- [运行项目](#run)
+- [npm命令说明](#npm-script)
+- [目录结构](#project-dir)
+- [路径别名](#path-alias)
+- [微模块架构](#micro-module-architecture)
+- [路由](#router)
+- [状态管理器](#state-manager)
+- [create:module 创建模块脚本](#create-module)
+- [mock](#mock)
+- [icon](#icon)
+- [theme，主题控制](#theme)
+- [权限控制](#auth)
+- [国际化](#i18n)
+- [开源工具库](#os-utils)
+- [本地工具库 src/utils](#local-utils)
+- [UI框架使用规范](#ui-detail)
+
+
+## <a id='run'>运行项目</a>
 
 1. 进入根目录
 1. 运行命令，安装依赖
@@ -30,7 +50,7 @@ react项目模板，支持typescript，react 16.8，router 5.1,
    // 或者 npm run dev
    ````
 
-## npm命令说明
+## <a id='npm-script'>npm命令说明</a>
 
 1. dev 开发
 1. mock 启动mock服务
@@ -45,15 +65,58 @@ react项目模板，支持typescript，react 16.8，router 5.1,
 	// 比如
 	npm run cc controller/dog
 	// 即可在mock-server/src/controller文件夹下创建dog控制器，并自动注入完成。
+
    ````
 
-## 路径别名
+## <a id='project-dir'>目录结构</a>
+
+
+### 项目业务代码目录
+- src 
+	- APP 项目组件入口
+	- assets 静态资源
+	- components 公共组件
+		- base 基础组件
+		- bisiness 业务组件
+	- constants 静态变量
+	- http 请求服务封装
+	- modules 所有页面及其业务逻辑
+	- routes 路由相关
+	- service 服务模块
+    	- theme **material主题配置在这里**
+    	- app app服务
+    	- i18n 国际化服务
+    	- user 用户服务
+	- store 全局状态，公共状态
+	- theme 原生主题控制，**⚠️material主题配置不在这里，这里的东西会被直接打包在html中**
+	- utils 工具包
+
+### mock服务目录
+- mock-server 
+  - src
+    - proxy 代理配置
+    - controller 控制器代码，主要写mock服务
+
+### 项目打包配置及脚本
+- server
+  - autoGetModule 自动获取懒加载模块脚本
+  - creat_module 自动创建模块脚本及模板
+  - dll 存放dll包
+  - webpack webpack配置
+  - build_dll.js dll打包脚本
+  - build.js 项目打包脚本
+  - builder.js项目打包器
+  - dev.js 启动本地开发环境脚本
+
+## <a id='path-alias'>路径别名</a>
 
 1. @ => src
+1. @base => src/components/base
+1. @biz => src/components/bussiness
 5. @inject => natur/dist/inject
 6. @channel => buildConfig/channel/${channel}
 
-## 微模块架构
+## <a id='micro-module-architecture'>微模块架构</a>
 
 1. 一个模块包括**业务逻辑、UI、后台交互**等，这些组成一个模块，存放在一个文件夹中
 2. 所有的模块都放在src/modules下，可以包含多层级
@@ -73,13 +136,13 @@ react项目模板，支持typescript，react 16.8，router 5.1,
 // 而不是在每个子模块中都新建service.ts项去单独维护
 ```
 
-## 路由
+## <a id='router'>路由</a>
 
 1. 路由配置在src/routes中,
 2. 应全部都使用懒加载
 3. 二级子路由也应放在此处，方便整个项目路由的统一维护
 
-## 状态管理器
+## <a id='state-manager'>状态管理器</a>
 
 1. 使用的是[natur](https://www.npmjs.com/package/natur) 
 2. 中间件配置
@@ -91,7 +154,7 @@ const store = createStore(
 	lazyModules as any,
 	undefined,
 	[
-		thunkMiddleware, // action可以返回函数，接受getState，setState, getMaps两个参数
+		thunkMiddleware, // action可以返回函数，接受getState，setState, getMaps, dispatch几个参数
 		promiseMiddleware,// 支持异步操作
 		fillObjectRestDataMiddleware, // 支持action增量更新state
 		shallowEqualMiddleware, // 支持对象浅层比较优化
@@ -102,7 +165,7 @@ const store = createStore(
 ```
 
 
-## create:module 创建模块脚本
+## <a id='create-module'>create:module 创建模块脚本</a>
 
 **建议使用此命令**
 
@@ -113,7 +176,9 @@ const store = createStore(
 
 
 
-## mock
+## <a id='mock'>mock</a>
+
+**mock服务器不仅仅是mock数据，还是真正的后台接口转发器，所以不论是否需要mock数据，你都应该将它开启，mockjs已经在依赖里面，结合使用更香**
 
 1. mock服务器使用的是nestjs框架，需要先安装依赖才能运行
 	```typescript
@@ -127,7 +192,7 @@ const store = createStore(
 6. mock接口写在mock-server/src/controller中，可以结合mockjs 模拟假数据
 
 
-## icon
+## <a id='icon'>icon</a>
 **[icon库查看](https://material-ui.com/zh/components/material-icons/)**
 
 1. 方式一 
@@ -145,11 +210,11 @@ const store = createStore(
    <Star />
    ````
 
-## theme，主题控制
+## <a id='theme'>theme，主题控制</a>
 
 1. 基本上项目的主题都可以通过material的主题方案控制，放在/src/service/theme/material.ts
 1. 需要原声控制的主题样式都放在theme文件夹下，然后引入到App/index.js中
-2. 使用business/theme/index.js控制主题切换
+2. 使用/service/theme/index.js控制主题切换
 	1. 创建样式文件, 定义样式变量
 	```scss
 	/* src/theme/demo.scss */
@@ -159,7 +224,7 @@ const store = createStore(
 	```
 	2. 给予自定义样式变量初始值
 	```typescript
-	// theme/config.ts
+	// src/theme/config.ts
 	export default {
 		// ...其他变量
 		// 你的变量
@@ -176,15 +241,45 @@ const store = createStore(
 
 	3. 动态改变样式
 	```typescript
-	import theme from '@/business/theme';
+	import theme from '@/service/theme';
 	theme.set('borderRadius', '0px');
 	```
 
-## 权限控制
+## <a id='auth'>权限控制</a>
 
-1. 权限控制使用HOC实现，具体代码参考business/Authority.js
+1. 权限控制使用HOC实现，具体代码参考@biz/Authority.tsx
+   ````typescript
+   // 权限判断的逻辑在/src/store/user.store.ts中
+   // 支持单个权限、权限等级、角色权限三种控制方式
+   import Button from '@material-ui/core';
+   import Authority from '@biz/Authority';
 
-## 开源工具库
+   const AuthButton = Authority.createAuthFilterHOC(Button);
+
+   <AuthButton auth='login' authLevel={1} authRole='admin' />
+   ````
+
+## <a id='i18n'>国际化</a>
+
+1. 在@/service/i18n.ts中，有两个方法，一个是t函数，一个是useI18n方法，区别是useI18n可以监听语言配置的变化，自动刷新组件。
+2. 语言包的定义都在@/constants/lang中
+
+````typescript
+
+import React from 'react';
+import {t, useI18n} from '@/service/i18n';
+
+t('hello') // 你好 ｜ hello
+
+const Comp: React.FC = () => {
+	const $t = useI18n();
+	return $t('hello');
+}
+
+````
+
+
+## <a id='os-utils'>开源工具库</a>
 
 1. 基础工具函数[lodash](https://www.npmjs.com/package/lodash)
 2. 表单校验[react-hook-form](https://www.npmjs.com/package/react-hook-form)
@@ -196,18 +291,17 @@ const store = createStore(
 7. [d3](https://www.npmjs.com/package/d3)
 8. [rxjs](https://www.npmjs.com/package/rxjs)
 
-## 本地工具库 src/utils
+## <a id='local-utils'>本地工具库 src/utils</a>
 
-1. 主要的request请求都放在request中，包括普通请求，文件下载之类的前后端对接模块
-2. hooks.ts，其中含有常用的hooks方法
-3. regExps.ts 存放常用的正则
-4. validator.ts 存放数据校验函数工具
+1. hooks.ts，其中含有常用的hooks方法
+1. regExps.ts 存放常用的正则
+1. validator.ts 存放数据校验函数工具
 
 
-## UI框架使用规范
+## <a id='ui-detail'>UI框架使用规范</a>
 
-1. 本项目使用**material ui**作为主要的UI框架
-2. 在使用**material ui**中的组件时，需要在/business/base中引入并导出，这么做的目的是隔离三方组件，以防业务需求，可以做二次封装
+1. 本项目使用[material ui](https://material-ui.com/zh/getting-started/usage/)作为主要的UI框架
+2. 在使用[material ui](https://material-ui.com/zh/getting-started/usage/)中的组件时，需要在/business/base中引入并导出，这么做的目的是隔离三方组件，以防业务需求，可以做二次封装
 3. 在本项目中无法直接使用自定义的组件导入，这是由于typescript无法配置自定义的依赖路径导致
 	```javascript
 	// 错误， typescript报错
