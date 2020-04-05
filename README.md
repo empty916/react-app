@@ -195,19 +195,19 @@ const store = createStore(
 ## <a id='icon'>icon</a>
 **[icon库查看](https://material-ui.com/zh/components/material-icons/)**
 
-1. 方式一 
+1. 方式一 要将官网查到的icon的驼峰命名法改为'_'分隔符命名
    
    ````typescript
    import { Icon } from '@material-ui/core';
 
-   <Icon>star</Icon>
+   <Icon>airline_seat_flat</Icon>
    ````
 
 2. 方式二
    ````typescript
-   import Star from '@material-ui/icon/Star';
+   import AirlineSeatFlat from '@material-ui/icons/AirlineSeatFlat';
 
-   <Star />
+   <AirlineSeatFlat />
    ````
 
 ## <a id='theme'>theme，主题控制</a>
