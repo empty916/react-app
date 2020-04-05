@@ -1,9 +1,10 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { hasAuth } from '@/service/user';
 import AUTH from '@/constants/Auth';
 import qs from 'query-string';
 import { inject } from 'natur';
+import RouteWithSubRoutes from './RouteWithSubRoutes';
 
 const redirectWithoutAuth: any = {
 	[AUTH.LOGIN_AUTH]: '/',
@@ -12,7 +13,7 @@ const redirectWithoutAuth: any = {
 function AuthRoute({ component, auth, ...rest }: any) {
 	if (hasAuth(auth)) {
 		return (
-			<Route
+			<RouteWithSubRoutes
 				{...rest}
 				component={component}
 			/>

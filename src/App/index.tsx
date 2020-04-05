@@ -26,8 +26,8 @@ const App: React.FC = () => (
 			>
 				<Bar />
 				<Switch>
-					{routes.map((route: any) => (
-						<AuthRoute key={route.path || route.key} {...route} />
+					{routes.map((route: any, index) => (
+						<AuthRoute key={route.path || `${index}`} {...route} />
 					))}
 					<Route component={Index} />
 				</Switch>

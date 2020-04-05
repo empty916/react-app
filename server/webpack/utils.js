@@ -27,7 +27,7 @@ module.exports.getPath = getPath;
 module.exports.getArg = getArg;
 
 // dll 通用配置 start
-const { dllPath } = require('./config');
+const { dllPath, jsPublicPath, imgPublicPath, cssPublicPath } = require('./config');
 
 const { channel, project } = getArg();
 const getAddAssethtmlPluginsConfig = mode => glob.sync(`${dllPath}/${mode}/*.dll.js`).map(
@@ -36,7 +36,7 @@ const getAddAssethtmlPluginsConfig = mode => glob.sync(`${dllPath}/${mode}/*.dll
 		includeSourcemap: false,
 		typeOfAsset: 'js',
 		outputPath: 'js',
-		publicPath: './js',
+		publicPath: jsPublicPath.endsWith('/') ? `${jsPublicPath}js/` : `${jsPublicPath}/js/`,
 	}),
 );
 const getDllReferencePluginsConfig = mode => glob.sync(`${dllPath}/${mode}/*.json`).map(
@@ -65,7 +65,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 				loader: MiniCssExtractPlugin.loader,
 				options: {
 					hmr: isDev,
-					publicPath: isDev ? '' : '../',
+					publicPath: imgPublicPath,
 				},
 			},
 			{
@@ -95,7 +95,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 				loader: MiniCssExtractPlugin.loader,
 				options: {
 					hmr: isDev,
-					publicPath: isDev ? '' : '../',
+					publicPath: imgPublicPath,
 				},
 			},
 			{
@@ -118,7 +118,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 				loader: MiniCssExtractPlugin.loader,
 				options: {
 					hmr: isDev,
-					publicPath: isDev ? '' : '../',
+					publicPath: imgPublicPath,
 				},
 			},
 			{
@@ -147,7 +147,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 				loader: MiniCssExtractPlugin.loader,
 				options: {
 					hmr: isDev,
-					publicPath: isDev ? '' : '../',
+					publicPath: imgPublicPath,
 				},
 			},
 			{

@@ -8,7 +8,7 @@ const {
 	getArg,
 } = require('./utils');
 
-
+const { jsPublicPath } = require('./config');
 const { project, channel, PROJECT_ENV } = getArg();
 
 const mode = 'development';
@@ -20,6 +20,7 @@ module.exports = merge(baseConfig, {
 	output: {
 		chunkFilename: 'js/[name].js',
 		filename: 'js/[name].js',
+		publicPath: jsPublicPath
 	},
 	resolve: {
 		alias: {

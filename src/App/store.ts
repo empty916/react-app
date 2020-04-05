@@ -42,7 +42,7 @@ const state = {
 				{
 					icon: 'person',
 					title: '用户',
-					to: '/user-list',
+					to: '/user/list',
 				},
 			],
 		},
