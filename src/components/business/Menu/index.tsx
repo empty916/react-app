@@ -120,9 +120,11 @@ const AppMenu: React.FC<{ app: InjectStoreModule }> = ({ app }) => {
 									component={Link as any}
 									to={item.to}
 								>
-									<ListItemIcon>
-										<Icon>{item.icon}</Icon>
-									</ListItemIcon>
+									{item.icon && (
+										<ListItemIcon>
+											<Icon>{item.icon}</Icon>
+										</ListItemIcon>
+									)}
 									<ListItemText primary={item.title} />
 								</ListItem>
 							);
@@ -136,7 +138,7 @@ const AppMenu: React.FC<{ app: InjectStoreModule }> = ({ app }) => {
 								key={item.title + String(item.to)}
 								isMenuOpen={open}
 								selected={isSubListSelected}
-								icon={<Icon>{item.icon}</Icon>}
+								icon={item.icon && <Icon>{item.icon}</Icon>}
 								open={isSubListSelected}
 							>
 								{item.children.map((subItem: any) => (
@@ -147,9 +149,11 @@ const AppMenu: React.FC<{ app: InjectStoreModule }> = ({ app }) => {
 										component={Link as any}
 										to={subItem.to}
 									>
-										<ListItemIcon>
-											<Icon>{subItem.icon}</Icon>
-										</ListItemIcon>
+										{subItem.icon && (
+											<ListItemIcon>
+												<Icon>{subItem.icon}</Icon>
+											</ListItemIcon>
+										)}
 										<ListItemText primary={subItem.title} />
 									</ListItem>
 								))}

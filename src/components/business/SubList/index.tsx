@@ -73,7 +73,7 @@ const SubList: React.FC<SubListItemProps> = ({
 				onClick={$onClick}
 				style={style}
 			>
-				{icon && (
+				{!!icon && (
 					<ListItemIcon>
 						{icon}
 					</ListItemIcon>
