@@ -7,6 +7,7 @@ import {
 	fillObjectRestDataMiddleware,
 } from 'natur/dist/middlewares';
 import devTool from '@redux-devtool';
+import NaturService from 'natur-service';
 import app from '../App/store';
 import user from './user.store';
 import lazyModuleConfig from './lazyModule';
@@ -26,5 +27,6 @@ const store = createStore(modules, lazyModules as any, undefined, [
 	filterUndefinedMiddleware,
 	devTool,
 ]);
+NaturService.store = store;
 
 export default store;
