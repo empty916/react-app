@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { hasAuth } from '@/service/user';
-import qs from 'query-string';
+import qs from 'qs';
 import { inject } from 'natur';
 import { redirectWithoutAuth } from './AuthRoute';
 
