@@ -4,6 +4,8 @@ import {
 } from 'history';
 
 // const currentHistory = createHashHistory();
-const currentHistory = createBrowserHistory();
+const currentHistory = createBrowserHistory({
+	basename: '/admin/',
+});
 
 export default currentHistory;
