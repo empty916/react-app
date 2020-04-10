@@ -7,6 +7,7 @@ const publicPath = PROJECT_ENV === 'development' ? '/' : '/admin/';
 module.exports = {
 	dllPath: getPath('server', 'dll'),
 	distPath: getPath('dist', channel, project),
+	publicPath,
 	jsPublicPath: publicPath,
 	cssPublicPath: publicPath,
 	imgPublicPath: publicPath

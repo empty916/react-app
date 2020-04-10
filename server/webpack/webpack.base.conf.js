@@ -19,7 +19,7 @@ const {
 	createStylePlugin
 } = require("./utils");
 
-const { distPath } = require("./config");
+const { distPath, publicPath } = require("./config");
 
 const { project, channel, PROJECT_ENV } = getArg();
 
@@ -156,7 +156,8 @@ module.exports = {
 			paths: true
 		}),
 		new webpack.DefinePlugin({
-			"process.env.PROJECT_ENV": JSON.stringify(PROJECT_ENV)
+			"process.env.PROJECT_ENV": JSON.stringify(PROJECT_ENV),
+			"process.env.BASE_URL": JSON.stringify(publicPath),
 		}),
 		new HardSourceWebpackPlugin(),
 		new HappyPack({

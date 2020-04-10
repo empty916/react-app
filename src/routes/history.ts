@@ -5,7 +5,6 @@ import {
 
 // const currentHistory = createHashHistory();
 const currentHistory = createBrowserHistory({
-	basename: '/admin/',
+	basename: process.env.BASE_URL,
 });
-
 export default currentHistory;
