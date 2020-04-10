@@ -1,37 +1,35 @@
 import { Store } from 'natur';
-import store from './index';
+import storeInstance from './index';
 
-function StoreModule(moduleName: string): any {
-	console.log(moduleName);
-	return function (target: any, name: string, descriptor: any) {
-		const v = store.getModule(moduleName);
-		// 返回一个新的描述对象，或者直接修改 descriptor 也可以
-		return {
-			enumerable: true,
-			configurable: true,
-			get() {
-				return v;
-			},
-		};
-	};
-}
 
 class NaturService {
-	static store: Store | undefined;
+	static store: Store;
 
-	@StoreModule('app')
-	app = null;
+	[mn: string]: any;
 
-	demo: number = 1;
+	listener: Array<Function> = [];
 
-	constructor() {
-		this.demo = 2;
-		console.log(this.app);
+	getModule(moduleName: string, onUpdate: Function) {
+		const {store} = NaturService;
+		if (!store.hasModule(moduleName)) {
+			throw new Error(`${moduleName} is invalid!`);
+		}
+		this.sub(moduleName, onUpdate);
+		this[moduleName] = NaturService.store.getModule(moduleName);
+	}
+
+	sub(moduleName: string, onUpdate: Function) {
+		this.listener.push(NaturService.store.subscribe(moduleName, () => {
+			this[moduleName] = NaturService.store.getModule(moduleName);
+			onUpdate();
+		}));
+	}
+
+	destroy() {
+		this.listener.forEach(unSub => unSub());
 	}
 }
 
-NaturService.store = store;
-
-// const a = new NaturService();
+NaturService.store = storeInstance;
 
 export default NaturService;
