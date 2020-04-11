@@ -49,26 +49,3 @@
 		border: 0.3px solid $borderColor;
 	}
 }
-
-@mixin boxShadow($shadowColor: rgba(29,35,41,.05)) {
-	box-shadow: 2px 0 8px 0 $shadowColor;
-}
-
-// 单一属性的多风格创建方法
-@mixin createTheme($suffix, $prop, $ThemeSrc) {
-	@for $i from 1 through $themeLen {
-		.#{$suffix}#{nth($themeName, $i)} {
-			#{$prop}: nth($ThemeSrc, $i);
-			@content;
-		}
-	}
-}
-
-// 多属性的多风格创建方法
-// customer createTheme
-// @for $i from 1 through $themeLen {
-//   .btn-#{nth($themeName, $i)} {
-//     background-color: nth($btnBgColor, $i);
-//     color: green;
-//  }
-// }
