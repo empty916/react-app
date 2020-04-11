@@ -10,6 +10,7 @@ import devTool from '@redux-devtool';
 import NaturService from 'natur-service';
 import app from '../App/store';
 import user from './user.store';
+import createLsMiddleware from './lsMiddleware';
 import lazyModuleConfig from './lazyModule';
 
 const { modules: lazyModules } = lazyModuleConfig;
@@ -19,14 +20,22 @@ const modules = {
 	user,
 };
 
-const store = createStore(modules, lazyModules as any, undefined, [
-	thunkMiddleware,
-	promiseMiddleware,
-	fillObjectRestDataMiddleware,
-	shallowEqualMiddleware,
-	filterUndefinedMiddleware,
-	devTool,
-]);
+const { middleware: localStorageMiddleware, getData } = createLsMiddleware('_data');
+
+const store = createStore(
+	modules,
+	lazyModules as any,
+	getData(),
+	[
+		thunkMiddleware,
+		promiseMiddleware,
+		fillObjectRestDataMiddleware,
+		shallowEqualMiddleware,
+		filterUndefinedMiddleware,
+		devTool,
+		localStorageMiddleware,
+	],
+);
 NaturService.store = store;
 
 export default store;
