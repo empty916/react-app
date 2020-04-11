@@ -2,7 +2,7 @@ const { getArg, getPath } = require('./utils');
 
 const { channel, project, PROJECT_ENV } = getArg();
 
-const publicPath = PROJECT_ENV === 'development' ? '/' : '/admin/';
+const publicPath = PROJECT_ENV === 'development' ? '/' : '/';
 
 module.exports = {
 	dllPath: getPath('server', 'dll'),
