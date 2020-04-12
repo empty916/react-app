@@ -7,7 +7,7 @@ import Loading from '@base/Skeleton';
 import UserWrapper from '@/modules/user';
 import delayLoad from './delay-load';
 
-const _loadabel = (c: () => Promise<any>, time: number = 300) => loadabel(() => delayLoad(c, time), {
+const _loadabel = (c: () => Promise<any>, time: number = 700) => loadabel(() => delayLoad(c, time), {
 	fallback: <Loading />,
 });
 
