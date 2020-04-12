@@ -2,11 +2,12 @@
 import React from 'react';
 import loadabel from '@loadable/component';
 import Auth from '@/constants/Auth';
-import Loading from '@base/Loading';
+import Loading from '@base/Skeleton';
+// import Loading from '@base/Loading';
 import UserWrapper from '@/modules/user';
 import delayLoad from './delay-load';
 
-const _loadabel = (c: () => Promise<any>, time: number = 500) => loadabel(() => delayLoad(c, time), {
+const _loadabel = (c: () => Promise<any>, time: number = 700) => loadabel(() => delayLoad(c, time), {
 	fallback: <Loading />,
 });
 
