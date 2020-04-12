@@ -13,10 +13,10 @@ function createLsMid(name: string, time: number = 100) {
 	let lsData: Data = {};
 	const dataPrefix = `${name}/`;
 	const keyOfNameReg = new RegExp(`^${dataPrefix}[^]+`);
-	let isSaving: any = null;
+	const isSaving: any = {};
 	const saveToLocalStorage = (key: string|number, data: any) => {
-		clearTimeout(isSaving);
-		isSaving = setTimeout(() => setLsData(`${dataPrefix}${key}`, data), time);
+		clearTimeout(isSaving[key]);
+		isSaving[key] = setTimeout(() => setLsData(`${dataPrefix}${key}`, data), time);
 	};
 
 	const updateData = (
