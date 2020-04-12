@@ -3,13 +3,14 @@ import React from 'react';
 import loadabel from '@loadable/component';
 import Auth from '@/constants/Auth';
 import Loading from '@base/Loading';
+import UserWrapper from '@/modules/user';
+import delayLoad from './delay-load';
 
-
-const loadabelCommonPage = (c: () => Promise<any>) => loadabel(c, {
+const _loadabel = (c: () => Promise<any>, time: number = 500) => loadabel(() => delayLoad(c, time), {
 	fallback: <Loading />,
 });
 
-export const Index = loadabelCommonPage(() => import('@/modules/Page1'));
+export const Index = _loadabel(() => import('@/modules/Page1'));
 
 
 const routes = [
@@ -19,20 +20,20 @@ const routes = [
 	},
 	{
 		path: '/page2',
-		component: loadabelCommonPage(() => import('@/modules/Page2')),
+		component: _loadabel(() => import('@/modules/Page2')),
 	},
 	{
 		path: '/page3',
-		component: loadabelCommonPage(() => import('@/modules/Page3')),
+		component: _loadabel(() => import('@/modules/Page3')),
 	},
 	{
 		path: '/user',
-		component: loadabelCommonPage(() => import('@/modules/user')),
+		component: UserWrapper,
 		auth: Auth.LOGIN_AUTH,
 		routes: [
 			{
 				path: '/user/list',
-				component: loadabelCommonPage(() => import('@/modules/user/list')),
+				component: _loadabel(() => import('@/modules/user/list')),
 			},
 		],
 	},
