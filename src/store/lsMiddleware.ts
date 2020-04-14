@@ -9,20 +9,49 @@ const removeLsData = (name: string) => window.localStorage.removeItem(name);
 const getKeys = (keysReg: RegExp) => Object.keys(window.localStorage).filter(keysReg.test.bind(keysReg));
 const lsHasData = (keysReg: RegExp): boolean => !!getKeys(keysReg).length;
 
-function createLsMid(name: string, time: number = 100) {
+
+type CreateLocalStorageMiddleware = {
+	name?: string,
+	time?: number,
+	exclude?: Array<RegExp|string>,
+	specific?: {
+		[n: string]: number,
+	}
+}
+function createLsMid({name = 'natur', time = 100, exclude, specific = {}}: CreateLocalStorageMiddleware) {
 	let lsData: Data = {};
 	const dataPrefix = `${name}/`;
 	const keyOfNameReg = new RegExp(`^${dataPrefix}[^]+`);
 	const isSaving: any = {};
 	const saveToLocalStorage = (key: string|number, data: any) => {
-		clearTimeout(isSaving[key]);
-		isSaving[key] = setTimeout(() => setLsData(`${dataPrefix}${key}`, data), time);
+		const _time = specific[key] !== undefined ? specific[key] : time;
+		console.log(key, _time);
+		if (_time === 0) {
+			setLsData(`${dataPrefix}${key}`, data);
+		} else {
+			clearTimeout(isSaving[key]);
+			isSaving[key] = setTimeout(() => setLsData(`${dataPrefix}${key}`, data), time);
+		}
 	};
-
+	const excludeModule = (targetName: string) => {
+		if (exclude) {
+			const shouldExclude = exclude.some(exc => {
+				if (exc instanceof RegExp) {
+					return exc.test(targetName);
+				}
+				return exc === targetName;
+			});
+			return shouldExclude;
+		}
+		return false;
+	};
 	const updateData = (
 		data: Data,
 		record: { moduleName: string | number; state: any },
 	) => {
+		if (excludeModule(record.moduleName as string)) {
+			return;
+		}
 		data[record.moduleName] = record.state;
 		saveToLocalStorage(record.moduleName, record.state);
 	};

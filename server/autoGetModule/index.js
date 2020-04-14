@@ -20,7 +20,8 @@ const generateLazyModule = matchLazyModule({
     moduleDirName,
 	matchFileName,
     importPathPrefix,
-    fileName
+    fileName,
+    exclude: /user/,
 });
 
 module.exports = generateLazyModule;

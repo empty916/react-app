@@ -20,7 +20,13 @@ const modules = {
 	user,
 };
 
-const { middleware: localStorageMiddleware, getData } = createLsMiddleware('_data', 200);
+const { middleware: localStorageMiddleware, getData } = createLsMiddleware({
+	name: '_data',
+	time: 500,
+	specific: {
+		user: 0,
+	},
+});
 
 const store = createStore(
 	modules,
