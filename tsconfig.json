@@ -47,6 +47,7 @@
 			"@channel": ["buildConfig/channel/common/index.ts"],
 			"@channel/*": ["buildConfig/channel/common/*"],
 			"@inject": ["node_modules/natur/dist/inject.d.ts"],
+			"@history": ["src/routes/history.ts"],
 			// "@": ["src"],
 			"@/*": ["src/*"],
 			"@base/*": ["src/components/base/*"],

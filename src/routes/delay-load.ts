@@ -4,7 +4,7 @@
  * 那么使用loading或者骨架屏时会一闪而过，很影响用户体验。
  * 所以用此方法，可以让懒加载模块在第一次加载时，最少等待一定的时间，然后再加载。
  */
-function createDelayLoad() {
+export function createDelayLoad() {
 	const promiseFuncMap = new Map();
 	/**
      * @param p 一个返回promise的函数

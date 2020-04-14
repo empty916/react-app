@@ -49,6 +49,7 @@ module.exports = {
 			"@": getPath(`${project}`),
 			"@inject": "natur/dist/inject",
 			"@base": getPath(`${project}/components/base`),
+			"@history": getPath(`${project}/routes/history`),
 			"@biz": getPath(`${project}/components/business`),
 			"@styles": getPath(`${project}/utils/styles`),
 			"@channel": getPath(`buildConfig/channel/${channel}`)

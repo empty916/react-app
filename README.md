@@ -113,8 +113,9 @@ react项目模板，支持typescript，react 16.8，router 5.1,
 1. @ => src
 1. @base => src/components/base
 1. @biz => src/components/bussiness
-5. @inject => natur/dist/inject
-6. @channel => buildConfig/channel/${channel}
+1. @inject => natur/dist/inject
+1. @history => src/routes/history
+1. @channel => buildConfig/channel/${channel}
 
 ## <a id='micro-module-architecture'>微模块架构</a>
 
