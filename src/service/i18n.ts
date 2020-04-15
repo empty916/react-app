@@ -17,6 +17,6 @@ export const useI18n = () => {
 		if (getStoreLang() !== lang) {
 			setLang(getStoreLang());
 		}
-	}), [lang]);
+	}), []); // eslint-disable-line
 	return t;
 };
