@@ -24,7 +24,6 @@ function createLsMid({name = 'natur', time = 100, exclude, specific = {}}: Creat
 	const isSaving: any = {};
 	const saveToLocalStorage = (key: string|number, data: any) => {
 		const _time = specific[key] !== undefined ? specific[key] : time;
-		console.log(key, _time);
 		if (_time === 0) {
 			setLsData(`${dataPrefix}${key}`, data);
 		} else {
