@@ -8,9 +8,9 @@ import {
 } from 'natur/dist/middlewares';
 import devTool from '@redux-devtool';
 import NaturService from 'natur-service';
+import createPersistMiddleware from 'natur-persist';
 import app from '../App/store';
 import user from './user.store';
-import createLsMiddleware from './lsMiddleware';
 import lazyModuleConfig from './lazyModule';
 
 const { modules: lazyModules } = lazyModuleConfig;
@@ -20,9 +20,9 @@ const modules = {
 	user,
 };
 
-const { middleware: localStorageMiddleware, getData } = createLsMiddleware({
+const { middleware: localStorageMiddleware, getData } = createPersistMiddleware({
 	name: '_data',
-	time: 500,
+	time: 300,
 	specific: {
 		user: 0,
 	},
