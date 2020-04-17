@@ -18,4 +18,4 @@ const Bar:React.FC<{app: InjectStoreModule}> = ({app}) => (
 	</AppBar>
 );
 
-export default inject<{app: InjectStoreModule}>('app')(Bar);
+export default inject<{app: InjectStoreModule}>(['app', {}])(Bar);

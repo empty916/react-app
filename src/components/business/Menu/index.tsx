@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	paper: {
 		backgroundColor: '#fff',
 		backgroundImage: `url(${sideBarBgImg})`,
-		backgroundSize: 'cover',
+		backgroundSize: 'auto 100%',
 		backgroundPosition: 'center',
 		'&:after': {
 			backgroundColor: 'rgba(0,0,0, 0.6)',

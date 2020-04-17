@@ -1,6 +1,8 @@
 import AUTH, {AuthType} from '@/constants/Auth';
 
 
+const getStateNameIsExist = (state: any) => !!state.name;
+
 export default {
 	state: {
 		name: '',
@@ -8,15 +10,15 @@ export default {
 		role: 'admin',
 	},
 	maps: {
-		isLogin: ['name', (name:string) => !!name],
-		hasAuth: ['name', 'level', 'role', (name:string, level: number, role: string) => (auth: string | undefined, type: AuthType = 'auth') => {
+		isLogin: [getStateNameIsExist, (isExist: boolean) => isExist],
+		hasAuth: [getStateNameIsExist, 'level', 'role', (isExist:boolean, level: number, role: string) => (auth: string | undefined, type: AuthType = 'auth') => {
 			if (auth === undefined) {
 				return true;
 			}
 			switch (type) {
 				case 'auth':
 					if (auth === AUTH.LOGIN_AUTH) {
-						return !!name;
+						return !!isExist;
 					}
 					return !auth;
 				case 'level':
