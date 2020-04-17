@@ -4,7 +4,6 @@
 	"description": "react project",
 	"main": "index.js",
 	"scripts": {
-		"precommit": "lint:ts",
 		"dev": "cross-env NODE_ENV=development node ./server/dev.js --PROJECT_ENV development",
 		"mock": "cd mock-server && npm run start:dev",
 		"build:dll": "node ./server/build_dll.js",
@@ -21,17 +20,15 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "npm run lint:ts"
+			"pre-commit": "lint-staged"
 		}
 	},
 	"lint-staged": {
-		"*.ts(x)?": [
-			"eslint --fix",
-			"git add"
+		"src/**/*.{js,jsx,ts,tsx}": [
+			"eslint --fix"
 		],
 		"src/*.scss": [
-			"stylelint --fix",
-			"git add"
+			"stylelint"
 		]
 	},
 	"keywords": [

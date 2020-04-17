@@ -12,8 +12,9 @@ import { inject, InjectStoreModule } from 'natur';
 import styles from './style.scss';
 
 
-	  const a = 1;
+const a = 1;
 const f1 = {flex: 1};
+
 
 const App: React.FC = () => (
 	<ThemeProvider theme={materialTheme}>
@@ -37,5 +38,4 @@ const App: React.FC = () => (
 	</ThemeProvider>
 );
 
-// export default inject<{app: InjectStoreModule}>('app')(App);
 export default App;
