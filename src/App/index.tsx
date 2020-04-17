@@ -8,11 +8,9 @@ import AppMenu from '@biz/Menu';
 import Bar from '@biz/Bar';
 import routes, { Index } from '@/routes';
 import '@/theme/test.scss';
-import { inject, InjectStoreModule } from 'natur';
 import styles from './style.scss';
 
 
-	 const a = 1;
 const f1 = {flex: 1};
 
 
