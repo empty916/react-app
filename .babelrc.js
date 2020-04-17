@@ -47,11 +47,11 @@ module.exports = {
 		[
 			"@babel/preset-env",
 			{
-				// useBuiltIns: 'entry',
+				useBuiltIns: 'entry',
 				// targets: {
 				// 	ie: '9',
 				// },
-				// corejs: 3,
+				corejs: 3,
 				modules: false
 			}
 		],

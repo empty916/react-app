@@ -1,5 +1,5 @@
 // import 'core-js/stable';
-import '@babel/polyfill';
+// import '@babel/polyfill';
 import '@/utils/devToolInit';
 import React from 'react';
 import ReactDom from 'react-dom';
