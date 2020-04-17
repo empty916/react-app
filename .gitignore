@@ -5,7 +5,7 @@
 yarn.lock
 /tsconfig-backup.json
 /package-lock.json
-/server/dll
+/scripts/dll
 .DS_Store
 .stylelintcache
 /.idea

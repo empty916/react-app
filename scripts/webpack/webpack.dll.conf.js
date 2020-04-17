@@ -11,17 +11,18 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 // const baseConfig = require('./webpack.base.conf');
 const { getPath, getArg } = require('./utils');
+const { dllPath: dllBasePath } = require('./config');
 
 const { project } = getArg();
 
 // const { channel, project } = getArg();
 const dllVersion = '1.0.0';
 /**
- *
  * @param {*} mode  = ['development', 'production']
  */
 module.exports = mode => {
-	const dllPath = getPath('server', 'dll', mode);
+	const dllPath = path.resolve(dllBasePath, mode);
+	// getPath('scripts', 'dll', mode);
 	const isDev = mode === 'development';
 	return {
 		entry: {

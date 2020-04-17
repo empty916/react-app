@@ -98,7 +98,7 @@ react项目模板，支持typescript，react 16.8，router 5.1,
     - controller 控制器代码，主要写mock服务
 
 ### 项目打包配置及脚本
-- server
+- scripts
   - autoGetModule 自动获取懒加载模块脚本
   - creat_module 自动创建模块脚本及模板
   - dll 存放dll包
@@ -170,8 +170,8 @@ const store = createStore(
 
 **建议使用此命令**
 
-1. 创建模块脚本放在/server/create_module中
-2. 模块的模板放在/server/create_module/templates中，可以自行添加自己需要的模板
+1. 创建模块脚本放在/scripts/create_module中
+2. 模块的模板放在/scripts/create_module/templates中，可以自行添加自己需要的模板
 3. 在模板中定义的template字符串，在模块自动生成后会自动替换为模块名
 4. 例如用户新建aa-bb-cc/list模块，选择了base模板，那么base模板中的所有template字符串都会被替换为aaBbCcList字符
 

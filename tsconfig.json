@@ -78,7 +78,7 @@
   	"exclude": [
 		"node_modules",
 		"@channel",
-		"server",
+      "scripts",
 		"createPage",
 		"mock-server"
 	],
