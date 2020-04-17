@@ -1,6 +1,5 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { hasAuth } from '@/service/user';
 import AUTH from '@/constants/Auth';
 import qs from 'qs';
 import { inject } from 'natur';
@@ -10,7 +9,8 @@ export const redirectWithoutAuth: any = {
 	[AUTH.LOGIN_AUTH]: '/',
 };
 
-function AuthRoute({ component, auth, ...rest }: any) {
+function AuthRoute({ component, auth, user, ...rest }: any) {
+	const { hasAuth } = user.maps;
 	if (hasAuth(auth)) {
 		return (
 			<RouteWithSubRoutes
