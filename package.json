@@ -16,7 +16,7 @@
 		"lint": "lint-staged",
 		"lint:scss": "stylelint src/**/*.scss",
 		"lint:js": "eslint src/**/*.js",
-		"lint:ts": "eslint src/**/*.tsx",
+		"lint:ts": "eslint src/**/*.tsx --fix",
 		"hs": "http-server"
 	},
 	"husky": {
