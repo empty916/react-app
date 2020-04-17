@@ -4,7 +4,7 @@
 	"description": "react project",
 	"main": "index.js",
 	"scripts": {
-		"precommit": "linter",
+		"precommit": "lint-staged",
 		"dev": "cross-env NODE_ENV=development node ./server/dev.js --PROJECT_ENV development",
 		"mock": "cd mock-server && npm run start:dev",
 		"build:dll": "node ./server/build_dll.js",
