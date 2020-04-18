@@ -7,6 +7,7 @@ import {
 	fillObjectRestDataMiddleware,
 } from 'natur/dist/middlewares';
 import devTool from '@redux-devtool';
+import history from '@history';
 import NaturService from 'natur-service';
 import createPersistMiddleware from 'natur-persist';
 import app from '../App/store';
@@ -20,7 +21,7 @@ const modules = {
 	user,
 };
 
-const { middleware: localStorageMiddleware, getData } = createPersistMiddleware({
+const { middleware: localStorageMiddleware, getData, clearData } = createPersistMiddleware({
 	name: '_data',
 	time: 300,
 	// include: ['user', 'app'],
@@ -29,6 +30,17 @@ const { middleware: localStorageMiddleware, getData } = createPersistMiddleware(
 		user: 0,
 	},
 });
+
+const clearDataAtLoginPage = () => {
+	if (history.location.pathname.includes('login') && getData()) {
+		clearData();
+		window.location.reload();
+	}
+};
+
+window.addEventListener('load', clearDataAtLoginPage);
+history.listen(clearDataAtLoginPage);
+
 
 const store = createStore(
 	modules,

@@ -152,7 +152,7 @@
 		"hoist-non-react-statics": "^3.3.2",
 		"lodash": "^4.17.15",
 		"natur": "^1.1.8",
-		"natur-persist": "^1.1.0",
+		"natur-persist": "^1.1.1",
 		"natur-service": "^1.0.0",
 		"prop-types": "^15.7.2",
 		"qs": "^6.9.3",

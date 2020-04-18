@@ -4,3 +4,4 @@ redux.devtool.ts
 mock-server
 dist
 src/store/natur-persist
+natur-persist
