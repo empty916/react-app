@@ -23,7 +23,8 @@ const modules = {
 const { middleware: localStorageMiddleware, getData } = createPersistMiddleware({
 	name: '_data',
 	time: 300,
-	include: ['user', 'app'],
+	// include: ['user', 'app'],
+	// exclude: [/page/i, 'app'],
 	specific: {
 		user: 0,
 	},

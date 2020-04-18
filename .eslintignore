@@ -3,3 +3,4 @@ postcss.config.js
 redux.devtool.ts
 mock-server
 dist
+src/store/natur-persist
