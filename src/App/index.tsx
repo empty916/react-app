@@ -13,7 +13,6 @@ import styles from './style.scss';
 
 const f1 = {flex: 1};
 
-
 const App: React.FC = () => (
 	<ThemeProvider theme={materialTheme}>
 		<CssBaseline />

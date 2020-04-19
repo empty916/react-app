@@ -102,6 +102,7 @@ module.exports = {
 		'no-return-assign': 0,
 		'no-console': 0,
 		'no-plusplus': 0,
+		'no-unused-expressions': 0,
 		// 0、1、2分别表示不开启检查、警告、错误
 		indent: [2, 'tab', { SwitchCase: 1 }], // tab缩进
 		// 圈复杂度

@@ -31,15 +31,16 @@ const { middleware: localStorageMiddleware, getData, clearData } = createPersist
 	},
 });
 
-const clearDataAtLoginPage = () => {
+function clearDataAtLoginPage(shouldReload: boolean = true) {
 	if (history.location.pathname.includes('login') && getData()) {
 		clearData();
-		window.location.reload();
+		shouldReload && window.location.reload();
 	}
-};
+}
 
-window.addEventListener('load', clearDataAtLoginPage);
-history.listen(clearDataAtLoginPage);
+clearDataAtLoginPage(false);
+
+history.listen(() => clearDataAtLoginPage());
 
 
 const store = createStore(
