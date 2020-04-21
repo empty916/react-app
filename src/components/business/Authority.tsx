@@ -1,9 +1,8 @@
 /* eslint-disable */
 import React, { Component } from "react";
-import { hasAuth } from "@/service/user";
 import Auth, { AuthType } from "@/constants/Auth";
 import copyStatic from 'hoist-non-react-statics';
-import { inject } from "natur";
+import { inject, InjectStoreModule } from "natur";
 
 const authCheckType = (props: any): [string, AuthType][] => {
 	const res:[string, AuthType][] = [];
@@ -33,6 +32,12 @@ type Ref = {
 	forwardRef?: any,
 }
 
+type UserStoreModule = {
+	user: InjectStoreModule,
+};
+
+type AuthFilterProps<T> = T & AuthProps & Ref & UserStoreModule;
+
 /**
  * 权限模块
  */
@@ -46,12 +51,12 @@ class Authority {
 	 * @returns {AuthFilter}
 	 * @constructor
 	 */
-	static createAuthFilterHOC<T, U extends (T & AuthProps & Ref) = (T & AuthProps & Ref)>(WrappedComponent: React.ComponentClass<T> | React.FC<T>) {
+	static createAuthFilterHOC<T, U extends AuthFilterProps<T> =  AuthFilterProps<T>>(WrappedComponent: React.ComponentClass<T> | React.FC<T>) {
 		class AuthFilter extends Component<U> {
 			render() {
-				const { auth, authLevel, authRole, forwardRef, ...props } = this.props;
+				const { auth, authLevel, authRole, forwardRef, user, ...props } = this.props;
 				const checkTypes = authCheckType({auth, authLevel, authRole});
-				const authIsValid = checkTypes.some(ct => hasAuth(...ct));
+				const authIsValid = checkTypes.some(ct => user.maps.hasAuth(...ct));
 				if (forwardRef) {
 					(props as any).ref = forwardRef;
 				}
@@ -71,8 +76,8 @@ class Authority {
 				return <AuthFilter {...newProps} />
 			}) as any;
 		}
-		copyStatic(RefAuthFilter, WrappedComponent);
-		return inject(['user', {maps: ['hasAuth']}])(RefAuthFilter) as React.ComponentClass<U>;
+		RefAuthFilter = copyStatic(RefAuthFilter, WrappedComponent);
+		return inject<UserStoreModule>(['user', {maps: ['hasAuth']}])(RefAuthFilter as React.ComponentClass<U>);
 	}
 }
 

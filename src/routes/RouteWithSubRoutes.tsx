@@ -1,12 +1,11 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { hasAuth } from '@/service/user';
 import qs from 'qs';
 import { inject } from 'natur';
 import { redirectWithoutAuth } from './AuthRoute';
 
 
-function RouteWithSubRoutes({routes, component, auth, ...rest}: any) {
+function RouteWithSubRoutes({routes, component, user, auth, ...rest}: any) {
 	const Com = component;
 	const render = React.useCallback(
 		(props: any) => (
@@ -14,7 +13,7 @@ function RouteWithSubRoutes({routes, component, auth, ...rest}: any) {
 		),
 		[routes],
 	);
-	if (hasAuth(auth)) {
+	if (user.maps.hasAuth(auth)) {
 		return (
 			<Route
 				{...rest}
