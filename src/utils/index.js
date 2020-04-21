@@ -5,66 +5,6 @@ import _cloneDeep from 'lodash/cloneDeep';
 
 export const getUniqID = () => Math.random().toString(36).substr(2, 6);
 
-
-export const fillDate = str => {
-	const arr = str.split('');
-	arr.splice(4, 0, '-');
-	arr.splice(-2, 0, '-');
-	return arr.join('');
-};
-
-export const fillZero = n => (n < 10 ? `0${n}` : `${n}`);
-
-export const getToday = type => {
-	const d = new Date();
-	const y = d.getFullYear();
-	const M = d.getMonth() + 1;
-	const
-		day = d.getDate();
-	if (type) {
-		return y + type + fillZero(M) + type + fillZero(day);
-	}
-	return y + fillZero(M) + fillZero(day);
-};
-
-export const getTheDay = (num, type) => {
-	const d = new Date();
-	const time = d.getTime();
-	const D = new Date(time - (num) * (24 * 3600 * 1000));
-	const y = D.getFullYear();
-	const M = D.getMonth() + 1;
-	const
-		day = D.getDate();
-	if (type) {
-		return y + type + fillZero(M) + type + fillZero(day);
-	}
-	return y + fillZero(M) + fillZero(day);
-};
-
-export const getNow = type => {
-	const d = new Date();
-	const y = d.getFullYear();
-	const M = d.getMonth() + 1;
-	const day = d.getDate();
-	const h = d.getHours();
-	const m = d.getMinutes();
-	const s = d.getSeconds();
-	if (type) {
-		return `${y + type + fillZero(M) + type + fillZero(day)}:${fillZero(h)}${type}${fillZero(m)}${type}${fillZero(s)}`;
-	}
-	return y + fillZero(M) + fillZero(day) + fillZero(h) + fillZero(m) + fillZero(s);
-};
-
-const encode = encodeURIComponent;
-
-export const toQS = params => {
-	const paramsList = [];
-	for (const key in params) {
-		paramsList.push(`${encode(key)}=${encode(params[key])}`);
-	}
-	return paramsList.join('&');
-};
-
 export const formatMoney = (money, n) => {
 	if (!money || !(money = parseFloat(money))) {
 		money = 0;
@@ -111,42 +51,6 @@ export const dateFormatting = (fmt, dateStr) => {
 	return fmt;
 };
 
-/**
- * obj对象转化成select元素的option结构，
- * {0: '无效'} => [{value: '0', text: '无效'}]
- * @param obj
- * @returns {Array}
- */
-export const objToOptions = (obj, hasNull) => {
-	const options = Object.keys(obj).map(key => ({
-		value: key,
-		text: obj[key],
-	}));
-	hasNull && options.unshift({
-		value: '',
-		text: '请选择',
-	});
-	return options;
-};
-
-/**
- * 根据data， 创建select元素的option选项
- * @param data
- * @param value
- * @param text
- * @param hasNull
- */
-export const createOptions = ({data, value, text}, hasNull = false) => {
-	const options = data.map(item => ({
-		value: item[value],
-		text: item[text],
-	}));
-	hasNull && options.unshift({
-		value: '',
-		text: '请选择',
-	});
-	return options;
-};
 
 export const cloneDeep = _cloneDeep || (obj => JSON.parse(JSON.stringify(obj)));
 

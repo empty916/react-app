@@ -2,28 +2,9 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { dateFormatting } from '@/utils';
 import SHA256 from 'crypto-js/sha256';
 import channel from './config';
-import App from '../utils/loadingController';
 import history from '../routes/history';
 
 const { server: serverUrl } = channel;
-
-let hideLoadingCount = 0;
-
-const showLoading = (loading: boolean) => {
-	if (!loading) {
-		hideLoadingCount += 1;
-	} else {
-		App.showLoading();
-	}
-};
-
-const hideLoading = () => {
-	if (hideLoadingCount > 0 && hideLoadingCount > 0) {
-		hideLoadingCount -= 1;
-	} else {
-		App.hideLoading();
-	}
-};
 
 // 字典排序
 const azSort = (data: {[p: string]: any}) => {
@@ -109,7 +90,6 @@ instance.interceptors.request.use((requestConfig: IAxiosRequestConfig) => {
 			params = appendParams(data, url);
 		}
 	}
-	showLoading(loading);
 	requestCache[url] = createRequestRecords(params.requestNo);
 	const beforeSort = { ...data, ...params }; // 拼接参数
 	const afterSort = azSort(beforeSort); // 参数排序
@@ -119,11 +99,7 @@ instance.interceptors.request.use((requestConfig: IAxiosRequestConfig) => {
 
 	return requestConfig;
 },
-error => {
-	// 请求失败的时候，搞些事情
-	hideLoading();
-	return Promise.reject(error);
-});
+error => Promise.reject(error));
 
 // 响应拦截器
 instance.interceptors.response.use(
@@ -131,7 +107,6 @@ instance.interceptors.response.use(
 		// nativeLog(response);
 		// 服务端响应成功时，搞些事情
 		// console.log(`请求成功----->${JSON.stringify(response)}`);
-		hideLoading();
 		const { responseCode } = response.data;
 		// console.log('-----.', responseCode);
 		if (responseCode === '3001') {
@@ -146,9 +121,6 @@ instance.interceptors.response.use(
 	},
 	error => {
 		// 服务端响应失败时，搞些事情
-		// console.log(`请求失败----->${JSON.stringify(error)}`);
-		hideLoading();
-		// console.log(error);
 		if (error.message) {
 			// message.error(error.message, 2);
 		} else {
