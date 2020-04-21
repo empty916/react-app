@@ -10,7 +10,9 @@ export const hasAuth = (auth: string | undefined, authType?: AuthType) => store.
 class UserService extends NaturService {
 	constructor() {
 		super();
-		this.getModule('user');
+		this.getModule('user', ({oldModule, newModule}) => {
+			console.log(oldModule, newModule);
+		});
 	}
 
 	get isLogin() {
