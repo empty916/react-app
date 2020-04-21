@@ -108,18 +108,14 @@ module.exports = {
 		splitChunks: {
 			cacheGroups: {
 				vendors: {
-					priority: -10,
-					test: /\/node_modules/,
-					minChunks: 2
-				},
-				index: {
 					priority: 0,
-					test: new RegExp(`/${project}`),
+					name: 'vendors',
+					test: new RegExp(`(/${project})|(/node_modules)`),
+					// test: /\/node_modules/,
 					minChunks: 2
 				},
 				theme: {
 					priority: 10,
-					// test: /theme\.(s)?css$/,
 					test: new RegExp(`/${project}/theme/`),
 					name: "theme"
 				},
@@ -127,7 +123,6 @@ module.exports = {
 					priority: 9,
 					name: "styles",
 					test: /\.(s)?css$/,
-					// enforce: true
 				}
 			},
 			chunks: "all",
