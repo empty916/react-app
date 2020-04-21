@@ -7,8 +7,8 @@
         {
 			"type": "node",
 			"request": "launch",
-			"name": "autoGetModule",
-			"program": "${workspaceFolder}/server/autoGetModule/index.js"
+			"name": "auto-get-module",
+			"program": "${workspaceFolder}/server/auto-get-module/index.js"
 		},
 		{
 			"type": "node",

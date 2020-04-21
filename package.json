@@ -10,7 +10,7 @@
 		"build:dev": "cross-env NODE_ENV=development node scripts/build.js --PROJECT_ENV development",
 		"build:stg": "cross-env NODE_ENV=development node scripts/build.js --PROJECT_ENV stg",
 		"build:prd": "cross-env NODE_ENV=production node scripts/build.js --PROJECT_ENV production",
-		"create:module": "node scripts/create_module/index.js",
+		"create:module": "node scripts/create-module/index.js",
 		"cc": "cd ./mock-server && npm run create:controller"
 	},
 	"husky": {

@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const opn = require('opn');
 const WebpackDevServer = require('webpack-dev-server');
-const autoGetModule = require('./autoGetModule');
+const autoGetModule = require('./auto-get-module');
 const webpackConfig = require('./webpack/webpack.dev.conf');
 
 // const webpackConfig = createWebpackConfig();
