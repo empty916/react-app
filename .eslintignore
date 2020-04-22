@@ -5,3 +5,4 @@ mock-server
 dist
 src/store/natur-persist
 natur-persist
+natur-service.ts

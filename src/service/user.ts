@@ -6,7 +6,7 @@ class UserService extends NaturService {
 		super();
 		this.getModule('user');
 		// this.watch('user', ({state}) => {
-		// 	this.dispatch('page2/changePageName', state.name);
+		// 	this.dispatch('page2/changePageName', state.name).then(console.log);
 		// });
 	}
 

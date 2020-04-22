@@ -1,4 +1,4 @@
-import theme from '@/service/theme';
+// import theme from '@/service/theme';
 import zhLang from '@/constants/lang/zh';
 import enLang from '@/constants/lang/en';
 
@@ -51,10 +51,7 @@ const state = {
 
 
 const actions = {
-	update: (appName: string) => {
-		theme.set('cardBgColor', 'red');
-		return {name: appName};
-	},
+	update: (appName: string) => ({name: appName}),
 	setLang: (lang: 'zh' | 'en') => {
 		ls.lang = lang;
 		return {lang};
