@@ -19,7 +19,7 @@ const createMiddleware = ():Middleware => {
 					[record.moduleName]: record.state,
 				},
 			});
-			next(record);
+			return next(record);
 		}
 	}
 	return () => next => record => next(record);;

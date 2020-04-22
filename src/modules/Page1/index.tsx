@@ -4,6 +4,7 @@ import Input from '@base/Input';
 import { InjectStoreModule } from 'natur';
 import { Box, GridList, GridListTile } from '@material-ui/core';
 
+
 const Page1: React.FC<{user: InjectStoreModule}> = ({user}) => (
 	<>
 		<Box p={2} display='flex'>

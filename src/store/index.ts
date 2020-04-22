@@ -25,7 +25,7 @@ const { middleware: localStorageMiddleware, getData, clearData } = createPersist
 	name: '_data',
 	time: 300,
 	// include: ['user', 'app'],
-	// exclude: [/page/i, 'app'],
+	// exclude: [/page/i],
 	specific: {
 		user: 0,
 	},

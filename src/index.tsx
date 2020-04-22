@@ -3,9 +3,11 @@ import '@/utils/devToolInit';
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Router } from 'react-router-dom';
-import './store';
 import history from './routes/history';
 import App from './App';
+import './store';
+import '@/service/user';
+
 
 const content = (
 	<Router history={history}>
