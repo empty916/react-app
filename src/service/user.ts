@@ -1,5 +1,5 @@
 import { AuthType } from '@/constants/Auth';
-import NaturService from 'natur-service';
+import NaturService from './natur-service';
 
 class UserService extends NaturService {
 	constructor() {
@@ -8,10 +8,6 @@ class UserService extends NaturService {
 		this.watch('user', ({state}) => {
 			this.dispatch('page2/changePageName', state.name);
 		});
-	}
-
-	dispatch(type: string, ...arg: any[]) {
-		return super.dispatch(type, ...arg).catch(() => {});
 	}
 
 	get isLogin() {
