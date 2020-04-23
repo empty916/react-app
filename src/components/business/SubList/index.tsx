@@ -54,6 +54,9 @@ const SubList: React.FC<SubListItemProps> = ({
 		if (selected) {
 			setOpen(true);
 		}
+		// else {
+		// 	setOpen(false);
+		// }
 	}, [selected]);
 	const $onClick = React.useCallback((event: React.MouseEvent<HTMLElement, MouseEvent>) => {
 		setOpen(!open);
