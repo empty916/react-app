@@ -1,6 +1,7 @@
 // import theme from '@/service/theme';
 import zhLang from '@/constants/lang/zh';
 import enLang from '@/constants/lang/en';
+import { Location } from 'history';
 
 const ls = window.localStorage;
 
@@ -47,6 +48,7 @@ const state = {
 			],
 		},
 	],
+	location: null,
 };
 
 
@@ -56,6 +58,7 @@ const actions = {
 		ls.lang = lang;
 		return {lang};
 	},
+	updateLocation: (location: Location) => ({location}),
 	openMenu: () => ({isMenuOpen: true}),
 	closeMenu: () => ({isMenuOpen: false}),
 	toggleMenu: () => ({getState, setState}: any) => setState({isMenuOpen: !getState().isMenuOpen}),

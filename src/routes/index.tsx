@@ -1,6 +1,6 @@
 
 import React from 'react';
-import loadabel from '@loadable/component';
+import loadabel, { LoadableComponent } from '@loadable/component';
 import Auth from '@/constants/Auth';
 import Loading from '@base/Skeleton';
 // import Loading from '@base/Loading';
@@ -13,27 +13,39 @@ const _loadabel = (c: () => Promise<any>, time: number = 700) => loadabel(() => 
 
 export const Index = _loadabel(() => import('@/modules/Page1'));
 
+type Routes = {
+	path: string,
+	auth?: string,
+	component: React.ComponentClass | LoadableComponent<any>,
+	name: string,
+	routes?: Routes,
+}[]
 
-const routes = [
+const routes:Routes = [
 	{
 		path: '/page1',
+		name: 'page1',
 		component: Index,
 	},
 	{
 		path: '/page2',
+		name: 'page2',
 		component: _loadabel(() => import('@/modules/Page2')),
 	},
 	{
 		path: '/page3',
+		name: 'page3',
 		component: _loadabel(() => import('@/modules/Page3')),
 	},
 	{
 		path: '/user',
+		name: 'user',
 		component: UserWrapper,
 		auth: Auth.LOGIN_AUTH,
 		routes: [
 			{
 				path: '/user/list',
+				name: 'user-list',
 				component: _loadabel(() => import('@/modules/user/list')),
 			},
 		],

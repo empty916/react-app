@@ -6,7 +6,7 @@ import en from '@/constants/lang/en';
 class AppService extends NaturService {
 	constructor() {
 		super();
-		this.getModule('app');
+		this.bindModule('app');
 	}
 
 	get langData(): typeof zh | typeof en {

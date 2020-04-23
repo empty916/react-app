@@ -4,7 +4,7 @@ import NaturService from './natur-service';
 class UserService extends NaturService {
 	constructor() {
 		super();
-		this.getModule('user');
+		this.bindModule('user');
 		this.watch('user', ({state}) => {
 			this.dispatch('page2/changePageName', state.name);
 		});
