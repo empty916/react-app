@@ -100,6 +100,7 @@ module.exports = {
 		'jsx-a11y/anchor-has-content': 0,
 
 		'no-return-assign': 0,
+		'consistent-return': 0,
 		'no-console': 0,
 		'no-plusplus': 0,
 		'no-unused-expressions': 0,

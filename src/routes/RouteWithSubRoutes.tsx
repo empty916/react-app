@@ -4,9 +4,9 @@ import qs from 'qs';
 import { inject } from 'natur';
 import { redirectWithoutAuth } from './AuthRoute';
 
-function RouteWithSubRoutes({routes, component, user, app, auth, name, ...rest}: any) {
+
+function RouteWithSubRoutes({routes, component, user, auth, ...rest}: any) {
 	const Com = component;
-	React.useState(() => app.actions.updateLocation({...rest.location, name}));
 	const render = React.useCallback(
 		(props: any) => (
 			<Com {...props} routes={routes || []} />

@@ -2,12 +2,11 @@
 import zhLang from '@/constants/lang/zh';
 import enLang from '@/constants/lang/en';
 import { Location } from 'history';
-
-const ls = window.localStorage;
+import { MiddlewareParams } from 'natur';
 
 const state = {
 	name: 'app',
-	lang: ls.lang || 'zh',
+	lang: 'zh',
 	isMenuOpen: true,
 	menuData: [
 		{
@@ -53,15 +52,12 @@ const state = {
 
 
 const actions = {
-	update: (appName: string) => ({name: appName}),
-	setLang: (lang: 'zh' | 'en') => {
-		ls.lang = lang;
-		return {lang};
-	},
+	update: (name: string) => ({name}),
+	setLang: (lang: 'zh' | 'en') => ({lang}),
 	updateLocation: (location: Location) => ({location}),
 	openMenu: () => ({isMenuOpen: true}),
 	closeMenu: () => ({isMenuOpen: false}),
-	toggleMenu: () => ({getState, setState}: any) => setState({isMenuOpen: !getState().isMenuOpen}),
+	toggleMenu: () => ({getState}: MiddlewareParams) => ({isMenuOpen: !getState().isMenuOpen}),
 };
 
 const maps = {

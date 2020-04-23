@@ -17,14 +17,14 @@ type Routes = {
 	path: string,
 	auth?: string,
 	component: React.ComponentClass | LoadableComponent<any>,
-	name: string,
+	name?: string,
 	routes?: Routes,
 }[]
 
 const routes:Routes = [
 	{
 		path: '/page1',
-		name: 'page1',
+		name: 'index',
 		component: Index,
 	},
 	{
