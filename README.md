@@ -248,14 +248,14 @@ const store = createStore(
 
 ## <a id='auth'>权限控制</a>
 
-1. 权限控制使用HOC实现，具体代码参考@biz/Authority.tsx
+1. 权限控制使用HOC实现，具体代码参考@biz/AuthFilterHOC.tsx
    ````typescript
    // 权限判断的逻辑在/src/store/user.store.ts中
    // 支持单个权限、权限等级、角色权限三种控制方式
    import Button from '@material-ui/core';
-   import Authority from '@biz/Authority';
+   import AuthFilterHOC from '@biz/AuthFilterHOC';
 
-   const AuthButton = Authority.createAuthFilterHOC(Button);
+   const AuthButton = AuthFilterHOC(Button);
 
    <AuthButton auth='login' authLevel={1} authRole='admin' />
    ````

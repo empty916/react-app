@@ -1,5 +1,5 @@
 import Button from '@material-ui/core/Button';
-import Auth from '@biz/Authority';
+import AuthFilterHOC from '@biz/AuthFilterHOC';
 
 
-export default Auth.createAuthFilterHOC(Button);
+export default AuthFilterHOC(Button);

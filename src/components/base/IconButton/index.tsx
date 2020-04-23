@@ -1,5 +1,5 @@
 import IconButton from '@material-ui/core/IconButton';
-import Auth from '@biz/Authority';
+import AuthFilterHOC from '@biz/AuthFilterHOC';
 
 
-export default Auth.createAuthFilterHOC(IconButton);
+export default AuthFilterHOC(IconButton);
