@@ -1,6 +1,6 @@
 
 # react-project-template
-react项目模板，支持typescript，react 16.8，router 5.1,
+react项目模板，支持typescript，react 16.10，router 5.1,
 
 
 # 目录
@@ -12,7 +12,7 @@ react项目模板，支持typescript，react 16.8，router 5.1,
 - [微模块架构](#micro-module-architecture)
 - [路由](#router)
 - [状态管理器](#state-manager)
-- [create:module 创建模块脚本](#create-module)
+- [create:module](#create-module)
 - [mock](#mock)
 - [icon](#icon)
 - [theme，主题控制](#theme)
@@ -151,19 +151,20 @@ react项目模板，支持typescript，react 16.8，router 5.1,
 
 // 中间件执行顺序，从上至下，按顺序执行
 const store = createStore(
-	modules,
-	lazyModules as any,
-	undefined,
-	[
-		thunkMiddleware, // action可以返回函数，接受getState，setState, getMaps, dispatch几个参数
-		promiseMiddleware,// 支持异步操作
-		fillObjectRestDataMiddleware, // 支持action增量更新state
-		shallowEqualMiddleware, // 支持对象浅层比较优化
-		devTool, // 支持redux devtool
-		filterUndefinedMiddleware, // 不处理action返回的undefined结果
-	],
+  modules,
+  lazyModules as any,
+  undefined,
+  [
+    thunkMiddleware, // action可以返回函数，接受getState，setState, getMaps, dispatch几个参数
+    promiseMiddleware,// 支持异步操作
+    fillObjectRestDataMiddleware, // 支持action增量更新state
+    shallowEqualMiddleware, // 支持对象浅层比较优化
+    devTool, // 支持redux devtool
+    filterUndefinedMiddleware, // 不处理action返回的undefined结果
+  ],
 );
 ```
+3. 多个业务模块之间存在复杂交互场景，或者单个模块的业务逻辑较为复杂，使用[natur-service](https://www.npmjs.com/package/natur-service)方案
 
 
 ## <a id='create-module'>create:module 创建模块脚本</a>
@@ -273,8 +274,8 @@ import {t, useI18n} from '@/service/i18n';
 t('hello') // 你好 ｜ hello
 
 const Comp: React.FC = () => {
-	const $t = useI18n();
-	return $t('hello');
+  const $t = useI18n();
+  return $t('hello');
 }
 
 ````
