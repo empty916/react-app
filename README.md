@@ -221,16 +221,16 @@ const store = createStore(
 	```scss
 	/* src/theme/demo.scss */
 	.btn {
-		border-radius: borderRadius; // 随便定义一个变量
+      border-radius: borderRadius; // 随便定义一个变量
 	}
 	```
 	2. 给予自定义样式变量初始值
 	```typescript
 	// src/theme/config.ts
 	export default {
-		// ...其他变量
-		// 你的变量
-		borderRadius: '2px',
+      // ...其他变量
+      // 你的变量
+      borderRadius: '2px',
 	}
 	```
 	3. 使用样式
