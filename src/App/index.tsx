@@ -14,10 +14,10 @@ import styles from './style.scss';
 
 const f1 = { flex: 1 };
 
-const App: React.FC<{app: InjectStoreModule}> = ({app}) => {
+const App: React.FC<{router: InjectStoreModule}> = ({router}) => {
 	React.useState(() => {
-		app.actions.updateLocation(history.location);
-		history.listen(app.actions.updateLocation);
+		router.actions.updateLocation(history.location);
+		history.listen(router.actions.updateLocation);
 	});
 	return (
 		<ThemeProvider theme={materialTheme}>
@@ -38,4 +38,4 @@ const App: React.FC<{app: InjectStoreModule}> = ({app}) => {
 	);
 };
 
-export default inject<{app: InjectStoreModule}>(['app', {}])(App);
+export default inject<{router: InjectStoreModule}>(['router', {}])(App);

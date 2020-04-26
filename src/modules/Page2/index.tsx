@@ -55,5 +55,5 @@ store.setModule('page2', {
 	actions,
 })
 // Page2.displayName = 'Page2';
-export default Inject<PageProps>('page2', ['app', {}] as any)(Page2);
+export default Inject<PageProps>('page2', ['app', {}])(Page2);
 // export default Page2;

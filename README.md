@@ -145,7 +145,7 @@ react项目模板，支持typescript，react 16.10，router 5.1,
 
 ## <a id='state-manager'>状态管理器</a>
 
-1. 使用的是[natur](https://www.npmjs.com/package/natur) 
+1. 使用的是[natur](https://www.npmjs.com/package/natur)方案
 2. 中间件配置
 ```typescript
 
@@ -161,10 +161,12 @@ const store = createStore(
     shallowEqualMiddleware, // 支持对象浅层比较优化
     devTool, // 支持redux devtool
     filterUndefinedMiddleware, // 不处理action返回的undefined结果
+    localStorageMiddleware, // 缓存到localStorage中的中间件
   ],
 );
 ```
 3. 多个业务模块之间存在复杂交互场景，或者单个模块的业务逻辑较为复杂，使用[natur-service](https://www.npmjs.com/package/natur-service)方案
+4. 数据持久化方案使用[natur-persist](https://www.npmjs.com/package/natur-persist)
 
 
 ## <a id='create-module'>create:module 创建模块脚本</a>

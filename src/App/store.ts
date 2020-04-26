@@ -1,7 +1,6 @@
 // import theme from '@/service/theme';
 import zhLang from '@/constants/lang/zh';
 import enLang from '@/constants/lang/en';
-import { Location } from 'history';
 import { MiddlewareParams } from 'natur';
 
 const state = {
@@ -47,14 +46,12 @@ const state = {
 			],
 		},
 	],
-	location: null,
 };
 
 
 const actions = {
 	update: (name: string) => ({name}),
 	setLang: (lang: 'zh' | 'en') => ({lang}),
-	updateLocation: (location: Location) => ({location}),
 	openMenu: () => ({isMenuOpen: true}),
 	closeMenu: () => ({isMenuOpen: false}),
 	toggleMenu: () => ({getState}: MiddlewareParams) => ({isMenuOpen: !getState().isMenuOpen}),

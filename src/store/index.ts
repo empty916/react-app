@@ -12,6 +12,7 @@ import NaturService from 'natur-service';
 import createPersistMiddleware from 'natur-persist';
 import app from '../App/store';
 import user from './user.store';
+import router from './router.store';
 import lazyModuleConfig from './lazyModule';
 
 const { modules: lazyModules } = lazyModuleConfig;
@@ -19,6 +20,7 @@ const { modules: lazyModules } = lazyModuleConfig;
 const modules = {
 	app,
 	user,
+	router,
 };
 
 const { middleware: localStorageMiddleware, getData, clearData } = createPersistMiddleware({
