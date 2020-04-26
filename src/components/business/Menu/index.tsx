@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const AppMenu: React.FC<{ app: InjectStoreModule }> = ({ app }) => {
 	const classes = useStyles();
 	const { isMenuOpen, menuData } = app.state;
-	const [$open, setOpen] = React.useState(true);
+	const [$open, setOpen] = React.useState(isMenuOpen);
 
 	React.useEffect(() => {
 		if (isMenuOpen === false) {

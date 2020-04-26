@@ -48,7 +48,6 @@ const state = {
 	],
 };
 
-
 const actions = {
 	update: (name: string) => ({name}),
 	setLang: (lang: 'zh' | 'en') => ({lang}),
