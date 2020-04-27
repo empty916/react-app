@@ -1,8 +1,8 @@
 import React from 'react';
-import Inject from '@inject';
-// import { Box } from '@material-ui/core';
+import {inject} from 'natur';
+import { InjectPage3ModuleType } from './store';
 
-const Page3: React.FC<any> = () => (
+const Page3: React.FC<{page3: InjectPage3ModuleType}> = () => (
 	<div style={{overflow: 'hidden'}}>
 		<div style={{
 			float: 'left',
@@ -33,5 +33,7 @@ const Page3: React.FC<any> = () => (
 		<div style={{clear: 'both'}} />
 	</div>
 );
-
-export default Inject('page3')(Page3);
+export {state, maps, actions} from './store';
+export default inject<{page3: InjectPage3ModuleType}>(
+	'page3',
+)(Page3);

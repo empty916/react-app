@@ -1,11 +1,10 @@
 import React from 'react';
 import Inject from '@inject';
 import Input from '@base/Input';
-import { InjectStoreModule } from 'natur';
 import { Box, GridList, GridListTile } from '@material-ui/core';
+import { InjectUserModuleType } from '@/store/user.store';
 
-
-const Page1: React.FC<{user: InjectStoreModule}> = ({user}) => (
+const Page1: React.FC<{user: InjectUserModuleType}> = ({user}) => (
 	<>
 		<Box p={2} display='flex'>
 			<Box alignSelf='flex-start'>
@@ -42,4 +41,4 @@ export {
 	actions,
 } from './store';
 
-export default Inject('page1', 'user')(Page1);
+export default Inject<{user: InjectUserModuleType}>('page1', 'user')(Page1);
