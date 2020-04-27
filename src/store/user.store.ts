@@ -3,7 +3,7 @@ import AUTH, {AuthType} from '@/constants/Auth';
 
 const getStateNameIsExist = (state: any) => !!state.name;
 
-export default {
+const store = {
 	state: {
 		name: '',
 		level: 1,
@@ -34,3 +34,19 @@ export default {
 		updateName: (event: any) => ({name: event?.target?.value || ''}),
 	},
 };
+
+
+type State = typeof store.state;
+
+export type InjectUserModuleType = {
+	state: State,
+	maps: {
+		isLogin: boolean,
+		hasAuth(auth: string | undefined, type: AuthType): boolean,
+	},
+	actions: {
+		updateName(event: {target: {value: string}}): State,
+	}
+}
+
+export default store;

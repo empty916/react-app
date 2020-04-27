@@ -1,12 +1,12 @@
-const state = {
+export const state = {
 	name: 'template',
 };
 
-const maps = {
+export const maps = {
 	nameSplit: ['name', (name: string) => name.split('')],
 };
 
-const actions = {
+export const actions = {
 	update: (newState: any) => newState,
 	asyncUpdate: async (newState: any) => {
 		await new Promise(res => setTimeout(res, 3000));
@@ -14,9 +14,15 @@ const actions = {
 	},
 };
 
+type State = typeof state;
 
-export {
-	state,
-	maps,
-	actions,
-};
+export type InjectTemplateModuleType = {
+	state: State,
+	maps: {
+		nameSplit: string[],
+	},
+	actions: {
+		update(s: State): State,
+		asyncUpdate(s: State): Promise<State>,
+	}
+}

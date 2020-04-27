@@ -1,12 +1,10 @@
 import React from 'react';
-import Inject from '@inject';
+import {inject} from 'natur';
 import style from './style.scss';
+import { InjectTemplateModuleType } from './store';
 
-const Template: React.FC<any> = (p: any) => {
-	const {
-		template: {state, actions, maps},
-	} = p;
-	console.log(actions);
+const Template: React.FC<{template: InjectTemplateModuleType}> = ({template}) => {
+	const {state, actions, maps} = template;
 	return (
 		<div className={style.template}>
 			{state.name}
@@ -17,6 +15,6 @@ const Template: React.FC<any> = (p: any) => {
 
 
 export {state, maps, actions} from './store';
-export default Inject(
+export default inject<{template: InjectTemplateModuleType}>(
 	'template',
 )(Template);

@@ -36,7 +36,10 @@ const Page1: React.FC<{user: InjectStoreModule}> = ({user}) => (
 	</>
 );
 
-export {default as state} from './state';
-export {default as actions} from './actions';
+
+export {
+	state,
+	actions,
+} from './store';
 
 export default Inject('page1', 'user')(Page1);
