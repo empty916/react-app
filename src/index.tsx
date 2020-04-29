@@ -1,4 +1,6 @@
-import '@babel/polyfill';
+// import '@babel/polyfill';
+import 'core-js';
+import 'regenerator-runtime/runtime';
 import '@/utils/devToolInit';
 import React from 'react';
 import ReactDom from 'react-dom';

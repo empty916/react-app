@@ -9,6 +9,10 @@ const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const HtmlWebpackInlineSourcePlugin = require("html-webpack-inline-source-plugin");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const chalk = require('chalk');
+
 
 const {
 	getPath,
@@ -151,7 +155,18 @@ module.exports = {
 		]
 	},
 	plugins: [
-		// WebpackFailPlugin,
+		new ProgressBarPlugin({
+			format: 'build [:bar] ' + chalk.green.bold(':percent') + '(:elapsed seconds)',
+		}),
+		// new FriendlyErrorsWebpackPlugin({
+        //     compilationSuccessInfo: {
+        //         messages: [`Your application is running here: ${config.dev.https ? 'https' : 'http'}://${config.dev.host}:${config.dev.port}`],
+        //     },
+        //     onErrors: config.dev.notifyOnErrors
+        //         ? utils.createNotifierCallback()
+        //         : undefined,
+        //     clearConsole: true,
+        // }),
 		new LodashModuleReplacementPlugin({
 			collections: true,
 			paths: true
@@ -174,6 +189,10 @@ module.exports = {
 				return require("node-object-hash")({ sort: false }).hash(
 					webpackConfig
 				);
+			},
+			info: {
+				mode: 'none',
+				level: 'error'
 			},
 			// 当加载器，插件，其他构建时脚本或其他动态依赖项发生更改时，hard-source需要替换缓存以确保输
 			// 出正确。environmentHash被用来确定这一点。如果散列与先前的构建不同，则将使用新的缓存

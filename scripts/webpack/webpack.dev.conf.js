@@ -76,7 +76,11 @@ module.exports = merge(baseConfig, {
 	],
 	devServer: {
 		open: true,
-		progress: true,
+		progress: false,
+		// quiet: true,
+		// stats: 'errors-only',
+		overlay: true,
+		noInfo: true,
 		port: 8080,
 		host: 'localhost',
 		historyApiFallback: true,

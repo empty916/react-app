@@ -27,7 +27,7 @@ module.exports = mode => {
 	return {
 		entry: {
 			utilsDll: [
-				'@babel/polyfill',
+				// '@babel/polyfill',
 				'axios',
 				'convert-key',
 				'delay-load',
