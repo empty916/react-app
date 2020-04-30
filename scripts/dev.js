@@ -29,26 +29,26 @@ const { port = 8080, host = "localhost" } = webpackConfig.devServer;
 
 compiler.hooks.invalid.tap("invalid", function() {
 	clearConsole();
-	console.log(chalk.yellow.bold("编译中..."));
+	console.log(chalk.yellow.bold("🍼 编译中..."));
 });
 
 compiler.hooks.done.tap("done", function(stats) {
 	var rawMessages = stats.toJson({}, true);
 	var messages = formatWebpackMessages(rawMessages);
 	if (!messages.errors.length && !messages.warnings.length) {
-		console.log(chalk.green.bold("编译成功!\n"));
+		console.log(chalk.green.bold("🎉🎉🎉 编译成功!\n"));
 		setTimeout(() => {
 			console.log('本机网络: ' + chalk.cyan.bold(`http://localhost:${port}`));
 			console.log('局域网络: ' + chalk.cyan.bold(`http://${getIPAdress()}:${port}`));
 		}, 0)
 	}
 	if (messages.errors.length) {
-		console.log(chalk.red.bold('编译失败！'));
+		console.log(chalk.red.bold('❌ 编译失败！'));
 		messages.errors.forEach(e => console.log(e));
 		return;
 	}
 	if (messages.warnings.length) {
-		console.log("编译警告⚠️！");
+		console.log(chalk.yellow.bold("🙅 编译警告！"));
 		messages.warnings.forEach(w => console.log(w));
 	}
 });

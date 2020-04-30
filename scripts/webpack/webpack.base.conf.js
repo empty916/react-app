@@ -10,7 +10,6 @@ const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const clearConsole = require('react-dev-utils/clearConsole');
-
 const chalk = require('chalk');
 
 
@@ -160,13 +159,13 @@ module.exports = {
 			summary: false,
 			complete: '■',
 			// complete: '=',
-			format: `building ${chalk.cyan.bold(':bar ')} :percent ( :elapseds )`,
-			// format: `building ${chalk.cyan.bold(':bar ')}${chalk.yellow.bold(':percent')}${chalk.yellow.bold('( :elapseds )')}`,
-			// format: 'build ' + chalk.cyan.bold(':bar ') + chalk.cyan.bold(':percent ') + chalk.yellow.bold('( :elapseds )'),
+			// format: `building ${chalk.cyan.bold(':bar ')} :percent ( :elapseds )`,
+			format: `🍵 ${chalk.cyan.bold(':bar ')}${chalk.yellow(':percent ( :elapseds )')}`,
+			// format: '🍵 ' + chalk.cyan.bold(':bar ') + chalk.cyan.bold(':percent ') + chalk.yellow.bold('( :elapseds )'),
 			customSummary: (times) => {
 				clearConsole();
 				setTimeout(() => {
-					console.log(chalk.yellow.bold('编译时间：' + times));
+					console.log(chalk.yellow.bold('⏰ 编译时间：' + times));
 				}, 0)
 			}
 		}),
