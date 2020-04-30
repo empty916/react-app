@@ -6,11 +6,11 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackExcludeAssetsPlugin = require("html-webpack-exclude-assets-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
-const HtmlWebpackInlineSourcePlugin = require("html-webpack-inline-source-plugin");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const clearConsole = require('react-dev-utils/clearConsole');
+
 const chalk = require('chalk');
 
 
@@ -30,6 +30,7 @@ const mode = process.env.NODE_ENV;
 const isDev = mode === "development";
 
 module.exports = {
+	performance: false,
 	entry: {
 		index: getPath(project, "index")
 	},
@@ -156,17 +157,19 @@ module.exports = {
 	},
 	plugins: [
 		new ProgressBarPlugin({
-			format: 'build [:bar] ' + chalk.green.bold(':percent') + '(:elapsed seconds)',
+			summary: false,
+			complete: '■',
+			// complete: '=',
+			format: `building ${chalk.cyan.bold(':bar ')} :percent ( :elapseds )`,
+			// format: `building ${chalk.cyan.bold(':bar ')}${chalk.yellow.bold(':percent')}${chalk.yellow.bold('( :elapseds )')}`,
+			// format: 'build ' + chalk.cyan.bold(':bar ') + chalk.cyan.bold(':percent ') + chalk.yellow.bold('( :elapseds )'),
+			customSummary: (times) => {
+				clearConsole();
+				setTimeout(() => {
+					console.log(chalk.yellow.bold('编译时间：' + times));
+				}, 0)
+			}
 		}),
-		// new FriendlyErrorsWebpackPlugin({
-        //     compilationSuccessInfo: {
-        //         messages: [`Your application is running here: ${config.dev.https ? 'https' : 'http'}://${config.dev.host}:${config.dev.port}`],
-        //     },
-        //     onErrors: config.dev.notifyOnErrors
-        //         ? utils.createNotifierCallback()
-        //         : undefined,
-        //     clearConsole: true,
-        // }),
 		new LodashModuleReplacementPlugin({
 			collections: true,
 			paths: true
@@ -192,7 +195,7 @@ module.exports = {
 			},
 			info: {
 				mode: 'none',
-				level: 'error'
+				level: 'none'
 			},
 			// 当加载器，插件，其他构建时脚本或其他动态依赖项发生更改时，hard-source需要替换缓存以确保输
 			// 出正确。environmentHash被用来确定这一点。如果散列与先前的构建不同，则将使用新的缓存
@@ -238,6 +241,7 @@ module.exports = {
 			inject: true
 			// hash: true,
 		}),
+		// new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/theme/]),
 		new HtmlWebpackExcludeAssetsPlugin(),
 		new ScriptExtHtmlWebpackPlugin({
 			defaultAttribute: "defer"

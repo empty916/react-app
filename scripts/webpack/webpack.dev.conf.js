@@ -2,6 +2,7 @@ const merge = require('webpack-merge');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const baseConfig = require('./webpack.base.conf');
+const eslintFormatter = require('react-dev-utils/eslintFormatter');
 
 const {
 	getPath,
@@ -37,7 +38,8 @@ module.exports = merge(baseConfig, {
 				exclude: /node_modules/,
 				enforce: 'pre',
 				options: {
-					formatter: require('eslint-friendly-formatter'),
+					// formatter: require('eslint-friendly-formatter'),
+					formatter: eslintFormatter,
 				},
 			},
 		],
@@ -75,14 +77,16 @@ module.exports = merge(baseConfig, {
 		}),
 	],
 	devServer: {
-		open: true,
+		// open: true,
 		progress: false,
-		// quiet: true,
-		// stats: 'errors-only',
+		compress: true,
+		quiet: true,
+		clientLogLevel: 'none',
+		stats: 'errors-only',
 		overlay: true,
 		noInfo: true,
 		port: 8080,
-		host: 'localhost',
+		host: '0.0.0.0',
 		historyApiFallback: true,
 		proxy: {
             '/api': {
