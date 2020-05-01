@@ -7,7 +7,7 @@ import { InjectUserModuleType } from '@/store/user.store';
 import qs from 'qs';
 import history from '@/routes/history';
 
-const Page1: React.FC<{user: InjectUserModuleType}> = ({user, location}: any) => {
+const Page1: React.FC<{user: InjectUserModuleType, location: Location}> = ({user, location}) => {
 	const redirectPath = React.useMemo(() => qs.parse(location?.search?.slice(1))?.redirect, [location]);
 	const login = React.useCallback(() => {
 		history.replace({pathname: redirectPath || '/'});
