@@ -47,7 +47,7 @@ history.listen(() => clearDataAtLoginPage());
 
 const store = createStore(
 	modules,
-	lazyModules as any,
+	lazyModules,
 	getData(),
 	[
 		thunkMiddleware,

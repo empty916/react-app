@@ -47,6 +47,10 @@ const Page2: React.FC<PageProps> = ({page2, app}) => {
 };
 
 
-export {state, maps, actions} from './store';
+export {
+	state,
+	maps,
+	actions,
+} from './store';
 
 export default Inject<PageProps>('page2', ['app', {}])(Page2);

@@ -36,7 +36,7 @@ compiler.hooks.done.tap("done", function(stats) {
 	var rawMessages = stats.toJson({}, true);
 	var messages = formatWebpackMessages(rawMessages);
 	if (!messages.errors.length && !messages.warnings.length) {
-		console.log(chalk.green.bold("🎉🎉🎉 编译成功!\n"));
+		console.log(chalk.green.bold("🎉 编译成功!\n"));
 		setTimeout(() => {
 			console.log('本机网络: ' + chalk.cyan.bold(`http://localhost:${port}`));
 			console.log('局域网络: ' + chalk.cyan.bold(`http://${getIPAdress()}:${port}`));
