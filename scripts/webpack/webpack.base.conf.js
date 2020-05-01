@@ -158,10 +158,11 @@ module.exports = {
 		new ProgressBarPlugin({
 			summary: false,
 			complete: '■',
+			width: 20,
 			// complete: '=',
 			// format: `building ${chalk.cyan.bold(':bar ')} :percent ( :elapseds )`,
-			format: `🍵 ${chalk.cyan.bold(':bar ')}${chalk.yellow(':percent ( :elapseds )')}`,
-			// format: '🍵 ' + chalk.cyan.bold(':bar ') + chalk.cyan.bold(':percent ') + chalk.yellow.bold('( :elapseds )'),
+			// format: `🍵 ${chalk.cyan.bold(':bar ')}${chalk.yellow(':percent ( :elapseds )')}`,
+			format: '🍵 ' + chalk.cyan.bold(':bar ') + chalk.cyan.bold(':percent ') + chalk.yellow.bold('( :elapseds )'),
 			customSummary: (times) => {
 				clearConsole();
 				setTimeout(() => {
