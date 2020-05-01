@@ -17,11 +17,11 @@ const state = {
 			icon: 'menu_book',
 			title: 'PAGES',
 			children: [
-				{
-					icon: 'airline_seat_flat',
-					title: 'page1',
-					to: '/page1',
-				},
+				// {
+				// 	icon: 'airline_seat_flat',
+				// 	title: 'page1',
+				// 	to: '/page1',
+				// },
 				{
 					icon: 'airline_seat_flat_angled',
 					title: 'page2',

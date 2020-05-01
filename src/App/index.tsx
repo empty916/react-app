@@ -1,18 +1,13 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { CssBaseline, Grid } from '@material-ui/core';
+import { Switch } from 'react-router-dom';
+import { CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import materialTheme from '@/service/theme/material';
 import AuthRoute from '@/routes/AuthRoute';
-import AppMenu from '@biz/Menu';
-import Bar from '@biz/Bar';
 import history from '@history';
-import routes, { Index } from '@/routes';
+import routes from '@/routes';
 import '@/theme/test.scss';
 import { InjectStoreModule, inject } from 'natur';
-import styles from './style.scss';
-
-const f1 = { flex: 1 };
 
 const App: React.FC<{router: InjectStoreModule}> = ({router}) => {
 	React.useState(() => {
@@ -22,18 +17,11 @@ const App: React.FC<{router: InjectStoreModule}> = ({router}) => {
 	return (
 		<ThemeProvider theme={materialTheme}>
 			<CssBaseline />
-			<Grid container wrap="nowrap">
-				<AppMenu />
-				<Grid item style={f1} className={styles.right}>
-					<Bar />
-					<Switch>
-						{routes.map((route: any, index) => (
-							<AuthRoute key={route.path || `${index}`} {...route} />
-						))}
-						<Route component={Index} />
-					</Switch>
-				</Grid>
-			</Grid>
+			<Switch>
+				{routes.map((route: any, index) => (
+					<AuthRoute key={route.path || `${index}`} {...route} />
+				))}
+			</Switch>
 		</ThemeProvider>
 	);
 };

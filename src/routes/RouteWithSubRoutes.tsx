@@ -5,13 +5,13 @@ import { inject } from 'natur';
 import { redirectWithoutAuth } from './AuthRoute';
 
 
-function RouteWithSubRoutes({routes, component, user, auth, ...rest}: any) {
+function RouteWithSubRoutes({routes, component, indexRoute, user, auth, ...rest}: any) {
 	const Com = component;
 	const render = React.useCallback(
 		(props: any) => (
-			<Com {...props} routes={routes || []} />
+			<Com {...props} indexRoute={indexRoute} routes={routes || []} />
 		),
-		[routes],
+		[indexRoute, routes],
 	);
 	if (user.maps.hasAuth(auth)) {
 		return (

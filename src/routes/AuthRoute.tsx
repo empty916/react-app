@@ -6,7 +6,7 @@ import { inject } from 'natur';
 import RouteWithSubRoutes from './RouteWithSubRoutes';
 
 export const redirectWithoutAuth: any = {
-	[AUTH.LOGIN_AUTH]: '/',
+	[AUTH.LOGIN_AUTH]: '/login',
 };
 
 function AuthRoute({ component, auth, user, ...rest }: any) {
