@@ -9,6 +9,8 @@ import routes from '@/routes';
 import '@/theme/test.scss';
 import { InjectStoreModule, inject } from 'natur';
 
+var;
+
 const App: React.FC<{router: InjectStoreModule}> = ({router}) => {
 	React.useState(() => {
 		router.actions.updateLocation(history.location);

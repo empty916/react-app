@@ -2,7 +2,7 @@
 'use strict'
 
 require('shelljs/global')
-
+const formatWebpackMessages = require("react-dev-utils/formatWebpackMessages");
 const ora = require('ora')  //在执行脚本的过程中，用于在终端中显示一个类似loading的标记
 const chalk = require('chalk')  //用于在终端中显示彩色文字
 // const fs = require('fs')
@@ -19,11 +19,27 @@ const { site, project } = getArg();
  * @param {*} webpackConfig
  */
 const doCompiler = async webpackConfig => {
-    const ProgressPlugin = require('webpack/lib/ProgressPlugin');
+    // const ProgressPlugin = require('webpack/lib/ProgressPlugin');
     const webpack = require('webpack');
 
     const compiler = webpack([webpackConfig]);
     // compiler.apply(new ProgressPlugin());
+    compiler.hooks.done.tap("done", function(stats) {
+        var rawMessages = stats.toJson({}, true);
+        var messages = formatWebpackMessages(rawMessages);
+        if (!messages.errors.length && !messages.warnings.length) {
+            console.log(chalk.green.bold("🎉 编译成功!\n"));
+        }
+        if (messages.errors.length) {
+            console.log(chalk.red.bold('❌ 编译失败！'));
+            messages.errors.forEach(e => console.log(e));
+            return;
+        }
+        if (messages.warnings.length) {
+            console.log(chalk.yellow.bold("🙅 编译警告！"));
+            messages.warnings.forEach(w => console.log(w));
+        }
+    });
     return await new Promise((resolve, reject) => {
         compiler.run((err, stats) => {
             if (err) throw reject(err);
