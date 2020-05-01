@@ -23,17 +23,17 @@ const doCompiler = async webpackConfig => {
     const webpack = require('webpack');
 
     const compiler = webpack([webpackConfig]);
-    compiler.apply(new ProgressPlugin());
+    // compiler.apply(new ProgressPlugin());
     return await new Promise((resolve, reject) => {
         compiler.run((err, stats) => {
             if (err) throw reject(err);
-            process.stdout.write(stats.toString({
-                colors: true,
-                modules: false,
-                children: false,
-                chunks: false,
-                chunkModules: false
-            }) + '\n\n')
+            // process.stdout.write(stats.toString({
+            //     colors: true,
+            //     modules: false,
+            //     children: false,
+            //     chunks: false,
+            //     chunkModules: false
+            // }) + '\n\n')
             resolve(stats);
         })
     });
@@ -43,9 +43,9 @@ const doCompiler = async webpackConfig => {
  * 打包编译函数
  */
 module.exports = async function builder(webpackConfig, processName = `${site} ${project}`) {
-    const spinner = ora(`building ${processName} ...`)
-    spinner.start()
+    // const spinner = ora(`building ${processName} ...`)
+    // spinner.start()
     await doCompiler(webpackConfig);
-    spinner.stop()
+    // spinner.stop()
     console.log(chalk.cyan(`Build ${processName} complete.\n`))
 }
