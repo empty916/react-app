@@ -27,15 +27,13 @@ module.exports = mode => {
 	return {
 		entry: {
 			utilsDll: [
-				// '@babel/polyfill',
+				'core-js/stable',
+				'regenerator-runtime/runtime',
 				'axios',
 				'convert-key',
 				'delay-load',
-				'history',
-				'hoist-non-react-statics',
 				// 'natur-persist',
 				// 'natur-service',
-				'classnames',
 				'dayjs',
 				'qs',
 				// 'color',
@@ -50,6 +48,9 @@ module.exports = mode => {
 				'react-dom',
 				'react-router',
 				'react-router-dom',
+				'hoist-non-react-statics',
+				'history',
+				'classnames',
 				// 'natur',
 				// 'react-redux',
 				// 'redux',
