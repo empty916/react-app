@@ -208,6 +208,7 @@ module.exports = {
 		new HappyPack({
 			id: "babel",
 			threads: 1,
+			verbose: false,
 			loaders: [
 				{
 					loader: "babel-loader",

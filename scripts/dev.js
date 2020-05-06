@@ -32,6 +32,8 @@ compiler.hooks.invalid.tap("invalid", function() {
 	console.log(chalk.yellow.bold("🍼 编译中..."));
 });
 
+let hasOpenedBrowser = false;
+
 compiler.hooks.done.tap("done", function(stats) {
 	var rawMessages = stats.toJson({}, true);
 	var messages = formatWebpackMessages(rawMessages);
@@ -51,6 +53,12 @@ compiler.hooks.done.tap("done", function(stats) {
 		console.log(chalk.yellow.bold("🙅 编译警告！"));
 		messages.warnings.forEach(w => console.log(w));
 	}
+	if (!hasOpenedBrowser) {
+		hasOpenedBrowser = true;
+		setTimeout(() => {
+			openBrowser(`http://localhost:${port}`);
+		}, 0);
+	}
 });
 
 compiler.hooks.watchRun.tap("autoGetModule", autoGetModule);
@@ -61,7 +69,7 @@ const server = new WebpackDevServer(compiler, {
 
 server.listen(port, host, () => {
 	clearConsole();
-	openBrowser(`http://localhost:${port}`);
+	console.log(chalk.yellow.bold("🍼 编译中..."));
 	// console.log('Starting server on http://localhost:8080');
 	// opn(`http://${host}:${port}`);
 });
