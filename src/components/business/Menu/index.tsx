@@ -63,6 +63,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 		overflowX: 'hidden',
 		width: theme.spacing(8),
 	},
+	list: {
+		padding: '0 10px',
+		position: 'relative',
+		zIndex: 4,
+	},
 }));
 
 const AppMenu: React.FC<{ app: InjectAppModuleType }> = ({ app }) => {
@@ -110,7 +115,7 @@ const AppMenu: React.FC<{ app: InjectAppModuleType }> = ({ app }) => {
 					}),
 				}}
 			>
-				<List style={{ padding: '0 10px', position: 'relative', zIndex: 4 }}>
+				<List className={classes.list}>
 					{menuData.map((item: any) => {
 						if (!item.children) {
 							return (

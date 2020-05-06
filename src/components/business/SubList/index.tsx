@@ -58,6 +58,11 @@ const SubList: React.FC<SubListItemProps> = ({
 		// 	setOpen(false);
 		// }
 	}, [selected]);
+	const iconJsx = React.useMemo(() => !!icon && (
+		<ListItemIcon>
+			{icon}
+		</ListItemIcon>
+	), [icon]);
 	const $onClick = React.useCallback((event: React.MouseEvent<HTMLElement, MouseEvent>) => {
 		setOpen(!open);
 		if (onClick) {
@@ -76,11 +81,7 @@ const SubList: React.FC<SubListItemProps> = ({
 				onClick={$onClick}
 				style={style}
 			>
-				{!!icon && (
-					<ListItemIcon>
-						{icon}
-					</ListItemIcon>
-				)}
+				{iconJsx}
 				<ListItemText>
 					{title}
 				</ListItemText>
