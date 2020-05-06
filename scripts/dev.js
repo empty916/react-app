@@ -10,15 +10,13 @@ const clearConsole = require('react-dev-utils/clearConsole');
 // const webpackConfig = createWebpackConfig();
 const compiler = webpack(webpackConfig);
 // 获取本机电脑IP
-function getIPAdress() {
+function getIP() {
     let interfaces = require('os').networkInterfaces();
     for (var devName in interfaces) {
         var iface = interfaces[devName];
         for (var i = 0; i < iface.length; i++) {
             let alias = iface[i];
             if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
-                // console.log(alias.address);
-
                 return alias.address
             }
         }
@@ -41,7 +39,7 @@ compiler.hooks.done.tap("done", function(stats) {
 		console.log(chalk.green.bold("🎉 编译成功!\n"));
 		setTimeout(() => {
 			console.log('本机网络: ' + chalk.cyan.bold(`http://localhost:${port}`));
-			console.log('局域网络: ' + chalk.cyan.bold(`http://${getIPAdress()}:${port}`));
+			console.log('局域网络: ' + chalk.cyan.bold(`http://${getIP()}:${port}`));
 		}, 0)
 	}
 	if (messages.errors.length) {
@@ -70,6 +68,4 @@ const server = new WebpackDevServer(compiler, {
 server.listen(port, host, () => {
 	clearConsole();
 	console.log(chalk.yellow.bold("🍼 编译中..."));
-	// console.log('Starting server on http://localhost:8080');
-	// opn(`http://${host}:${port}`);
 });
