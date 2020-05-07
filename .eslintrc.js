@@ -73,6 +73,7 @@ module.exports = {
 	rules: {
 		'import/no-unresolved': 0,
 		'import/extensions': 0,
+		'import/order': 0,
 		'import/prefer-default-export': 0,
 
 		'react/prop-types': 0,
