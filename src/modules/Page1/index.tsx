@@ -8,7 +8,7 @@ import qs from 'qs';
 import history from '@/routes/history';
 
 const Page1: React.FC<{user: InjectUserModuleType, location: Location}> = ({user, location}) => {
-	const redirectPath = React.useMemo(() => qs.parse(location?.search?.slice(1))?.redirect, [location]);
+	const redirectPath = React.useMemo(() => qs.parse(location?.search?.slice(1))?.redirect, [location]) as string | undefined;
 	const login = React.useCallback(() => {
 		history.replace({pathname: redirectPath || '/'});
 	}, [redirectPath]);
