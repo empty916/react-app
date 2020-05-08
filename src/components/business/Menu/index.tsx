@@ -37,16 +37,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 		backgroundImage: `url(${sideBarBgImg})`,
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
-		'&:after': {
-			backgroundColor: 'rgba(0,0,0, 0.6)',
-			top: 0,
-			width: '100%',
-			height: '100%',
-			content: '""',
-			display: 'block',
-			zIndex: 3,
-			position: 'absolute',
-		},
 	},
 	drawerOpen: {
 		width: drawerWidth,
@@ -63,8 +53,15 @@ const useStyles = makeStyles((theme: Theme) => ({
 		overflowX: 'hidden',
 		width: theme.spacing(8),
 	},
+	listWrapper: {
+		width: '100%',
+		minHeight: '100%',
+		overflow: 'auto',
+		backgroundColor: 'rgba(0,0,0, 0.6)',
+	},
 	list: {
 		padding: '0 10px',
+		paddingBottom: '100px',
 		position: 'relative',
 		zIndex: 4,
 	},
@@ -115,58 +112,60 @@ const AppMenu: React.FC<{ app: InjectAppModuleType }> = ({ app }) => {
 					}),
 				}}
 			>
-				<List className={classes.list}>
-					{menuData.map((item: any) => {
-						if (!item.children) {
-							return (
-								<ListItem
-									button
-									selected={pathname === item.to}
-									key={item.title + item.to}
-									component={Link as any}
-									to={item.to}
-								>
-									{item.icon && (
-										<ListItemIcon>
-											<Icon>{item.icon}</Icon>
-										</ListItemIcon>
-									)}
-									<ListItemText primary={item.title} />
-								</ListItem>
-							);
-						}
-						const isSubListSelected = item.children.some(
-							({ to }: any) => pathname.includes(to),
-						);
-						return (
-							<SubList
-								title={item.title}
-								key={item.title + String(item.to)}
-								isMenuOpen={open}
-								selected={isSubListSelected}
-								icon={item.icon && <Icon>{item.icon}</Icon>}
-								open={isSubListSelected}
-							>
-								{item.children.map((subItem: any) => (
+				<div className={classes.listWrapper}>
+					<List className={classes.list}>
+						{menuData.map((item: any) => {
+							if (!item.children) {
+								return (
 									<ListItem
 										button
-										selected={pathname === subItem.to}
-										key={subItem.title + subItem.to}
+										selected={pathname === item.to}
+										key={item.title + item.to}
 										component={Link as any}
-										to={subItem.to}
+										to={item.to}
 									>
-										{subItem.icon && (
+										{item.icon && (
 											<ListItemIcon>
-												<Icon>{subItem.icon}</Icon>
+												<Icon>{item.icon}</Icon>
 											</ListItemIcon>
 										)}
-										<ListItemText primary={subItem.title} />
+										<ListItemText primary={item.title} />
 									</ListItem>
-								))}
-							</SubList>
-						);
-					})}
-				</List>
+								);
+							}
+							const isSubListSelected = item.children.some(
+								({ to }: any) => pathname.includes(to),
+							);
+							return (
+								<SubList
+									title={item.title}
+									key={item.title + String(item.to)}
+									isMenuOpen={open}
+									selected={isSubListSelected}
+									icon={item.icon && <Icon>{item.icon}</Icon>}
+									open={isSubListSelected}
+								>
+									{item.children.map((subItem: any) => (
+										<ListItem
+											button
+											selected={pathname === subItem.to}
+											key={subItem.title + subItem.to}
+											component={Link as any}
+											to={subItem.to}
+										>
+											{subItem.icon && (
+												<ListItemIcon>
+													<Icon>{subItem.icon}</Icon>
+												</ListItemIcon>
+											)}
+											<ListItemText primary={subItem.title} />
+										</ListItem>
+									))}
+								</SubList>
+							);
+						})}
+					</List>
+				</div>
 			</Drawer>
 		</ThemeProvider>
 	);
