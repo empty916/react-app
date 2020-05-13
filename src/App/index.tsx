@@ -6,7 +6,7 @@ import materialTheme from '@/service/theme/material';
 import AuthRoute from '@/routes/AuthRoute';
 import history from '@history';
 import routes from '@/routes';
-import '@/theme/test.scss';
+import '@/theme/theme.scss';
 import { InjectStoreModule, inject } from 'natur';
 
 const App: React.FC<{router: InjectStoreModule}> = ({router}) => {
