@@ -43,9 +43,9 @@ type AuthFilterProps<T> = T & AuthProps & Ref & UserStoreModule;
  * 控制需要权限验证模块的权限验证，
  * 如果用户有权限就显示该模块，
  * 没有就不显示。
- * @param WrappedComponent 需要控制权限的组件
- * @returns {AuthFilter}
- * @constructor
+ * @param {React.ComponentClass<T> | React.FC<T>} WrappedComponent 需要控制权限的组件
+ * @returns {Component} 封装后的组件，可以通过权限属性控制组件显隐
+ * 
  */
 function AuthFilterHOC<T, U extends AuthFilterProps<T> =  AuthFilterProps<T>>(WrappedComponent: React.ComponentClass<T> | React.FC<T>) {
 	class AuthFilter extends Component<U> {
