@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		width: '100%',
 		minHeight: '100%',
 		overflow: 'auto',
+		overflowX: 'hidden',
 		backgroundColor: 'rgba(0,0,0, 0.6)',
 	},
 	list: {
