@@ -27,6 +27,11 @@ const state = {
 					title: 'page3',
 					to: '/page3',
 				},
+				{
+					icon: 'airline_seat_individual_suite',
+					title: 'threejs-demo1',
+					to: '/threejs-demo1',
+				},
 			],
 		},
 		{

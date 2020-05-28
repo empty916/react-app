@@ -48,6 +48,11 @@ const routes:Routes = [
 				component: _loadabel(() => import('@/modules/Page3')),
 			},
 			{
+				path: '/threejs-demo1',
+				name: 'threejs-demo1',
+				component: _loadabel(() => import('@/modules/threejs/demo1')),
+			},
+			{
 				path: '/user',
 				name: 'user',
 				component: UserWrapper,
