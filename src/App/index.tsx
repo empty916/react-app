@@ -6,6 +6,7 @@ import materialTheme from '@/service/theme/material';
 import AuthRoute from '@/routes/AuthRoute';
 import history from '@history';
 import routes from '@/routes';
+import '@/service';
 import '@/theme/theme.scss';
 import { InjectStoreModule, inject } from 'natur';
 

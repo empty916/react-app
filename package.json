@@ -157,7 +157,7 @@
 		"lodash": "^4.17.15",
 		"natur": "^1.2.0-beta4",
 		"natur-persist": "^1.1.1",
-		"natur-service": "^1.1.4",
+		"natur-service": "^1.1.6",
 		"prop-types": "^15.7.2",
 		"qs": "^6.9.3",
 		"react": "16.10.1",

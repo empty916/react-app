@@ -6,8 +6,8 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { Router } from 'react-router-dom';
 import history from './routes/history';
-import App from './App';
 import './store';
+import App from './App';
 import '@/service/user';
 
 

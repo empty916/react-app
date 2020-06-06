@@ -1,4 +1,4 @@
-import NaturService from 'natur-service';
+import NaturService from './natur-service';
 import zh from '@/constants/lang/zh';
 import en from '@/constants/lang/en';
 
@@ -6,7 +6,8 @@ import en from '@/constants/lang/en';
 class AppService extends NaturService {
 	constructor() {
 		super();
-		this.bindModule('app');
+		this.bindModule('app', '$app');
+		this.watch('app', () => console.log(this));
 	}
 
 	get langData(): typeof zh | typeof en {
