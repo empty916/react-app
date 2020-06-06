@@ -33,18 +33,6 @@ const { middleware: localStorageMiddleware, getData, clearData } = createPersist
 	},
 });
 
-function clearDataAtLoginPage(shouldReload: boolean = true) {
-	if (history.location.pathname.includes('login') && getData()) {
-		clearData();
-		shouldReload && window.location.reload();
-	}
-}
-
-clearDataAtLoginPage(false);
-
-history.listen(() => clearDataAtLoginPage());
-
-
 const store = createStore(
 	modules,
 	lazyModules,
@@ -59,6 +47,20 @@ const store = createStore(
 		localStorageMiddleware,
 	],
 );
+
+
+function clearDataAtLoginPage(shouldResetState: boolean = true) {
+	if (history.location.pathname.includes('login') && getData()) {
+		clearData();
+		shouldResetState && store.globalResetStates();
+	}
+}
+
+clearDataAtLoginPage(false);
+
+history.listen(() => clearDataAtLoginPage());
+
+
 NaturService.store = store;
 
 export default store;

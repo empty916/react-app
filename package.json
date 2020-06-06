@@ -159,7 +159,7 @@
 		"history": "^4.9.0",
 		"hoist-non-react-statics": "^3.3.2",
 		"lodash": "^4.17.15",
-		"natur": "^1.1.9",
+		"natur": "^1.2.0-beta4",
 		"natur-persist": "^1.1.1",
 		"natur-service": "^1.1.4",
 		"prop-types": "^15.7.2",
