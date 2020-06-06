@@ -27,7 +27,7 @@ const { middleware: localStorageMiddleware, getData, clearData } = createPersist
 	name: '_data',
 	time: 300,
 	// include: ['user', 'app'],
-	// exclude: [/app/i],
+	exclude: [/router/i],
 	specific: {
 		user: 0,
 	},
@@ -49,11 +49,10 @@ const store = createStore(
 	],
 );
 
-
 function clearDataAtLoginPage(shouldResetState: boolean = true) {
 	if (history.location.pathname.includes('login') && getData()) {
 		clearData();
-		shouldResetState && store.globalResetStates();
+		shouldResetState && store.globalResetStates({exclude: [/^router$/]});
 	}
 }
 
