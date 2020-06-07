@@ -7,7 +7,6 @@ class AppService extends NaturService {
 	constructor() {
 		super();
 		this.bindModule('app', '$app');
-		this.watch('app', () => console.log(this));
 	}
 
 	get langData(): typeof zh | typeof en {
