@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {inject} from 'natur';
 import { InjectPage3ModuleType } from './store';
+
+
+const Context = React.createContext<string>('1');
+const Child: React.FC = () => {
+	const context = useContext(Context);
+	return <>{context}</>;
+};
 
 const Page3: React.FC<{page3: InjectPage3ModuleType}> = () => (
 	<div style={{overflow: 'hidden'}}>
@@ -28,6 +35,22 @@ const Page3: React.FC<{page3: InjectPage3ModuleType}> = () => (
 			height: '100%',
 		}}
 		>
+			<Context.Provider value='1'>
+				<Child />
+				<br/>
+				<Context.Provider value='2'>
+					<Child />
+					{' > '}
+					<Context.Provider value='2.1'>
+						<Child />
+					</Context.Provider>
+				</Context.Provider>
+				<br/>
+				<Context.Provider value='3'>
+					<Child />
+				</Context.Provider>
+				<br/>
+			</Context.Provider>
 			content
 		</div>
 		<div style={{clear: 'both'}} />

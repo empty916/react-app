@@ -22,7 +22,6 @@ react项目模板，支持typescript，react 16.10，router 5.1,
 - [本地工具库 src/utils](#local-utils)
 - [UI框架使用规范](#ui-detail)
 
-
 ## <a id='run'>运行项目</a>
 
 1. 进入根目录
@@ -286,7 +285,7 @@ const Comp: React.FC = () => {
 ## <a id='os-utils'>开源工具库</a>
 
 1. 基础工具函数[lodash](https://www.npmjs.com/package/lodash)
-2. 表单校验[react-hook-form](https://www.npmjs.com/package/react-hook-form)
+2. 表单校验[formik](https://www.npmjs.com/package/formik)
 3. url工具[qs](https://www.npmjs.com/package/qs)
 3. 对象key值转换工具[convert-key](https://www.npmjs.com/package/convert-key)
 4. 计算库[decimal.js](https://www.npmjs.com/package/decimal.js)
