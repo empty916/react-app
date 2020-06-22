@@ -2,12 +2,13 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
-import materialTheme from '@/service/theme/material';
+import materialTheme from '@/theme/material';
 import AuthRoute from '@/routes/AuthRoute';
 import history from '@history';
 import routes from '@/routes';
 import '@/service';
-import '@/theme/theme.scss';
+import '@/theme/native/theme.scss';
+import '@/service/theme';
 import { InjectStoreModule, inject } from 'natur';
 
 const App: React.FC<{router: InjectStoreModule}> = ({router}) => {

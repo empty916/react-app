@@ -82,12 +82,12 @@ react项目模板，支持typescript，react 16.10，router 5.1,
 	- modules 所有页面及其业务逻辑
 	- routes 路由相关
 	- service 服务模块
-    	- theme **material主题配置在这里**
+    	- theme 原生主题控制服务
     	- app app服务
     	- i18n 国际化服务
     	- user 用户服务
 	- store 全局状态，公共状态
-	- theme 原生主题控制，**⚠️material主题配置不在这里，这里的东西会被直接打包在html中**
+	- theme 主题配置包，包含原生主题配置(在native文件夹下)和material主题配置包
 	- utils 工具包
 
 ### mock服务目录
@@ -215,19 +215,19 @@ const store = createStore(
 
 ## <a id='theme'>theme，主题控制</a>
 
-1. 基本上项目的主题都可以通过material的主题方案控制，放在/src/service/theme/material.ts
+1. 基本上项目的主题都可以通过material的主题方案控制，放在/src/theme/material.ts
 1. 需要原声控制的主题样式都放在theme文件夹下，然后引入到App/index.js中
-2. 使用/service/theme/index.js控制主题切换
+2. 使用/service/theme.ts控制主题切换
 	1. 创建样式文件, 定义样式变量
 	```scss
-	/* src/theme/demo.scss */
+	/* src/theme/native/theme.scss */
 	.btn {
       border-radius: borderRadius; // 随便定义一个变量
 	}
 	```
 	2. 给予自定义样式变量初始值
 	```typescript
-	// src/theme/config.ts
+	// src/theme/native/config.ts
 	export default {
       // ...其他变量
       // 你的变量
@@ -237,7 +237,7 @@ const store = createStore(
 	3. 使用样式
 	```typescript
 	// 使用theme的样式，和普通样式相同，
-	import style from '@/theme/demo.scss'
+	import style from '@/theme/native/theme.scss'
 
 	// style.btn,使用此样式即可
 	```

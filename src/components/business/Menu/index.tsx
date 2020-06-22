@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core/styles';
 import { inject } from 'natur';
 import clsx from 'classnames';
-import { menuTheme } from '@/service/theme/material';
+import { menuTheme } from '@/theme/material';
 import { InjectAppModuleType } from '@/App/store';
 
 // icon

@@ -120,7 +120,7 @@ module.exports = {
 				},
 				theme: {
 					priority: 10,
-					test: new RegExp(`/${project}/theme/`),
+					test: new RegExp(`/${project}/theme/native/`),
 					name: "theme"
 				},
 				styles: {
