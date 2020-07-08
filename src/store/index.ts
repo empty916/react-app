@@ -9,7 +9,7 @@ import {
 import devTool from '@redux-devtool';
 import history from '@history';
 import NaturService from 'natur-service';
-import createPersistMiddleware from 'natur-persist';
+import { localStorageMiddleware, getData, clearData } from './persist';
 import app from '../App/store';
 import user from './user.store';
 import router from './router.store';
@@ -23,43 +23,26 @@ const modules = {
 	router,
 };
 
-const { middleware: localStorageMiddleware, getData, clearData } = createPersistMiddleware({
-	name: '_data',
-	time: 300,
-	// include: ['user', 'app'],
-	exclude: [/router/i],
-	specific: {
-		user: 0,
-	},
-});
-
-
-const store = createStore(
-	modules,
-	lazyModules,
-	getData(),
-	[
-		thunkMiddleware,
-		promiseMiddleware,
-		fillObjectRestDataMiddleware,
-		shallowEqualMiddleware,
-		filterUndefinedMiddleware,
-		devTool,
-		localStorageMiddleware,
-	],
-);
+const store = createStore(modules, lazyModules, getData(), [
+	thunkMiddleware,
+	promiseMiddleware,
+	fillObjectRestDataMiddleware,
+	shallowEqualMiddleware,
+	filterUndefinedMiddleware,
+	devTool,
+	localStorageMiddleware,
+]);
 
 function clearDataAtLoginPage(shouldResetState: boolean = true) {
 	if (history.location.pathname.includes('login') && getData()) {
 		clearData();
-		shouldResetState && store.globalResetStates({exclude: [/^router$/]});
+		shouldResetState && store.globalResetStates({ exclude: [/^router$/] });
 	}
 }
 
 clearDataAtLoginPage(false);
 
 history.listen(() => clearDataAtLoginPage());
-
 
 NaturService.store = store;
 
