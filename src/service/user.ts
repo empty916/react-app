@@ -1,9 +1,9 @@
 import { AuthType } from '@/constants/Auth';
 import NaturService from './natur-service';
-import { StoreModulesType } from '@/store';
+import { StoreType } from '@/store';
 
 class UserService extends NaturService {
-	user!: StoreModulesType['user'];
+	user!: StoreType['user'];
 
 	constructor() {
 		super();

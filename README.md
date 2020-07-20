@@ -169,11 +169,11 @@ const store = createStore(
 3. 多个业务模块之间存在复杂交互场景，或者单个模块的业务逻辑较为复杂，使用[natur-service](https://www.npmjs.com/package/natur-service)方案
 ````typescript
 import NaturService from './natur-service';
-import { StoreModulesType } from '@/store';
+import { StoreType } from '@/store';
 
 class UserService extends NaturService {
   /** 声明绑定的模块类型 */
-  user!: StoreModulesType['user'];
+  user!: StoreType['user'];
 
   constructor() {
     super();

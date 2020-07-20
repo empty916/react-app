@@ -1,9 +1,9 @@
 import NaturService from './natur-service';
-import { StoreModulesType } from '@/store';
+import { StoreType } from '@/store';
 
 
 class AppService extends NaturService {
-	app!: StoreModulesType['app'];
+	app!: StoreType['app'];
 
 	constructor() {
 		super();

@@ -24,14 +24,14 @@ const modules = {
 	router,
 };
 
-export type StoreModulesType = {
+export type StoreType = {
 	[k in keyof typeof modules]: ModuleType<(typeof modules)[k]>;
 } & {
 	[k in keyof typeof lazyModules]: PromiseModuleType<(typeof lazyModules)[k]>;
 }
 
 export type ActionsType = {
-	[k in keyof StoreModulesType]: StoreModulesType[k]['actions'];
+	[k in keyof StoreType]: StoreType[k]['actions'];
 }
 
 const store = createStore(modules, lazyModules, getData(), [

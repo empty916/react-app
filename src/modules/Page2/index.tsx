@@ -4,9 +4,9 @@ import Button from '@base/IconButton';
 import Input from '@base/Input';
 import Icon from '@material-ui/core/Icon';
 import style from './style.scss';
-import { StoreModulesType } from '@/store';
+import { StoreType } from '@/store';
 
-type PageProps = Pick<StoreModulesType, 'app'|'page2'>;
+type PageProps = Pick<StoreType, 'app'|'page2'>;
 
 const Page2: React.FC<PageProps> = ({page2, app}) => {
 	const {state, actions, maps } = page2;

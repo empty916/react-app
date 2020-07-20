@@ -1,9 +1,9 @@
 import React from 'react';
 import {inject} from 'natur';
-import { StoreModulesType } from '@/store';
+import { StoreType } from '@/store';
 import style from './style.scss';
 
-const Template: React.FC<{template: StoreModulesType['template']}> = ({template}) => {
+const Template: React.FC<{template: StoreType['template']}> = ({template}) => {
 	const {state, actions, maps} = template;
 	return (
 		<div className={style.template}>
@@ -14,7 +14,7 @@ const Template: React.FC<{template: StoreModulesType['template']}> = ({template}
 };
 
 
-type StoreType = {template: StoreModulesType['template']};
+type StoreType = {template: StoreType['template']};
 
 export {state, maps, actions} from './store';
 export default inject<StoreType>('template')(Template);
