@@ -8,8 +8,10 @@ class UserService extends NaturService {
 	constructor() {
 		super();
 		this.bindModule('user');
-		this.watch('user', ({state}) => {
-			this.dispatch('page2', 'changePageName', state.name);
+		this.watch('user', ({actionName, state}) => {
+			if (actionName === 'updateName' && state) {
+				this.dispatch('page2', 'changePageName', state?.name);
+			}
 		});
 	}
 

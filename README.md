@@ -24,6 +24,8 @@ react项目模板，支持typescript，react 16.10，router 5.1,
 
 ## <a id='run'>运行项目</a>
 
+**node环境请升级到12+**
+
 1. 进入根目录
 1. 运行命令，安装依赖
    1. 安装项目依赖
@@ -52,7 +54,7 @@ react项目模板，支持typescript，react 16.10，router 5.1,
 ## <a id='npm-script'>npm命令说明</a>
 
 1. dev 开发
-1. mock 启动mock服务
+1. mock 启动mock服务，如果要链接后台，那么也应该启动此服务
 1. build:dll 编译项目依赖包
 1. build:dev 打包开发环境包
 1. build:prd 打包生产环境包
@@ -144,14 +146,14 @@ react项目模板，支持typescript，react 16.10，router 5.1,
 
 ## <a id='state-manager'>状态管理器</a>
 
-1. 使用的是[natur](https://www.npmjs.com/package/natur)方案
+1. 使用的是[natur](https://www.npmjs.com/package/natur)方案, 文档请看[natur](https://www.npmjs.com/package/natur)
 2. 中间件配置
 ```typescript
 
 // 中间件执行顺序，从上至下，按顺序执行
 const store = createStore(
   modules,
-  lazyModules as any,
+  lazyModules,
   undefined,
   [
     thunkMiddleware, // action可以返回函数，接受getState，setState, getMaps, dispatch几个参数
@@ -165,6 +167,51 @@ const store = createStore(
 );
 ```
 3. 多个业务模块之间存在复杂交互场景，或者单个模块的业务逻辑较为复杂，使用[natur-service](https://www.npmjs.com/package/natur-service)方案
+````typescript
+import NaturService from './natur-service';
+import { StoreModulesType } from '@/store';
+
+class UserService extends NaturService {
+  /** 声明绑定的模块类型 */
+  user!: StoreModulesType['user'];
+
+  constructor() {
+    super();
+    /**
+     * 绑定用户模块
+     * 然后可以通过this.user获取到user模块
+     * */
+    this.bindModule('user');
+    /**
+     * 监听用户模块，当用户模块发生变动时，
+     * 会触发此回调函数
+     * 
+     * 回调函数
+     * type: user模块变更类型，'init'初始化模块, 'update'模块更新, 'remove'模块被移除
+     * state是user模块中最新的state数据
+     * actionName是触发user模块变更的action名字，只有当type为'update'时才会有值
+     * oldModule没有变更之前的user模块
+     * newModule变更之后的user模块
+    */
+    this.watch('user', ({state, actionName, type, oldModule, newModule}) => {
+      /**
+       * 通过this.dispatch方法，调用page2模块中的changePageName action, 后面的参数就是changePageName的参数
+       * 
+      */
+      this.dispatch('page2', 'changePageName', state.name);
+    });
+  }
+
+  get isLogin() {
+    return this.user.maps.isLogin;
+  }
+}
+
+const userService = new UserService();
+
+export default userService;
+
+````
 4. 数据持久化方案使用[natur-persist](https://www.npmjs.com/package/natur-persist)
 
 
