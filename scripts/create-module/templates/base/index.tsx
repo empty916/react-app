@@ -5,7 +5,7 @@ import style from './style.scss';
 
 
 
-const Template: React.FC<{template: StoreType['template']}> = ({template}) => {
+const Template: React.FC<_StoreType> = ({template}) => {
 	const {state, actions, maps} = template;
 	return (
 		<div className={style.template}>
@@ -16,7 +16,7 @@ const Template: React.FC<{template: StoreType['template']}> = ({template}) => {
 };
 
 
-type StoreType = {template: StoreType['template']};
+type _StoreType = {template: StoreType['template']};
 
 export {state, maps, actions} from './store';
-export default inject<StoreType>('template')(Template);
+export default inject<_StoreType>('template')(Template);
