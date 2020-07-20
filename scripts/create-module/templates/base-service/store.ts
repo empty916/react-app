@@ -15,14 +15,3 @@ export const actions = {
 };
 
 type State = typeof state;
-
-export type InjectTemplateModuleType = {
-	state: State,
-	maps: {
-		nameSplit: string[],
-	},
-	actions: {
-		update(s: State): State,
-		asyncUpdate(s: State): Promise<State>,
-	}
-}

@@ -14,6 +14,7 @@ import app from '../App/store';
 import user from './user.store';
 import router from './router.store';
 import lazyModuleConfig from './lazyModule';
+import { ModuleType, PromiseModuleType } from './ts-utils';
 
 const { modules: lazyModules } = lazyModuleConfig;
 
@@ -22,6 +23,12 @@ const modules = {
 	user,
 	router,
 };
+
+export type StoreModulesType = {
+	[k in keyof typeof modules]: ModuleType<(typeof modules)[k]>;
+} & {
+	[k in keyof typeof lazyModules]: PromiseModuleType<(typeof lazyModules)[k]>;
+}
 
 const store = createStore(modules, lazyModules, getData(), [
 	thunkMiddleware,

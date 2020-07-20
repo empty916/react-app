@@ -1,16 +1,17 @@
 import NaturService from './natur-service';
-import zh from '@/constants/lang/zh';
-import en from '@/constants/lang/en';
+import { StoreModulesType } from '@/store';
 
 
 class AppService extends NaturService {
+	app!: StoreModulesType['app'];
+
 	constructor() {
 		super();
-		this.bindModule('app', '$app');
+		this.bindModule('app');
 	}
 
-	get langData(): typeof zh | typeof en {
-		return this.app.maps.isLogin;
+	get langData() {
+		return this.app.maps.getLangData;
 	}
 }
 

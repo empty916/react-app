@@ -2,6 +2,7 @@
 import zhLang from '@/constants/lang/zh';
 import enLang from '@/constants/lang/en';
 import { MiddlewareParams } from 'natur';
+import { ModuleType } from '@/store/ts-utils';
 
 const state = {
 	name: 'app',
@@ -62,22 +63,12 @@ const maps = {
 
 type State = typeof state;
 
-export type InjectAppModuleType = {
-	state: State,
-	maps: {
-		getLangData: typeof zhLang | typeof enLang,
-	},
-	actions: {
-		update(n: string): State,
-		setLang(l: 'zh'|'en'): State,
-		openMenu(): State,
-		closeMenu(): State,
-		toggleMenu(): State,
-	}
-}
 
-export default {
+const appStore = {
 	state,
 	maps,
 	actions,
 };
+export default appStore;
+
+export type InjectAppModuleType = ModuleType<typeof appStore>;

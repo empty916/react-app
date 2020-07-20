@@ -9,9 +9,10 @@ import routes from '@/routes';
 import '@/service';
 import '@/theme/native/theme.scss';
 import '@/service/theme';
-import { InjectStoreModule, inject } from 'natur';
+import { inject } from 'natur';
+import { StoreModulesType } from '@/store';
 
-const App: React.FC<{router: InjectStoreModule}> = ({router}) => {
+const App: React.FC<{router: StoreModulesType['router']}> = ({router}) => {
 	React.useState(() => {
 		router.actions.updateLocation(history.location);
 		history.listen(router.actions.updateLocation);
@@ -28,4 +29,4 @@ const App: React.FC<{router: InjectStoreModule}> = ({router}) => {
 	);
 };
 
-export default inject<{router: InjectStoreModule}>(['router', {}])(App);
+export default inject<{router: StoreModulesType['router']}>(['router', {}])(App);

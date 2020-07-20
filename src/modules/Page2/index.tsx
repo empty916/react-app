@@ -1,16 +1,12 @@
 import React from 'react';
-import { InjectStoreModule } from 'natur';
 import Inject from '@inject';
 import Button from '@base/IconButton';
 import Input from '@base/Input';
 import Icon from '@material-ui/core/Icon';
 import style from './style.scss';
-import { InjectPage2ModuleType } from './store';
+import { StoreModulesType } from '@/store';
 
-type PageProps = {
-	page2: InjectPage2ModuleType,
-	app: InjectStoreModule,
-}
+type PageProps = Pick<StoreModulesType, 'app'|'page2'>;
 
 const Page2: React.FC<PageProps> = ({page2, app}) => {
 	const {state, actions, maps } = page2;

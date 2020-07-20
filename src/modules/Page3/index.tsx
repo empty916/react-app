@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import {inject} from 'natur';
-import { InjectPage3ModuleType } from './store';
+import { StoreModulesType } from '@/store';
 
 
 const Context = React.createContext<string>('1');
@@ -9,7 +9,7 @@ const Child: React.FC = () => {
 	return <>{context}</>;
 };
 
-const Page3: React.FC<{page3: InjectPage3ModuleType}> = () => (
+const Page3: React.FC<{page3: StoreModulesType['page3']}> = () => (
 	<div style={{overflow: 'hidden'}}>
 		<div style={{
 			float: 'left',
@@ -57,6 +57,6 @@ const Page3: React.FC<{page3: InjectPage3ModuleType}> = () => (
 	</div>
 );
 export {state, maps, actions} from './store';
-export default inject<{page3: InjectPage3ModuleType}>(
+export default inject<{page3: StoreModulesType['page3']}>(
 	'page3',
 )(Page3);

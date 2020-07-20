@@ -1,12 +1,15 @@
 import { AuthType } from '@/constants/Auth';
 import NaturService from './natur-service';
+import { StoreModulesType } from '@/store';
 
 class UserService extends NaturService {
+	user!: StoreModulesType['user'];
+
 	constructor() {
 		super();
 		this.bindModule('user');
 		this.watch('user', ({state}) => {
-			this.dispatch('page2/changePageName', state.name);
+			this.dispatch('page2', 'changePageName', state.name);
 		});
 	}
 

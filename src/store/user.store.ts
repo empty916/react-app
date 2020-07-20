@@ -35,18 +35,7 @@ const store = {
 	},
 };
 
-
 type State = typeof store.state;
 
-export type InjectUserModuleType = {
-	state: State,
-	maps: {
-		isLogin: boolean,
-		hasAuth(auth: string | undefined, type: AuthType): boolean,
-	},
-	actions: {
-		updateName(event: {target: {value: string}}): State,
-	}
-}
 
 export default store;
