@@ -16,7 +16,7 @@ const Template: React.FC<_StoreType> = ({template}) => {
 };
 
 
-type _StoreType = {template: StoreType['template']};
+type _StoreType = Pick<StoreType, 'template'>;
 
 export {state, maps, actions} from './store';
 export default inject<_StoreType>('template')(Template);

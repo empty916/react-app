@@ -62,3 +62,17 @@ export type PromiseModuleType<
 		(m extends 'actions' ? GenActionsType<M['actions'], M['state']> :
 			(m extends 'maps' ? (M extends StoreModuleWithMaps ? GenMapsType<M['maps'], M['state']> : undefined) : never));
 }
+
+
+export type GenerateStoreType<
+	MS extends {
+		[m: string]: StoreModuleWithMaps|StoreModuleWithoutMaps
+	},
+	PMS extends {
+		[m: string]: () => Promise<StoreModuleWithMaps|StoreModuleWithoutMaps>
+	}
+> = {
+	[k in keyof MS]: ModuleType<MS[k]>;
+} & {
+	[k in keyof PMS]: PromiseModuleType<PMS[k]>;
+}

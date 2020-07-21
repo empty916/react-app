@@ -14,7 +14,7 @@ import app from '../App/store';
 import user from './user.store';
 import router from './router.store';
 import lazyModuleConfig from './lazyModule';
-import { ModuleType, PromiseModuleType } from './ts-utils';
+import { GenerateStoreType } from './ts-utils';
 
 const { modules: lazyModules } = lazyModuleConfig;
 
@@ -24,11 +24,8 @@ const modules = {
 	router,
 };
 
-export type StoreType = {
-	[k in keyof typeof modules]: ModuleType<(typeof modules)[k]>;
-} & {
-	[k in keyof typeof lazyModules]: PromiseModuleType<(typeof lazyModules)[k]>;
-}
+export type StoreType = GenerateStoreType<typeof modules, typeof lazyModules>;
+
 
 export type ActionsType = {
 	[k in keyof StoreType]: StoreType[k]['actions'];
