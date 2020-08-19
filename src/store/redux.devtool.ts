@@ -8,11 +8,11 @@ const root = (state: Object = {}, actions: any):Object => ({
 	...actions.state,
 });
 
-const createMiddleware = ():Middleware => {
+const createMiddleware = () => {
 	if (process.env.NODE_ENV === 'development' && (window as any).__REDUX_DEVTOOLS_EXTENSION__) {
 		const devMiddleware = (window as any).__REDUX_DEVTOOLS_EXTENSION__();
 		const store = createStore(root, devMiddleware);
-		return () => next => record => {
+		return () => (next: any) => (record: any) => {
 			store.dispatch({
 				type: `${record.moduleName}/${record.actionName}`,
 				state: {
@@ -22,7 +22,7 @@ const createMiddleware = ():Middleware => {
 			return next(record);
 		}
 	}
-	return () => next => record => next(record);;
+	return () => (next: any) => (record: any) => next(record);;
 }
 
 export default createMiddleware();

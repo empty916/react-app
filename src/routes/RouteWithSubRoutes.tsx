@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import qs from 'qs';
-import { inject } from 'natur';
+import { inject, StoreType } from '@/store';
 import { redirectWithoutAuth } from './AuthRoute';
 
 
-function RouteWithSubRoutes({routes, component, indexRoute, user, auth, ...rest}: any) {
+function RouteWithSubRoutes({routes, component, indexRoute, user, auth, ...rest}: any & Pick<StoreType, 'user'>) {
 	const Com = component;
 	const render = React.useCallback(
 		(props: any) => (
@@ -34,7 +34,8 @@ function RouteWithSubRoutes({routes, component, indexRoute, user, auth, ...rest}
 	);
 }
 
+
 export default inject(
-	['user', {maps: ['hasAuth']}],
+	'user',
 	['app', {}],
 )(RouteWithSubRoutes);

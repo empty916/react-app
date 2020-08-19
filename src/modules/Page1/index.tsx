@@ -1,13 +1,14 @@
 import React from 'react';
-import Inject from '@inject';
 import Button from '@base/Button';
 import Input from '@base/Input';
 import { Box } from '@material-ui/core';
 import qs from 'qs';
 import history from '@/routes/history';
-import { StoreType } from '@/store';
+import { inject } from '@/store';
 
-const Page1: React.FC<{user: StoreType['user'], location: Location}> = ({user, location}) => {
+const injectStore = inject('page1', 'user');
+
+const Page1: React.FC<{location: Location} & typeof injectStore.type> = ({user, location}) => {
 	const redirectPath = React.useMemo(() => qs.parse(location?.search?.slice(1))?.redirect, [location]) as string | undefined;
 	const login = React.useCallback(() => {
 		history.replace({pathname: redirectPath || '/'});
@@ -40,4 +41,4 @@ export {
 	actions,
 } from './store';
 
-export default Inject<{user: StoreType['user']}>('page1', 'user')(Page1);
+export default injectStore(Page1);

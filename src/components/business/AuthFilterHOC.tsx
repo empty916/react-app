@@ -2,7 +2,8 @@
 import React, { Component } from "react";
 import { AuthType } from "@/constants/Auth";
 import copyStatic from 'hoist-non-react-statics';
-import { inject, InjectStoreModule } from "natur";
+import { InjectStoreModule } from "natur";
+import {inject, StoreType} from '@/store';
 
 const authCheckType = (props: any): [string, AuthType][] => {
 	const res:[string, AuthType][] = [];
@@ -32,9 +33,7 @@ type Ref = {
 	forwardRef?: any,
 }
 
-type UserStoreModule = {
-	user: InjectStoreModule,
-};
+type UserStoreModule = Pick<StoreType, 'user'>;
 
 type AuthFilterProps<T> = T & AuthProps & Ref & UserStoreModule;
 
@@ -73,7 +72,7 @@ function AuthFilterHOC<T, U extends AuthFilterProps<T> =  AuthFilterProps<T>>(Wr
 		}) as any;
 	}
 	RefAuthFilter = copyStatic(RefAuthFilter, WrappedComponent);
-	return inject<UserStoreModule>(['user', {maps: ['hasAuth']}])(RefAuthFilter as React.ComponentClass<U>);
+	return inject(['user', {maps: ['hasAuth']}])(RefAuthFilter as React.ComponentClass<U>);
 }
 
 export default AuthFilterHOC;

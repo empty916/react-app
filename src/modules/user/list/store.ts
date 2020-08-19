@@ -1,4 +1,4 @@
-import { MiddlewareParams } from 'natur';
+import { ThunkParams } from 'natur/dist/middlewares';
 
 const state = {
 	name: 'userList',
@@ -20,7 +20,7 @@ const actions = {
 	asyncThunkReturnUndef: () => () => Promise.resolve(undefined),
 	asyncReturnUndef: () => Promise.resolve(undefined),
 
-	update: (params: any) => ({getState, setState}: MiddlewareParams) => setState({
+	update: (params: any) => ({getState, setState}: ThunkParams<typeof state>) => setState({
 		...getState(),
 		...params,
 	}),

@@ -1,10 +1,10 @@
 import React from 'react';
-import Inject from '@inject';
 import { Switch } from 'react-router-dom';
 import AuthRoute from '@/routes/AuthRoute';
 import { Box } from '@material-ui/core';
+import { inject, StoreType } from '@/store';
 
-const User: React.FC<any> = ({routes = []}: any) => (
+const User: React.FC<Pick<StoreType, 'user'>> = ({routes = []}: any) => (
 	<Box pl={2}>
 		<h1>用户管理</h1>
 		<Switch>
@@ -14,4 +14,4 @@ const User: React.FC<any> = ({routes = []}: any) => (
 		</Switch>
 	</Box>
 );
-export default Inject('user')(User);
+export default inject('user')(User);

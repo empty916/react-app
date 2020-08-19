@@ -1,15 +1,16 @@
 import React from 'react';
-import Inject from '@inject';
 import history from '@/routes/history';
 import { Box } from '@material-ui/core';
 import style from './style.scss';
+import { inject } from '@/store';
 
 const goPage1 = () => history.push({
 	pathname: '/page1',
 	search: '?id=1',
 });
+const injectUser = inject('user');
 
-const UserList: React.FC<any> = ({user}: any) => (
+const UserList: React.FC<typeof injectUser.type> = ({user}: any) => (
 	<Box p={2} className={style.userList}>
 		当前登录用户名：
 		<input type="text" value={user.state.name} onChange={user.actions.updateName} />
@@ -19,4 +20,4 @@ const UserList: React.FC<any> = ({user}: any) => (
 	</Box>
 );
 
-export default Inject('user')(UserList);
+export default injectUser(UserList);

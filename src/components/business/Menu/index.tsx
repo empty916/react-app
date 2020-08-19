@@ -12,10 +12,9 @@ import {
 	Theme,
 	ThemeProvider,
 } from '@material-ui/core/styles';
-import { inject } from 'natur';
+import { inject } from '@/store';
 import clsx from 'classnames';
 import { menuTheme } from '@/theme/material';
-import { InjectAppModuleType } from '@/App/store';
 
 // icon
 import SubList from '@biz/SubList';
@@ -67,8 +66,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 		zIndex: 4,
 	},
 }));
-
-const AppMenu: React.FC<{ app: InjectAppModuleType }> = ({ app }) => {
+const InjectApp = inject([
+	'app',
+	{ state: ['isMenuOpen', 'menuData'] },
+]);
+const AppMenu: React.FC<typeof InjectApp.type> = ({ app }) => {
 	const classes = useStyles();
 	const { isMenuOpen, menuData } = app.state;
 	const [$open, setOpen] = React.useState(isMenuOpen);
@@ -172,7 +174,4 @@ const AppMenu: React.FC<{ app: InjectAppModuleType }> = ({ app }) => {
 	);
 };
 
-export default inject<{ app: InjectAppModuleType }>([
-	'app',
-	{ state: ['isMenuOpen', 'menuData'] },
-])(AppMenu);
+export default InjectApp(AppMenu);

@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import AUTH from '@/constants/Auth';
 import qs from 'qs';
-import { inject } from 'natur';
+import { inject } from '@/store';
 import RouteWithSubRoutes from './RouteWithSubRoutes';
 
 export const redirectWithoutAuth: any = {

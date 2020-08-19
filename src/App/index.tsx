@@ -9,8 +9,8 @@ import routes from '@/routes';
 import '@/service';
 import '@/theme/native/theme.scss';
 import '@/service/theme';
-import { inject } from 'natur';
-import { StoreType } from '@/store';
+import { inject, StoreType } from '@/store';
+
 
 const App: React.FC<{router: StoreType['router']}> = ({router}) => {
 	React.useState(() => {
@@ -29,4 +29,4 @@ const App: React.FC<{router: StoreType['router']}> = ({router}) => {
 	);
 };
 
-export default inject<{router: StoreType['router']}>(['router', {}])(App);
+export default inject(['router', {}])(App);

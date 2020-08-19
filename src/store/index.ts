@@ -1,4 +1,4 @@
-import { createStore } from 'natur';
+import { createStore, createInject } from 'natur';
 import {
 	promiseMiddleware,
 	shallowEqualMiddleware,
@@ -14,7 +14,6 @@ import app from '../App/store';
 import user from './user.store';
 import router from './router.store';
 import lazyModuleConfig from './lazyModule';
-import { GenerateStoreType } from './ts-utils';
 
 const { modules: lazyModules } = lazyModuleConfig;
 
@@ -24,12 +23,6 @@ const modules = {
 	router,
 };
 
-export type StoreType = GenerateStoreType<typeof modules, typeof lazyModules>;
-
-
-export type ActionsType = {
-	[k in keyof StoreType]: StoreType[k]['actions'];
-}
 
 const store = createStore(modules, lazyModules, getData(), [
 	thunkMiddleware,
@@ -40,6 +33,9 @@ const store = createStore(modules, lazyModules, getData(), [
 	devTool,
 	localStorageMiddleware,
 ]);
+
+export type StoreType = typeof store.type;
+
 
 function clearDataAtLoginPage(shouldResetState: boolean = true) {
 	if (history.location.pathname.includes('login') && getData()) {
@@ -55,3 +51,6 @@ history.listen(() => clearDataAtLoginPage());
 NaturService.store = store;
 
 export default store;
+export const inject = createInject({
+	storeGetter: () => store,
+});

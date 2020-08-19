@@ -1,5 +1,6 @@
 
 import { MiddlewareParams } from 'natur';
+import { ThunkParams } from 'natur/dist/middlewares';
 
 
 export const state = {
@@ -21,7 +22,7 @@ export const actions = {
 			pageName: newPageName,
 		};
 	},
-	inc: () => ({getState}: MiddlewareParams) => ({count: getState().count + 1}),
+	inc: () => ({getState}: ThunkParams<State>) => ({count: getState().count + 1}),
 };
 
 

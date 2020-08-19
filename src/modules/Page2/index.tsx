@@ -1,12 +1,13 @@
 import React from 'react';
-import Inject from '@inject';
 import Button from '@base/IconButton';
 import Input from '@base/Input';
 import Icon from '@material-ui/core/Icon';
 import style from './style.scss';
-import { StoreType } from '@/store';
+import { inject } from '@/store';
 
-type PageProps = Pick<StoreType, 'app'|'page2'>;
+
+const injectStore = inject('page2', ['app', {}]);
+type PageProps = typeof injectStore.type;
 
 const Page2: React.FC<PageProps> = ({page2, app}) => {
 	const {state, actions, maps } = page2;
@@ -49,4 +50,4 @@ export {
 	actions,
 } from './store';
 
-export default Inject<PageProps>('page2', ['app', {}])(Page2);
+export default injectStore(Page2);

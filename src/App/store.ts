@@ -1,12 +1,12 @@
 // import theme from '@/service/theme';
 import zhLang from '@/constants/lang/zh';
 import enLang from '@/constants/lang/en';
-import { MiddlewareParams } from 'natur';
-import { ModuleType } from '@/store/ts-utils';
+import { ThunkParams } from 'natur/dist/middlewares';
+import { ModuleType } from 'natur/dist/ts-utils';
 
 const state = {
 	name: 'app',
-	lang: 'zh',
+	lang: 'zh' as 'zh'|'en',
 	isMenuOpen: true,
 	menuData: [
 		{
@@ -49,7 +49,7 @@ const actions = {
 	setLang: (lang: 'zh' | 'en') => ({lang}),
 	openMenu: () => ({isMenuOpen: true}),
 	closeMenu: () => ({isMenuOpen: false}),
-	toggleMenu: () => ({getState}: MiddlewareParams) => ({isMenuOpen: !getState().isMenuOpen}),
+	toggleMenu: () => ({getState}: ThunkParams<State>) => ({isMenuOpen: !getState().isMenuOpen}),
 };
 
 const maps = {

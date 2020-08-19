@@ -1,5 +1,3 @@
 
-import { Middleware } from 'natur';
-
-const md: Middleware = () => next => record => next(record);
+const md = () => (next: any) => (record: any) => next(record);
 export default md;

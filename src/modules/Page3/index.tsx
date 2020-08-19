@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import {inject} from 'natur';
-import { StoreType } from '@/store';
+import { StoreType, inject } from '@/store';
 
 
 const Context = React.createContext<string>('1');
@@ -57,6 +56,4 @@ const Page3: React.FC<{page3: StoreType['page3']}> = () => (
 	</div>
 );
 export {state, maps, actions} from './store';
-export default inject<{page3: StoreType['page3']}>(
-	'page3',
-)(Page3);
+export default inject('page3')(Page3);
