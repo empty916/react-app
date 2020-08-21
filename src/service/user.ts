@@ -1,13 +1,9 @@
 import { AuthType } from '@/constants/Auth';
 import NaturService from './natur-service';
-import { StoreType } from '@/store';
 
 class UserService extends NaturService {
-	user!: StoreType['user'];
-
 	constructor() {
 		super();
-		this.bindModule('user');
 		this.watch('user', ({actionName, state}) => {
 			if (actionName === 'updateName' && state) {
 				this.dispatch('page2', 'changePageName', state?.name);
@@ -16,11 +12,11 @@ class UserService extends NaturService {
 	}
 
 	get isLogin() {
-		return this.user.maps.isLogin;
+		return this.store.getModule('user').maps.isLogin;
 	}
 
 	hasAuth(auth: string | undefined, authType?: AuthType) {
-		return this.user.maps.hasAuth(auth, authType);
+		return this.store.getModule('user').maps.hasAuth(auth, authType);
 	}
 }
 

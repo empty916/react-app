@@ -6,9 +6,9 @@ import qs from 'qs';
 import history from '@/routes/history';
 import { inject } from '@/store';
 
-const injectStore = inject('page1', 'user');
+const injecter = inject('page1', 'user');
 
-const Page1: React.FC<{location: Location} & typeof injectStore.type> = ({user, location}) => {
+const Page1: React.FC<{location: Location} & typeof injecter.type> = ({user, location}) => {
 	const redirectPath = React.useMemo(() => qs.parse(location?.search?.slice(1))?.redirect, [location]) as string | undefined;
 	const login = React.useCallback(() => {
 		history.replace({pathname: redirectPath || '/'});
@@ -41,4 +41,4 @@ export {
 	actions,
 } from './store';
 
-export default injectStore(Page1);
+export default injecter(Page1);

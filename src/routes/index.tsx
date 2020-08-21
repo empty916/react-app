@@ -1,4 +1,3 @@
-
 import React from 'react';
 import loadabel, { LoadableComponent } from '@loadable/component';
 import Auth from '@/constants/Auth';
@@ -64,6 +63,5 @@ const routes:Routes = [
 	},
 
 ];
-
 
 export default routes;

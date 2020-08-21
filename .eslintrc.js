@@ -112,6 +112,7 @@ module.exports = {
 		complexity: [2, 9],
 		'max-params': [2, 7],
 		'max-depth': [2, 4],
+		'no-multiple-empty-lines': 0,
 		'max-len': [
 			'error',
 			{

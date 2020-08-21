@@ -66,11 +66,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 		zIndex: 4,
 	},
 }));
-const InjectApp = inject([
+const injecter = inject([
 	'app',
 	{ state: ['isMenuOpen', 'menuData'] },
 ]);
-const AppMenu: React.FC<typeof InjectApp.type> = ({ app }) => {
+const AppMenu: React.FC<typeof injecter.type> = ({ app }) => {
 	const classes = useStyles();
 	const { isMenuOpen, menuData } = app.state;
 	const [$open, setOpen] = React.useState(isMenuOpen);
@@ -174,4 +174,4 @@ const AppMenu: React.FC<typeof InjectApp.type> = ({ app }) => {
 	);
 };
 
-export default InjectApp(AppMenu);
+export default injecter(AppMenu);

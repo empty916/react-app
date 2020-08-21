@@ -9,10 +9,11 @@ import routes from '@/routes';
 import '@/service';
 import '@/theme/native/theme.scss';
 import '@/service/theme';
-import { inject, StoreType } from '@/store';
+import { inject } from '@/store';
 
+const injecter = inject(['router', {}]);
 
-const App: React.FC<{router: StoreType['router']}> = ({router}) => {
+const App: React.FC<typeof injecter.type> = ({router}) => {
 	React.useState(() => {
 		router.actions.updateLocation(history.location);
 		history.listen(router.actions.updateLocation);
@@ -29,4 +30,4 @@ const App: React.FC<{router: StoreType['router']}> = ({router}) => {
 	);
 };
 
-export default inject(['router', {}])(App);
+export default injecter(App);

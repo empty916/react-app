@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StoreType, inject } from '@/store';
+import { inject } from '@/store';
 
 
 const Context = React.createContext<string>('1');
@@ -7,8 +7,8 @@ const Child: React.FC = () => {
 	const context = useContext(Context);
 	return <>{context}</>;
 };
-
-const Page3: React.FC<{page3: StoreType['page3']}> = () => (
+const injecter = inject('page3');
+const Page3: React.FC<typeof injecter.type> = () => (
 	<div style={{overflow: 'hidden'}}>
 		<div style={{
 			float: 'left',
@@ -56,4 +56,4 @@ const Page3: React.FC<{page3: StoreType['page3']}> = () => (
 	</div>
 );
 export {state, maps, actions} from './store';
-export default inject('page3')(Page3);
+export default injecter(Page3);

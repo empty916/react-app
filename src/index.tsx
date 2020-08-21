@@ -10,7 +10,6 @@ import './store';
 import App from './App';
 import '@/service/user';
 
-
 const content = (
 	<Router history={history}>
 		<App />

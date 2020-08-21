@@ -6,8 +6,8 @@ import style from './style.scss';
 import { inject } from '@/store';
 
 
-const injectStore = inject('page2', ['app', {}]);
-type PageProps = typeof injectStore.type;
+const injecter = inject('page2', ['app', {}]);
+type PageProps = typeof injecter.type;
 
 const Page2: React.FC<PageProps> = ({page2, app}) => {
 	const {state, actions, maps } = page2;
@@ -50,4 +50,4 @@ export {
 	actions,
 } from './store';
 
-export default injectStore(Page2);
+export default injecter(Page2);

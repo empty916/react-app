@@ -1,17 +1,9 @@
 import NaturService from './natur-service';
-import { StoreType } from '@/store';
 
 
 class AppService extends NaturService {
-	app!: StoreType['app'];
-
-	constructor() {
-		super();
-		this.bindModule('app');
-	}
-
 	get langData() {
-		return this.app.maps.getLangData;
+		return this.store.getModule('app').maps.getLangData;
 	}
 }
 

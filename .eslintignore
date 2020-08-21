@@ -6,3 +6,4 @@ dist
 src/store/natur-persist
 natur-persist
 natur-service.ts
+_natur-service.ts
