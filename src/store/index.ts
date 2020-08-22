@@ -8,7 +8,6 @@ import {
 } from 'natur/dist/middlewares';
 import devTool from '@redux-devtool';
 import history from '@history';
-import NaturService from 'natur-service';
 import { localStorageMiddleware, getData, clearData } from './persist';
 import app from '../App/store';
 import user from './user.store';
@@ -47,8 +46,6 @@ function clearDataAtLoginPage(shouldResetState: boolean = true) {
 clearDataAtLoginPage(false);
 
 history.listen(() => clearDataAtLoginPage());
-
-NaturService.storeGetter = () => store;
 
 export default store;
 export const inject = createInject({
