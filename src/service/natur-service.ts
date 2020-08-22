@@ -1,4 +1,4 @@
-import _NaturService from './_natur-service';
+import _NaturService from 'natur-service';
 import store from '@/store';
 
 

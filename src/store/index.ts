@@ -48,7 +48,7 @@ clearDataAtLoginPage(false);
 
 history.listen(() => clearDataAtLoginPage());
 
-NaturService.store = store;
+NaturService.storeGetter = () => store;
 
 export default store;
 export const inject = createInject({

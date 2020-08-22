@@ -8,6 +8,7 @@ export const maps = {
 	pageNameSplit: ['pageName', (pageName: string) => pageName.split('')],
 	countIsOdd: ['count', (count: number) => count % 2 !== 0],
 	countObj: ['count', (count: number) => ({count})],
+	test: ['count', () => () => true],
 };
 export const actions = {
 	changePageName: (newPageName: string) => ({
@@ -23,17 +24,3 @@ export const actions = {
 };
 
 type State = typeof state;
-
-export type InjectPage2ModuleType = {
-    state: State,
-    maps: {
-        pageNameSplit: string[],
-        countIsOdd: boolean,
-        countObj: {count: number},
-    },
-    actions: {
-        changePageName(n: string): State,
-        asyncChangePageName(n: string): Promise<State>,
-        inc(): State,
-    }
-}

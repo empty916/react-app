@@ -12,6 +12,7 @@ type PageProps = typeof injecter.type;
 const Page2: React.FC<PageProps> = ({page2, app}) => {
 	const {state, actions, maps } = page2;
 	const { countIsOdd } = maps;
+	maps.test;
 	const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value);
 	return (
 		<div className={style.page2}>
