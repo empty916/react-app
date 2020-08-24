@@ -7,8 +7,8 @@ const Child: React.FC = () => {
 	const context = useContext(Context);
 	return <>{context}</>;
 };
-const injecter = inject('page3');
-const Page3: React.FC<typeof injecter.type> = () => (
+const injector = inject('page3');
+const Page3: React.FC<typeof injector.type> = () => (
 	<div style={{overflow: 'hidden'}}>
 		<div style={{
 			float: 'left',
@@ -56,4 +56,4 @@ const Page3: React.FC<typeof injecter.type> = () => (
 	</div>
 );
 export {state, maps, actions} from './store';
-export default injecter(Page3);
+export default injector(Page3);

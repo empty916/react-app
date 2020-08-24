@@ -8,9 +8,9 @@ const goPage1 = () => history.push({
 	pathname: '/page1',
 	search: '?id=1',
 });
-const injecter = inject('user');
+const injector = inject('user');
 
-const UserList: React.FC<typeof injecter.type> = ({user}: any) => (
+const UserList: React.FC<typeof injector.type> = ({user}: any) => (
 	<Box p={2} className={style.userList}>
 		当前登录用户名：
 		<input type="text" value={user.state.name} onChange={user.actions.updateName} />
@@ -20,4 +20,4 @@ const UserList: React.FC<typeof injecter.type> = ({user}: any) => (
 	</Box>
 );
 
-export default injecter(UserList);
+export default injector(UserList);

@@ -11,9 +11,9 @@ import '@/theme/native/theme.scss';
 import '@/service/theme';
 import { inject } from '@/store';
 
-const injecter = inject(['router', {}]);
+const injector = inject(['router', {}]);
 
-const App: React.FC<typeof injecter.type> = ({router}) => {
+const App: React.FC<typeof injector.type> = ({router}) => {
 	React.useState(() => {
 		router.actions.updateLocation(history.location);
 		history.listen(router.actions.updateLocation);
@@ -30,4 +30,4 @@ const App: React.FC<typeof injecter.type> = ({router}) => {
 	);
 };
 
-export default injecter(App);
+export default injector(App);
