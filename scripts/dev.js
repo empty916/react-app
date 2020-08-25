@@ -6,6 +6,9 @@ const webpackConfig = require("./webpack/webpack.dev.conf");
 const formatWebpackMessages = require("react-dev-utils/formatWebpackMessages");
 const openBrowser = require('react-dev-utils/openBrowser');
 const clearConsole = require('react-dev-utils/clearConsole');
+const chokidar = require('chokidar');
+const path = require('path');
+
 
 // const webpackConfig = createWebpackConfig();
 const compiler = webpack(webpackConfig);
@@ -29,6 +32,9 @@ compiler.hooks.invalid.tap("invalid", function() {
 	clearConsole();
 	console.log(chalk.yellow.bold("🍼 编译中..."));
 });
+
+chokidar.watch(path.resolve(__dirname, '../src/modules'))
+	.on('all', autoGetModule);
 
 let hasOpenedBrowser = false;
 
@@ -59,7 +65,7 @@ compiler.hooks.done.tap("done", function(stats) {
 	}
 });
 
-compiler.hooks.watchRun.tap("autoGetModule", autoGetModule);
+// compiler.hooks.watchRun.tap("autoGetModule", autoGetModule);
 
 const server = new WebpackDevServer(compiler, {
 	...webpackConfig.devServer
