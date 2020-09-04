@@ -114,7 +114,6 @@ react项目模板，支持typescript，react 16.10，router 5.1,
 1. @ => src
 1. @base => src/components/base
 1. @biz => src/components/bussiness
-1. @inject => natur/dist/inject
 1. @history => src/routes/history
 1. @channel => buildConfig/channel/${channel}
 

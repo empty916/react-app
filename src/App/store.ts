@@ -2,7 +2,6 @@
 import zhLang from '@/constants/lang/zh';
 import enLang from '@/constants/lang/en';
 import { ThunkParams } from 'natur/dist/middlewares';
-import { ModuleType } from 'natur/dist/ts-utils';
 
 const state = {
 	name: 'app',
@@ -49,7 +48,7 @@ const actions = {
 	setLang: (lang: 'zh' | 'en') => ({lang}),
 	openMenu: () => ({isMenuOpen: true}),
 	closeMenu: () => ({isMenuOpen: false}),
-	toggleMenu: () => ({getState}: ThunkParams<State>) => ({isMenuOpen: !getState().isMenuOpen}),
+	toggleMenu: () => ({getState}: ThunkParams<typeof state>) => ({isMenuOpen: !getState().isMenuOpen}),
 };
 
 const maps = {
@@ -61,14 +60,11 @@ const maps = {
 	}],
 };
 
-type State = typeof state;
 
 
-const appStore = {
+export default {
 	state,
 	maps,
 	actions,
 };
-export default appStore;
 
-export type InjectAppModuleType = ModuleType<typeof appStore>;
