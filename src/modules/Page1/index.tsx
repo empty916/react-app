@@ -7,7 +7,6 @@ import history from '@/routes/history';
 import { inject } from '@/store';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import styles from './style.scss';
 
 const injector = inject('page1', 'user');
 
@@ -36,9 +35,6 @@ const Page1: React.FC<{location: Location} & typeof injector.type> = ({user, loc
 									<AccountCircle />
 								</InputAdornment>
 							),
-							classes: {
-								input: styles['wxg-input'],
-							},
 						}}
 					/>
 				</Box>
