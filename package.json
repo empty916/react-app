@@ -22,9 +22,6 @@
 	"lint-staged": {
 		"src/**/*.{js,jsx,ts,tsx}": [
 			"eslint --fix"
-		],
-		"src/**/*.scss": [
-			"stylelint --fix"
 		]
 	},
 	"keywords": [
@@ -155,7 +152,7 @@
 		"dayjs": "^1.8.19",
 		"decimal.js": "^10.2.0",
 		"delay-load": "^1.0.0",
-		"formik": "^2.1.4",
+		"formik": "2.1.3",
 		"formik-material-ui": "^2.0.1",
 		"formik-material-ui-lab": "^0.0.4",
 		"formik-material-ui-pickers": "^0.0.10",
