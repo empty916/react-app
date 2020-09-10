@@ -1,4 +1,4 @@
 import { Checkbox } from 'formik-material-ui';
-import FieldComponentHOC from '../FieldComponentHOC';
+import ErrorMsgBoxHOC from '../ErrorMsgBoxHOC';
 
-export default FieldComponentHOC(Checkbox);
+export default ErrorMsgBoxHOC(Checkbox);

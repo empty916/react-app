@@ -8,7 +8,7 @@ import { inject } from '@/store';
 import { TextField, RadioGroup } from 'formik-material-ui';
 import { Formik, Form, Field } from 'formik';
 import Checkbox from '@/components/base/Checkbox';
-import FieldComponentHOC from '@/components/base/FieldComponentHOC';
+import ErrorMsgBoxHOC from '@/components/base/ErrorMsgBoxHOC';
 
 
 interface Values {
@@ -19,6 +19,9 @@ interface Values {
 
 const injector = inject('page2', ['app', {}]);
 type PageProps = typeof injector.type;
+
+
+const _RadioGroup = ErrorMsgBoxHOC(RadioGroup);
 
 const Page2: React.FC<PageProps> = ({page2}) => {
 	const {actions } = page2;
@@ -67,7 +70,7 @@ const Page2: React.FC<PageProps> = ({page2}) => {
 						validate={() => 'Invalid email address'}
 					/>
 					<br />
-					<Field component={FieldComponentHOC(RadioGroup)} name="activity" validate={() => 'Invalid email address'}>
+					<Field component={_RadioGroup} name="activity" validate={() => 'Invalid email address'}>
 						<FormControlLabel
 							value="painting"
 							control={<Radio disabled={isSubmitting} />}
