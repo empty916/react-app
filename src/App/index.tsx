@@ -38,6 +38,7 @@ const App: React.FC<typeof injector.type> = ({router}) => {
 		router.actions.updateLocation(history.location);
 		history.listen(router.actions.updateLocation);
 	});
+
 	return (
 		<StylesProvider jss={jss}>
 			<ThemeProvider theme={materialTheme}>
