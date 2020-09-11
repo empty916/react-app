@@ -158,6 +158,8 @@
 		"formik-material-ui-pickers": "^0.0.10",
 		"history": "^4.9.0",
 		"hoist-non-react-statics": "^3.3.2",
+		"jss": "^10.4.0",
+		"jss-plugin-default-unit": "^10.4.0",
 		"lodash": "^4.17.15",
 		"natur": "^2.0.0-beta7",
 		"natur-persist": "^1.1.1",

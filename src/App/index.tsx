@@ -1,7 +1,9 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { create } from 'jss';
+import defaultUnit from 'jss-plugin-default-unit';
+import { ThemeProvider, jssPreset, StylesProvider } from '@material-ui/core/styles';
 import materialTheme from '@/theme/material';
 import AuthRoute from '@/routes/AuthRoute';
 import history from '@history';
@@ -13,20 +15,34 @@ import { inject } from '@/store';
 
 const injector = inject(['router', {}]);
 
+const plugins = jssPreset().plugins.slice();
+plugins[4] = defaultUnit({
+	// @ts-ignore
+	// width: val => `${(val / 1350) * 100}vw`,
+	width: 'px',
+});
+const jss = create({
+	plugins,
+});
+
+console.log(jssPreset());
+
 const App: React.FC<typeof injector.type> = ({router}) => {
 	React.useState(() => {
 		router.actions.updateLocation(history.location);
 		history.listen(router.actions.updateLocation);
 	});
 	return (
-		<ThemeProvider theme={materialTheme}>
-			<CssBaseline />
-			<Switch>
-				{routes.map((route: any, index) => (
-					<AuthRoute key={route.path || `${index}`} {...route} />
-				))}
-			</Switch>
-		</ThemeProvider>
+		<StylesProvider jss={jss}>
+			<ThemeProvider theme={materialTheme}>
+				<CssBaseline />
+				<Switch>
+					{routes.map((route: any, index) => (
+						<AuthRoute key={route.path || `${index}`} {...route} />
+					))}
+				</Switch>
+			</ThemeProvider>
+		</StylesProvider>
 	);
 };
 
