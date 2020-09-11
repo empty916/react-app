@@ -6,7 +6,7 @@ import React from 'react';
 import { Button, LinearProgress, FormControlLabel, Radio } from '@material-ui/core';
 import { inject } from '@/store';
 import { TextField, RadioGroup } from 'formik-material-ui';
-import { Form, Field, useFormik, FormikProvider } from 'formik';
+import { Field, useFormik, FormikProvider } from 'formik';
 import Checkbox from '@/components/base/Checkbox';
 import ErrorMsgBoxHOC from '@/components/base/ErrorMsgBoxHOC';
 
@@ -35,10 +35,11 @@ const Page2: React.FC<PageProps> = ({page2}) => {
 		},
 	});
 	const {isSubmitting, submitForm} = formikbag;
+
 	// const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value);
 	return (
 		<FormikProvider value={formikbag}>
-			<Form>
+			<div>
 				<Field
 					component={TextField}
 					name="email"
@@ -91,7 +92,7 @@ const Page2: React.FC<PageProps> = ({page2}) => {
 				>
 					Submit
 				</Button>
-			</Form>
+			</div>
 		</FormikProvider>
 	);
 };
