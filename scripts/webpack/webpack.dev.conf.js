@@ -66,15 +66,6 @@ module.exports = merge(baseConfig, {
 				},
 			},
 		}),
-		// new StyleLintPlugin({
-		// 	// configFile: getPath('server', '.stylelintrc.js'),
-		// 	files: `${project}/**/*.scss`,
-		// 	failOnError: false,
-		// 	quiet: true,
-		// 	syntax: 'scss',
-		// 	cache: true,
-		// 	fix: true,
-		// }),
 		// new webpack.HotModuleReplacementPlugin({
 		// 	// Options...
 		// })
