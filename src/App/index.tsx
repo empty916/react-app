@@ -40,7 +40,7 @@ const App: React.FC<typeof injector.type> = ({router}) => {
 	});
 
 	return (
-		<StylesProvider jss={jss}>
+		<StylesProvider jss={jss} injectFirst>
 			<ThemeProvider theme={materialTheme}>
 				<CssBaseline />
 				<Switch>

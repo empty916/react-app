@@ -22,7 +22,7 @@ const useStyle = makeStyles(theme => ({
 	subList: {
 		'&:hover': {
 			backgroundColor: `${theme.palette.action.hover}!important`,
-			boxShadow: 'none !important',
+			boxShadow: 'none',
 		},
 	},
 	subListSelected: {

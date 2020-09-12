@@ -53,6 +53,12 @@ const theme = createMuiTheme({
 			size: 'small',
 			type: 'text',
 		},
+		MuiCheckbox: {
+			color: 'primary',
+		},
+		MuiRadio: {
+			color: 'primary',
+		},
 	},
 	overrides: {
 		MuiOutlinedInput: {
