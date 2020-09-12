@@ -26,6 +26,13 @@ react项目模板，支持typescript，react 16.10，router 5.1,
 
 **node环境请升级到12+**
 
+1. 安装vscode插件
+	1. Debugger for Chrome
+	1. EditorConfig for VS Code
+	1. ESLint
+	1. Prettier - Code formatter
+	1. stylelint
+
 1. 进入根目录
 1. 运行命令，安装依赖
    1. 安装项目依赖

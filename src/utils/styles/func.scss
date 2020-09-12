@@ -1,16 +1,25 @@
-$ratio: 750/640;
-$browser-default-font-size: 14;
-$browser-default-font-size-px: 14px !default;
+// $ratio: 750/640;
+// $browser-default-font-size: 14;
+// $browser-default-font-size-px: 14px !default;
 
-@function r($px, $isFixed:true) {
+// @function r($px, $isFixed:true) {
+// 	@if $px != 0 {
+// 		@return if($isFixed, $px / $ratio + 0.01, $px / $ratio) / $browser-default-font-size * 1rem;
+// 	}
+// 	@else {
+// 		@return 0;
+// 	}
+// }
+
+// @function r2($px, $isFixed:true) {
+// 	@return r($px/2, $isFixed);
+// }
+
+@function r($px) {
 	@if $px != 0 {
-		@return if($isFixed, $px / $ratio + 0.01, $px / $ratio) / $browser-default-font-size * 1rem;
+		@return $px / 750 * 100vw;
 	}
 	@else {
 		@return 0;
 	}
-}
-
-@function r2($px, $isFixed:true) {
-	@return r($px/2, $isFixed);
 }

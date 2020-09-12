@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
@@ -65,15 +66,18 @@ module.exports = merge(baseConfig, {
 				},
 			},
 		}),
-		new StyleLintPlugin({
-			// configFile: getPath('server', '.stylelintrc.js'),
-			files: `${project}/**/*.scss`,
-			failOnError: false,
-			quiet: true,
-			syntax: 'scss',
-			cache: true,
-			fix: true,
-		}),
+		// new StyleLintPlugin({
+		// 	// configFile: getPath('server', '.stylelintrc.js'),
+		// 	files: `${project}/**/*.scss`,
+		// 	failOnError: false,
+		// 	quiet: true,
+		// 	syntax: 'scss',
+		// 	cache: true,
+		// 	fix: true,
+		// }),
+		// new webpack.HotModuleReplacementPlugin({
+		// 	// Options...
+		// })
 	],
 	devServer: {
 		// open: true,
@@ -85,6 +89,7 @@ module.exports = merge(baseConfig, {
 		overlay: true,
 		noInfo: true,
 		port: 8080,
+		// hot: true,
 		host: '0.0.0.0',
 		historyApiFallback: true,
 		proxy: {

@@ -15,4 +15,5 @@ const content = (
 		<App />
 	</Router>
 );
+
 ReactDom.render(content, document.querySelector('#app'));

@@ -2,7 +2,7 @@ import React from 'react';
 // import Button from '@base/IconButton';
 // import Input from '@base/Input';
 // import Icon from '@material-ui/core/Icon';
-// import style from './style.scss';
+import styles from './style.scss';
 import { Button, LinearProgress, FormControlLabel, Radio } from '@material-ui/core';
 import { inject } from '@/store';
 import { TextField, RadioGroup } from 'formik-material-ui';
@@ -19,7 +19,6 @@ const _RadioGroup = ErrorMsgBoxHOC(RadioGroup);
 
 const Page2: React.FC<PageProps> = ({page2}) => {
 	const {actions } = page2;
-	console.log(actions);
 	const formikbag = useFormik({
 		initialValues: {
 			email: '',
@@ -30,7 +29,8 @@ const Page2: React.FC<PageProps> = ({page2}) => {
 		onSubmit: (values, { setSubmitting }) => {
 			setTimeout(() => {
 				setSubmitting(false);
-				console.log(JSON.stringify(values, null, 2));
+				actions.changePageName(values.email);
+				// console.log(JSON.stringify(values, null, 2));
 			}, 500);
 		},
 	});
@@ -39,7 +39,7 @@ const Page2: React.FC<PageProps> = ({page2}) => {
 	// const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value);
 	return (
 		<FormikProvider value={formikbag}>
-			<div>
+			<div className={styles.page2}>
 				<Field
 					component={TextField}
 					name="email"

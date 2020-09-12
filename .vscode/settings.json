@@ -36,10 +36,13 @@
 		}
 	],
 	"diffEditor.ignoreTrimWhitespace": true,
-	"css.validate": true,
-	"scss.validate": true,
+	"css.validate": false,
+	"scss.validate": false,
+	"less.validate": false,
 	"stylelint.enable": true,
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
-	}
+		"source.fixAll.eslint": true,
+		"source.fixAll.stylelint": true
+	},
+	"stylelint.autoFixOnSave": true
 }
