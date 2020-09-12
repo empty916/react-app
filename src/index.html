@@ -9,11 +9,12 @@
 		/>
 		<!-- 打开dns预热 -->
 		<meta http-equiv="x-dns-prefetch-control" content="on" />
+		<!-- 预热地址 -->
+		<link rel='dns-prefetch' href='http://localhost:8080'>
 		<title>Document</title>
+		<!-- jss-insertion-point -->
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-touch-fullscreen" content="yes" />
-		<!-- 网关地址 -->
-		<link rel='dns-prefetch' href='http://localhost:8080'>
 		<% htmlWebpackPlugin.files.css.forEach(function(cssFile) { %>
 			<% if (cssFile.indexOf('theme') > -1){ %>
 				<style id="theme-css">

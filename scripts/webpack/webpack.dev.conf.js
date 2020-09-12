@@ -73,7 +73,7 @@ module.exports = merge(baseConfig, {
 	devServer: {
 		// open: true,
 		progress: false,
-		compress: true,
+		// compress: true,
 		quiet: true,
 		clientLogLevel: 'none',
 		stats: 'errors-only',

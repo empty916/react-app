@@ -30,6 +30,8 @@ const plugins = jssPreset().plugins.slice();
 // });
 const jss = create({
 	plugins,
+	// insertionPoint: document.getElementById('jss-insertion-point')!,
+	insertionPoint: 'jss-insertion-point',
 });
 
 
@@ -40,7 +42,7 @@ const App: React.FC<typeof injector.type> = ({router}) => {
 	});
 
 	return (
-		<StylesProvider jss={jss} injectFirst>
+		<StylesProvider jss={jss}>
 			<ThemeProvider theme={materialTheme}>
 				<CssBaseline />
 				<Switch>

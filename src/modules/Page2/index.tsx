@@ -27,19 +27,17 @@ const Page2: React.FC<PageProps> = ({page2}) => {
 			activity: '',
 		},
 		onSubmit: (values, { setSubmitting }) => {
-			setTimeout(() => {
-				setSubmitting(false);
-				actions.changePageName(values.email);
-				// console.log(JSON.stringify(values, null, 2));
-			}, 500);
+			setSubmitting(false);
+			actions.changePageName(values.email);
+			// console.log(JSON.stringify(values, null, 2));
 		},
 	});
 	const {isSubmitting, submitForm} = formikbag;
 
 	// const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value);
 	return (
-		<FormikProvider value={formikbag}>
-			<div className={styles.page2}>
+		<div className={styles.page2}>
+			<FormikProvider value={formikbag}>
 				<Field
 					component={TextField}
 					name="email"
@@ -52,10 +50,14 @@ const Page2: React.FC<PageProps> = ({page2}) => {
 					component={Checkbox}
 					type="checkbox"
 					name="checked"
-					validate={() => 'Invalid email address'}
+					validate={(v: any) => (!!v ? undefined : 'checked required!')}
 				/>
 				<br />
-				<Field component={_RadioGroup} name="activity" validate={() => 'Invalid email address'}>
+				<Field
+					component={_RadioGroup}
+					name="activity"
+					validate={(v: any) => (!!v ? undefined : 'acivity required!')}
+				>
 					<FormControlLabel
 						value="painting"
 						control={<Radio disabled={isSubmitting} />}
@@ -92,8 +94,8 @@ const Page2: React.FC<PageProps> = ({page2}) => {
 				>
 					Submit
 				</Button>
-			</div>
-		</FormikProvider>
+			</FormikProvider>
+		</div>
 	);
 };
 
