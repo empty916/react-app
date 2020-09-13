@@ -55,10 +55,12 @@ module.exports.addDllPluginsConfig = mode => [
 	...getAddAssethtmlPluginsConfig(mode),
 ];
 
+
+const cssModule = [/\/src\/modules/, /\/src\/components/]
 module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 	{
 		test: /\.(s?css)$/,
-		exclude: /\/node_modules/,
+		include: cssModule,
 		use: [
 			// isDev ? 'style-loader' :
 			{
@@ -88,7 +90,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 	},
 	{
 		test: /\.(s?css)$/,
-		include: /\/node_modules/,
+		exclude: cssModule,
 		use: [
 			// isDev ? 'style-loader' :
 			{
@@ -111,7 +113,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 	},
 	{
 		test: /\.less$/,
-		exclude: /\/node_modules/,
+		include: cssModule,
 		use: [
 			// isDev ? 'style-loader' :
 			{
@@ -141,7 +143,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 	},
 	{
 		test: /\.less$/,
-		include: /\/node_modules/,
+		exclude: cssModule,
 		use: [
 			{
 				loader: MiniCssExtractPlugin.loader,
@@ -163,9 +165,10 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 	},
 ];
 
-module.exports.createStylePlugin = (mode, isDev) => new MiniCssExtractPlugin({
+module.exports.createStylePlugin = (mode, isDev) => new MiniCssExtractPlugin(isDev ? {
+	chunkFilename: 'style/[name].[contenthash:8].css',
+}: {
 	filename: 'style/[name].[contenthash:8].css',
-	// chunkFilename: 'style/[name].[contenthash:8].css',
 });
 
 // dll 通用配置 end

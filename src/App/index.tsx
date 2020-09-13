@@ -30,8 +30,8 @@ const plugins = jssPreset().plugins.slice();
 // });
 const jss = create({
 	plugins,
-	// insertionPoint: document.getElementById('jss-insertion-point')!,
-	insertionPoint: 'jss-insertion-point',
+	insertionPoint: document.getElementById('jss-insertion-point')!,
+	// insertionPoint: 'jss-insertion-point',
 });
 
 

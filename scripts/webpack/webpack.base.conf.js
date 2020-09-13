@@ -227,7 +227,7 @@ module.exports = {
 			// excludeChunks: ['theme'],
 			excludeAssets: [/theme/],
 			minify: {
-				// removeComments: true,
+				removeComments: true,
 				collapseWhitespace: true,
 				removeRedundantAttributes: true,
 				useShortDoctype: true,
