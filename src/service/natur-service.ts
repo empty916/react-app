@@ -1,3 +1,4 @@
+// import NaturService from './ttt';
 import NaturService from 'natur-service';
 import store from '@/store';
 

@@ -1,6 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import { zhCN } from '@material-ui/core/locale';
 import { Shadows } from '@material-ui/core/styles/shadows';
+import r from './r';
 
 const defaultShadow: Shadows = [
 	'none',
@@ -76,7 +77,13 @@ const theme = createMuiTheme({
 				},
 			},
 		},
+		MuiButton: {
+			root: {
+				padding: `${r(6)} ${r(16)}`,
+			},
+		},
 	},
+	spacing: px => r(px * 8),
 }, zhCN);
 
 

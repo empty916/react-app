@@ -2,7 +2,8 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 import { create } from 'jss';
-// import defaultUnit from 'jss-plugin-default-unit';
+import defaultUnit from 'jss-plugin-default-unit';
+import unitConfig from '@/theme/unit';
 import { ThemeProvider, jssPreset, StylesProvider } from '@material-ui/core/styles';
 import materialTheme from '@/theme/material';
 import AuthRoute from '@/routes/AuthRoute';
@@ -16,22 +17,11 @@ import { inject } from '@/store';
 const injector = inject(['router', {}]);
 
 const plugins = jssPreset().plugins.slice();
-// plugins[4] = defaultUnit({
-// 	// @ts-ignore
-// 	width: val => `${(val / 750) * 100}vw`,
-// 	// @ts-ignore
-// 	height: val => `${(val / 750) * 100}vw`,
-// 	// @ts-ignore
-// 	'padding-left': val => `${(val / 750) * 100}vw`,
-// 	// @ts-ignore
-// 	'padding-right': val => `${(val / 750) * 100}vw`,
-// 	// @ts-ignore
-// 	'min-height': val => `${(val / 750) * 100}vw`,
-// });
+plugins[4] = defaultUnit(unitConfig as any);
+
 const jss = create({
 	plugins,
 	insertionPoint: document.getElementById('jss-insertion-point')!,
-	// insertionPoint: 'jss-insertion-point',
 });
 
 

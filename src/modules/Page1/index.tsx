@@ -20,7 +20,6 @@ const Page1: React.FC<{location: Location} & typeof injector.type> = ({user, loc
 			<Box p={2} display='flex'>
 				<Box alignSelf='flex-start'>
 					<Input
-						style={{height: 'auto', width: 300}}
 						placeholder='输入用户名后才可以访问用户模块'
 						label='用户名'
 						error

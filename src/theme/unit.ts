@@ -1,8 +1,10 @@
+import r from './r';
 
 const px = 'px';
 const ms = 'ms';
 const percent = '%';
-
+const vw = r;
+const current = vw;
 /**
  * Generated jss-plugin-default-unit CSS property units
  *
@@ -14,10 +16,10 @@ export default {
 	'animation-duration': ms,
 
 	// Background properties
-	'background-position': px,
-	'background-position-x': px,
-	'background-position-y': px,
-	'background-size': px,
+	'background-position': current,
+	'background-position-x': current,
+	'background-position-y': current,
+	'background-size': current,
 
 	// Border Properties
 	border: px,
@@ -37,68 +39,68 @@ export default {
 	'border-width': px,
 
 	// Margin properties
-	margin: px,
-	'margin-bottom': px,
-	'margin-left': px,
-	'margin-right': px,
-	'margin-top': px,
+	margin: current,
+	'margin-bottom': current,
+	'margin-left': current,
+	'margin-right': current,
+	'margin-top': current,
 
 	// Padding properties
-	padding: px,
-	'padding-bottom': px,
-	'padding-left': px,
-	'padding-right': px,
-	'padding-top': px,
+	padding: current,
+	'padding-bottom': current,
+	'padding-left': current,
+	'padding-right': current,
+	'padding-top': current,
 
 	// Mask properties
-	'mask-position-x': px,
-	'mask-position-y': px,
-	'mask-size': px,
+	'mask-position-x': current,
+	'mask-position-y': current,
+	'mask-size': current,
 
 	// Width and height properties
-	height: px,
-	width: px,
-	'min-height': px,
-	'max-height': px,
-	'min-width': px,
-	'max-width': px,
+	height: current,
+	width: current,
+	'min-height': current,
+	'max-height': current,
+	'min-width': current,
+	'max-width': current,
 
 	// Position properties
-	bottom: px,
-	left: px,
-	top: px,
-	right: px,
+	bottom: current,
+	left: current,
+	top: current,
+	right: current,
 
 	// Shadow properties
-	'box-shadow': px,
-	'text-shadow': px,
+	'box-shadow': current,
+	'text-shadow': current,
 
 	// Column properties
-	'column-gap': px,
-	'column-rule': px,
-	'column-rule-width': px,
-	'column-width': px,
+	'column-gap': current,
+	'column-rule': current,
+	'column-rule-width': current,
+	'column-width': current,
 
 	// Font and text properties
-	'font-size': px,
-	'font-size-delta': px,
-	'letter-spacing': px,
-	'text-indent': px,
-	'text-stroke': px,
-	'text-stroke-width': px,
-	'word-spacing': px,
+	'font-size': current,
+	'font-size-delta': current,
+	'letter-spacing': current,
+	'text-indent': current,
+	'text-stroke': current,
+	'text-stroke-width': current,
+	'word-spacing': current,
 
 	// Motion properties
-	motion: px,
-	'motion-offset': px,
+	motion: current,
+	'motion-offset': current,
 
 	// Outline properties
-	outline: px,
-	'outline-offset': px,
-	'outline-width': px,
+	outline: current,
+	'outline-offset': current,
+	'outline-width': current,
 
 	// Perspective properties
-	perspective: px,
+	perspective: current,
 	'perspective-origin-x': percent,
 	'perspective-origin-y': percent,
 
@@ -113,31 +115,31 @@ export default {
 	'transition-duration': ms,
 
 	// Alignment properties
-	'vertical-align': px,
-	'flex-basis': px,
+	'vertical-align': current,
+	'flex-basis': current,
 
 	// Some random properties
-	'shape-margin': px,
-	size: px,
+	'shape-margin': current,
+	size: current,
 
 	// Grid properties
-	grid: px,
-	'grid-gap': px,
-	'grid-row-gap': px,
-	'grid-column-gap': px,
-	'grid-template-rows': px,
-	'grid-template-columns': px,
-	'grid-auto-rows': px,
-	'grid-auto-columns': px,
+	grid: current,
+	'grid-gap': current,
+	'grid-row-gap': current,
+	'grid-column-gap': current,
+	'grid-template-rows': current,
+	'grid-template-columns': current,
+	'grid-auto-rows': current,
+	'grid-auto-columns': current,
 
 	// Not existing properties.
 	// Used to avoid issues with jss-plugin-expand integration.
-	'box-shadow-x': px,
-	'box-shadow-y': px,
-	'box-shadow-blur': px,
-	'box-shadow-spread': px,
-	'font-line-height': px,
-	'text-shadow-x': px,
-	'text-shadow-y': px,
-	'text-shadow-blur': px,
+	'box-shadow-x': current,
+	'box-shadow-y': current,
+	'box-shadow-blur': current,
+	'box-shadow-spread': current,
+	'font-line-height': current,
+	'text-shadow-x': current,
+	'text-shadow-y': current,
+	'text-shadow-blur': current,
 };
