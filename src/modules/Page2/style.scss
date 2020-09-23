@@ -1,4 +1,5 @@
 @import '~@/utils/styles/func.scss';
+// @import '../../utils/styles/func.scss';
 
 .page2 {
 	box-sizing: border-box;
@@ -6,6 +7,7 @@
 	// height: 100vh;
 	padding: r(20);
 	background-image: url('~@/assets/0326_1.jpg');
+	// background-image: url('../../assets/0326_1.jpg');
 	background-size: cover;
 	// border: 2px solid blue;
 	background-color: #fff;
