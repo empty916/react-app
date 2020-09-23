@@ -1,10 +1,10 @@
-import r from './r';
+// import r from './r';
 
 const px = 'px';
 const ms = 'ms';
 const percent = '%';
-const vw = r;
-const current = vw;
+// const vw = r;
+const current = px;
 /**
  * Generated jss-plugin-default-unit CSS property units
  *

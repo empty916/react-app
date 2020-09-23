@@ -77,11 +77,11 @@ const theme = createMuiTheme({
 				},
 			},
 		},
-		MuiButton: {
-			root: {
-				padding: `${r(6)} ${r(16)}`,
-			},
-		},
+		// MuiButton: {
+		// 	root: {
+		// 		padding: `${r(6)} ${r(16)}`,
+		// 	},
+		// },
 	},
 	spacing: px => r(px * 8),
 }, zhCN);
