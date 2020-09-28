@@ -36,7 +36,7 @@ const options = {
 	jumpToPage: true,
 	// selectableRowsHeader: false,
 	selectToolbarPlacement: 'none',
-	viewColumns: false,
+	// viewColumns: false,
 	print: false,
 	searchable: false,
 	search: false,
@@ -47,6 +47,13 @@ const options = {
 			text: '行已选择',
 			delete: '删除',
 			deleteAria: '删除所选数据',
+		},
+		toolbar: {
+			viewColumns: '需要显示的列',
+		},
+		viewColumns: {
+			title: '显示列',
+			titleAria: '显示/隐藏 表哥列',
 		},
 		pagination: {
 			next: '下一页',
