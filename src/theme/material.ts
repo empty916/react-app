@@ -2,6 +2,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { zhCN } from '@material-ui/core/locale';
 import { Shadows } from '@material-ui/core/styles/shadows';
 import r from './r';
+// import { lightBlue } from '@material-ui/core/colors';
 
 const defaultShadow: Shadows = [
 	'none',
@@ -33,96 +34,136 @@ const defaultShadow: Shadows = [
 
 const mainShadow: Shadows = defaultShadow.slice() as Shadows;
 
-mainShadow[24] = '0 12px 20px -10px rgba(33, 150, 243,.28), 0 4px 20px 0 rgba(0, 0, 0,.12), 0 7px 8px -5px rgba(33, 150, 243,.2)';
+mainShadow[24] =	'0 12px 20px -10px rgba(33, 150, 243,.28), 0 4px 20px 0 rgba(0, 0, 0,.12), 0 7px 8px -5px rgba(33, 150, 243,.2)';
 
-const theme = createMuiTheme({
-	palette: {
-		primary: {
-			light: '#64b5f6',
-			main: '#2196f3',
-			dark: '#1976d2',
-			contrastText: '#fff',
-		},
-	},
-	shape: {
-		borderRadius: 0,
-	},
-	shadows: mainShadow,
-	props: {
-		MuiTextField: {
-			variant: 'outlined',
-			size: 'small',
-			type: 'text',
-		},
-		MuiCheckbox: {
-			color: 'primary',
-		},
-		MuiRadio: {
-			color: 'primary',
-		},
-	},
-	overrides: {
-		MuiOutlinedInput: {
-			inputMarginDense: {
-				paddingTop: 9.5,
-				paddingBottom: 9.5,
+const theme = createMuiTheme(
+	{
+		palette: {
+			primary: {
+				light: '#64b5f6',
+				main: '#2196f3',
+				dark: '#1976d2',
+				contrastText: '#fff',
 			},
-			root: {
-				'&$focused $notchedOutline': {
-					borderWidth: 1,
-					// borderColor: 'blue',
-				},
-				'&:hover $notchedOutline': {
-					// borderColor: '#2196f3',
-				},
+			secondary: {
+				light: '#64b5f6',
+				main: '#2196f3',
+				dark: '#1976d2',
+				contrastText: '#fff',
 			},
 		},
-		// MuiButton: {
-		// 	root: {
-		// 		padding: `${r(6)} ${r(16)}`,
-		// 	},
-		// },
+		shape: {
+			borderRadius: 0,
+		},
+		shadows: mainShadow,
+		props: {
+			MuiTextField: {
+				variant: 'outlined',
+				size: 'small',
+				type: 'text',
+			},
+			// MuiCheckbox: {
+			// 	color: 'primary',
+			// },
+			// MuiRadio: {
+			// 	color: 'primary',
+			// },
+		},
+		overrides: {
+			MuiOutlinedInput: {
+				inputMarginDense: {
+					paddingTop: 9.5,
+					paddingBottom: 9.5,
+				},
+				root: {
+					'&$focused $notchedOutline': {
+						borderWidth: 1,
+						// borderColor: 'blue',
+					},
+					'&:hover $notchedOutline': {
+						// borderColor: '#2196f3',
+					},
+				},
+			},
+			// @ts-ignore
+			MUIDataTableHeadCell: {
+				sortAction: {
+					display: 'flex',
+					alignItems: 'center',
+				},
+			},
+			// date picker的主题样式覆盖，详情请看
+			// @ts-ignore
+			// MuiPickersDay: {
+			// 	day: {
+			// 		color: lightBlue.A700,
+			// 	},
+			// 	daySelected: {
+			// 		backgroundColor: lightBlue['400'],
+			// 	},
+			// 	dayDisabled: {
+			// 		color: lightBlue['100'],
+			// 	},
+			// 	current: {
+			// 		color: lightBlue['900'],
+			// 	},
+			// },
+			// MuiPickersModal: {
+			// 	dialogAction: {
+			// 		color: lightBlue['400'],
+			// 	},
+			// },
+			// MuiButton: {
+			// 	root: {
+			// 		padding: `${r(6)} ${r(16)}`,
+			// 	},
+			// },
+		},
+		spacing: px => r(px * 8),
 	},
-	spacing: px => r(px * 8),
-}, zhCN);
+	zhCN,
+);
 
-
-export const menuTheme = createMuiTheme({
-	palette: {
-		type: 'dark',
-		action: {
-			hover: 'rgba(200, 200, 200, 0.2)',
-			hoverOpacity: 0.2,
-			selected: 'rgba(200, 200, 200, 0.2)',
-			selectedOpacity: 0.2,
-		},
-	},
-	overrides: {
-		MuiDrawer: {
-			paperAnchorDockedLeft: {
-				borderRight: 'none',
+export const menuTheme = createMuiTheme(
+	{
+		palette: {
+			type: 'dark',
+			action: {
+				hover: 'rgba(200, 200, 200, 0.2)',
+				hoverOpacity: 0.2,
+				selected: 'rgba(200, 200, 200, 0.2)',
+				selectedOpacity: 0.2,
 			},
 		},
-		MuiListItem: {
-			root: {
-				marginTop: 10,
-				borderRadius: 0,
-				'&$selected,&$selected:hover': {
-					boxShadow: mainShadow[24],
-					backgroundColor: theme.palette.primary.main,
+		overrides: {
+			MuiDrawer: {
+				paperAnchorDockedLeft: {
+					borderRight: 'none',
 				},
-				transition: 'all cubic-bezier(0.4, 0, 0.2, 1) 0.3s!important',
 			},
-			gutters: {
-				paddingLeft: 10,
+			MuiListItem: {
+				root: {
+					marginTop: 10,
+					borderRadius: 0,
+					'&$selected,&$selected:hover': {
+						boxShadow: mainShadow[24],
+						backgroundColor: theme.palette.primary.main,
+					},
+					transition:
+						'all cubic-bezier(0.4, 0, 0.2, 1) 0.3s!important',
+				},
+				gutters: {
+					paddingLeft: 10,
+				},
 			},
-		},
-		MuiListItemIcon: {
-			root: {
-				minWidth: 45,
+			MuiListItemIcon: {
+				root: {
+					minWidth: 45,
+				},
 			},
 		},
 	},
-}, zhCN);
+	zhCN,
+);
 
 export default theme;

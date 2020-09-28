@@ -3,25 +3,69 @@ import React from 'react';
 // import Input from '@base/Input';
 // import Icon from '@material-ui/core/Icon';
 import styles from './style.scss';
-import { Button, LinearProgress, FormControlLabel, Radio } from '@material-ui/core';
+import {
+	Button,
+	LinearProgress,
+	FormControlLabel,
+	Radio,
+} from '@material-ui/core';
 import { inject } from '@/store';
 import { TextField, RadioGroup } from 'formik-material-ui';
 import { Field, useFormik, FormikProvider } from 'formik';
 import Checkbox from '@/components/base/Checkbox';
 import ErrorMsgBoxHOC from '@/components/base/ErrorMsgBoxHOC';
-
+import { DatePicker } from 'formik-material-ui-pickers';
+import MUIDataTable from 'mui-datatables';
 
 const injector = inject('page2', ['app', {}]);
 type PageProps = typeof injector.type;
 
-
 const _RadioGroup = ErrorMsgBoxHOC(RadioGroup);
 
-const Page2: React.FC<PageProps> = ({page2}) => {
-	const {actions } = page2;
+const columns = ['Name', 'Company', 'City', 'State'];
+
+const data = [
+	['Joe James', 'Test Corp', 'Yonkers', 'NY'],
+	['John Walsh', 'Test Corp', 'Hartford', 'CT'],
+	['Bob Herm', 'Test Corp', 'Tampa', 'FL'],
+	['James Houston', 'Test Corp', 'Dallas', 'TX'],
+];
+
+const options = {
+	filterType: 'checkbox' as 'checkbox',
+	jumpToPage: true,
+	// selectableRowsHeader: false,
+	selectToolbarPlacement: 'none',
+	viewColumns: false,
+	print: false,
+	searchable: false,
+	search: false,
+	download: false,
+	filter: false,
+	textLabels: {
+		selectedRows: {
+			text: '行已选择',
+			delete: '删除',
+			deleteAria: '删除所选数据',
+		},
+		pagination: {
+			next: '下一页',
+			previous: '上一页',
+			rowsPerPage: '每页行数:',
+			displayRows: '共',
+			jumpToPage: '跳转到',
+		},
+	},
+};
+
+// const MyDatePicker
+
+const Page2: React.FC<PageProps> = ({ page2 }) => {
+	const { actions } = page2;
 	const formikbag = useFormik({
 		initialValues: {
 			email: '',
+			date: '',
 			password: '',
 			checked: false,
 			activity: '',
@@ -32,18 +76,39 @@ const Page2: React.FC<PageProps> = ({page2}) => {
 			// console.log(JSON.stringify(values, null, 2));
 		},
 	});
-	const {isSubmitting, submitForm} = formikbag;
+	const { isSubmitting, submitForm } = formikbag;
 
 	// const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value);
 	return (
 		<div className={styles.page2}>
+			<MUIDataTable
+				title=""
+				data={data}
+				columns={columns}
+				// options={{
+				// 	filterType: 'checkbox',
+				// 	// @ts-ignore
+				// 	jumpToPage: true,
+				// }}
+				options={options as any}
+			/>
 			<FormikProvider value={formikbag}>
+				<Field
+					component={DatePicker}
+					label="date"
+					cancelLabel="取消"
+					okLabel="确定"
+					name="date"
+				/>
+				<br />
 				<Field
 					component={TextField}
 					name="email"
 					type="email"
 					label="Email"
-					validate={(v: string) => (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(v) ? 'Invalid email address' : undefined)}
+					validate={(v: string) => (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(v)
+						? 'Invalid email address'
+						: undefined)}
 				/>
 				<br />
 				<Field
@@ -99,11 +164,6 @@ const Page2: React.FC<PageProps> = ({page2}) => {
 	);
 };
 
-
-export {
-	state,
-	maps,
-	actions,
-} from './store';
+export { state, maps, actions } from './store';
 
 export default injector(Page2);
