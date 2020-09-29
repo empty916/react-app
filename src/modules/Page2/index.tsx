@@ -8,6 +8,7 @@ import {
 	LinearProgress,
 	FormControlLabel,
 	Radio,
+	TablePagination,
 } from '@material-ui/core';
 import { inject } from '@/store';
 import { TextField, RadioGroup } from 'formik-material-ui';
@@ -22,13 +23,46 @@ type PageProps = typeof injector.type;
 
 const _RadioGroup = ErrorMsgBoxHOC(RadioGroup);
 
-const columns = ['Name', 'Company', 'City', 'State'];
+const columns = [
+	{
+		name: 'name',
+		label: 'Name',
+		options: {
+			filter: true,
+			sort: true,
+		},
+	},
+	{
+		name: 'company',
+		label: 'Company',
+		options: {
+			filter: true,
+			sort: false,
+		},
+	},
+	{
+		name: 'city',
+		label: 'City',
+		options: {
+			filter: true,
+			sort: false,
+		},
+	},
+	{
+		name: 'state',
+		label: 'State',
+		options: {
+			filter: true,
+			sort: false,
+		},
+	},
+];
 
 const data = [
-	['Joe James', 'Test Corp', 'Yonkers', 'NY'],
-	['John Walsh', 'Test Corp', 'Hartford', 'CT'],
-	['Bob Herm', 'Test Corp', 'Tampa', 'FL'],
-	['James Houston', 'Test Corp', 'Dallas', 'TX'],
+	{ name: 'Joe James', company: 'Test Corp', city: 'Yonkers', state: 'NY' },
+	{ name: 'John Walsh', company: 'Test Corp', city: 'Hartford', state: 'CT' },
+	{ name: 'Bob Herm', company: 'Test Corp', city: 'Tampa', state: 'FL' },
+	{ name: 'James Houston', company: 'Test Corp', city: 'Dallas', state: 'TX' },
 ];
 
 const options = {
@@ -37,11 +71,18 @@ const options = {
 	// selectableRowsHeader: false,
 	selectToolbarPlacement: 'none',
 	// viewColumns: false,
+	tableId: 'name',
+	// count: 100,
 	print: false,
 	searchable: false,
 	search: false,
+	serverSide: true,
 	download: false,
 	filter: false,
+	rowsPerPageOptions: [5, 10, 25],
+	onTableChange: (...arg: any) => {
+		console.log(...arg);
+	},
 	textLabels: {
 		selectedRows: {
 			text: '行已选择',
@@ -63,6 +104,24 @@ const options = {
 			jumpToPage: '跳转到',
 		},
 	},
+	customFooter: (
+		count: number,
+		page: number,
+		rowsPerPage: number,
+		changeRowsPerPage: any,
+		changePage: any,
+	) => (
+		<TablePagination
+			rowsPerPageOptions={[5, 10, 25]}
+			component='div'
+			count={100}
+			rowsPerPage={rowsPerPage}
+			page={page}
+			labelDisplayedRows={({ from, to, count: _count }) => `${from}-${to} 共 ${_count !== -1 ? _count : `more than ${to}`} 条数据`}
+			onChangePage={(event, np: number) => changePage(np)}
+			onChangeRowsPerPage={e => changeRowsPerPage(e.target.value)}
+		/>
+	),
 };
 
 // const MyDatePicker
@@ -92,11 +151,6 @@ const Page2: React.FC<PageProps> = ({ page2 }) => {
 				title=""
 				data={data}
 				columns={columns}
-				// options={{
-				// 	filterType: 'checkbox',
-				// 	// @ts-ignore
-				// 	jumpToPage: true,
-				// }}
 				options={options as any}
 			/>
 			<FormikProvider value={formikbag}>
