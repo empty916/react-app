@@ -8,7 +8,6 @@ import {
 	LinearProgress,
 	FormControlLabel,
 	Radio,
-	TablePagination,
 } from '@material-ui/core';
 import { inject } from '@/store';
 import { TextField, RadioGroup } from 'formik-material-ui';
@@ -16,7 +15,7 @@ import { Field, useFormik, FormikProvider } from 'formik';
 import Checkbox from '@/components/base/Checkbox';
 import ErrorMsgBoxHOC from '@/components/base/ErrorMsgBoxHOC';
 import { DatePicker } from 'formik-material-ui-pickers';
-import MUIDataTable from 'mui-datatables';
+import Table from '@/components/base/Table';
 
 const injector = inject('page2', ['app', {}]);
 type PageProps = typeof injector.type;
@@ -65,66 +64,7 @@ const data = [
 	{ name: 'James Houston', company: 'Test Corp', city: 'Dallas', state: 'TX' },
 ];
 
-const options = {
-	filterType: 'checkbox' as 'checkbox',
-	jumpToPage: true,
-	// selectableRowsHeader: false,
-	selectToolbarPlacement: 'none',
-	// viewColumns: false,
-	tableId: 'name',
-	// count: 100,
-	print: false,
-	searchable: false,
-	search: false,
-	serverSide: true,
-	download: false,
-	filter: false,
-	rowsPerPageOptions: [5, 10, 25],
-	onTableChange: (...arg: any) => {
-		console.log(...arg);
-	},
-	textLabels: {
-		selectedRows: {
-			text: '行已选择',
-			delete: '删除',
-			deleteAria: '删除所选数据',
-		},
-		toolbar: {
-			viewColumns: '需要显示的列',
-		},
-		viewColumns: {
-			title: '显示列',
-			titleAria: '显示/隐藏 表哥列',
-		},
-		pagination: {
-			next: '下一页',
-			previous: '上一页',
-			rowsPerPage: '每页行数:',
-			displayRows: '共',
-			jumpToPage: '跳转到',
-		},
-	},
-	customFooter: (
-		count: number,
-		page: number,
-		rowsPerPage: number,
-		changeRowsPerPage: any,
-		changePage: any,
-	) => (
-		<TablePagination
-			rowsPerPageOptions={[5, 10, 25]}
-			component='div'
-			count={100}
-			rowsPerPage={rowsPerPage}
-			page={page}
-			labelDisplayedRows={({ from, to, count: _count }) => `${from}-${to} 共 ${_count !== -1 ? _count : `more than ${to}`} 条数据`}
-			onChangePage={(event, np: number) => changePage(np)}
-			onChangeRowsPerPage={e => changeRowsPerPage(e.target.value)}
-		/>
-	),
-};
 
-// const MyDatePicker
 
 const Page2: React.FC<PageProps> = ({ page2 }) => {
 	const { actions } = page2;
@@ -147,11 +87,15 @@ const Page2: React.FC<PageProps> = ({ page2 }) => {
 	// const changePage2 = (e: React.ChangeEvent<HTMLInputElement>) => actions.changePageName(e.target.value);
 	return (
 		<div className={styles.page2}>
-			<MUIDataTable
-				title=""
+			<Table
+				title=''
+				pagination={{
+					total: 100,
+					page: 1,
+					rowsPerPage: 5,
+				}}
 				data={data}
 				columns={columns}
-				options={options as any}
 			/>
 			<FormikProvider value={formikbag}>
 				<Field
