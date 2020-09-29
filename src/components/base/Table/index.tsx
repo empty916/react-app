@@ -6,19 +6,20 @@ import MUIDataTable, { MUIDataTableProps } from 'mui-datatables';
 
 
 
-type TableProps = MUIDataTableProps & {
+type TableProps = Omit<MUIDataTableProps, 'title'> & {
     pagination: {
         /** 总数据量 */
         total: number;
         /** 当前页数 */
         page: number;
-        /** rowsPerPage */
+        /** 每页的数据有多少行 */
         rowsPerPage: number;
     },
-    onPageChange?: (page: number) => void;
+	onPageChange?: (page: number) => void;
+	title?: string;
 };
 
-const Table: React.FC<TableProps> = ({options, data, pagination, onPageChange, ...restProps}) => {
+const Table: React.FC<TableProps> = ({options, data, pagination, onPageChange, title = '', ...restProps}) => {
 	const _options = React.useMemo(() => ({
 		filterType: 'checkbox' as 'checkbox',
 		jumpToPage: true,
@@ -76,11 +77,11 @@ const Table: React.FC<TableProps> = ({options, data, pagination, onPageChange, .
 
 	return (
 		<MUIDataTable
+			title={title}
 			data={data}
 			options={_options as any}
 			{...restProps}
 		/>
 	);
 };
-
 export default Table;

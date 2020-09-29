@@ -88,7 +88,6 @@ const Page2: React.FC<PageProps> = ({ page2 }) => {
 	return (
 		<div className={styles.page2}>
 			<Table
-				title=''
 				pagination={{
 					total: 100,
 					page: 1,
