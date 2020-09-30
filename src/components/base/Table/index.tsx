@@ -5,12 +5,6 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 
-type TableState = {
-	selectedRows: {
-		data: {dataIndex: number}[]
-	}
-};
-
 type TableProps = Omit<MUIDataTableProps, 'title'> & {
 	pagination: {
 		/** 总数据量 */
@@ -22,11 +16,12 @@ type TableProps = Omit<MUIDataTableProps, 'title'> & {
 	},
 	onPageChange?: (page: number) => void;
 	onChangeRowsPerPage?: (page: number) => void;
-	onTableChange?: (dataIndex: number[]) => void;
+	onRowSelectionChange?: (dataIndex: number[]) => void;
 	title?: string;
+	rowsSelected?: number[];
 };
 
-const Table: React.FC<TableProps> = ({options, data, pagination, onPageChange, onChangeRowsPerPage, onTableChange, title = '', ...restProps}) => {
+const Table: React.FC<TableProps> = ({options, data, pagination, onPageChange, onChangeRowsPerPage, onRowSelectionChange, rowsSelected = [], title = '', ...restProps}) => {
 	const _options = React.useMemo(() => ({
 		filterType: 'checkbox' as 'checkbox',
 		jumpToPage: true,
@@ -38,6 +33,7 @@ const Table: React.FC<TableProps> = ({options, data, pagination, onPageChange, o
 		serverSide: true,
 		download: false,
 		filter: false,
+		rowsSelected,
 		rowsPerPageOptions: options?.rowsPerPageOptions || [5, 10, 15, 20, 25],
 		textLabels: {
 			selectedRows: {
@@ -87,13 +83,13 @@ const Table: React.FC<TableProps> = ({options, data, pagination, onPageChange, o
 		),
 		onChangePage: (np: number) => onPageChange && onPageChange(np + 1),
 		onChangeRowsPerPage: (size: number) => onChangeRowsPerPage && onChangeRowsPerPage(size),
-		onTableChange: (action: string, tableState: TableState) => {
-			if (onTableChange) {
-				return onTableChange(tableState.selectedRows.data.map(item => item.dataIndex));
+		onRowSelectionChange: (currentRowsSelected: any, allRowsSelected: any, selectedIndexs: any) => {
+			if (onRowSelectionChange) {
+				return onRowSelectionChange(selectedIndexs);
 			}
 		},
 		...options,
-	}), [onPageChange, onChangeRowsPerPage, onTableChange, options, pagination.page, pagination.rowsPerPage, pagination.total]);
+	}), [rowsSelected, options, pagination.total, pagination.rowsPerPage, pagination.page, onPageChange, onChangeRowsPerPage, onRowSelectionChange]);
 
 	return (
 		<MUIDataTable
