@@ -58,10 +58,10 @@ const columns = [
 ];
 
 const data = [
-	{ name: 'Joe James', company: 'Test Corp', city: 'Yonkers', state: 'NY' },
-	{ name: 'John Walsh', company: 'Test Corp', city: 'Hartford', state: 'CT' },
-	{ name: 'Bob Herm', company: 'Test Corp', city: 'Tampa', state: 'FL' },
-	{ name: 'James Houston', company: 'Test Corp', city: 'Dallas', state: 'TX' },
+	{ id: '1', name: 'Joe James', company: 'Test Corp', city: 'Yonkers', state: 'NY' },
+	{ id: '2', name: 'John Walsh', company: 'Test Corp', city: 'Hartford', state: 'CT' },
+	{ id: '3', name: 'Bob Herm', company: 'Test Corp', city: 'Tampa', state: 'FL' },
+	{ id: '4', name: 'James Houston', company: 'Test Corp', city: 'Dallas', state: 'TX' },
 ];
 
 
@@ -93,6 +93,9 @@ const Page2: React.FC<PageProps> = ({ page2 }) => {
 					page: 1,
 					rowsPerPage: 5,
 				}}
+				// idName='id'
+				rowsSelected={page2.state.rowsSelected}
+				onRowSelectionChange={actions.updateRowsSelected}
 				data={data}
 				columns={columns}
 			/>

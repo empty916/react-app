@@ -3,6 +3,8 @@ import { ThunkParams } from 'natur/dist/middlewares';
 export const state = {
 	pageName: 'page2',
 	count: 1,
+	// rowsSelected: ['1', '2'],
+	rowsSelected: [0, 2],
 };
 export const maps = {
 	pageNameSplit: ['pageName', (pageName: string) => pageName.split('')],
@@ -11,6 +13,7 @@ export const maps = {
 	test: ['count', () => () => true],
 };
 export const actions = {
+	updateRowsSelected: (rowsSelected: State['rowsSelected']) => ({rowsSelected}),
 	changePageName: (newPageName: string) => ({
 		pageName: newPageName,
 	}),
