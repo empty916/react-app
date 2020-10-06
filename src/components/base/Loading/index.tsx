@@ -1,5 +1,5 @@
 import { inject } from '@/store';
-import { Box, CircularProgress, Dialog } from '@material-ui/core';
+import { Box, CircularProgress, Dialog, Zoom } from '@material-ui/core';
 import React from 'react';
 
 import styles from './style.scss';
@@ -8,13 +8,17 @@ const paperProps = {
 	elevation: 10,
 };
 
-const injector = inject('loading');
+const injector = inject(['loading', {
+	state: ['showLoading', 'loadingText'],
+}]);
+
 
 const Loading = ({loading}: typeof injector.type) => (
 	<Dialog
 		open={loading.state.showLoading}
 		classes={styles}
 		PaperProps={paperProps}
+		TransitionComponent={Zoom}
 	>
 		<Box
 			display='flex'

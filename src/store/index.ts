@@ -51,6 +51,8 @@ clearDataAtLoginPage(false);
 
 history.listen(() => clearDataAtLoginPage());
 
+(window as any).store = store;
+
 export default store;
 export const inject = createInject({
 	storeGetter: () => store,
