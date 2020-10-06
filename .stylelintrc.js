@@ -274,6 +274,8 @@ module.exports = {
 			'page-break-inside',
 			'widows',
 		],
+		'selector-type-case': null,
+		'selector-type-no-unknown': null,
 		'indentation': 'tab',
 		'color-no-invalid-hex': true,
 		'font-family-no-missing-generic-family-keyword': null,

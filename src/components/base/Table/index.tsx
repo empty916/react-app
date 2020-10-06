@@ -163,6 +163,7 @@ const Table = <
 		data,
 	]);
 
+
 	return (
 		<MUIDataTable
 			title={title}

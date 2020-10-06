@@ -26,7 +26,7 @@ module.exports = merge(baseConfig, {
 	},
 	resolve: {
 		alias: {
-			'@redux-devtool': getPath(project, 'store', 'redux.devtool.ts'),
+			'@redux-devtool': getPath(project, 'store', 'common', 'redux.devtool.ts'),
 		},
 	},
 	module: {
@@ -60,7 +60,7 @@ module.exports = merge(baseConfig, {
 					"@history": [`${project}/routes/history.ts`],
 					'@': [`${project}`],
 					'@/*': [`${project}/*`],
-					'@redux-devtool': [`${project}/store/redux.devtool.ts`],
+					'@redux-devtool': [`${project}/store/common/redux.devtool.ts`],
 					"@base/*": [`${project}/components/base/*`],
 					"@biz/*": [`${project}/components/business/*`],
 				},

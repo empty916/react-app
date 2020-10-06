@@ -22,7 +22,7 @@ module.exports = merge(baseConfig, {
 	},
 	resolve: {
 		alias: {
-			'@redux-devtool': getPath(project, 'store', 'no.devtool.ts'),
+			'@redux-devtool': getPath(project, 'store', 'common', 'no.devtool.ts'),
 		},
 	},
 	plugins: [

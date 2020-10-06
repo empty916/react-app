@@ -1,0 +1,15 @@
+.root {
+	:global {
+		.MuiBackdrop-root {
+			background-color: rgba(235, 110, 110, 0);
+		}
+		.MuiCircularProgress-colorPrimary {
+			color: white;
+		}
+	}
+	z-index: 9999999!important;
+}
+.scrollPaper, .paperScrollPaper {
+	border-radius: 5px;
+	background-color: transparent;
+}

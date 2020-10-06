@@ -8,7 +8,7 @@ import { Router } from 'react-router-dom';
 import history from './routes/history';
 import './store';
 import App from './App';
-import '@/service/user';
+import '@/service/common/user';
 
 const content = (
 	<Router history={history}>

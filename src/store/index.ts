@@ -8,10 +8,12 @@ import {
 } from 'natur/dist/middlewares';
 import devTool from '@redux-devtool';
 import history from '@history';
-import { localStorageMiddleware, getData, clearData } from './persist';
+import { localStorageMiddleware, getData, clearData } from './common/persist';
 import app from '../App/store';
-import user from './user.store';
-import router from './router.store';
+import user from './common/user.store';
+import toast from './common/toast.store';
+import loading from './common/loading.store';
+import router from './common/router.store';
 import lazyModuleConfig from './lazyModule';
 
 const { modules: lazyModules } = lazyModuleConfig;
@@ -20,6 +22,8 @@ const modules = {
 	app,
 	user,
 	router,
+	toast,
+	loading,
 };
 
 
@@ -46,6 +50,8 @@ function clearDataAtLoginPage(shouldResetState: boolean = true) {
 clearDataAtLoginPage(false);
 
 history.listen(() => clearDataAtLoginPage());
+
+(window as any).store = store;
 
 export default store;
 export const inject = createInject({

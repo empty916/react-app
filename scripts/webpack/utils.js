@@ -56,7 +56,10 @@ module.exports.addDllPluginsConfig = mode => [
 ];
 
 
-const cssModule = [/\/src\/modules/, /\/src\/components/]
+const cssModule = [
+	new RegExp('src/|\modules'),
+	new RegExp('src/|\components'),
+]
 module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 	{
 		test: /\.(s?css)$/,

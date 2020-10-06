@@ -1,2 +1,2 @@
-export { default as appService } from './app';
-export { default as userService } from './user';
+export { default as appService } from './common/app';
+export { default as userService } from './common/user';

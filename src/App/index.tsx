@@ -11,12 +11,14 @@ import history from '@history';
 import routes from '@/routes';
 import '@/service';
 import '@/theme/native/theme.scss';
-import '@/service/theme';
+import '@/service/common/theme';
 import { inject } from '@/store';
 import DateFnsUtils from '@date-io/date-fns';
 import zhLocale from 'date-fns/locale/zh-CN';
 
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import Toast from '@/components/base/Toast';
+import Loading from '@/components/base/Loading';
 
 const injector = inject(['router', {}]);
 
@@ -57,6 +59,8 @@ const App: React.FC<typeof injector.type> = ({router}) => {
 							<AuthRoute key={route.path || `${index}`} {...route} />
 						))}
 					</Switch>
+					<Toast />
+					<Loading />
 				</ThemeProvider>
 			</StylesProvider>
 		</MuiPickersUtilsProvider>

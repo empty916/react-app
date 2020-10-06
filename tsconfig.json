@@ -51,7 +51,7 @@
 			"@/*": ["src/*"],
 			"@base/*": ["src/components/base/*"],
 			"@biz/*": ["src/components/business/*"],
-			"@redux-devtool": ["src/store/redux.devtool.ts"],
+			"@redux-devtool": ["src/store/common/redux.devtool.ts"],
 		},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
 		// "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
 		"typeRoots": [

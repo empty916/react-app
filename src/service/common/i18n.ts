@@ -1,4 +1,4 @@
-import appService from '@/service/app';
+import appService from '@/service/common/app';
 import store from '@/store';
 import { useState, useEffect } from 'react';
 
