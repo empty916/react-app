@@ -1,31 +1,50 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
-import AUTH from '@/constants/Auth';
+import { Route, Redirect, RouteProps } from 'react-router-dom';
 import qs from 'qs';
 import { inject } from '@/store';
-import RouteWithSubRoutes from './RouteWithSubRoutes';
+import AUTH from '@/constants/Auth';
+import { AppRoute } from '.';
 
-export const redirectWithoutAuth: any = {
+const injector = inject(
+	'user',
+	['app', {}],
+);
+
+type AuthRouteProps = {
+	auth?: string;
+	indexRoute?: AppRoute['indexRoute'];
+	routes?: AppRoute[];
+	component: AppRoute['component'];
+} & typeof injector.type & RouteProps;
+
+
+export const redirectWithoutAuth = {
 	[AUTH.LOGIN_AUTH]: '/login',
 };
 
-function AuthRoute({ component, auth, user, ...rest }: any) {
-	const { hasAuth } = user.maps;
-	if (hasAuth(auth)) {
+function AuthRoute({routes, component, indexRoute, user, auth, ...rest}: AuthRouteProps) {
+	const Com = component;
+	const render = React.useCallback(
+		(props: any) => (
+			<Com {...props} indexRoute={indexRoute} routes={routes || []} />
+		),
+		[indexRoute, routes],
+	);
+	if (user.maps.hasAuth(auth)) {
 		return (
-			<RouteWithSubRoutes
+			<Route
 				{...rest}
-				component={component}
+				component={render}
 			/>
 		);
 	}
 	const fromSearch = qs.stringify({
-		redirect: `${rest.location.pathname}${rest.location.search}`,
+		redirect: `${rest.location?.pathname}${rest.location?.search}`,
 	});
 	return (
 		<Redirect
 			to={{
-				pathname: redirectWithoutAuth[auth] || '/',
+				pathname: redirectWithoutAuth[auth!] || '/',
 				search: `?${fromSearch}`,
 			}}
 		/>
@@ -33,5 +52,4 @@ function AuthRoute({ component, auth, user, ...rest }: any) {
 }
 
 
-export default inject(['user', {maps: ['hasAuth']}])(AuthRoute);
-// export default AuthRoute;
+export default injector(AuthRoute);

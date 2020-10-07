@@ -19,7 +19,7 @@ export type AppRoute = {
 	component: React.ComponentClass | LoadableComponent<any> | React.FC<any>,
 	indexRoute?: React.ComponentClass | LoadableComponent<any> | React.FC<any>,
 	name?: string,
-	routes?: Routes,
+	routes?: AppRoute[],
 };
 
 export type Routes = AppRoute[];

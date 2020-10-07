@@ -6,7 +6,6 @@ import defaultUnit from 'jss-plugin-default-unit';
 import unitConfig from '@/theme/unit';
 import { ThemeProvider, jssPreset, StylesProvider } from '@material-ui/core/styles';
 import materialTheme from '@/theme/material';
-import AuthRoute from '@/routes/AuthRoute';
 import history from '@history';
 import routes from '@/routes';
 import '@/service';
@@ -19,6 +18,7 @@ import zhLocale from 'date-fns/locale/zh-CN';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import Toast from '@/components/base/Toast';
 import Loading from '@/components/base/Loading';
+import AuthRoute from '@/routes/AuthRoute';
 
 const injector = inject(['router', {}]);
 
@@ -55,7 +55,7 @@ const App: React.FC<typeof injector.type> = ({router}) => {
 				<ThemeProvider theme={materialTheme}>
 					<CssBaseline />
 					<Switch>
-						{routes.map((route: any, index) => (
+						{routes.map((route, index) => (
 							<AuthRoute key={route.path || `${index}`} {...route} />
 						))}
 					</Switch>
