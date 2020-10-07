@@ -27,7 +27,7 @@ module.exports.getPath = getPath;
 module.exports.getArg = getArg;
 
 // dll 通用配置 start
-const { dllPath, jsPublicPath, imgPublicPath, cssPublicPath } = require('./config');
+const { dllPath, jsPublicPath, cssPublicPath } = require('./config');
 
 const { channel, project } = getArg();
 const getAddAssethtmlPluginsConfig = mode => glob.sync(`${dllPath}/${mode}/*.dll.js`).map(
@@ -70,7 +70,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 				loader: MiniCssExtractPlugin.loader,
 				options: {
 					hmr: isDev,
-					publicPath: imgPublicPath,
+					publicPath: cssPublicPath,
 				},
 			},
 			{
@@ -100,7 +100,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 				loader: MiniCssExtractPlugin.loader,
 				options: {
 					hmr: isDev,
-					publicPath: imgPublicPath,
+					publicPath: cssPublicPath,
 				},
 			},
 			{
@@ -123,7 +123,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 				loader: MiniCssExtractPlugin.loader,
 				options: {
 					hmr: isDev,
-					publicPath: imgPublicPath,
+					publicPath: cssPublicPath,
 				},
 			},
 			{
@@ -152,7 +152,7 @@ module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 				loader: MiniCssExtractPlugin.loader,
 				options: {
 					hmr: isDev,
-					publicPath: imgPublicPath,
+					publicPath: cssPublicPath,
 				},
 			},
 			{
