@@ -10,12 +10,7 @@ const injector = inject(
 	['app', {}],
 );
 
-type AuthRouteProps = {
-	auth?: string;
-	indexRoute?: AppRoute['indexRoute'];
-	routes?: AppRoute[];
-	component: AppRoute['component'];
-} & typeof injector.type & RouteProps;
+type AuthRouteProps = AppRoute & typeof injector.type & RouteProps;
 
 
 export const redirectWithoutAuth = {
