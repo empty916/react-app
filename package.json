@@ -165,7 +165,7 @@
 		"mui-datatables": "^3.4.1",
 		"natur": "^2.0.0",
 		"natur-persist": "^1.1.1",
-		"natur-service": "^2.0.0-beta6",
+		"natur-service": "^2.0.0",
 		"qs": "^6.9.3",
 		"react": "16.10.1",
 		"react-dom": "16.10.1",
