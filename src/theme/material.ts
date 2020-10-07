@@ -92,6 +92,11 @@ const theme = createMuiTheme(
 					alignItems: 'center',
 				},
 			},
+			MuiAlert: {
+				root: {
+					minWidth: 250,
+				},
+			},
 			// date picker的主题样式覆盖，详情请看
 			// @ts-ignore
 			// MuiPickersDay: {
