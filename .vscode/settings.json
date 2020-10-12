@@ -16,7 +16,7 @@
 	"editor.foldingStrategy": "indentation",
 	"eslint.autoFixOnSave": true,
 	"files.autoSave": "off",
-	"eslint.validate": [
+	"eslint.validate": [ 
 		"html",
 		{
 			"language": "javascript",
