@@ -96,8 +96,8 @@ module.exports = {
 			{
 				test: /\.html$/,
 				use: "html-loader",
-				include: new RegExp(`/|\${project}`),
-				exclude: new RegExp(`/|\${project}/|\index.html`)
+				include: new RegExp(`${project}`),
+				exclude: new RegExp(`${project}/|\index.html`)
 			},
 			{
 				test: /\.json$/,
