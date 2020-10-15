@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { Component } from "react";
-import { AuthType } from "@/constants/Auth";
+import { AuthType } from "@/constants/common/Auth";
 import copyStatic from 'hoist-non-react-statics';
 import { InjectStoreModule } from "natur";
 import {inject, StoreType} from '@/store';

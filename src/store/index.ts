@@ -11,6 +11,7 @@ import history from '@history';
 import { localStorageMiddleware, getData, clearData } from './common/persist';
 import app from '../App/store';
 import user from './common/user.store';
+import channel from './common/channel.store';
 import toast from './common/toast.store';
 import loading from './common/loading.store';
 import router from './common/router.store';
@@ -24,6 +25,7 @@ const modules = {
 	router,
 	toast,
 	loading,
+	channel,
 };
 
 

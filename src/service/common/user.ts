@@ -1,4 +1,4 @@
-import { AuthType } from '@/constants/Auth';
+import { AuthType } from '@/constants/common/Auth';
 import NaturService from '../natur-service';
 
 class UserService extends NaturService {

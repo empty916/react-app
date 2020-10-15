@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import qs from 'qs';
 import { inject } from '@/store';
-import AUTH from '@/constants/Auth';
+import AUTH from '@/constants/common/Auth';
 import { AppRoute } from '.';
 
 const injector = inject(

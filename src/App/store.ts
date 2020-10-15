@@ -1,6 +1,6 @@
 // import theme from '@/service/theme';
-import zhLang from '@/constants/lang/zh';
-import enLang from '@/constants/lang/en';
+import zhLang from '@/constants/common/lang/zh';
+import enLang from '@/constants/common/lang/en';
 import { ThunkParams } from 'natur/dist/middlewares';
 
 const state = {

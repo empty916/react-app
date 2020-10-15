@@ -1,4 +1,4 @@
-import AUTH, {AuthType} from '@/constants/Auth';
+import AUTH, {AuthType} from '@/constants/common/Auth';
 
 
 const getStateNameIsExist = (state: any) => !!state.name;

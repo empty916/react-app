@@ -1,6 +1,6 @@
 import React from 'react';
 import loadabel, { LoadableComponent } from '@loadable/component';
-import Auth from '@/constants/Auth';
+import Auth from '@/constants/common/Auth';
 import Loading from '@base/Skeleton';
 // import Loading from '@base/Loading';
 import UserWrapper from '@/modules/user';
