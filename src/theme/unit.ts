@@ -1,5 +1,7 @@
 // import r from './r';
 
+import { Options } from 'jss-plugin-default-unit';
+
 const px = 'px';
 const ms = 'ms';
 const percent = '%';
@@ -10,7 +12,7 @@ const current = px;
  *
  * @type object
  */
-export default {
+const options: Options = {
 	// Animation properties
 	'animation-delay': ms,
 	'animation-duration': ms,
@@ -143,3 +145,6 @@ export default {
 	'text-shadow-y': current,
 	'text-shadow-blur': current,
 };
+
+
+export default options;

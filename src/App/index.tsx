@@ -23,7 +23,7 @@ import AuthRoute from '@/routes/AuthRoute';
 const injector = inject(['router', {}]);
 
 const plugins = jssPreset().plugins.slice();
-plugins[4] = defaultUnit(unitConfig as any);
+plugins[4] = defaultUnit(unitConfig);
 
 const jss = create({
 	plugins,

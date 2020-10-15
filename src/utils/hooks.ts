@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+
 /* eslint-disable */
 
 export const useInit = (fn: Function) => {

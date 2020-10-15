@@ -1,5 +1,4 @@
 
-import { Middleware } from 'natur';
 import { createStore } from 'redux';
 
 
@@ -9,8 +8,8 @@ const root = (state: Object = {}, actions: any):Object => ({
 });
 
 const createMiddleware = () => {
-	if (process.env.NODE_ENV === 'development' && (window as any).__REDUX_DEVTOOLS_EXTENSION__) {
-		const devMiddleware = (window as any).__REDUX_DEVTOOLS_EXTENSION__();
+	if (process.env.NODE_ENV === 'development' && window.__REDUX_DEVTOOLS_EXTENSION__) {
+		const devMiddleware = window.__REDUX_DEVTOOLS_EXTENSION__();
 		const store = createStore(root, devMiddleware);
 		return () => (next: any) => (record: any) => {
 			store.dispatch({
