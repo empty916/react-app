@@ -57,8 +57,8 @@ module.exports.addDllPluginsConfig = mode => [
 
 
 const cssModule = [
-	new RegExp('src/modules'),
-	new RegExp('src/components'),
+	new RegExp('src/|\modules'),
+	new RegExp('src//|\components'),
 ]
 module.exports.createStyleLoader = (mode, isDev = mode === 'development') => [
 	{

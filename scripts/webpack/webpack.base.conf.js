@@ -96,8 +96,8 @@ module.exports = {
 			{
 				test: /\.html$/,
 				use: "html-loader",
-				include: new RegExp(`/${project}`),
-				exclude: new RegExp(`/${project}/index.html`)
+				include: new RegExp(`(/|\)${project}`),
+				exclude: new RegExp(`(/|\)${project}(/|\)index.html`)
 			},
 			{
 				test: /\.json$/,
@@ -112,13 +112,13 @@ module.exports = {
 				vendors: {
 					priority: 0,
 					name: 'vendors',
-					test: new RegExp(`(/${project})|(/node_modules)`),
+					test: new RegExp(`((/|\)${project})|((/|\)node_modules)`),
 					// test: /\/node_modules/,
 					minChunks: 2
 				},
 				theme: {
 					priority: 10,
-					test: new RegExp(`/${project}/theme/native`),
+					test: new RegExp(`(/|\)${project}(/|\)theme(/|\)native`),
 					name: "theme"
 				},
 				styles: {
