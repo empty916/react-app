@@ -137,6 +137,7 @@ module.exports = {
 				test: /\.js(\?.*)?$/i,
 				parallel: true,
 				cache: true,
+				sourceMap: true,
 				// warnings: false,
 				terserOptions: {
 					output: {

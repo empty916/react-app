@@ -36,27 +36,27 @@ react项目模板，支持typescript，react 16.10，router 5.1,
 1. 进入根目录
 1. 运行命令，安装依赖
    1. 安装项目依赖
-   ````node
+   ```node
    yarn 
    // 或者 npm i
-   ````
+   ```
    2. 安装mock服务依赖
-   ````node
+   ```node
    // 进入mock-server目录
    cd ./mock-server
    yarn
    // 或者 npm i
-   ````
+   ```
 2. 在根目录下，运行命令，编译项目依赖
-   ````node
+   ```node
    yarn build:dll
    // 或者 npm run build:dll
-   ````
+   ```
 3. 启动项目
-   ````node
+   ```node
    yarn dev
    // 或者 npm run dev
-   ````
+   ```
 
 ## <a id='npm-script'>npm命令说明</a>
 
@@ -67,14 +67,14 @@ react项目模板，支持typescript，react 16.10，router 5.1,
 1. build:prd 打包生产环境包
 1. create:module 模块创建脚本
 2. cc mock服务的控制器创建脚本，建议如下使用
-   ````node
+   ```node
     // 记得现在/mock-server下先安装好依赖
 	npm run cc controller/xxx // 其中xxx是你的模块名
 	// 比如
 	npm run cc controller/dog
 	// 即可在mock-server/src/controller文件夹下创建dog控制器，并自动注入完成。
 
-   ````
+   ```
 
 ## <a id='project-dir'>目录结构</a>
 
@@ -209,18 +209,18 @@ const store = createStore(
 
 1. 方式一 要将官网查到的icon的驼峰命名法改为'_'分隔符命名
    
-   ````typescript
+   ```typescript
    import { Icon } from '@material-ui/core';
 
    <Icon>airline_seat_flat</Icon>
-   ````
+   ```
 
 2. 方式二
-   ````typescript
+   ```typescript
    import AirlineSeatFlat from '@material-ui/icons/AirlineSeatFlat';
 
    <AirlineSeatFlat />
-   ````
+   ```
 
 ## <a id='theme'>theme，主题控制</a>
 
@@ -260,7 +260,7 @@ const store = createStore(
 ## <a id='auth'>权限控制</a>
 
 1. 权限控制使用HOC实现，具体代码参考@biz/AuthFilterHOC.tsx
-   ````typescript
+   ```typescript
    // 权限判断的逻辑在/src/store/user.store.ts中
    // 支持单个权限、权限等级、角色权限三种控制方式
    import Button from '@material-ui/core';
@@ -269,14 +269,14 @@ const store = createStore(
    const AuthButton = AuthFilterHOC(Button);
 
    <AuthButton auth='login' authLevel={1} authRole='admin' />
-   ````
+   ```
 
 ## <a id='i18n'>国际化</a>
 
 1. 在@/service/i18n.ts中，有两个方法，一个是t函数，一个是useI18n方法，区别是useI18n可以监听语言配置的变化，自动刷新组件。
 2. 语言包的定义都在@/constants/lang中
 
-````typescript
+```typescript
 
 import React from 'react';
 import {t, useI18n} from '@/service/i18n';
@@ -288,7 +288,7 @@ const Comp: React.FC = () => {
   return $t('hello');
 }
 
-````
+```
 
 
 ## <a id='os-utils'>开源工具库</a>

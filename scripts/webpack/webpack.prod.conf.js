@@ -15,6 +15,7 @@ const isDev = false;
 module.exports = merge(baseConfig, {
 	mode,
 	devtool: false,
+	// devtool: 'source-map',
 	output: {
 		chunkFilename: 'js/[name].[chunkhash].js',
 		filename: 'js/[name].[chunkhash].js',
