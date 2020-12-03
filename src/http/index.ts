@@ -6,6 +6,7 @@ import history from '../routes/history';
 
 const { server: serverUrl } = channel;
 
+
 // 字典排序
 const azSort = (data: {[p: string]: any}) => {
 	const obj: {[p: string]: any} = {};

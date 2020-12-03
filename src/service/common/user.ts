@@ -2,8 +2,7 @@ import { AuthType } from '@/constants/common/Auth';
 import NaturService from '../natur-service';
 
 class UserService extends NaturService {
-	constructor() {
-		super();
+	start() {
 		this.watch('user', ({actionName, state}) => {
 			if (actionName === 'updateName' && state) {
 				this.dispatch('page2', 'changePageName', state?.name);

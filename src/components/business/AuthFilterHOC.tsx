@@ -1,23 +1,21 @@
-/* eslint-disable */
-import React, { Component } from "react";
-import { AuthType } from "@/constants/common/Auth";
+import React, { Component } from 'react';
+import { AuthType } from '@/constants/common/Auth';
 import copyStatic from 'hoist-non-react-statics';
-import { InjectStoreModule } from "natur";
 import {inject, StoreType} from '@/store';
 
 const authCheckType = (props: any): [string, AuthType][] => {
 	const res:[string, AuthType][] = [];
 	if (props.authLevel !== undefined) {
-		res.push([props.authLevel, "level"]);
+		res.push([props.authLevel, 'level']);
 	}
 	if (props.authRole !== undefined) {
-		res.push([props.authRole, "role"]);
+		res.push([props.authRole, 'role']);
 	}
 	if (props.auth !== undefined) {
-		res.push([props.auth, "auth"]);
+		res.push([props.auth, 'auth']);
 	}
 	if (res.length === 0) {
-		res.push([props.auth, "auth"]);
+		res.push([props.auth, 'auth']);
 	}
 	return res;
 };
@@ -25,7 +23,7 @@ const authCheckType = (props: any): [string, AuthType][] => {
 
 type AuthProps = {
 	auth?: string;
-	authLevel?: string; 
+	authLevel?: string;
 	authRole?: string;
 };
 
@@ -44,9 +42,9 @@ type AuthFilterProps<T> = T & AuthProps & Ref & UserStoreModule;
  * 没有就不显示。
  * @param {React.ComponentClass<T> | React.FC<T>} WrappedComponent 需要控制权限的组件
  * @returns {Component} 封装后的组件，可以通过权限属性控制组件显隐
- * 
+ *
  */
-function AuthFilterHOC<T, U extends AuthFilterProps<T> =  AuthFilterProps<T>>(WrappedComponent: React.ComponentClass<T> | React.FC<T>) {
+function AuthFilterHOC<T, U extends AuthFilterProps<T> = AuthFilterProps<T>>(WrappedComponent: React.ComponentClass<T> | React.FC<T>) {
 	class AuthFilter extends Component<U> {
 		render() {
 			const { auth, authLevel, authRole, forwardRef, user, ...props } = this.props;
@@ -68,7 +66,7 @@ function AuthFilterHOC<T, U extends AuthFilterProps<T> =  AuthFilterProps<T>>(Wr
 				...props,
 				forwardRef: ref,
 			};
-			return <AuthFilter {...newProps} />
+			return <AuthFilter {...newProps} />;
 		}) as any;
 	}
 	RefAuthFilter = copyStatic(RefAuthFilter, WrappedComponent);

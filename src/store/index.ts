@@ -28,16 +28,22 @@ const modules = {
 	channel,
 };
 
+export type M = typeof modules;
+export type LM = typeof lazyModules;
 
-const store = createStore(modules, lazyModules, getData(), [
-	thunkMiddleware,
-	promiseMiddleware,
-	fillObjectRestDataMiddleware,
-	shallowEqualMiddleware,
-	filterUndefinedMiddleware,
-	devTool,
-	localStorageMiddleware,
-]);
+
+const store = createStore(modules, lazyModules, {
+	initStates: getData(),
+	middlewares: [
+		thunkMiddleware,
+		promiseMiddleware,
+		fillObjectRestDataMiddleware,
+		shallowEqualMiddleware,
+		filterUndefinedMiddleware,
+		devTool,
+		localStorageMiddleware,
+	],
+});
 
 export type StoreType = typeof store.type;
 
@@ -59,3 +65,9 @@ export default store;
 export const inject = createInject({
 	storeGetter: () => store,
 });
+
+// const m = store.getModule;
+
+// store.getModule('loading');
+// store.dispatch('page1', 'asyncChangePageName', '');
+

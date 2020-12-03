@@ -14,9 +14,12 @@ export const maps = {
 };
 export const actions = {
 	updateRowsSelected: (rowsSelected: State['rowsSelected']) => ({rowsSelected}),
-	changePageName: (newPageName: string) => ({
-		pageName: newPageName,
-	}),
+	changePageName: (newPageName: string) => {
+		console.log('changePageName: ', newPageName);
+		return {
+			pageName: newPageName,
+		};
+	},
 	asyncChangePageName: async (newPageName: string) => {
 		await new Promise(res => setTimeout(res, 3000));
 		return {

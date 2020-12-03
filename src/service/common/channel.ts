@@ -36,6 +36,6 @@ export const useChannel = () => {
 	};
 };
 
-const channelService = new ChannelService();
+const channelService = new ChannelService(store);
 
 export default channelService;

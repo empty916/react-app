@@ -1,15 +1,14 @@
 import NaturService from 'natur-service';
-import store from '@/store';
+import store, { LM, M } from '@/store';
 
 
-export default class extends NaturService<typeof store.type>{
-    get store() {
-        return this.getStore();
+export default class extends NaturService<M, LM>{
+    constructor(_store: typeof store = store) {
+        super(_store);
+        this.start();
     }
-    getStore () {
-        return store;
-    }
-    dispatch: NaturService<typeof store.type>['dispatch'] = (...arg) => {
+    start() {}
+    dispatch: NaturService<M, LM>['dispatch'] = (...arg) => {
         return super.dispatch(arg[0], arg[1], ...(arg as any).slice(2)).catch(e => {
             if (e?.code === 0) {
                 return;
