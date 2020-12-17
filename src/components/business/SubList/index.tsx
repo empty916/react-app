@@ -2,7 +2,7 @@
 import React from 'react';
 import { List, ListItem, ListItemIcon, Collapse, ListItemText } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { ExpandLess } from '@material-ui/icons';
+import ExpandLess from '@material-ui/icons/ExpandLess';
 // import {} from '@material-ui/core/styles';
 import cls from 'classnames';
 import styles from './style.scss';

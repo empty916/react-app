@@ -25,45 +25,47 @@ const drawerWidth = 260;
 
 const useStyles = makeStyles((theme: Theme) => ({
 	drawer: {
-		width: drawerWidth,
-		flexShrink: 0,
-		whiteSpace: 'nowrap',
 		position: 'relative',
 		zIndex: 1,
+		flexShrink: 0,
+		width: drawerWidth,
+		whiteSpace: 'nowrap',
 	},
 	paper: {
-		backgroundColor: '#fff',
 		backgroundImage: `url(${sideBarBgImg})`,
-		backgroundSize: 'cover',
 		backgroundPosition: 'center',
+		backgroundSize: 'cover',
+		backgroundColor: '#fff',
 	},
 	drawerOpen: {
 		width: drawerWidth,
-		transition: theme.transitions.create('width', {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
+		transition:
+			theme.transitions.create('width', {
+				easing: theme.transitions.easing.sharp,
+				duration: theme.transitions.duration.leavingScreen,
+			}),
 	},
 	drawerClose: {
-		transition: theme.transitions.create('width', {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
-		overflowX: 'hidden',
 		width: theme.spacing(8),
+		overflowX: 'hidden',
+		transition:
+			theme.transitions.create('width', {
+				easing: theme.transitions.easing.sharp,
+				duration: theme.transitions.duration.leavingScreen,
+			}),
 	},
 	listWrapper: {
 		width: '100%',
 		minHeight: '100%',
 		overflow: 'auto',
 		overflowX: 'hidden',
-		backgroundColor: 'rgba(0,0,0, 0.6)',
+		backgroundColor: 'rgba(0, 0, 0, 0.6)',
 	},
 	list: {
-		padding: '0 10px',
-		paddingBottom: '100px',
 		position: 'relative',
 		zIndex: 4,
+		padding: '0 10px',
+		paddingBottom: '100px',
 	},
 }));
 const injector = inject([
