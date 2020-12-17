@@ -8,7 +8,7 @@ const projectPath = path
 	.replace(/\\|\//g, slash);
 const moduleDirName = "modules";
 const moduleBasePath = path.join(__dirname, "..", "..", project, moduleDirName);
-const matchFileName = "index";
+const matchFileName = "store";
 
 const importPathPrefix = "@";
 const fileName = path.join(__dirname, '..', '..', 'src', 'store', "lazyModule.ts");

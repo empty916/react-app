@@ -9,5 +9,4 @@ const Page3: React.FC<typeof injector.type> = () => (
 		page3
 	</Box>
 );
-export { state, maps, actions } from './store';
 export default injector(Page3);

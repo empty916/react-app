@@ -1,5 +1,5 @@
 
-# react-project-template
+# react-app
 react项目模板，支持typescript，react 16.10，router 5.1,
 
 

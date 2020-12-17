@@ -15,5 +15,4 @@ const Template: React.FC<typeof injector.type> = ({template}) => {
 	);
 };
 
-export {state, maps, actions} from './store';
 export default injector(Template);

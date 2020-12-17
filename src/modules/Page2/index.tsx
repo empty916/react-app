@@ -171,6 +171,5 @@ const Page2: React.FC<PageProps> = ({ page2 }) => {
 	);
 };
 
-export { state, maps, actions } from './store';
 
 export default injector(Page2);

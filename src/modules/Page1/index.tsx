@@ -47,9 +47,4 @@ const Page1: React.FC<{location: Location} & typeof injector.type> = ({user, loc
 };
 
 
-export {
-	state,
-	actions,
-} from './store';
-
 export default injector(Page1);
