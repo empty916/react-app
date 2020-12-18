@@ -4,13 +4,12 @@ const HappyPack = require("happypack");
 const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const HtmlWebpackExcludeAssetsPlugin = require("html-webpack-exclude-assets-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const clearConsole = require('react-dev-utils/clearConsole');
 const chalk = require('chalk');
-
+const InlineTheme = require('../plugins/inline-theme');
 
 const {
 	getPath,
@@ -195,10 +194,7 @@ module.exports = {
 			template: `./${project}/index.html`,
 			// favicon: isDev ? '' : `${project}/favicon.ico`,
 			// 防止各channel项目一样时，不生成html文件
-			// inlineSource: /theme/,
 			cache: false,
-			// excludeChunks: ['theme'],
-			excludeAssets: [/theme/],
 			minify: {
 				removeComments: true,
 				collapseWhitespace: true,
@@ -214,11 +210,10 @@ module.exports = {
 			inject: true
 			// hash: true,
 		}),
-		// new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/theme/]),
-		new HtmlWebpackExcludeAssetsPlugin(),
 		new ScriptExtHtmlWebpackPlugin({
 			defaultAttribute: "defer"
 		}),
+		new InlineTheme(),
 		...addDllPluginsConfig(mode)
 	]
 };

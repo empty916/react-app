@@ -15,20 +15,6 @@
 		<meta id='jss-insertion-point' />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-touch-fullscreen" content="yes" />
-		<% htmlWebpackPlugin.files.css.forEach(function(cssFile) { %>
-			<% if (cssFile.indexOf('theme') > -1){ %>
-				<style id="theme-css">
-					<%= compilation.assets[cssFile.substr(htmlWebpackPlugin.files.publicPath.length)].source() %>
-				</style>
-			<% } %>
-		<% }) %>
-		<% htmlWebpackPlugin.files.js.forEach(function(jsFile) { %>
-			<% if (jsFile.indexOf('theme') > -1){ %>
-				<script id="theme-js">
-					<%= compilation.assets[jsFile.substr(htmlWebpackPlugin.files.publicPath.length)].source() %>
-				</script>
-			<% } %>
-		<% }) %>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 	</head>
