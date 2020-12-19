@@ -9,7 +9,7 @@ const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const clearConsole = require('react-dev-utils/clearConsole');
 const chalk = require('chalk');
-const InlineTheme = require('../plugins/inline-theme');
+const InlineChunk = require('inline-chunk');
 
 const {
 	getPath,
@@ -213,7 +213,9 @@ module.exports = {
 		new ScriptExtHtmlWebpackPlugin({
 			defaultAttribute: "defer"
 		}),
-		new InlineTheme(),
+		new InlineChunk({
+			chunkName: 'theme'
+		}),
 		...addDllPluginsConfig(mode)
 	]
 };
