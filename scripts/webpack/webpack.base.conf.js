@@ -115,11 +115,6 @@ module.exports = {
 					// test: /\/node_modules/,
 					minChunks: 2
 				},
-				theme: {
-					priority: 10,
-					test: new RegExp(`(/|\)${project}(/|\)theme(/|\)native`),
-					name: "theme"
-				},
 				styles: {
 					priority: 9,
 					name: "styles",
@@ -214,7 +209,8 @@ module.exports = {
 			defaultAttribute: "defer"
 		}),
 		new InlineChunk({
-			chunkName: 'theme'
+			name: 'theme',
+			test: new RegExp(`(/|\)${project}(/|\)theme(/|\)native`),
 		}),
 		...addDllPluginsConfig(mode)
 	]
