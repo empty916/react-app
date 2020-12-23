@@ -16,6 +16,8 @@ import toast from './common/toast.store';
 import loading from './common/loading.store';
 import router from './common/router.store';
 import lazyModuleConfig from './lazyModule';
+import { createPromiseWatcherMiddleware } from 'natur-promise-wacher';
+
 
 const { modules: lazyModules } = lazyModuleConfig;
 
@@ -31,11 +33,15 @@ const modules = {
 export type M = typeof modules;
 export type LM = typeof lazyModules;
 
+const {
+	collectPromiseMiddleware,
+} = createPromiseWatcherMiddleware();
 
 const store = createStore(modules, lazyModules, {
 	initStates: getData(),
 	middlewares: [
 		thunkMiddleware,
+		collectPromiseMiddleware,
 		promiseMiddleware,
 		fillObjectRestDataMiddleware,
 		shallowEqualMiddleware,

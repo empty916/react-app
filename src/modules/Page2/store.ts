@@ -21,7 +21,7 @@ export const actions = {
 		};
 	},
 	asyncChangePageName: async (newPageName: string) => {
-		await new Promise(res => setTimeout(res, 3000));
+		await new Promise(res => setTimeout(res, 10000));
 		return {
 			pageName: newPageName,
 		};

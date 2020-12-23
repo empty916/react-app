@@ -8,6 +8,11 @@ class UserService extends NaturService {
 				this.dispatch('page2', 'changePageName', state?.name);
 			}
 		});
+		this.watch('page1', ({actionName, state}) => {
+			if (actionName === 'asyncChangePageName2' && state) {
+				this.dispatch('page2', 'asyncChangePageName', state?.pageName);
+			}
+		});
 	}
 
 	get isLogin() {

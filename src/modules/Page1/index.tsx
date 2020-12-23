@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '@base/Button';
 import Input from '@base/Input';
 import { Box } from '@material-ui/core';
@@ -8,13 +8,18 @@ import { inject } from '@/store';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-const injector = inject('page1', 'user');
+const injector = inject('page1', 'user', 'page2');
 
-const Page1: React.FC<{location: Location} & typeof injector.type> = ({user, location}) => {
+const Page1: React.FC<{location: Location} & typeof injector.type> = ({user, location, page1}) => {
 	const redirectPath = React.useMemo(() => qs.parse(location?.search?.slice(1))?.redirect, [location]) as string | undefined;
 	const login = React.useCallback(() => {
 		history.replace({pathname: redirectPath || '/'});
 	}, [redirectPath]);
+	// useEffect(() => {
+	// 	page1.actions.asyncChangePageName('0000');
+	// 	page1.actions.asyncChangePageName1('111');
+	// 	page1.actions.asyncChangePageName2('222');
+	// }, [page1.actions]);
 	return (
 		<>
 			<Box p={2} display='flex'>

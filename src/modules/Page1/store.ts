@@ -13,4 +13,16 @@ export const actions = {
 			pageName: newPageName,
 		};
 	},
+	asyncChangePageName1: async (newPageName: string) => {
+		await new Promise(res => setTimeout(res, 3000));
+		return {
+			pageName: newPageName,
+		};
+	},
+	asyncChangePageName2: async (newPageName: string) => {
+		await new Promise(res => setTimeout(res, 3000));
+		return {
+			pageName: newPageName,
+		};
+	},
 };
