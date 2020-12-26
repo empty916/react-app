@@ -16,7 +16,7 @@ import toast from './common/toast.store';
 import loading from './common/loading.store';
 import router from './common/router.store';
 import lazyModuleConfig from './lazyModule';
-import { createPromiseWatcherMiddleware } from 'natur-promise-wacher';
+import { createPromiseWatcherMiddleware } from 'natur-promise-watcher';
 
 
 const { modules: lazyModules } = lazyModuleConfig;

@@ -164,7 +164,7 @@
 		"mui-datatables": "^3.4.1",
 		"natur": "^2.1.0",
 		"natur-persist": "^1.1.1",
-		"natur-promise-wacher": "^1.0.1",
+		"natur-promise-watcher": "^1.0.0",
 		"natur-service": "^2.1.0",
 		"qs": "^6.9.3",
 		"react": "16.10.1",

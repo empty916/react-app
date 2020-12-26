@@ -39,7 +39,7 @@ async function bootstrap() {
             console.log(consoleStyle.magenta, `当前不在mock模式！`);
         }
     }, 0)
-    await app.listen(8090);
+    await app.listen(8089);
 }
 
 bootstrap();
