@@ -56,12 +56,21 @@ module.exports = {
 			"@channel": getPath(`buildConfig/channel/${channel}`)
 		}
 	},
+	cache: {
+		type: 'filesystem',
+		name: 'webpack',
+		allowCollectingMemory: true,
+		cacheDirectory: require('path').resolve(__dirname, "node_modules/.cache/webpack"),
+	},
 	module: {
 		rules: [
 			{
 				test: /\.(j|t)s(x)?$/,
 				exclude: /node_modules/,
-				loader: "happypack/loader?id=babel"
+				loader: "babel-loader",
+				options: {
+					cacheDirectory: true,
+				}
 			},
 			...createStyleLoader(mode, isDev),
 			{
@@ -124,14 +133,14 @@ module.exports = {
 			chunks: "all",
 			minChunks: 1,
 			minSize: 0,
-			name: true
+			// name: true
 		},
 		minimizer: [
 			new TerserPlugin({
 				test: /\.js(\?.*)?$/i,
 				parallel: true,
-				cache: true,
-				sourceMap: true,
+				// cache: true,
+				// sourceMap: true,
 				// warnings: false,
 				terserOptions: {
 					output: {
@@ -171,17 +180,17 @@ module.exports = {
 			"process.env.PROJECT_ENV": JSON.stringify(PROJECT_ENV),
 			"process.env.BASE_URL": JSON.stringify(publicPath)
 		}),
-		new HappyPack({
-			id: "babel",
-			threads: 1,
-			verbose: false,
-			loaders: [
-				{
-					loader: "babel-loader",
-					cacheDirectory: true
-				}
-			]
-		}),
+		// new HappyPack({
+		// 	id: "babel",
+		// 	threads: 1,
+		// 	verbose: false,
+		// 	loaders: [
+		// 		{
+		// 			loader: "babel-loader",
+		// 			cacheDirectory: true
+		// 		}
+		// 	]
+		// }),
 		createStylePlugin(mode, isDev),
 		new HtmlWebpackPlugin({
 			title: "react project template",
@@ -208,10 +217,10 @@ module.exports = {
 		new ScriptExtHtmlWebpackPlugin({
 			defaultAttribute: "defer"
 		}),
-		new InlineChunk({
-			name: 'theme',
-			test: new RegExp(`(/|\)${project}(/|\)theme(/|\)native`),
-		}),
+		// new InlineChunk({
+		// 	name: 'theme',
+		// 	test: new RegExp(`(/|\)${project}(/|\)theme(/|\)native`),
+		// }),
 		...addDllPluginsConfig(mode)
 	]
 };

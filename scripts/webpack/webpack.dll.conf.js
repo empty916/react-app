@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
 const HappyPack = require('happypack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 // const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const TerserPlugin = require('terser-webpack-plugin');
@@ -74,8 +74,8 @@ module.exports = mode => {
 				{
 					test: /\.js$/,
 					include: [getPath(project)],
-					// loader: 'babel-loader',
-					loader: 'happypack/loader?id=babel',
+					loader: 'babel-loader',
+					// loader: 'happypack/loader?id=babel',
 				},
 				{
 					test: /\.(s?css)$/,
@@ -101,7 +101,7 @@ module.exports = mode => {
 				new TerserPlugin({
 					test: /\.js(\?.*)?$/i,
 					parallel: true,
-					cache: true,
+					// cache: true,
 					terserOptions: {
 						output: {
 							comments: false,
@@ -117,16 +117,16 @@ module.exports = mode => {
 			],
 		},
 		plugins: [
-			new HappyPack({
-				id: 'babel',
-				threads: 1,
-				loaders: [
-					{
-						loader: 'babel-loader',
-						cacheDirectory: true,
-					},
-				],
-			}),
+			// new HappyPack({
+			// 	id: 'babel',
+			// 	threads: 1,
+			// 	loaders: [
+			// 		{
+			// 			loader: 'babel-loader',
+			// 			cacheDirectory: true,
+			// 		},
+			// 	],
+			// }),
 			new webpack.DllPlugin({
 				name: '[name]', // json文件名
 				path: path.join(dllPath, '[name].json'), // 生成映射表json文件地址

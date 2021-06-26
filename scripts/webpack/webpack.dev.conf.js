@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const {merge} = require('webpack-merge');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const baseConfig = require('./webpack.base.conf');
@@ -50,22 +50,22 @@ module.exports = merge(baseConfig, {
 		new ForkTsCheckerWebpackPlugin({
 			// tsconfig: './server/tsconfig.json',
 			async: false,
-			useTypescriptIncrementalApi: true,
-			checkSyntacticErrors: true,
-			silent: true,
-			memoryLimit: 1024,
-			compilerOptions: {
-				paths: {
-					'@channel': [`buildConfig/channel/${channel}/index.ts`],
-					'@channel/*': [`buildConfig/channel/${channel}/*`],
-					"@history": [`${project}/routes/history.ts`],
-					'@': [`${project}`],
-					'@/*': [`${project}/*`],
-					'@redux-devtool': [`${project}/store/common/redux.devtool.ts`],
-					"@base/*": [`${project}/components/base/*`],
-					"@biz/*": [`${project}/components/business/*`],
-				},
-			},
+			// useTypescriptIncrementalApi: true,
+			// checkSyntacticErrors: true,
+			// silent: true,
+			// memoryLimit: 1024,
+			// compilerOptions: {
+			// 	paths: {
+			// 		'@channel': [`buildConfig/channel/${channel}/index.ts`],
+			// 		'@channel/*': [`buildConfig/channel/${channel}/*`],
+			// 		"@history": [`${project}/routes/history.ts`],
+			// 		'@': [`${project}`],
+			// 		'@/*': [`${project}/*`],
+			// 		'@redux-devtool': [`${project}/store/common/redux.devtool.ts`],
+			// 		"@base/*": [`${project}/components/base/*`],
+			// 		"@biz/*": [`${project}/components/business/*`],
+			// 	},
+			// },
 		}),
 		// new webpack.HotModuleReplacementPlugin({
 		// 	// Options...
