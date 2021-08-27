@@ -14,27 +14,7 @@
 	"emmet.showExpandedAbbreviation": "always",
 	"emmet.triggerExpansionOnTab": true,
 	"editor.foldingStrategy": "indentation",
-	"eslint.autoFixOnSave": true,
 	"files.autoSave": "off",
-	"eslint.validate": [ 
-		"html",
-		{
-			"language": "javascript",
-			"autoFix": true
-		},
-		{
-			"language": "javascriptreact",
-			"autoFix": true
-		},
-		{
-			"language": "typescript",
-			"autoFix": true
-		},
-		{
-			"language": "typescriptreact",
-			"autoFix": true
-		}
-	],
 	"diffEditor.ignoreTrimWhitespace": true,
 	"css.validate": false,
 	"scss.validate": false,
@@ -44,5 +24,5 @@
 		"source.fixAll.eslint": true,
 		"source.fixAll.stylelint": true
 	},
-	"stylelint.autoFixOnSave": true
+	"typescript.tsdk": "node_modules/typescript/lib"
 }
