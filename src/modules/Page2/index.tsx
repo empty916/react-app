@@ -1,37 +1,37 @@
-import React from "react";
+import React from 'react';
 // import Button from '@base/IconButton';
 // import Input from '@base/Input';
 // import Icon from '@material-ui/core/Icon';
-import styles from "./style.scss";
+import styles from './style.scss';
 import {
 	Button,
 	LinearProgress,
 	FormControlLabel,
-	Radio
-} from "@material-ui/core";
-import { inject } from "@/store";
-import { TextField, RadioGroup } from "formik-material-ui";
-import { Field, useFormik, FormikProvider } from "formik";
-import Checkbox from "@/components/base/Checkbox";
-import ErrorMsgBoxHOC from "@/components/base/ErrorMsgBoxHOC";
-import { DatePicker } from "formik-material-ui-pickers";
-import Table from "@/components/base/Table";
+	Radio,
+} from '@material-ui/core';
+import { inject } from '@/store';
+import { TextField, RadioGroup } from 'formik-material-ui';
+import { Field, useFormik, FormikProvider } from 'formik';
+import Checkbox from '@/components/base/Checkbox';
+import ErrorMsgBoxHOC from '@/components/base/ErrorMsgBoxHOC';
+import { DatePicker } from 'formik-material-ui-pickers';
+import Table from '@/components/base/Table';
 
 const injector = inject(
 	[
-		"page2",
+		'page2',
 		{
 			state: [s => s.rowsSelected],
-			maps: ["countIsOdd"]
-		}
+			maps: ['countIsOdd'],
+		},
 	],
 	[
-		"app",
+		'app',
 		{
 			state: [s => s.name],
-			maps: ["getLangData"]
-		}
-	]
+			maps: ['getLangData'],
+		},
+	],
 );
 
 type PageProps = typeof injector.type;
@@ -40,68 +40,68 @@ const _RadioGroup = ErrorMsgBoxHOC(RadioGroup);
 
 const columns = [
 	{
-		name: "name",
-		label: "Name",
+		name: 'name',
+		label: 'Name',
 		options: {
 			filter: true,
-			sort: true
-		}
+			sort: true,
+		},
 	},
 	{
-		name: "company",
-		label: "Company",
+		name: 'company',
+		label: 'Company',
 		options: {
 			filter: true,
-			sort: false
-		}
+			sort: false,
+		},
 	},
 	{
-		name: "city",
-		label: "City",
+		name: 'city',
+		label: 'City',
 		options: {
 			filter: true,
-			sort: false
-		}
+			sort: false,
+		},
 	},
 	{
-		name: "state",
-		label: "State",
+		name: 'state',
+		label: 'State',
 		options: {
 			filter: true,
-			sort: false
-		}
-	}
+			sort: false,
+		},
+	},
 ];
 
 const data = [
 	{
-		id: "1",
-		name: "Joe James",
-		company: "Test Corp",
-		city: "Yonkers",
-		state: "NY"
+		id: '1',
+		name: 'Joe James',
+		company: 'Test Corp',
+		city: 'Yonkers',
+		state: 'NY',
 	},
 	{
-		id: "2",
-		name: "John Walsh",
-		company: "Test Corp",
-		city: "Hartford",
-		state: "CT"
+		id: '2',
+		name: 'John Walsh',
+		company: 'Test Corp',
+		city: 'Hartford',
+		state: 'CT',
 	},
 	{
-		id: "3",
-		name: "Bob Herm",
-		company: "Test Corp",
-		city: "Tampa",
-		state: "FL"
+		id: '3',
+		name: 'Bob Herm',
+		company: 'Test Corp',
+		city: 'Tampa',
+		state: 'FL',
 	},
 	{
-		id: "4",
-		name: "James Houston",
-		company: "Test Corp",
-		city: "Dallas",
-		state: "TX"
-	}
+		id: '4',
+		name: 'James Houston',
+		company: 'Test Corp',
+		city: 'Dallas',
+		state: 'TX',
+	},
 ];
 
 const Page2: React.FC<PageProps> = ({ page2, app }) => {
@@ -109,17 +109,17 @@ const Page2: React.FC<PageProps> = ({ page2, app }) => {
 	app.actions.closeMenu;
 	const formikbag = useFormik({
 		initialValues: {
-			email: "",
-			date: "",
-			password: "",
+			email: '',
+			date: '',
+			password: '',
 			checked: false,
-			activity: ""
+			activity: '',
 		},
 		onSubmit: (values, { setSubmitting }) => {
 			setSubmitting(false);
 			actions.changePageName(values.email);
 			// console.log(JSON.stringify(values, null, 2));
-		}
+		},
 	});
 	const { isSubmitting, submitForm } = formikbag;
 
@@ -130,7 +130,7 @@ const Page2: React.FC<PageProps> = ({ page2, app }) => {
 				pagination={{
 					total: 100,
 					page: 1,
-					rowsPerPage: 5
+					rowsPerPage: 5,
 				}}
 				// idName='id'
 				rowsSelected={page2.state.rowsSelected}
@@ -153,7 +153,7 @@ const Page2: React.FC<PageProps> = ({ page2, app }) => {
 					type="email"
 					label="Email"
 					validate={(v: string) => (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(v)
-						? "Invalid email address"
+						? 'Invalid email address'
 						: undefined)}
 				/>
 				<br />
@@ -161,13 +161,13 @@ const Page2: React.FC<PageProps> = ({ page2, app }) => {
 					component={Checkbox}
 					type="checkbox"
 					name="checked"
-					validate={(v: any) => (!!v ? undefined : "checked required!")}
+					validate={(v: any) => (!!v ? undefined : 'checked required!')}
 				/>
 				<br />
 				<Field
 					component={_RadioGroup}
 					name="activity"
-					validate={(v: any) => (!!v ? undefined : "acivity required!")}
+					validate={(v: any) => (!!v ? undefined : 'acivity required!')}
 				>
 					<FormControlLabel
 						value="painting"
