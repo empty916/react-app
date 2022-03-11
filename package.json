@@ -162,7 +162,7 @@
 		"jss-plugin-default-unit": "^10.4.0",
 		"lodash": "^4.17.15",
 		"mui-datatables": "^3.4.1",
-		"natur": "^2.1.9",
+		"natur": "^2.1.10",
 		"natur-persist": "^1.2.5",
 		"natur-promise-watcher": "^1.0.1",
 		"natur-service": "^2.1.6",
