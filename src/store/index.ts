@@ -2,7 +2,7 @@ import { createStore, createInject } from 'natur';
 import {
 	promiseMiddleware,
 	shallowEqualMiddleware,
-	thunkMiddleware,
+	// thunkMiddleware,
 	filterUndefinedMiddleware,
 	fillObjectRestDataMiddleware,
 } from 'natur/dist/middlewares';
@@ -17,6 +17,7 @@ import loading from './common/loading.store';
 import router from './common/router.store';
 import lazyModuleConfig from './lazyModule';
 import { createPromiseWatcherMiddleware } from 'natur-promise-watcher';
+import { thunkMiddleware } from 'natur-immer';
 
 
 const { modules: lazyModules } = lazyModuleConfig;
